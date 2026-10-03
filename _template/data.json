@@ -1,0 +1,138 @@
+{
+  "event": {
+    "title": "Getworks Presents WRESTLE ODYSSEY Ⅱ",
+    "short": "WRESTLE ODYSSEY Ⅱ",
+    "catch": "THIS IS NEO HIGH STANDARD WRESTLING",
+    "lead": "ネオ・ハイスタンダード・レスリング──いま最も新しく、最も高い水準のプロレスが、ここにある。",
+    "date_iso": "2026-10-25",
+    "date_label": "2026.10.25",
+    "dow": "SUN",
+    "date_ja": "2026年10月25日（日）",
+    "open": "13:30",
+    "start": "15:00",
+    "venue": "東京・両国国技館",
+    "address": "東京都墨田区横網1-3-28",
+    "access": "JR両国駅より徒歩3分 / 都営大江戸線両国駅より徒歩5分",
+    "official_url": "https://www.noah.co.jp/schedule/898/",
+    "lp_url": "https://www.noah.co.jp/lp/wo2026/",
+    "organizer": "株式会社CyberFight",
+    "title_sponsor": "株式会社ゲットワークス",
+    "sponsors": "LINEヤフー／ABEMA／WINTICKET／株式会社マイクロアド／株式会社アプリボット／株式会社メルカリ／Criteo／EZIGEN／HaRENO／ベースフード株式会社／テーブルマーク／ユナイテッド株式会社／YES株式会社／bfj株式会社／ジョブアンテナ／てんじく株式会社／株式会社デジタルアークス／ウルラ／株式会社ビットミックス／DOTZ株式会社／株式会社サイバー・バズ／株式会社ロットネスト／リバライズ株式会社／夜光虫 閻魔坂／株式会社Tech-Tech／ザ・リーヴ",
+    "contact_url": "https://www.noah.co.jp/contactform/",
+    "contact_note": "月曜〜金曜 10:00〜18:00（土日祝祭日は除く）"
+  },
+  "theme": {
+    "bg": "#070B18",
+    "accent": "#5BC0F8",
+    "accent2": "#2A7FD4"
+  },
+  "matches": [
+    {
+      "id": "ghc-heavy",
+      "label": "GHCヘビー級選手権試合",
+      "en": "GHC HEAVYWEIGHT CHAMPIONSHIP MATCH",
+      "champion": "内藤哲也",
+      "champion_en": "T.NAITO",
+      "challenger": "N-1 VICTORY 2026 優勝者",
+      "challenger_en": "N-1 VICTORY 2026 WINNER",
+      "img": "img/match_ghc_heavy.jpg",
+      "img_sm": "img/match_ghc_heavy_sm.jpg"
+    },
+    {
+      "id": "ghc-jr",
+      "label": "GHCジュニアヘビー級選手権試合",
+      "en": "GHC JR. HEAVYWEIGHT CHAMPIONSHIP MATCH",
+      "champion": "カイ・フジムラ",
+      "champion_en": "K.FUJIMURA",
+      "challenger": "ドラゴン・ベイン",
+      "challenger_en": "D.BANE",
+      "img": "img/match_ghc_jr.jpg",
+      "img_sm": "img/match_ghc_jr_sm.jpg"
+    }
+  ],
+  "broadcast": {
+    "name": "ABEMA",
+    "note": "無料生中継",
+    "url": "https://abema.tv/video/genre/fightingsports",
+    "btn": "ABEMAで視聴",
+    "note2": "試合開始 15:00 ／ 配信開始時間はABEMAの番組ページをご確認ください"
+  },
+  "news": [
+    {
+      "date": "2026.09",
+      "title": "【10.25 両国国技館大会】「WRESTLE ODYSSEY Ⅱ」株式会社ゲットワークス 冠協賛決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8495/"
+    }
+  ],
+  "tickets": {
+    "status": "好評発売中",
+    "playguides": [
+      {
+        "name": "e+（イープラス）",
+        "url": "https://eplus.jp/noah/",
+        "note": "セブン-イレブン／ファミリーマートで発券可"
+      },
+      {
+        "name": "チケットぴあ",
+        "url": "https://t.pia.jp/pia/artist/artists.do?artistsCd=11027339",
+        "note": "Pコード 594-150 / セブン-イレブンで発券可"
+      },
+      {
+        "name": "ローソンチケット",
+        "url": "https://l-tike.com/sports/mevent/?mid=111745",
+        "note": "ローソン／ミニストップ店頭Loppiで購入可"
+      }
+    ],
+    "inbound": {
+      "label": "Tickets for International Fans",
+      "url": "https://w.pia.jp/a/noah1025-26eng/"
+    },
+    "office": "後楽園ホール5階事務所 03-5800-9999",
+    "notes": [
+      "各席種の販売状況はプレイガイドにより異なります。「予定枚数終了」の場合も、未入金キャンセル等による再発売がある場合があります。",
+      "本大会では高校生シート販売・小中学生無料があります（大会当日の当日券売場でのみ対応／年齢を証明できるものをご提示ください）。",
+      "未就学児は保護者の膝上にて無料（大人1名につきお子様1名）。",
+      "車椅子でのご観戦は1階マス席エリアへのご案内となります。定員があるためご購入前にNOAH事務所までお問い合わせください。",
+      "チケットは正規のプレイガイドでご購入ください。転売サイト等にはご注意ください。",
+      "チケットは金券につき、紛失・忘れ等いかなる理由でも再発行はできません。"
+    ]
+  },
+  "footer_links": [
+    {
+      "label": "プロレスリング・ノア 公式サイト",
+      "url": "https://www.noah.co.jp/"
+    },
+    {
+      "label": "大会情報",
+      "url": "https://www.noah.co.jp/schedule/898/"
+    },
+    {
+      "label": "ニュース",
+      "url": "https://www.noah.co.jp/news/"
+    },
+    {
+      "label": "選手一覧",
+      "url": "https://www.noah.co.jp/profile/"
+    },
+    {
+      "label": "YouTube公式チャンネル",
+      "url": "https://www.youtube.com/channel/UC4T0v46s8yxJuTOW1_mD1xA/"
+    }
+  ],
+  "videos": [
+    {
+      "id": "rRmvr6Jro3k",
+      "title": ""
+    }
+  ],
+  "sns": [
+    {
+      "label": "X",
+      "url": "https://x.com/noah_ghc"
+    },
+    {
+      "label": "YouTube",
+      "url": "https://www.youtube.com/channel/UC4T0v46s8yxJuTOW1_mD1xA/"
+    }
+  ]
+}

@@ -1,0 +1,441 @@
+#!/usr/bin/env python3
+"""WRESTLE ODYSSEY 2 LP builder: data.json -> out/index.html
+usage: python3 build.py [--noindex] [--out PATH]
+"""
+import json, sys, html, urllib.parse, argparse
+
+ap = argparse.ArgumentParser()
+ap.add_argument('--noindex', action='store_true')
+ap.add_argument('--out', default='out/index.html')
+args = ap.parse_args()
+
+D = json.load(open('data.json', encoding='utf-8'))
+E, T, B, TK = D['event'], D['theme'], D['broadcast'], D['tickets']
+esc = html.escape
+GTM = 'GTM-KQF9WVX'
+map_url = 'https://www.google.com/maps/search/?api=1&query=' + urllib.parse.quote('両国国技館 ' + E['address'])
+
+# ---------- partials ----------
+def match_cards():
+    out = []
+    for m in D['matches']:
+        out.append(f'''
+      <article class="match">
+        <a href="{esc(E['official_url'])}" target="_blank" rel="noopener" class="match__img">
+          <img src="{m['img_sm']}" srcset="{m['img_sm']} 960w, {m['img']} 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="{esc(m['label'])} {esc(m['champion'])} vs {esc(m['challenger'])}" loading="lazy" width="1920" height="1080">
+        </a>
+        <div class="match__body">
+          <p class="match__en">{esc(m['en'])}</p>
+          <h3 class="match__label">{esc(m['label'])}</h3>
+          <div class="match__vs">
+            <div class="match__side"><span class="match__role">CHAMPION</span><strong>{esc(m['champion'])}</strong><small>{esc(m['champion_en'])}</small></div>
+            <span class="match__x">vs</span>
+            <div class="match__side"><span class="match__role">CHALLENGER</span><strong>{esc(m['challenger'])}</strong><small>{esc(m['challenger_en'])}</small></div>
+          </div>
+        </div>
+      </article>''')
+    return ''.join(out)
+
+def news_items():
+    return ''.join(f'''
+      <li class="news__item"><a href="{esc(n['url'])}" target="_blank" rel="noopener">
+        <time>{esc(n['date'])}</time><span class="news__title">{esc(n['title'])}</span><span class="news__arrow">→</span></a></li>''' for n in D['news'])
+
+def playguides():
+    return ''.join(f'''
+        <a class="pg" href="{esc(p['url'])}" target="_blank" rel="noopener">
+          <span class="pg__name">{esc(p['name'])}</span><span class="pg__note">{esc(p['note'])}</span><span class="pg__go">購入ページへ ↗</span></a>''' for p in TK['playguides'])
+
+def ticket_notes():
+    return ''.join(f'<li>{esc(n)}</li>' for n in TK['notes'])
+
+def nav_links():
+    items=[('match','対戦カード'),('info','大会情報'),('broadcast','放送情報'),('news','ニュース'),('ticket','チケット')]
+    if D.get('videos'): items.append(('movie','動画'))
+    items.append(('access','アクセス'))
+    return ''.join(f'<a href="#{i}">{t}</a>' for i,t in items)
+
+def sns_links():
+    return ''.join(f'<a href="{esc(x["url"])}" target="_blank" rel="noopener">{esc(x["label"])} ↗</a>' for x in D.get('sns',[]) if x.get('url'))
+
+def video_section():
+    V=D.get('videos') or []
+    if not V: return ''
+    cards=''
+    for v in V:
+        vid=esc(v['id']); poster=f"img/video_{vid}.jpg"
+        cards+=f'''
+      <div class="video"><button class="video__frame" type="button" data-id="{vid}" aria-label="動画を再生">
+        <img src="{poster}" alt="{esc(v.get('title','') or '動画')}" loading="lazy" width="1280" height="720"><span class="video__play"></span></button>{'<p class="video__title">'+esc(v['title'])+'</p>' if v.get('title') else ''}</div>'''
+    return f'''
+  <section id="movie" class="sec sec--alt">
+    <div class="wrap">
+      <div class="sec__head"><h2 class="sec__en">動画</h2><p class="sec__ja">MOVIE</p></div>
+      <div class="videos">{cards}</div>
+    </div>
+  </section>
+  <script>document.querySelectorAll('.video__frame[data-id]').forEach(function(b){{b.addEventListener('click',function(){{var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0';f.title='YouTube video';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;b.replaceWith(f);f.className='video__iframe';}});}});</script>
+'''
+
+def footer_links():
+    return ''.join(f'<li><a href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])}</a></li>' for l in D['footer_links'])
+
+noindex = '<meta name="robots" content="noindex,nofollow">\n  ' if args.noindex else ''
+desc = f"{E['catch']} ─ {E['date_ja']}{E['venue']}。プロレスリング・ノア「{E['short']}」特設サイト。ABEMAで無料生中継。"
+
+# ---------- CSS ----------
+CSS = f'''
+:root{{--bg:{T['bg']};--bg2:#0C1226;--ac:{T['accent']};--ac2:{T['accent2']};--tx:#F4F7FB;--tx2:#B7C2D6;--line:rgba(91,192,248,.28);--max:1100px;
+--ff-en:'Helvetica Neue',Helvetica,Arial,sans-serif;--ff-ja:'Hiragino Kaku Gothic ProN','Hiragino Sans',Meiryo,'Noto Sans JP',sans-serif;}}
+*{{box-sizing:border-box;margin:0;padding:0}}
+html{{scroll-behavior:smooth;-webkit-text-size-adjust:100%}}
+body{{background:var(--bg);color:var(--tx);font-family:var(--ff-ja);font-weight:600;line-height:1.7;letter-spacing:.02em;overflow-x:hidden}}
+img{{max-width:100%;height:auto;display:block}}
+a{{color:inherit;text-decoration:none}}
+ul{{list-style:none}}
+.en{{font-family:var(--ff-en)}}
+.wrap{{width:min(100% - 40px,var(--max));margin:0 auto}}
+.sec{{padding:88px 0}}
+.sec--alt{{background:linear-gradient(180deg,var(--bg2),var(--bg))}}
+.sec__head{{text-align:center;margin-bottom:44px}}
+.sec__en{{font-weight:700;font-size:clamp(24px,3.4vw,36px);letter-spacing:.12em;line-height:1.2}}
+.sec__ja{{font-family:var(--ff-en);font-weight:700;font-size:12px;color:var(--ac);margin-top:8px;letter-spacing:.3em}}
+.sec__head::after{{content:"";display:block;width:56px;height:3px;background:var(--ac);margin:18px auto 0}}
+.btn{{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 28px;border-radius:6px;font-weight:700;font-size:15px;letter-spacing:.06em;transition:.2s;white-space:nowrap}}
+.btn--pri{{background:var(--ac);color:#041225}}
+.btn--pri:hover{{background:#8ad5ff}}
+.btn--ghost{{border:2px solid var(--ac);color:var(--tx)}}
+.btn--ghost:hover{{background:rgba(91,192,248,.12)}}
+
+/* header */
+.topwrap{{position:sticky;top:0;z-index:100;background:rgba(7,11,24,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}}
+.header{{display:flex;align-items:center;justify-content:space-between;height:64px}}
+.header__logo img{{height:40px;width:auto}}
+.header__nav{{display:flex;gap:24px;font-weight:700;font-size:13px;letter-spacing:.08em}}
+.header__nav a{{position:relative;padding:4px 0}}
+.header__nav a::after{{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--ac);transition:.25s}}
+.header__nav a:hover::after{{width:100%}}
+.header__cta{{min-height:40px;padding:8px 20px;font-size:13px}}
+.spnav{{display:none}}
+
+/* hero */
+.hero{{position:relative;background:#000}}
+.hero__img--pc{{max-width:1920px;margin:0 auto}}
+.hero__img{{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}}
+.hero__img--sp{{display:none}}
+.hero__bar{{background:linear-gradient(90deg,rgba(91,192,248,.18),rgba(7,11,24,0) 50%,rgba(91,192,248,.18));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}}
+.hero__bar .wrap{{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 36px;padding:16px 0}}
+.hero__date{{font-family:var(--ff-en);font-weight:700;font-size:28px;letter-spacing:.06em;line-height:1}}
+.hero__date small{{font-size:14px;margin-left:8px;color:var(--ac)}}
+.hero__venue{{font-size:18px;font-weight:700}}
+.hero__time{{font-size:14px;color:var(--tx2)}}
+.hero__time b{{color:var(--tx);margin-left:4px}}
+
+/* matches */
+.match{{background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:28px}}
+.match__img img{{aspect-ratio:16/9;object-fit:cover;width:100%}}
+.match__body{{padding:22px 26px 26px;text-align:center}}
+.match__en{{font-family:var(--ff-en);font-size:12px;letter-spacing:.2em;color:var(--ac);font-weight:700}}
+.match__label{{font-size:20px;margin:6px 0 16px}}
+.match__vs{{display:flex;align-items:center;justify-content:center;gap:18px}}
+.match__side{{display:flex;flex-direction:column;align-items:center;min-width:160px}}
+.match__role{{font-family:var(--ff-en);font-size:10px;letter-spacing:.3em;color:var(--tx2)}}
+.match__side strong{{font-size:22px;line-height:1.2;margin:4px 0 2px}}
+.match__side small{{font-family:var(--ff-en);font-size:12px;letter-spacing:.1em;color:var(--tx2)}}
+.match__x{{font-family:var(--ff-en);font-weight:700;font-size:16px;color:var(--ac);font-style:italic}}
+.match__more{{text-align:center;margin-top:10px}}
+
+/* info */
+.catchsec{{padding:72px 0 8px;background:radial-gradient(ellipse at 50% 0%,rgba(91,192,248,.14),transparent 60%)}}
+.catch{{text-align:center}}
+.catch__en{{font-family:var(--ff-en);font-weight:700;font-size:clamp(26px,5vw,58px);letter-spacing:.06em;line-height:1.1;text-shadow:0 0 30px rgba(91,192,248,.35)}}
+.catch__lead{{margin-top:18px;color:var(--tx2);font-size:15px;line-height:2}}
+.infogrid{{display:grid;grid-template-columns:1.1fr .9fr;gap:28px}}
+.card{{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:30px}}
+.card__title{{font-family:var(--ff-en);font-weight:700;letter-spacing:.2em;font-size:12px;color:var(--ac);margin-bottom:16px}}
+.datecard__d{{font-family:var(--ff-en);font-weight:700;font-size:54px;letter-spacing:.04em;line-height:1}}
+.datecard__d small{{font-size:16px;color:var(--ac);margin-left:10px}}
+.datecard__v{{font-size:22px;margin:12px 0 4px}}
+.datecard__a{{color:var(--tx2);font-size:14px}}
+.datecard__t{{display:flex;gap:28px;margin:18px 0 22px;padding-top:18px;border-top:1px solid var(--line)}}
+.datecard__t div span{{display:block;font-size:11px;letter-spacing:.2em;color:var(--tx2);font-family:var(--ff-en)}}
+.datecard__t div b{{font-family:var(--ff-en);font-size:26px}}
+.datecard__btns{{display:flex;gap:12px;flex-wrap:wrap}}
+.cre dl{{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:14px}}
+.cre dt{{color:var(--ac);white-space:nowrap;font-family:var(--ff-en);font-weight:700;letter-spacing:.1em;font-size:12px;padding-top:3px}}
+.cre dd{{color:var(--tx2);line-height:1.8}}
+.cre dd.main{{color:var(--tx);font-size:16px}}
+
+/* broadcast */
+.bc{{display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:30px 34px}}
+.bc__kicker{{font-family:var(--ff-en);letter-spacing:.2em;font-size:12px;color:var(--ac);font-weight:700}}
+.bc__title{{font-size:26px;margin-top:6px}}
+.bc__title b{{font-family:var(--ff-en);font-size:30px}}
+.bc__note{{color:var(--tx2);font-size:14px;margin-top:6px}}
+
+/* news */
+.news{{border-top:1px solid var(--line)}}
+.news__item a{{display:flex;align-items:center;gap:22px;padding:22px 6px;border-bottom:1px solid var(--line);transition:.2s}}
+.news__item a:hover{{background:rgba(91,192,248,.06)}}
+.news__item time{{font-family:var(--ff-en);color:var(--ac);font-weight:700;letter-spacing:.08em;white-space:nowrap}}
+.news__title{{flex:1;font-size:15px}}
+.news__arrow{{color:var(--ac)}}
+
+/* tickets */
+.tk__status{{text-align:center;margin-bottom:28px}}
+.tk__status span{{display:inline-block;background:var(--ac);color:#041225;font-weight:700;padding:6px 22px;border-radius:999px;letter-spacing:.1em;font-size:14px}}
+.pgs{{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:22px}}
+.pg{{display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:24px;transition:.2s}}
+.pg:hover{{border-color:var(--ac);transform:translateY(-2px)}}
+.pg__name{{font-size:18px;font-weight:700}}
+.pg__note{{font-size:12px;color:var(--tx2);margin:8px 0 18px;line-height:1.6;flex:1}}
+.pg__go{{color:var(--ac);font-weight:700;font-size:14px}}
+.tk__sub{{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:center;font-size:14px;color:var(--tx2);margin-bottom:34px}}
+.tk__sub a{{color:var(--tx);border-bottom:1px solid var(--ac)}}
+.tk__notes{{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:26px 30px}}
+.tk__notes h3{{font-size:14px;letter-spacing:.15em;color:var(--ac);margin-bottom:12px}}
+.tk__notes li{{position:relative;padding-left:16px;font-size:13px;color:var(--tx2);line-height:1.8;margin-bottom:6px}}
+.tk__notes li::before{{content:"※";position:absolute;left:0;color:var(--ac)}}
+.tk__official{{text-align:center;margin-top:30px}}
+.tk__official p{{color:var(--tx2);font-size:14px;margin-bottom:14px}}
+
+/* access */
+.acc{{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}}
+.acc__venue{{font-size:30px;line-height:1.3}}
+.acc__addr{{color:var(--tx2);margin:14px 0 6px;font-size:15px}}
+.acc__route{{font-size:15px;line-height:1.9}}
+.acc__map{{margin-top:22px}}
+.acc__frame{{aspect-ratio:4/3;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg2)}}
+.acc__frame iframe{{width:100%;height:100%;border:0;filter:grayscale(.2) contrast(1.05)}}
+
+/* footer */
+.footer{{border-top:1px solid var(--line);padding:56px 0 40px;text-align:center}}
+.footer__lockup{{display:flex;align-items:center;justify-content:center;gap:28px;margin-bottom:28px}}
+.footer__lockup img{{height:60px;width:auto}}
+.footer__lockup .wo{{height:72px}}
+.footer__links{{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;font-size:13px;color:var(--tx2);margin-bottom:28px}}
+.footer__links a{{white-space:nowrap}}
+.footer__links a:hover{{color:var(--ac)}}
+.footer__sns{{display:flex;justify-content:center;gap:12px;margin-bottom:28px}}
+.footer__sns a{{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-family:var(--ff-en);font-weight:700;font-size:13px;letter-spacing:.1em}}
+.footer__sns a:hover{{border-color:var(--ac);color:var(--ac)}}
+.videos{{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px}}
+.video{{background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden}}
+.video__frame{{aspect-ratio:16/9;background:#000}}
+.video__frame{{position:relative;display:block;width:100%;padding:0;border:0;cursor:pointer;overflow:hidden}}
+.video__frame img{{width:100%;height:100%;object-fit:cover;transition:.3s}}
+.video__frame:hover img{{transform:scale(1.03)}}
+.video__play{{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:rgba(91,192,248,.92);box-shadow:0 8px 30px rgba(0,0,0,.5)}}
+.video__play::after{{content:'';position:absolute;left:30px;top:22px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #041225}}
+.video__iframe{{width:100%;aspect-ratio:16/9;border:0;display:block;background:#000}}
+.video__title{{padding:14px 18px;font-size:14px}}
+.footer__copy{{font-family:var(--ff-en);font-size:11px;color:var(--tx2);letter-spacing:.1em}}
+
+/* ---- SP ---- */
+@media (max-width:900px){{
+  .wrap{{width:min(100% - 32px,var(--max))}}
+  .sec{{padding:60px 0}}
+  .sec__head{{margin-bottom:30px}}
+  .header{{height:56px}}
+  .header__logo img{{height:34px}}
+  .header__nav{{display:none}}
+  .header__cta{{min-height:36px;padding:6px 14px;font-size:12px}}
+  .spnav{{display:flex;gap:22px;overflow-x:auto;white-space:nowrap;padding:0 16px 10px;font-weight:700;font-size:12px;letter-spacing:.06em;scrollbar-width:none;-webkit-overflow-scrolling:touch}}
+  .spnav::-webkit-scrollbar{{display:none}}
+  .spnav a{{color:var(--tx2)}}
+  .hero__img--pc{{display:none}}
+  .hero__img--sp{{display:block;aspect-ratio:9/10}}
+  .hero__bar .wrap{{gap:6px 18px;padding:14px 0}}
+  .hero__date{{font-size:24px}}
+  .hero__venue{{font-size:16px}}
+  .hero__time{{width:100%;text-align:center}}
+  .match__body{{padding:18px 16px 22px}}
+  .match__label{{font-size:17px}}
+  .match__vs{{gap:10px}}
+  .match__side{{min-width:0;flex:1}}
+  .match__side strong{{font-size:17px}}
+  .infogrid{{grid-template-columns:1fr;gap:16px}}
+  .card{{padding:22px 20px}}
+  .datecard__d{{font-size:42px}}
+  .datecard__v{{font-size:19px}}
+  .datecard__t{{gap:20px}}
+  .datecard__t div b{{font-size:22px}}
+  .datecard__btns .btn{{flex:1}}
+  .cre dl{{grid-template-columns:1fr;gap:4px}}
+  .cre dd{{margin-bottom:10px}}
+  .bc{{flex-direction:column;align-items:flex-start;padding:24px 20px}}
+  .bc .btn{{width:100%}}
+  .bc__title{{font-size:20px}}
+  .bc__title b{{font-size:24px}}
+  .news__item a{{flex-wrap:wrap;gap:6px 14px;padding:18px 4px}}
+  .news__title{{flex:1 0 100%;font-size:14px}}
+  .pgs{{grid-template-columns:1fr;gap:12px}}
+  .pg{{padding:18px 20px}}
+  .pg__note{{margin-bottom:10px}}
+  .acc{{grid-template-columns:1fr;gap:20px}}
+  .acc__venue{{font-size:24px}}
+  .footer__lockup{{gap:18px}}
+  .footer__lockup img{{height:44px}}
+  .footer__lockup .wo{{height:56px}}
+  .footer__links{{gap:8px 18px;font-size:12px}}
+}}
+'''
+
+# ---------- HTML ----------
+HTML = f'''<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {noindex}<title>{esc(E['title'])}｜プロレスリング・ノア</title>
+  <meta name="description" content="{esc(desc)}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{esc(E['title'])}｜プロレスリング・ノア">
+  <meta property="og:description" content="{esc(desc)}">
+  <meta property="og:site_name" content="{esc(E['short'])}｜プロレスリング・ノア">
+  <meta property="og:url" content="{esc(E['lp_url'])}">
+  <meta property="og:image" content="{esc(E['lp_url'])}img/ogp.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@noah_ghc">
+  <meta name="theme-color" content="{T['bg']}">
+  <link rel="icon" href="img/noah_badge.png">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}})(window,document,'script','dataLayer','{GTM}');</script>
+  <!-- End Google Tag Manager -->
+  <style>{CSS}</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="topwrap">
+  <header class="header wrap">
+    <a href="#top" class="header__logo"><img src="img/logo_wo2_s.webp" alt="{esc(E['title'])}" width="640" height="342"></a>
+    <nav class="header__nav">
+      {nav_links()}
+    </nav>
+    <a class="btn btn--pri header__cta" href="{esc(TK['playguides'][0]['url'])}" target="_blank" rel="noopener">チケット購入</a>
+  </header>
+  <nav class="spnav">
+    {nav_links()}
+  </nav>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <img class="hero__img hero__img--pc" src="img/kv.jpg" srcset="img/kv_1280.jpg 1280w, img/kv.jpg 1920w" sizes="100vw" alt="{esc(E['title'])} {esc(E['date_ja'])} {esc(E['venue'])}" width="1920" height="1080" fetchpriority="high">
+    <img class="hero__img hero__img--sp" src="img/kv_sp_crop.jpg" alt="{esc(E['title'])} {esc(E['date_ja'])} {esc(E['venue'])}" width="1080" height="1200" fetchpriority="high">
+    <div class="hero__bar"><div class="wrap">
+      <div class="hero__date">{esc(E['date_label'])}<small>{esc(E['dow'])}</small></div>
+      <div class="hero__venue">{esc(E['venue'])}</div>
+      <div class="hero__time">開場<b>{esc(E['open'])}</b> ／ 開始<b>{esc(E['start'])}</b></div>
+    </div></div>
+  </section>
+
+  <section class="catchsec">
+    <div class="wrap catch"><p class="catch__en">{esc(E['catch'])}</p><p class="catch__lead">{esc(E['lead'])}</p></div>
+  </section>
+
+  <section id="match" class="sec">
+    <div class="wrap">
+      <div class="sec__head"><h2 class="sec__en">対戦カード</h2><p class="sec__ja">MATCH CARD</p></div>
+      {match_cards()}
+      <p class="match__more"><a class="btn btn--ghost" href="{esc(E['official_url'])}" target="_blank" rel="noopener">全対戦カードを公式サイトで見る</a></p>
+    </div>
+  </section>
+
+  <section id="info" class="sec sec--alt">
+    <div class="wrap">
+      <div class="infogrid">
+        <div class="card datecard">
+          <p class="card__title">EVENT INFORMATION</p>
+          <p class="datecard__d">{esc(E['date_label'])}<small>{esc(E['dow'])}</small></p>
+          <p class="datecard__v">{esc(E['venue'])}</p>
+          <p class="datecard__a">{esc(E['address'])}</p>
+          <div class="datecard__t"><div><span>OPEN</span><b>{esc(E['open'])}</b></div><div><span>START</span><b>{esc(E['start'])}</b></div></div>
+          <div class="datecard__btns">
+            <a class="btn btn--pri" href="#ticket">チケット情報</a>
+            <a class="btn btn--ghost" href="{esc(E['official_url'])}" target="_blank" rel="noopener">公式大会ページ ↗</a>
+          </div>
+        </div>
+        <div class="card cre">
+          <p class="card__title">CREDITS</p>
+          <dl>
+            <dt>主催</dt><dd class="main">{esc(E['organizer'])}</dd>
+            <dt>特別協賛</dt><dd class="main">{esc(E['title_sponsor'])}</dd>
+            <dt>協賛</dt><dd>{esc(E['sponsors'])}</dd>
+            <dt>お問合せ</dt><dd><a href="{esc(E['contact_url'])}" target="_blank" rel="noopener" style="border-bottom:1px solid var(--ac)">プロレスリング・ノア お問合せフォーム</a><br>{esc(E['contact_note'])}</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="broadcast" class="sec">
+    <div class="wrap">
+      <div class="sec__head"><h2 class="sec__en">放送情報</h2><p class="sec__ja">LIVE STREAMING</p></div>
+      <div class="bc">
+        <div>
+          <p class="bc__kicker">FREE LIVE</p>
+          <p class="bc__title"><b>{esc(B['name'])}</b> で{esc(B['note'])}</p>
+          <p class="bc__note">{esc(E['date_ja'])}　{esc(B['note2'])}</p>
+        </div>
+        <a class="btn btn--pri" href="{esc(B['url'])}" target="_blank" rel="noopener">{esc(B['btn'])} ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="news" class="sec sec--alt">
+    <div class="wrap">
+      <div class="sec__head"><h2 class="sec__en">ニュース</h2><p class="sec__ja">NEWS</p></div>
+      <ul class="news">{news_items()}</ul>
+    </div>
+  </section>
+
+  <section id="ticket" class="sec">
+    <div class="wrap">
+      <div class="sec__head"><h2 class="sec__en">チケット情報</h2><p class="sec__ja">TICKET</p></div>
+      <p class="tk__status"><span>{esc(TK['status'])}</span></p>
+      <div class="pgs">{playguides()}</div>
+      <p class="tk__sub"><a href="{esc(TK['inbound']['url'])}" target="_blank" rel="noopener">{esc(TK['inbound']['label'])} ↗</a><span>{esc(TK['office'])}</span></p>
+      <div class="tk__notes"><h3>ご購入にあたってのご注意</h3><ul>{ticket_notes()}</ul></div>
+      <div class="tk__official"><p>席種・料金・座席図は公式大会ページをご確認ください。</p><a class="btn btn--ghost" href="{esc(E['official_url'])}" target="_blank" rel="noopener">席種・料金を見る ↗</a></div>
+    </div>
+  </section>
+
+{video_section()}
+  <section id="access" class="sec">
+    <div class="wrap">
+      <div class="sec__head"><h2 class="sec__en">アクセス</h2><p class="sec__ja">ACCESS</p></div>
+      <div class="acc">
+        <div>
+          <p class="acc__venue">{esc(E['venue'])}</p>
+          <p class="acc__addr">{esc(E['address'])}</p>
+          <p class="acc__route">{esc(E['access'])}</p>
+          <p class="acc__map"><a class="btn btn--ghost" href="{map_url}" target="_blank" rel="noopener">Googleマップで見る ↗</a></p>
+        </div>
+        <div class="acc__frame"><iframe loading="lazy" title="両国国技館 地図" src="https://www.google.com/maps?q={urllib.parse.quote('両国国技館')}&output=embed" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__lockup">
+      <img class="wo" src="img/logo_wo2_s.webp" alt="{esc(E['title'])}" width="640" height="342" loading="lazy">
+      <img src="img/noah_badge.png" alt="PRO WRESTLING NOAH" width="123" height="118" loading="lazy">
+    </div>
+    <ul class="footer__links">{footer_links()}</ul>
+    <div class="footer__sns">{sns_links()}</div>
+    <p class="footer__copy">&copy; CyberFight Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
+'''
+open(args.out, 'w', encoding='utf-8').write(HTML)
+print('wrote', args.out, len(HTML.encode()), 'bytes', '(noindex)' if args.noindex else '')
