@@ -19,6 +19,9 @@ map_url = 'https://www.google.com/maps/search/?api=1&query=' + urllib.parse.quot
 def match_cards():
     out = []
     for m in D['matches']:
+        ra=m.get('role_a','CHAMPION'); rb=m.get('role_b','CHALLENGER')
+        side=lambda role,name,en: f'<div class="match__side">{("<span class=\"match__role\">"+esc(role)+"</span>") if role else ""}<strong>{esc(name).replace(chr(10),'<br>')}</strong><small>{esc(en).replace(chr(10),'<br>')}</small></div>'
+        note=f'<p class="match__note">{esc(m["note"])}</p>' if m.get('note') else ''
         out.append(f'''
       <article class="match">
         <a href="{esc(E['official_url'])}" target="_blank" rel="noopener" class="match__img">
@@ -28,10 +31,10 @@ def match_cards():
           <p class="match__en">{esc(m['en'])}</p>
           <h3 class="match__label">{esc(m['label'])}</h3>
           <div class="match__vs">
-            <div class="match__side"><span class="match__role">CHAMPION</span><strong>{esc(m['champion'])}</strong><small>{esc(m['champion_en'])}</small></div>
+            {side(ra,m['champion'],m['champion_en'])}
             <span class="match__x">vs</span>
-            <div class="match__side"><span class="match__role">CHALLENGER</span><strong>{esc(m['challenger'])}</strong><small>{esc(m['challenger_en'])}</small></div>
-          </div>
+            {side(rb,m['challenger'],m['challenger_en'])}
+          </div>{note}
         </div>
       </article>''')
     return ''.join(out)
@@ -142,6 +145,7 @@ ul{{list-style:none}}
 .match__role{{font-family:var(--ff-en);font-size:10px;letter-spacing:.3em;color:var(--tx2)}}
 .match__side strong{{font-size:22px;line-height:1.2;margin:4px 0 2px}}
 .match__side small{{font-family:var(--ff-en);font-size:12px;letter-spacing:.1em;color:var(--tx2)}}
+.match__note{{margin-top:14px;font-size:12px;color:var(--tx2);text-align:center}}
 .match__x{{font-family:var(--ff-en);font-weight:700;font-size:16px;color:var(--ac);font-style:italic}}
 .match__more{{text-align:center;margin-top:10px}}
 

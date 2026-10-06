@@ -32,32 +32,113 @@
       "label": "GHCヘビー級選手権試合",
       "en": "GHC HEAVYWEIGHT CHAMPIONSHIP MATCH",
       "champion": "内藤哲也",
-      "champion_en": "T.NAITO",
-      "challenger": "N-1 VICTORY 2026 優勝者",
-      "challenger_en": "N-1 VICTORY 2026 WINNER",
+      "champion_en": "T.NAITO / LOS TRANQUILOS de JAPON",
+      "challenger": "OZAWA",
+      "challenger_en": "OZAWA / TEAM 2000X・N-1 VICTORY 2026 優勝者",
+      "note": "※第51代王者の初防衛戦",
+      "role_a": "CHAMPION",
+      "role_b": "CHALLENGER",
       "img": "img/match_ghc_heavy.jpg",
       "img_sm": "img/match_ghc_heavy_sm.jpg"
+    },
+    {
+      "id": "ghc-national",
+      "label": "GHCナショナル選手権試合",
+      "en": "GHC NATIONAL CHAMPIONSHIP MATCH",
+      "champion": "丸藤正道",
+      "champion_en": "N.MARUFUJI",
+      "challenger": "M・P・I",
+      "challenger_en": "Mysterious Phantom Invader",
+      "note": "※第20代王者、5度目の防衛戦",
+      "role_a": "CHAMPION",
+      "role_b": "CHALLENGER",
+      "img": "img/match_ghc_national.jpg",
+      "img_sm": "img/match_ghc_national_sm.jpg"
+    },
+    {
+      "id": "ghc-tag",
+      "label": "GHCタッグ選手権試合",
+      "en": "GHC TAG TEAM CHAMPIONSHIP MATCH",
+      "champion": "征矢学\n飯野雄貴",
+      "champion_en": "M.SOYA\nY.IINO",
+      "challenger": "シェイン・ヘイスト\nマイキー・ニコルス",
+      "challenger_en": "S.HASTE\nM.NICHOLLS",
+      "note": "※第77代王者組、3度目の防衛戦",
+      "role_a": "CHAMPIONS",
+      "role_b": "CHALLENGERS",
+      "img": "img/match_ghc_tag.jpg",
+      "img_sm": "img/match_ghc_tag_sm.jpg"
+    },
+    {
+      "id": "ghc-jr-tag",
+      "label": "GHCジュニアヘビー級タッグ選手権試合",
+      "en": "GHC JR. HEAVYWEIGHT TAG TEAM CHAMPIONSHIP MATCH",
+      "champion": "YO-HEY\n政岡純",
+      "champion_en": "YO-HEY\nJ.MASAOKA",
+      "challenger": "アレハンドロ\n小田嶋大樹",
+      "challenger_en": "ALEJANDRO\nD.ODASHIMA",
+      "note": "※第66代王者組の初防衛戦",
+      "role_a": "CHAMPIONS",
+      "role_b": "CHALLENGERS",
+      "img": "img/match_ghc_jr_tag.jpg",
+      "img_sm": "img/match_ghc_jr_tag_sm.jpg"
+    },
+    {
+      "id": "ghc200",
+      "label": "GHC200選手権試合",
+      "en": "GHC 200 CHAMPIONSHIP MATCH",
+      "champion": "HAYATA",
+      "champion_en": "HAYATA / White Raven Sqwad",
+      "challenger": "近藤修司",
+      "challenger_en": "S.KONDO",
+      "note": "※初代王者、2度目の防衛戦",
+      "role_a": "CHAMPION",
+      "role_b": "CHALLENGER",
+      "img": "img/match_ghc200.jpg",
+      "img_sm": "img/match_ghc200_sm.jpg"
     },
     {
       "id": "ghc-jr",
       "label": "GHCジュニアヘビー級選手権試合",
       "en": "GHC JR. HEAVYWEIGHT CHAMPIONSHIP MATCH",
       "champion": "カイ・フジムラ",
-      "champion_en": "K.FUJIMURA",
+      "champion_en": "K.FUJIMURA / TEAM 2000X",
       "challenger": "ドラゴン・ベイン",
       "challenger_en": "D.BANE",
+      "note": "※第63代王者、2度目の防衛戦",
+      "role_a": "CHAMPION",
+      "role_b": "CHALLENGER",
       "img": "img/match_ghc_jr.jpg",
       "img_sm": "img/match_ghc_jr_sm.jpg"
+    },
+    {
+      "id": "special-tag",
+      "label": "スペシャルタッグマッチ",
+      "en": "SPECIAL TAG TEAM MATCH",
+      "champion": "清宮海斗\nYoshiki Inamura",
+      "champion_en": "K.KIYOMIYA\nY.INAMURA",
+      "challenger": "拳王\n煌牙",
+      "challenger_en": "KENOH\nKOUGA",
+      "note": "",
+      "role_a": "",
+      "role_b": "",
+      "img": "img/match_special_tag.jpg",
+      "img_sm": "img/match_special_tag_sm.jpg"
     }
   ],
   "broadcast": {
     "name": "ABEMA",
     "note": "無料生中継",
-    "url": "https://abema.tv/video/genre/fightingsports",
+    "url": "https://abema.tv/now-on-air/fighting-sports",
     "btn": "ABEMAで視聴",
     "note2": "試合開始 15:00 ／ 配信開始時間はABEMAの番組ページをご確認ください"
   },
   "news": [
+    {
+      "date": "2026.10.05",
+      "title": "＜GHC6大タイトルマッチ決定！＞【10.25 両国国技館】対戦カード決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/"
+    },
     {
       "date": "2026.09",
       "title": "【10.25 両国国技館大会】「WRESTLE ODYSSEY Ⅱ」株式会社ゲットワークス 冠協賛決定のお知らせ",
@@ -69,12 +150,12 @@
     "playguides": [
       {
         "name": "e+（イープラス）",
-        "url": "https://eplus.jp/noah/",
+        "url": "https://eplus.jp/sf/detail/0702150001-P0031433P021001?P1=0175",
         "note": "セブン-イレブン／ファミリーマートで発券可"
       },
       {
         "name": "チケットぴあ",
-        "url": "https://t.pia.jp/pia/artist/artists.do?artistsCd=11027339",
+        "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2628347&rlsCd=001&lotRlsCd=",
         "note": "Pコード 594-150 / セブン-イレブンで発券可"
       },
       {
@@ -90,7 +171,7 @@
     "office": "後楽園ホール5階事務所 03-5800-9999",
     "notes": [
       "各席種の販売状況はプレイガイドにより異なります。「予定枚数終了」の場合も、未入金キャンセル等による再発売がある場合があります。",
-      "本大会では高校生シート販売・小中学生無料があります（大会当日の当日券売場でのみ対応／年齢を証明できるものをご提示ください）。",
+      "小中学生は入場無料、高校生シートは2,000円で販売（どちらも大会当日の当日券売場でのみ対応／年齢を証明できるものをご提示ください）。",
       "未就学児は保護者の膝上にて無料（大人1名につきお子様1名）。",
       "車椅子でのご観戦は1階マス席エリアへのご案内となります。定員があるためご購入前にNOAH事務所までお問い合わせください。",
       "チケットは正規のプレイガイドでご購入ください。転売サイト等にはご注意ください。",
