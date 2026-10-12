@@ -1,0 +1,243 @@
+{
+  "event": {
+    "title": "Getworks Presents WRESTLE ODYSSEY Ⅱ",
+    "short": "WRESTLE ODYSSEY Ⅱ",
+    "catch": "THIS IS NEO HIGH STANDARD WRESTLING",
+    "lead": "ネオ・ハイスタンダード・レスリング──いま最も新しく、最も高い水準のプロレスが、ここにある。",
+    "date_iso": "2026-10-25",
+    "date_label": "2026.10.25",
+    "dow": "SUN",
+    "date_ja": "2026年10月25日（日）",
+    "open": "13:30",
+    "start": "15:00",
+    "venue": "東京・両国国技館",
+    "address": "東京都墨田区横網1-3-28",
+    "access": "JR両国駅より徒歩3分 / 都営大江戸線両国駅より徒歩5分",
+    "official_url": "https://www.noah.co.jp/schedule/898/",
+    "lp_url": "https://www.noah.co.jp/lp/wo2026/",
+    "organizer": "株式会社CyberFight",
+    "title_sponsor": "株式会社ゲットワークス",
+    "sponsors": "LINEヤフー／ABEMA／WINTICKET／株式会社マイクロアド／株式会社アプリボット／株式会社メルカリ／Criteo／EZIGEN／HaRENO／株式会社マルハン 北日本カンパニー／ベースフード株式会社／ユナイテッド株式会社／YES株式会社／bfj株式会社／ジョブアンテナ／てんじく株式会社／株式会社デジタルアークス／ウルラ／株式会社ビットミックス／DOTZ株式会社／株式会社サイバー・バズ／株式会社ロットネスト／リバライズ株式会社／夜光虫 閻魔坂／株式会社Tech-Tech／ザ・リーヴ",
+    "contact_url": "https://www.noah.co.jp/contactform/",
+    "contact_note": "月曜〜金曜 10:00〜18:00（土日祝祭日は除く）"
+  },
+  "theme": {
+    "bg": "#070B18",
+    "accent": "#5BC0F8",
+    "accent2": "#2A7FD4"
+  },
+  "matches": [
+    {
+      "id": "ghc-heavy",
+      "label": "GHCヘビー級選手権試合",
+      "en": "GHC HEAVYWEIGHT CHAMPIONSHIP MATCH",
+      "champion": "内藤哲也",
+      "champion_en": "T.NAITO / LOS TRANQUILOS de JAPON",
+      "challenger": "OZAWA",
+      "challenger_en": "OZAWA / TEAM 2000X・N-1 VICTORY 2026 優勝者",
+      "note": "※第51代王者の初防衛戦",
+      "role_a": "CHAMPION",
+      "role_b": "CHALLENGER",
+      "img": "img/match_ghc_heavy.jpg",
+      "img_sm": "img/match_ghc_heavy_sm.jpg"
+    },
+    {
+      "id": "ghc-national",
+      "label": "GHCナショナル選手権試合",
+      "en": "GHC NATIONAL CHAMPIONSHIP MATCH",
+      "champion": "丸藤正道",
+      "champion_en": "N.MARUFUJI",
+      "challenger": "M・P・I",
+      "challenger_en": "Mysterious Phantom Invader",
+      "note": "※第20代王者、5度目の防衛戦",
+      "role_a": "CHAMPION",
+      "role_b": "CHALLENGER",
+      "img": "img/match_ghc_national.jpg",
+      "img_sm": "img/match_ghc_national_sm.jpg"
+    },
+    {
+      "id": "ghc-tag",
+      "label": "GHCタッグ選手権試合／3WAYマッチ",
+      "en": "GHC TAG TEAM CHAMPIONSHIP 3WAY MATCH",
+      "champion": "征矢学\n飯野雄貴",
+      "champion_en": "M.SOYA\nY.IINO",
+      "challenger": "シェイン・ヘイスト\nマイキー・ニコルス",
+      "challenger_en": "S.HASTE\nM.NICHOLLS",
+      "note": "※第77代王者組、3度目の防衛戦",
+      "role_a": "CHAMPIONS",
+      "role_b": "CHALLENGERS",
+      "img": "img/match_ghc_tag.jpg",
+      "img_sm": "img/match_ghc_tag_sm.jpg",
+      "third": "カール・アンダーソン\nドク・ギャローズ",
+      "third_en": "K.ANDERSON\nD.GALLOWS",
+      "role_c": "CHALLENGERS"
+    },
+    {
+      "id": "ghc-jr-tag",
+      "label": "GHCジュニアヘビー級タッグ選手権試合",
+      "en": "GHC JR. HEAVYWEIGHT TAG TEAM CHAMPIONSHIP MATCH",
+      "champion": "YO-HEY\n政岡純",
+      "champion_en": "YO-HEY\nJ.MASAOKA",
+      "challenger": "アレハンドロ\n小田嶋大樹",
+      "challenger_en": "ALEJANDRO\nD.ODASHIMA",
+      "note": "※第66代王者組の初防衛戦",
+      "role_a": "CHAMPIONS",
+      "role_b": "CHALLENGERS",
+      "img": "img/match_ghc_jr_tag.jpg",
+      "img_sm": "img/match_ghc_jr_tag_sm.jpg"
+    },
+    {
+      "id": "ghc200",
+      "label": "GHC200選手権試合",
+      "en": "GHC 200 CHAMPIONSHIP MATCH",
+      "champion": "HAYATA",
+      "champion_en": "HAYATA / White Raven Sqwad",
+      "challenger": "近藤修司",
+      "challenger_en": "S.KONDO",
+      "note": "※初代王者、2度目の防衛戦",
+      "role_a": "CHAMPION",
+      "role_b": "CHALLENGER",
+      "img": "img/match_ghc200.jpg",
+      "img_sm": "img/match_ghc200_sm.jpg"
+    },
+    {
+      "id": "ghc-jr",
+      "label": "GHCジュニアヘビー級選手権試合",
+      "en": "GHC JR. HEAVYWEIGHT CHAMPIONSHIP MATCH",
+      "champion": "カイ・フジムラ",
+      "champion_en": "K.FUJIMURA / TEAM 2000X",
+      "challenger": "ドラゴン・ベイン",
+      "challenger_en": "D.BANE",
+      "note": "※第63代王者、2度目の防衛戦",
+      "role_a": "CHAMPION",
+      "role_b": "CHALLENGER",
+      "img": "img/match_ghc_jr.jpg",
+      "img_sm": "img/match_ghc_jr_sm.jpg"
+    },
+    {
+      "id": "special-tag",
+      "label": "スペシャルタッグマッチ",
+      "en": "SPECIAL TAG TEAM MATCH",
+      "champion": "清宮海斗\nYoshiki Inamura",
+      "champion_en": "K.KIYOMIYA\nY.INAMURA",
+      "challenger": "拳王\n煌牙",
+      "challenger_en": "KENOH\nKOUGA",
+      "note": "",
+      "role_a": "",
+      "role_b": "",
+      "img": "img/match_special_tag.jpg",
+      "img_sm": "img/match_special_tag_sm.jpg"
+    }
+  ],
+  "broadcast": {
+    "name": "ABEMA",
+    "note": "無料生中継",
+    "url": "https://abema.tv/now-on-air/fighting-sports",
+    "btn": "ABEMAで視聴",
+    "note2": "試合開始 15:00 ／ 配信開始時間はABEMAの番組ページをご確認ください"
+  },
+  "news": [
+    {
+      "date": "2026.10.12",
+      "title": "【10.25両国】Getworks Presents「プロレスリング・ノア 秋の大抽選会」開催決定！豪華景品が当たる“ハズレなし”の抽選会！",
+      "url": "https://www.noah.co.jp/news/8648/"
+    },
+    {
+      "date": "2026.10.05",
+      "title": "＜GHC6大タイトルマッチ決定！＞【10.25 両国国技館】対戦カード決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8639/"
+    },
+    {
+      "date": "2026.09",
+      "title": "【10.25 両国国技館大会】「WRESTLE ODYSSEY Ⅱ」株式会社ゲットワークス 冠協賛決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8495/"
+    }
+  ],
+  "tickets": {
+    "status": "好評発売中",
+    "playguides": [
+      {
+        "name": "e+（イープラス）",
+        "url": "https://eplus.jp/sf/detail/0702150001-P0031433P021001?P1=0175",
+        "note": "セブン-イレブン／ファミリーマートで発券可"
+      },
+      {
+        "name": "チケットぴあ",
+        "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2628347&rlsCd=001&lotRlsCd=",
+        "note": "Pコード 594-150 / セブン-イレブンで発券可"
+      },
+      {
+        "name": "ローソンチケット",
+        "url": "https://l-tike.com/sports/mevent/?mid=111745",
+        "note": "ローソン／ミニストップ店頭Loppiで購入可"
+      }
+    ],
+    "inbound": {
+      "label": "Tickets for International Fans",
+      "url": "https://w.pia.jp/a/noah1025-26eng/"
+    },
+    "office": "後楽園ホール5階事務所 03-5800-9999",
+    "notes": [
+      "各席種の販売状況はプレイガイドにより異なります。「予定枚数終了」の場合も、未入金キャンセル等による再発売がある場合があります。",
+      "小中学生は入場無料、高校生シートは2,000円で販売（どちらも大会当日の当日券売場でのみ対応／年齢を証明できるものをご提示ください）。",
+      "未就学児は保護者の膝上にて無料（大人1名につきお子様1名）。",
+      "車椅子でのご観戦は1階マス席エリアへのご案内となります。定員があるためご購入前にNOAH事務所までお問い合わせください。",
+      "チケットは正規のプレイガイドでご購入ください。転売サイト等にはご注意ください。",
+      "チケットは金券につき、紛失・忘れ等いかなる理由でも再発行はできません。"
+    ]
+  },
+  "footer_links": [
+    {
+      "label": "プロレスリング・ノア 公式サイト",
+      "url": "https://www.noah.co.jp/"
+    },
+    {
+      "label": "大会情報",
+      "url": "https://www.noah.co.jp/schedule/898/"
+    },
+    {
+      "label": "ニュース",
+      "url": "https://www.noah.co.jp/news/"
+    },
+    {
+      "label": "選手一覧",
+      "url": "https://www.noah.co.jp/profile/"
+    },
+    {
+      "label": "YouTube公式チャンネル",
+      "url": "https://www.youtube.com/channel/UC4T0v46s8yxJuTOW1_mD1xA/"
+    }
+  ],
+  "videos": [
+    {
+      "id": "yW5Ig_Ci6Jg",
+      "title": ""
+    },
+    {
+      "id": "sXxaov1JhTw",
+      "title": ""
+    },
+    {
+      "id": "9iPB2DuWXSA",
+      "title": ""
+    },
+    {
+      "id": "chiT3loGx30",
+      "title": ""
+    },
+    {
+      "id": "rRmvr6Jro3k",
+      "title": ""
+    }
+  ],
+  "sns": [
+    {
+      "label": "X",
+      "url": "https://x.com/noah_ghc"
+    },
+    {
+      "label": "YouTube",
+      "url": "https://www.youtube.com/channel/UC4T0v46s8yxJuTOW1_mD1xA/"
+    }
+  ]
+}
