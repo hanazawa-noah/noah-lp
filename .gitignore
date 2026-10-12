@@ -1,0 +1,5 @@
+# pack.sh / build.py が生成する納品物・中間ファイル(公開リポジトリに入れない)
+src/*/dist/
+src/*/prod/
+src/*/out/index.html
+src/*/*_preview.html
