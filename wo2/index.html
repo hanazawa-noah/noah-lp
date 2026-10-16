@@ -79,6 +79,9 @@ ul{list-style:none}
 .match__role{font-family:var(--ff-en);font-size:10px;letter-spacing:.3em;color:var(--tx2)}
 .match__side strong{font-size:22px;line-height:1.2;margin:4px 0 2px}
 .match__side small{font-family:var(--ff-en);font-size:12px;letter-spacing:.1em;color:var(--tx2)}
+.match__num{display:inline-block;background:var(--ac);color:#041225;font-weight:700;font-size:12px;letter-spacing:.1em;padding:3px 14px;border-radius:999px;margin-bottom:10px}
+.match__break{text-align:center;color:var(--tx2);letter-spacing:.3em;margin:-6px 0 28px}
+.match__vs--4 .match__side strong{font-size:18px}
 .match__note{margin-top:14px;font-size:12px;color:var(--tx2);text-align:center}
 .match__x{font-family:var(--ff-en);font-weight:700;font-size:16px;color:var(--ac);font-style:italic}
 .match__more{text-align:center;margin-top:10px}
@@ -171,7 +174,7 @@ ul{list-style:none}
 
 /* ---- SP ---- */
 @media (max-width:900px){
-.match__vs--3{flex-direction:column;gap:10px}.match__vs--3 .match__x{transform:rotate(90deg)}.match__vs--3 .match__side{width:100%}
+.match__vs--3,.match__vs--4{flex-direction:column;gap:10px}.match__vs--3 .match__x,.match__vs--4 .match__x{transform:rotate(90deg)}.match__vs--3 .match__side,.match__vs--4 .match__side{width:100%}
   .wrap{width:min(100% - 32px,var(--max))}
   .sec{padding:60px 0}
   .sec__head{margin-bottom:30px}
@@ -262,7 +265,7 @@ ul{list-style:none}
           <img src="img/match_ghc_heavy_sm.jpg" srcset="img/match_ghc_heavy_sm.jpg 960w, img/match_ghc_heavy.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHCヘビー級選手権試合 内藤哲也 vs OZAWA" loading="lazy" width="1920" height="1080">
         </a>
         <div class="match__body">
-          <p class="match__en">GHC HEAVYWEIGHT CHAMPIONSHIP MATCH</p>
+          <p class="match__num">第9試合 メインイベント</p><p class="match__en">GHC HEAVYWEIGHT CHAMPIONSHIP MATCH</p>
           <h3 class="match__label">GHCヘビー級選手権試合</h3>
           <div class="match__vs">
             <div class="match__side"><span class="match__role">CHAMPION</span><strong>内藤哲也</strong><small>T.NAITO / LOS TRANQUILOS de JAPON</small></div>
@@ -273,70 +276,10 @@ ul{list-style:none}
       </article>
       <article class="match">
         <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
-          <img src="img/match_ghc_national_sm.jpg" srcset="img/match_ghc_national_sm.jpg 960w, img/match_ghc_national.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHCナショナル選手権試合 丸藤正道 vs M・P・I" loading="lazy" width="1920" height="1080">
-        </a>
-        <div class="match__body">
-          <p class="match__en">GHC NATIONAL CHAMPIONSHIP MATCH</p>
-          <h3 class="match__label">GHCナショナル選手権試合</h3>
-          <div class="match__vs">
-            <div class="match__side"><span class="match__role">CHAMPION</span><strong>丸藤正道</strong><small>N.MARUFUJI</small></div>
-            <span class="match__x">vs</span>
-            <div class="match__side"><span class="match__role">CHALLENGER</span><strong>M・P・I</strong><small>Mysterious Phantom Invader</small></div>
-          </div><p class="match__note">※第20代王者、5度目の防衛戦</p>
-        </div>
-      </article>
-      <article class="match">
-        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
-          <img src="img/match_ghc_tag_sm.jpg" srcset="img/match_ghc_tag_sm.jpg 960w, img/match_ghc_tag.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHCタッグ選手権試合／3WAYマッチ 征矢学
-飯野雄貴 vs シェイン・ヘイスト
-マイキー・ニコルス" loading="lazy" width="1920" height="1080">
-        </a>
-        <div class="match__body">
-          <p class="match__en">GHC TAG TEAM CHAMPIONSHIP 3WAY MATCH</p>
-          <h3 class="match__label">GHCタッグ選手権試合／3WAYマッチ</h3>
-          <div class="match__vs match__vs--3">
-            <div class="match__side"><span class="match__role">CHAMPIONS</span><strong>征矢学<br>飯野雄貴</strong><small>M.SOYA<br>Y.IINO</small></div>
-            <span class="match__x">vs</span>
-            <div class="match__side"><span class="match__role">CHALLENGERS</span><strong>シェイン・ヘイスト<br>マイキー・ニコルス</strong><small>S.HASTE<br>M.NICHOLLS</small></div><span class="match__x">vs</span><div class="match__side"><span class="match__role">CHALLENGERS</span><strong>カール・アンダーソン<br>ドク・ギャローズ</strong><small>K.ANDERSON<br>D.GALLOWS</small></div>
-          </div><p class="match__note">※第77代王者組、3度目の防衛戦</p>
-        </div>
-      </article>
-      <article class="match">
-        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
-          <img src="img/match_ghc_jr_tag_sm.jpg" srcset="img/match_ghc_jr_tag_sm.jpg 960w, img/match_ghc_jr_tag.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHCジュニアヘビー級タッグ選手権試合 YO-HEY
-政岡純 vs アレハンドロ
-小田嶋大樹" loading="lazy" width="1920" height="1080">
-        </a>
-        <div class="match__body">
-          <p class="match__en">GHC JR. HEAVYWEIGHT TAG TEAM CHAMPIONSHIP MATCH</p>
-          <h3 class="match__label">GHCジュニアヘビー級タッグ選手権試合</h3>
-          <div class="match__vs">
-            <div class="match__side"><span class="match__role">CHAMPIONS</span><strong>YO-HEY<br>政岡純</strong><small>YO-HEY<br>J.MASAOKA</small></div>
-            <span class="match__x">vs</span>
-            <div class="match__side"><span class="match__role">CHALLENGERS</span><strong>アレハンドロ<br>小田嶋大樹</strong><small>ALEJANDRO<br>D.ODASHIMA</small></div>
-          </div><p class="match__note">※第66代王者組の初防衛戦</p>
-        </div>
-      </article>
-      <article class="match">
-        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
-          <img src="img/match_ghc200_sm.jpg" srcset="img/match_ghc200_sm.jpg 960w, img/match_ghc200.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHC200選手権試合 HAYATA vs 近藤修司" loading="lazy" width="1920" height="1080">
-        </a>
-        <div class="match__body">
-          <p class="match__en">GHC 200 CHAMPIONSHIP MATCH</p>
-          <h3 class="match__label">GHC200選手権試合</h3>
-          <div class="match__vs">
-            <div class="match__side"><span class="match__role">CHAMPION</span><strong>HAYATA</strong><small>HAYATA / White Raven Sqwad</small></div>
-            <span class="match__x">vs</span>
-            <div class="match__side"><span class="match__role">CHALLENGER</span><strong>近藤修司</strong><small>S.KONDO</small></div>
-          </div><p class="match__note">※初代王者、2度目の防衛戦</p>
-        </div>
-      </article>
-      <article class="match">
-        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
           <img src="img/match_ghc_jr_sm.jpg" srcset="img/match_ghc_jr_sm.jpg 960w, img/match_ghc_jr.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHCジュニアヘビー級選手権試合 カイ・フジムラ vs ドラゴン・ベイン" loading="lazy" width="1920" height="1080">
         </a>
         <div class="match__body">
-          <p class="match__en">GHC JR. HEAVYWEIGHT CHAMPIONSHIP MATCH</p>
+          <p class="match__num">第8試合</p><p class="match__en">GHC JR. HEAVYWEIGHT CHAMPIONSHIP MATCH</p>
           <h3 class="match__label">GHCジュニアヘビー級選手権試合</h3>
           <div class="match__vs">
             <div class="match__side"><span class="match__role">CHAMPION</span><strong>カイ・フジムラ</strong><small>K.FUJIMURA / TEAM 2000X</small></div>
@@ -347,17 +290,125 @@ ul{list-style:none}
       </article>
       <article class="match">
         <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
-          <img src="img/match_special_tag_sm.jpg" srcset="img/match_special_tag_sm.jpg 960w, img/match_special_tag.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="スペシャルタッグマッチ 清宮海斗
+          <img src="img/match_ghc_tag_sm.jpg" srcset="img/match_ghc_tag_sm.jpg 960w, img/match_ghc_tag.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHCタッグ選手権試合／3WAYタッグマッチ 征矢学
+飯野雄貴 vs シェイン・ヘイスト
+マイキー・ニコルス" loading="lazy" width="1920" height="1080">
+        </a>
+        <div class="match__body">
+          <p class="match__num">第7試合</p><p class="match__en">GHC TAG TEAM CHAMPIONSHIP 3WAY MATCH</p>
+          <h3 class="match__label">GHCタッグ選手権試合／3WAYタッグマッチ</h3>
+          <div class="match__vs match__vs--3">
+            <div class="match__side"><span class="match__role">CHAMPIONS</span><strong>征矢学<br>飯野雄貴</strong><small>M.SOYA<br>Y.IINO</small></div>
+            <span class="match__x">vs</span>
+            <div class="match__side"><span class="match__role">CHALLENGERS</span><strong>シェイン・ヘイスト<br>マイキー・ニコルス</strong><small>S.HASTE<br>M.NICHOLLS</small></div><span class="match__x">vs</span><div class="match__side"><span class="match__role">CHALLENGERS</span><strong>カール・アンダーソン<br>ドク・ギャローズ</strong><small>K.ANDERSON<br>D.GALLOWS</small></div>
+          </div><p class="match__note">※第77代王者組、3度目の防衛戦</p>
+        </div>
+      </article>
+      <article class="match">
+        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
+          <img src="img/match_ghc_national_sm.jpg" srcset="img/match_ghc_national_sm.jpg 960w, img/match_ghc_national.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHCナショナル選手権試合 丸藤正道 vs ルイス・マンテ" loading="lazy" width="1920" height="1080">
+        </a>
+        <div class="match__body">
+          <p class="match__num">第6試合</p><p class="match__en">GHC NATIONAL CHAMPIONSHIP MATCH</p>
+          <h3 class="match__label">GHCナショナル選手権試合</h3>
+          <div class="match__vs">
+            <div class="match__side"><span class="match__role">CHAMPION</span><strong>丸藤正道</strong><small>N.MARUFUJI</small></div>
+            <span class="match__x">vs</span>
+            <div class="match__side"><span class="match__role">CHALLENGER</span><strong>ルイス・マンテ</strong><small>L.MANTE</small></div>
+          </div><p class="match__note">※第20代王者、5度目の防衛戦</p>
+        </div>
+      </article><p class="match__break">〜 休憩 〜</p>
+      <article class="match">
+        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
+          <img src="img/match_special_tag_sm.jpg" srcset="img/match_special_tag_sm.jpg 960w, img/match_special_tag.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="スペシャルタッグマッチ 〜反逆ノ牙〜 清宮海斗
 Yoshiki Inamura vs 拳王
 煌牙" loading="lazy" width="1920" height="1080">
         </a>
         <div class="match__body">
-          <p class="match__en">SPECIAL TAG TEAM MATCH</p>
-          <h3 class="match__label">スペシャルタッグマッチ</h3>
+          <p class="match__num">第5試合</p><p class="match__en">SPECIAL TAG TEAM MATCH</p>
+          <h3 class="match__label">スペシャルタッグマッチ 〜反逆ノ牙〜</h3>
           <div class="match__vs">
             <div class="match__side"><strong>清宮海斗<br>Yoshiki Inamura</strong><small>K.KIYOMIYA<br>Y.INAMURA</small></div>
             <span class="match__x">vs</span>
             <div class="match__side"><strong>拳王<br>煌牙</strong><small>KENOH<br>KOUGA</small></div>
+          </div>
+        </div>
+      </article>
+      <article class="match">
+        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
+          <img src="img/match_ghc200_sm.jpg" srcset="img/match_ghc200_sm.jpg 960w, img/match_ghc200.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHC200選手権試合 HAYATA vs 近藤修司" loading="lazy" width="1920" height="1080">
+        </a>
+        <div class="match__body">
+          <p class="match__num">第4試合</p><p class="match__en">GHC 200 CHAMPIONSHIP MATCH</p>
+          <h3 class="match__label">GHC200選手権試合</h3>
+          <div class="match__vs">
+            <div class="match__side"><span class="match__role">CHAMPION</span><strong>HAYATA</strong><small>HAYATA / White Raven Sqwad</small></div>
+            <span class="match__x">vs</span>
+            <div class="match__side"><span class="match__role">CHALLENGER</span><strong>近藤修司</strong><small>S.KONDO</small></div>
+          </div><p class="match__note">※初代王者、2度目の防衛戦</p>
+        </div>
+      </article>
+      <article class="match">
+        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
+          <img src="img/match_maybach_sm.jpg" srcset="img/match_maybach_sm.jpg 960w, img/match_maybach.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="THE FINAL MAYBACH KENTA
+マイバッハ谷口 vs マサ北宮
+杉浦貴" loading="lazy" width="1920" height="1080">
+        </a>
+        <div class="match__body">
+          <p class="match__num">第3試合</p><p class="match__en">THE FINAL MAYBACH TAG TEAM MATCH</p>
+          <h3 class="match__label">THE FINAL MAYBACH</h3>
+          <div class="match__vs">
+            <div class="match__side"><strong>KENTA<br>マイバッハ谷口</strong><small>KENTA<br>M.TANIGUCHI</small></div>
+            <span class="match__x">vs</span>
+            <div class="match__side"><strong>マサ北宮<br>杉浦貴</strong><small>M.KITAMIYA<br>T.SUGIURA / TEAM 2000X</small></div>
+          </div>
+        </div>
+      </article>
+      <article class="match">
+        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
+          <img src="img/match_4way_sm.jpg" srcset="img/match_4way_sm.jpg 960w, img/match_4way.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="4WAYタッグマッチ 遠藤哲哉
+小柳勇斗 vs BUSHI
+RYUSEI" loading="lazy" width="1920" height="1080">
+        </a>
+        <div class="match__body">
+          <p class="match__num">第2試合</p><p class="match__en">4WAY TAG TEAM MATCH</p>
+          <h3 class="match__label">4WAYタッグマッチ</h3>
+          <div class="match__vs match__vs--3 match__vs--4">
+            <div class="match__side"><strong>遠藤哲哉<br>小柳勇斗</strong><small>T.ENDO<br>Y.KOYANAGI</small></div>
+            <span class="match__x">vs</span>
+            <div class="match__side"><strong>BUSHI<br>RYUSEI</strong><small>BUSHI<br>RYUSEI / LOS TRANQUILOS de JAPON</small></div><span class="match__x">vs</span><div class="match__side"><strong>アルファ・ウルフ<br>タダスケ</strong><small>A.WOLF<br>TADASUKE / TEAM 2000X</small></div><span class="match__x">vs</span><div class="match__side"><strong>藤田和之<br>ブラックめんそーれ</strong><small>K.FUJITA<br>B.MENSORE</small></div>
+          </div>
+        </div>
+      </article>
+      <article class="match">
+        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
+          <img src="img/match_ghc_jr_tag_sm.jpg" srcset="img/match_ghc_jr_tag_sm.jpg 960w, img/match_ghc_jr_tag.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="GHCジュニアヘビー級タッグ選手権試合 YO-HEY
+政岡純 vs アレハンドロ
+小田嶋大樹" loading="lazy" width="1920" height="1080">
+        </a>
+        <div class="match__body">
+          <p class="match__num">第1試合</p><p class="match__en">GHC JR. HEAVYWEIGHT TAG TEAM CHAMPIONSHIP MATCH</p>
+          <h3 class="match__label">GHCジュニアヘビー級タッグ選手権試合</h3>
+          <div class="match__vs">
+            <div class="match__side"><span class="match__role">CHAMPIONS</span><strong>YO-HEY<br>政岡純</strong><small>YO-HEY<br>J.MASAOKA</small></div>
+            <span class="match__x">vs</span>
+            <div class="match__side"><span class="match__role">CHALLENGERS</span><strong>アレハンドロ<br>小田嶋大樹</strong><small>ALEJANDRO<br>D.ODASHIMA</small></div>
+          </div><p class="match__note">※第66代王者組の初防衛戦</p>
+        </div>
+      </article>
+      <article class="match">
+        <a href="https://www.noah.co.jp/schedule/898/" target="_blank" rel="noopener" class="match__img">
+          <img src="img/match_dark_sm.jpg" srcset="img/match_dark_sm.jpg 960w, img/match_dark.jpg 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="タッグマッチ 小峠篤司
+Hi69 vs 鶴屋浩斗
+並木宏也" loading="lazy" width="1920" height="1080">
+        </a>
+        <div class="match__body">
+          <p class="match__num">ダークマッチ</p><p class="match__en">DARK MATCH TAG TEAM MATCH</p>
+          <h3 class="match__label">タッグマッチ</h3>
+          <div class="match__vs">
+            <div class="match__side"><strong>小峠篤司<br>Hi69</strong><small>A.KOTOGE<br>HIROKI / TEAM NOAH</small></div>
+            <span class="match__x">vs</span>
+            <div class="match__side"><strong>鶴屋浩斗<br>並木宏也</strong><small>H.TSURUYA<br>H.NAMIKI</small></div>
           </div>
         </div>
       </article>

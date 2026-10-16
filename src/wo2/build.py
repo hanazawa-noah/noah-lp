@@ -28,15 +28,17 @@ def match_cards():
           <img src="{m['img_sm']}" srcset="{m['img_sm']} 960w, {m['img']} 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="{esc(m['label'])} {esc(m['champion'])} vs {esc(m['challenger'])}" loading="lazy" width="1920" height="1080">
         </a>
         <div class="match__body">
-          <p class="match__en">{esc(m['en'])}</p>
+          {('<p class="match__num">'+esc(m['num'])+'</p>') if m.get('num') else ''}<p class="match__en">{esc(m['en'])}</p>
           <h3 class="match__label">{esc(m['label'])}</h3>
-          <div class="match__vs{' match__vs--3' if m.get('third') else ''}">
+          <div class="match__vs{' match__vs--3' if m.get('third') else ''}{' match__vs--4' if m.get('fourth') else ''}">
             {side(ra,m['champion'],m['champion_en'])}
             <span class="match__x">vs</span>
-            {side(rb,m['challenger'],m['challenger_en'])}{('<span class="match__x">vs</span>'+side(m.get('role_c','CHALLENGERS'),m['third'],m['third_en'])) if m.get('third') else ''}
+            {side(rb,m['challenger'],m['challenger_en'])}{('<span class="match__x">vs</span>'+side(m.get('role_c','CHALLENGERS'),m['third'],m['third_en'])) if m.get('third') else ''}{('<span class="match__x">vs</span>'+side(m.get('role_d',''),m['fourth'],m['fourth_en'])) if m.get('fourth') else ''}
           </div>{note}
         </div>
       </article>''')
+        if D.get('intermission_after')==m['id']:
+            out.append('<p class="match__break">〜 休憩 〜</p>')
     return ''.join(out)
 
 def news_items():
@@ -145,6 +147,9 @@ ul{{list-style:none}}
 .match__role{{font-family:var(--ff-en);font-size:10px;letter-spacing:.3em;color:var(--tx2)}}
 .match__side strong{{font-size:22px;line-height:1.2;margin:4px 0 2px}}
 .match__side small{{font-family:var(--ff-en);font-size:12px;letter-spacing:.1em;color:var(--tx2)}}
+.match__num{{display:inline-block;background:var(--ac);color:#041225;font-weight:700;font-size:12px;letter-spacing:.1em;padding:3px 14px;border-radius:999px;margin-bottom:10px}}
+.match__break{{text-align:center;color:var(--tx2);letter-spacing:.3em;margin:-6px 0 28px}}
+.match__vs--4 .match__side strong{{font-size:18px}}
 .match__note{{margin-top:14px;font-size:12px;color:var(--tx2);text-align:center}}
 .match__x{{font-family:var(--ff-en);font-weight:700;font-size:16px;color:var(--ac);font-style:italic}}
 .match__more{{text-align:center;margin-top:10px}}
@@ -237,7 +242,7 @@ ul{{list-style:none}}
 
 /* ---- SP ---- */
 @media (max-width:900px){{
-.match__vs--3{{flex-direction:column;gap:10px}}.match__vs--3 .match__x{{transform:rotate(90deg)}}.match__vs--3 .match__side{{width:100%}}
+.match__vs--3,.match__vs--4{{flex-direction:column;gap:10px}}.match__vs--3 .match__x,.match__vs--4 .match__x{{transform:rotate(90deg)}}.match__vs--3 .match__side,.match__vs--4 .match__side{{width:100%}}
   .wrap{{width:min(100% - 32px,var(--max))}}
   .sec{{padding:60px 0}}
   .sec__head{{margin-bottom:30px}}
