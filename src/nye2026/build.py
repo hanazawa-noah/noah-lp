@@ -139,6 +139,8 @@ def footer_links():
 def sns_links():
     return ''.join(f'<a href="{esc(x["url"])}" target="_blank" rel="noopener">{esc(x["label"])} ↗</a>' for x in D.get('sns', []) if x.get('url'))
 
+mincho_chars = ''.join(sorted(set(E.get('lead', '') + E['catch'] + ''.join(E.get('catch_ruby', {}).values()))))
+MINCHO = 'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&display=swap&text=' + urllib.parse.quote(mincho_chars)
 noindex = '<meta name="robots" content="noindex,nofollow">\n  ' if args.noindex else ''
 desc = f"{E['catch']} ─ {E.get('lead','')}{E['date_ja']} {E['venue']}。プロレスリング・ノア「{E['title']}」特設サイト。"
 official_btn = f'<a class="btn btn--ghost" href="{esc(E["official_url"])}" target="_blank" rel="noopener">公式大会ページ ↗</a>' if E.get('official_url') else ''
@@ -150,7 +152,7 @@ alt = f"{esc(title)} {esc(E['date_ja'])} {esc(E['venue'])}"
 # ---------- CSS ----------
 CSS = f'''
 :root{{--bg:{T['bg']};--bg2:{T['bg2']};--gold:{T['gold']};--gold-d:{T['gold_d']};--red:{T['red']};--tx:#F3EEE2;--tx2:#AEB9BE;--line:rgba(246,194,68,.30);--max:1100px;
---ff-en:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;--ff-ja:'Hiragino Kaku Gothic ProN','Hiragino Sans',Meiryo,'Noto Sans JP',sans-serif;}}
+--ff-en:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;--ff-min:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','YuMincho',serif;--ff-ja:'Hiragino Kaku Gothic ProN','Hiragino Sans',Meiryo,'Noto Sans JP',sans-serif;}}
 *{{box-sizing:border-box;margin:0;padding:0}}
 html{{scroll-behavior:smooth;-webkit-text-size-adjust:100%}}
 body{{position:relative;background:var(--bg);color:var(--tx);font-family:var(--ff-ja);font-weight:600;line-height:1.7;letter-spacing:.02em;overflow-x:hidden}}
@@ -199,8 +201,8 @@ ul{{list-style:none}}
 
 /* catch */
 .catchsec{{position:relative;padding:96px 0 84px;text-align:center;overflow:hidden;background:url("{FW_CATCH}") center/cover no-repeat}}
-.catch__lead{{display:inline-block;font-weight:800;font-size:clamp(14px,1.6vw,17px);letter-spacing:.3em;color:var(--tx);padding:6px 0 6px .3em;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}}
-.catch__ja{{font-weight:900;font-size:clamp(32px,6.2vw,68px);letter-spacing:.16em;line-height:1.5;margin-top:26px;color:var(--gold);text-shadow:0 0 28px rgba(246,194,68,.25)}}
+.catch__lead{{display:inline-block;font-family:var(--ff-min);font-weight:900;font-size:clamp(14px,1.6vw,17px);letter-spacing:.3em;color:var(--tx);padding:6px 0 6px .3em;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}}
+.catch__ja{{font-family:var(--ff-min);font-weight:900;font-size:clamp(32px,6.2vw,68px);letter-spacing:.16em;line-height:1.5;margin-top:26px;color:var(--gold);text-shadow:0 0 28px rgba(246,194,68,.25)}}
 .catch__ja ruby{{ruby-position:over}}
 .catch__ja rt{{font-size:.32em;letter-spacing:.3em;color:var(--gold)}}
 
@@ -372,6 +374,7 @@ HTML = f'''<!DOCTYPE html>
   <link rel="icon" href="img/noah_badge.png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link href="{MINCHO}" rel="stylesheet">
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}})(window,document,'script','dataLayer','{GTM}');</script>
   <!-- End Google Tag Manager -->
