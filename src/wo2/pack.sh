@@ -18,6 +18,7 @@ h=re.sub(r' srcset="[^"]+" sizes="[^"]+"','',h)
 plan={'img/kv.jpg':(1920,88),'img/kv_sp_crop.jpg':(1080,88),'img/logo_wo2_s.webp':(640,0),'img/noah_badge.png':(999,0),'img/neo_high.png':(999,0)}
 for p in sorted(set(re.findall(r'img/match_[\w\-]+_sm\.jpg',h))): plan[p]=(960,82)
 for p in sorted(set(re.findall(r'img/video_[\w\-]+\.jpg',h))): plan[p]=(1280,82)
+for p in sorted(set(re.findall(r'img/(?:goods|special|sign|bc)_[\w\-]+_sm\.jpg',h))): plan[p]=(640,78)
 for p,(w,q) in plan.items(): h=h.replace(f'"{p}"',f'"{uri(p,w,q)}"')
 h=h.replace('<meta name="viewport"','<meta name="robots" content="noindex,nofollow"><meta name="viewport"')
 open('wo2_preview.html','w',encoding='utf-8').write(h); print('preview',os.path.getsize('wo2_preview.html')//1024,'KB')

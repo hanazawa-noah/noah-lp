@@ -191,11 +191,25 @@
     "note": "無料生中継",
     "url": "https://abema.tv/now-on-air/fighting-sports",
     "btn": "ABEMAで視聴",
-    "note2": "試合開始 15:00 ／ 配信開始時間はABEMAの番組ページをご確認ください"
+    "note2": "14:40〜生中継スタート（試合開始 15:00）",
+    "guests": {
+      "img": "img/bc_guests.jpg",
+      "img_sm": "img/bc_guests_sm.jpg",
+      "lines": [
+        [
+          "特別実況",
+          "古舘伊知郎さん"
+        ],
+        [
+          "ゲスト解説",
+          "武藤敬司さん・大谷晋二郎さん"
+        ]
+      ]
+    }
   },
   "news": [
     {
-      "date": "2026.10.12",
+      "date": "2026.10.09",
       "title": "【10.25両国】Getworks Presents「プロレスリング・ノア 秋の大抽選会」開催決定！豪華景品が当たる“ハズレなし”の抽選会！",
       "url": "https://www.noah.co.jp/news/8648/"
     },
@@ -297,5 +311,266 @@
       "url": "https://www.youtube.com/channel/UC4T0v46s8yxJuTOW1_mD1xA/"
     }
   ],
-  "intermission_after": "ghc-national"
+  "intermission_after": "ghc-national",
+  "special": [
+    {
+      "id": "lottery",
+      "tag": "ハズレなし",
+      "title": "Getworks Presents 秋の大抽選会",
+      "lead": "当日の大会チケットをお持ちの方なら、どなたでも参加できる“ハズレなし”の抽選会。",
+      "img": "img/special_lottery.jpg",
+      "img_sm": "img/special_lottery_sm.jpg",
+      "info": [
+        [
+          "場所",
+          "会場内 特設ブース"
+        ],
+        [
+          "時間",
+          "開場〜全試合終了後まで"
+        ],
+        [
+          "参加方法",
+          "ブースで当日の大会チケットを提示し、抽選機を回してください（お一人様1回）"
+        ]
+      ],
+      "list_title": "景品",
+      "list": [
+        [
+          "特賞",
+          "選手直筆サイン入り 大会ビジュアルのぼり"
+        ],
+        [
+          "ヨネ賞",
+          "モハメド ヨネ選手の店「うまい肉と麺の店 ヨネ家」お食事券 5,000円分"
+        ],
+        [
+          "A賞",
+          "ユるノア ハロウィンタオル"
+        ],
+        [
+          "B賞",
+          "ビジュアルステッカー または 缶バッジ（お好きな方）"
+        ],
+        [
+          "参加賞",
+          "オリジナルスマホ待ち受け画像"
+        ]
+      ],
+      "notes": [
+        "NOAH'S ARK有料会員の方は会員証画面のご提示で、会員限定の待ち受け画像をもう1点プレゼント",
+        "各賞とも数に限りがあり、なくなり次第終了です"
+      ],
+      "url": "https://www.noah.co.jp/news/8648/"
+    },
+    {
+      "id": "fc",
+      "tag": "来場者限定",
+      "title": "NOAH'S ARK会員限定 対戦カードステッカー配布",
+      "lead": "全10種の対戦カードビジュアルステッカーから選べます。当日その場での入会もOK。",
+      "img": "img/special_fc.jpg",
+      "img_sm": "img/special_fc_sm.jpg",
+      "info": [
+        [
+          "場所",
+          "会場内 FCブース"
+        ],
+        [
+          "時間",
+          "開場〜全試合終了後30分まで"
+        ],
+        [
+          "枚数",
+          "有料会員 2枚／無料会員 1枚"
+        ],
+        [
+          "受け取り",
+          "デジタル会員証のQRコードをご提示ください（カード会員証は不可）"
+        ]
+      ],
+      "notes": [
+        "数に限りがあります"
+      ],
+      "btn": {
+        "label": "無料会員登録はこちら",
+        "url": "https://dx.zebral.jp/member/#/ARK-NOAH/pre-register"
+      },
+      "url": "https://www.noah.co.jp/news/8699/"
+    }
+  ],
+  "goods": {
+    "signing": {
+      "name": "清宮海斗",
+      "start": "13:40〜（予定）",
+      "img": "img/sign_kiyomiya.jpg",
+      "img_sm": "img/sign_kiyomiya_sm.jpg",
+      "howto": "img/sign_howto.jpg",
+      "howto_sm": "img/sign_howto_sm.jpg",
+      "rule": "今回は「10.25両国大会特別ルール」で開催",
+      "steps": [
+        "グッズ売店で対象商品を購入すると「サイン会参加券」をお渡しします（お一人様1枚まで）",
+        "事前予約で対象商品を購入した方は、14:00までに引換窓口で参加券をお受け取りください",
+        "開始時刻になったら参加券を持ってサイン会ブースへ。順番が来たら清宮選手からサインをもらえます"
+      ],
+      "targets": [
+        "清宮海斗『PRINCE of MADNESS』グラフィックTシャツ",
+        "NOAH『Finish Move』ZIP UP パーカー"
+      ],
+      "notes": [
+        "サインは色紙、または当日購入した商品に入ります（ポートレートを購入の方はポートレートに）",
+        "25周年記念フォトブック『THANKS』をお持ちの方は、参加券があれば色紙とは別にサインがもらえます",
+        "選手の撮影（1Shot含む）、名前・日付の書き入れ、差し入れ・プレゼントはできません",
+        "参加券は予定枚数に達し次第終了。列が途切れた時点でサイン会終了となります"
+      ],
+      "url": "https://www.noah.co.jp/news/8698/"
+    },
+    "items": [
+      {
+        "name": "内藤哲也『LOS TRANQUILOS de GHC』Tシャツ",
+        "price": "会場 ¥5,000 ／ 通販 ¥5,500",
+        "size": "S〜XXL",
+        "img": "goods_naito_tee",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8690/"
+      },
+      {
+        "name": "OZAWA REAL REBEL SKULL グラフィックTシャツ",
+        "price": "会場 ¥5,000 ／ 通販 ¥5,500",
+        "size": "S〜XXL",
+        "img": "goods_ozawa_tee",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8692/"
+      },
+      {
+        "name": "清宮海斗『PRINCE of MADNESS』グラフィックTシャツ",
+        "price": "会場 ¥4,500 ／ 通販 ¥4,950",
+        "size": "S〜XXL",
+        "img": "goods_kiyomiya_tee",
+        "tags": [
+          "サイン会対象"
+        ],
+        "url": "https://www.noah.co.jp/news/8692/"
+      },
+      {
+        "name": "NOAH『Finish Move』ZIP UP パーカー",
+        "price": "会場 ¥8,000 ／ 通販 ¥8,800",
+        "size": "S〜XXL",
+        "img": "goods_finish_parka",
+        "tags": [
+          "サイン会対象"
+        ],
+        "url": "https://www.noah.co.jp/news/8689/"
+      },
+      {
+        "name": "カイ・フジムラ『Death Hanger』Tシャツ",
+        "price": "会場 ¥4,500 ／ 通販 ¥4,950",
+        "size": "S〜XXL",
+        "img": "goods_fujimura_tee",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8692/"
+      },
+      {
+        "name": "ドラゴン・ベイン『フェイスグラフィック』Tシャツ",
+        "price": "会場 ¥4,500 ／ 通販 ¥4,950",
+        "size": "S〜XXL",
+        "img": "goods_bane_tee",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8692/"
+      },
+      {
+        "name": "White Raven Sqwad ベースボールシャツ",
+        "price": "会場 ¥6,500 ／ 通販 ¥7,150",
+        "size": "S〜XXL",
+        "img": "goods_wrs_shirt",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8692/"
+      },
+      {
+        "name": "YO-HEY『HEARTBREAKER』TEE",
+        "price": "会場 ¥4,500 ／ 通販 ¥4,950",
+        "size": "M〜XL（ビッグシルエット）",
+        "img": "goods_yohey_tee",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8686/"
+      },
+      {
+        "name": "政岡純『Midnight Jewel』TEE",
+        "price": "会場 ¥4,500 ／ 通販 ¥4,950",
+        "size": "M〜XL（ビッグシルエット）",
+        "img": "goods_masaoka_tee",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8686/"
+      },
+      {
+        "name": "YO-HEY／政岡純 TOWEL",
+        "price": "会場 ¥3,500 ／ 通販 ¥3,850",
+        "size": "各1種",
+        "img": "goods_j2kx_towel",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8686/"
+      },
+      {
+        "name": "GHCヘビー級選手権試合 応援タオル（内藤哲也／OZAWA）",
+        "price": "¥3,500",
+        "size": "2種",
+        "img": "goods_ghc_towel",
+        "tags": [
+          "会場販売"
+        ],
+        "url": "https://www.noah.co.jp/news/8680/"
+      },
+      {
+        "name": "内藤哲也 vs OZAWA GHCヘビー級選手権 ジオラマアクリルスタンド",
+        "price": "会場 ¥4,000 ／ 通販 ¥4,400",
+        "size": "リング約12cm四方・選手各約8cm",
+        "img": "goods_acst",
+        "tags": [
+          "数量限定"
+        ],
+        "url": "https://www.noah.co.jp/news/8691/"
+      },
+      {
+        "name": "公式パンフレット「Getworks Presents WRESTLE ODYSSEY Ⅱ」",
+        "price": "会場 ¥3,000 ／ 通販 ¥3,300",
+        "size": "出場選手プロフィール＆見どころ",
+        "img": "goods_pamphlet",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8691/"
+      },
+      {
+        "name": "TEAM 2000X TRAINING TRACK JACKET ＆ PANTS",
+        "price": "JACKET ¥22,000 ／ PANTS ¥16,500（税込）",
+        "size": "M〜2XL・上下別売り",
+        "img": "goods_track",
+        "tags": [
+          "数量限定"
+        ],
+        "url": "https://www.noah.co.jp/news/8679/"
+      }
+    ],
+    "perk": {
+      "title": "グッズ購入特典 非売品ポスター",
+      "text": "グッズ売店（または事前予約）で1会計¥10,000以上お買い上げの方に、非売品の対戦カードビジュアルポスター（B2）をプレゼント。以降¥5,000ごとに1枚追加。先着順・数量限定です。"
+    },
+    "preorder": {
+      "until": "2026-10-23T10:00:00+09:00",
+      "title": "事前予約で会場受け取り",
+      "img": "img/goods_preorder.jpg",
+      "img_sm": "img/goods_preorder_sm.jpg",
+      "text": "10月23日(金)午前10:00まで受付。会場価格・送料無料で予約でき、当日は会場前広場テント（12:30〜全試合終了後）でお受け取り。並ばずに確実に手に入ります。",
+      "url": "https://shop.noah.co.jp/collections/ryogoku-kokugikan-oct25-venue-pickup",
+      "btn": "事前予約する",
+      "news": "https://www.noah.co.jp/news/8694/"
+    },
+    "online": {
+      "text": "10月25日(日) 18:00から公式通販「NOAH THE SHOP」でも販売開始",
+      "url": "https://shop.noah.co.jp/",
+      "btn": "NOAH THE SHOP"
+    },
+    "notes": [
+      "会場販売は10月25日(日)両国国技館大会から",
+      "屋外グッズ販売ブース・事前予約受け取りブースは、大会チケットがなくてもご利用いただけます",
+      "お支払いは現金のほか、クレジットカード・交通系IC・各種QRコード決済に対応（電波状況により現金のみとなる場合があります）"
+    ]
+  }
 }

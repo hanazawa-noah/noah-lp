@@ -55,7 +55,10 @@ def ticket_notes():
     return ''.join(f'<li>{esc(n)}</li>' for n in TK['notes'])
 
 def nav_links():
-    items=[('match','対戦カード'),('info','大会情報'),('broadcast','放送情報'),('news','ニュース'),('ticket','チケット')]
+    items=[('match','対戦カード'),('info','大会情報'),('broadcast','放送情報'),('news','ニュース')]
+    if D.get('special'): items.append(('special','会場イベント'))
+    items.append(('ticket','チケット'))
+    if D.get('goods'): items.append(('goods','グッズ'))
     if D.get('videos'): items.append(('movie','動画'))
     items.append(('access','アクセス'))
     return ''.join(f'<a href="#{i}">{t}</a>' for i,t in items)
@@ -80,6 +83,115 @@ def video_section():
     </div>
   </section>
   <script>document.querySelectorAll('.video__frame[data-id]').forEach(function(b){{b.addEventListener('click',function(){{var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0';f.title='YouTube video';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;b.replaceWith(f);f.className='video__iframe';}});}});</script>
+'''
+
+def pic(img, img_sm, alt, sizes='(max-width:900px) 100vw, 540px', w=1920, h=1080):
+    return f'<img src="{img_sm}" srcset="{img_sm} 960w, {img} 1920w" sizes="{sizes}" alt="{esc(alt)}" loading="lazy" width="{w}" height="{h}">'
+
+def dl(rows):
+    return '<dl class="dl">'+''.join(f'<dt>{esc(k)}</dt><dd>{esc(v)}</dd>' for k,v in rows)+'</dl>'
+
+def notes(xs):
+    return ('<ul class="notes">'+''.join(f'<li>{esc(x)}</li>' for x in xs)+'</ul>') if xs else ''
+
+def src_link(url):
+    return f'<p class="srclink"><a href="{esc(url)}" target="_blank" rel="noopener">公式ニュースで詳しく見る ↗</a></p>'
+
+def guests():
+    g=B.get('guests')
+    if not g: return ''
+    rows=''.join(f'<p><span>{esc(k)}</span>{esc(v)}</p>' for k,v in g['lines'])
+    return f'''
+      <div class="bcg">
+        <div class="bcg__img">{pic(g['img'],g['img_sm'],'ABEMA 放送席ゲスト '+' '.join(v for _,v in g['lines']))}</div>
+        <div class="bcg__body"><p class="bc__kicker">BROADCAST GUEST</p><p class="bcg__lead">ABEMA放送席に豪華ゲストが登場！</p>{rows}</div>
+      </div>'''
+
+def special_section():
+    S=D.get('special') or []
+    if not S: return ''
+    cards=''
+    for s in S:
+        lst=''
+        if s.get('list'):
+            lst=f'<p class="sp__h">{esc(s["list_title"])}</p><ul class="prize">'+''.join(f'<li><b>{esc(k)}</b><span>{esc(v)}</span></li>' for k,v in s['list'])+'</ul>'
+        btn=f'<p class="sp__btn"><a class="btn btn--ghost" href="{esc(s["btn"]["url"])}" target="_blank" rel="noopener">{esc(s["btn"]["label"])} ↗</a></p>' if s.get('btn') else ''
+        cards+=f'''
+      <article class="sp">
+        <div class="sp__img">{pic(s['img'],s['img_sm'],s['title'])}</div>
+        <div class="sp__body">
+          <span class="tag">{esc(s['tag'])}</span>
+          <h3 class="sp__title">{esc(s['title'])}</h3>
+          <p class="sp__lead">{esc(s['lead'])}</p>
+          {dl(s['info'])}{lst}{notes(s.get('notes'))}{btn}{src_link(s['url'])}
+        </div>
+      </article>'''
+    return f'''
+  <section id="special" class="sec">
+    <div class="wrap">
+      <div class="sec__head"><h2 class="sec__en">会場イベント</h2><p class="sec__ja">SPECIAL EVENT</p></div>
+      <p class="sec__lead">大会当日、両国国技館の会場で行われる特別企画です。</p>{cards}
+    </div>
+  </section>
+'''
+
+def goods_section():
+    G=D.get('goods')
+    if not G: return ''
+    s=G['signing']
+    steps=''.join(f'<li>{esc(x)}</li>' for x in s['steps'])
+    targets=''.join(f'<li>{esc(x)}</li>' for x in s['targets'])
+    sign=f'''
+      <div class="sign">
+        <div class="sign__img">{pic(s['img'],s['img_sm'],s['name']+' 試合前サイン会')}</div>
+        <div class="sign__body">
+          <span class="tag">試合前サイン会</span>
+          <h3 class="sign__name">{esc(s['name'])}<small>サイン会</small></h3>
+          <p class="sign__time"><span>START</span>{esc(s['start'])}</p>
+          <p class="sign__rule">{esc(s['rule'])}</p>
+          <p class="sp__h">対象商品</p><ul class="sign__targets">{targets}</ul>
+        </div>
+      </div>
+      <div class="sign2">
+        <div><p class="sp__h">参加方法</p><ol class="steps">{steps}</ol>{notes(s['notes'])}{src_link(s['url'])}</div>
+        <div class="sign2__img">{pic(s['howto'],s['howto_sm'],'サイン会ご参加方法','(max-width:900px) 100vw, 480px',1920,1358)}</div>
+      </div>'''
+    items=''
+    for it in G['items']:
+        tags=''.join(f'<span class="gd__tag{" gd__tag--sign" if t=="サイン会対象" else ""}">{esc(t)}</span>' for t in it['tags'])
+        items+=f'''
+        <li class="gd">
+          <div class="gd__img">{pic('img/'+it['img']+'.jpg','img/'+it['img']+'_sm.jpg',it['name'],'(max-width:900px) 50vw, 360px')}{('<div class="gd__tags">'+tags+'</div>') if tags else ''}</div>
+          <div class="gd__body"><p class="gd__name">{esc(it['name'])}</p><p class="gd__price">{esc(it['price'])}</p><p class="gd__size">{esc(it['size'])}</p></div>
+        </li>'''
+    p=G['preorder']; o=G['online']; k=G['perk']
+    pre=f'''
+        <div class="perk perk--pre" data-until="{esc(p['until'])}">
+          <div class="perk__img">{pic(p['img'],p['img_sm'],p['title'],'(max-width:900px) 100vw, 540px')}</div>
+          <div><span class="tag">締切間近</span><h3 class="perk__title">{esc(p['title'])}</h3><p class="perk__text">{esc(p['text'])}</p>
+          <p class="perk__btns"><a class="btn btn--pri" href="{esc(p['url'])}" target="_blank" rel="noopener">{esc(p['btn'])} ↗</a></p></div>
+        </div>'''
+    return f'''
+  <section id="goods" class="sec">
+    <div class="wrap">
+      <div class="sec__head"><h2 class="sec__en">グッズ・サイン会</h2><p class="sec__ja">GOODS</p></div>
+      {sign}
+      <h3 class="sub__head">10.25両国 新登場グッズ</h3>
+      <ul class="gds">{items}
+      </ul>
+      <div class="perks">{pre}
+        <div class="perk">
+          <div><span class="tag">購入特典</span><h3 class="perk__title">{esc(k['title'])}</h3><p class="perk__text">{esc(k['text'])}</p></div>
+        </div>
+        <div class="perk">
+          <div><span class="tag">通販</span><h3 class="perk__title">会場に来られない方も</h3><p class="perk__text">{esc(o['text'])}</p>
+          <p class="perk__btns"><a class="btn btn--ghost" href="{esc(o['url'])}" target="_blank" rel="noopener">{esc(o['btn'])} ↗</a></p></div>
+        </div>
+      </div>
+      {notes(G.get('notes'))}
+    </div>
+  </section>
+  <script>document.querySelectorAll('[data-until]').forEach(function(e){{if(Date.now()>=new Date(e.dataset.until).getTime())e.remove();}});</script>
 '''
 
 def footer_links():
@@ -238,6 +350,72 @@ ul{{list-style:none}}
 .video__play::after{{content:'';position:absolute;left:30px;top:22px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #041225}}
 .video__iframe{{width:100%;aspect-ratio:16/9;border:0;display:block;background:#000}}
 .video__title{{padding:14px 18px;font-size:14px}}
+/* common blocks */
+.sec__lead{{text-align:center;color:var(--tx2);font-size:15px;margin:-20px 0 36px}}
+.tag{{display:inline-block;background:var(--ac);color:#041225;font-weight:700;font-size:12px;letter-spacing:.1em;padding:3px 14px;border-radius:999px}}
+.dl{{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:14px;margin:16px 0}}
+.dl dt{{color:var(--ac);font-weight:700;white-space:nowrap;font-size:13px;padding-top:1px}}
+.dl dd{{line-height:1.7}}
+.notes{{margin-top:14px}}
+.notes li{{position:relative;padding-left:16px;font-size:13px;color:var(--tx2);line-height:1.8;margin-bottom:4px}}
+.notes li::before{{content:"※";position:absolute;left:0;color:var(--ac)}}
+.srclink{{margin-top:14px;font-size:13px}}
+.srclink a{{color:var(--tx2);border-bottom:1px solid var(--line)}}
+.srclink a:hover{{color:var(--tx)}}
+.sp__h{{font-size:13px;letter-spacing:.15em;color:var(--ac);font-weight:700;margin:18px 0 8px}}
+.sub__head{{font-size:20px;text-align:center;margin:64px 0 28px;letter-spacing:.08em}}
+
+/* broadcast guests */
+.bcg{{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;margin-top:24px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden}}
+.bcg__img img{{width:100%;aspect-ratio:16/9;object-fit:cover}}
+.bcg__body{{padding:24px 28px 24px 0}}
+.bcg__lead{{font-size:20px;margin:6px 0 14px}}
+.bcg__body p span{{display:inline-block;min-width:6.5em;color:var(--ac);font-size:13px}}
+.bcg__body p{{margin-bottom:6px}}
+
+/* special */
+.sp{{display:grid;grid-template-columns:1fr 1fr;gap:32px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:28px;margin-bottom:28px;align-items:start}}
+.sp__img img{{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px}}
+.sp__title{{font-size:22px;line-height:1.4;margin:12px 0 8px}}
+.sp__lead{{color:var(--tx2);font-size:15px}}
+.prize li{{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}}
+.prize b{{flex:0 0 4.5em;color:var(--ac)}}
+.sp__btn{{margin-top:18px}}
+
+/* goods */
+.sign{{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden}}
+.sign__img img{{width:100%;aspect-ratio:16/9;object-fit:cover}}
+.sign__body{{padding:24px 28px 24px 0}}
+.sign__name{{font-size:34px;line-height:1.2;margin:12px 0 10px}}
+.sign__name small{{font-size:16px;margin-left:10px;color:var(--tx2)}}
+.sign__time{{font-family:var(--ff-en);font-size:26px;font-weight:700}}
+.sign__time span{{font-size:12px;letter-spacing:.2em;color:var(--ac);margin-right:12px;vertical-align:middle}}
+.sign__rule{{font-size:13px;color:var(--tx2);margin-top:4px}}
+.sign__targets li{{font-size:15px;padding-left:1.1em;position:relative;margin-bottom:4px}}
+.sign__targets li::before{{content:"▶";position:absolute;left:0;color:var(--ac);font-size:10px;top:6px}}
+.sign2{{display:grid;grid-template-columns:1fr 480px;gap:32px;margin-top:24px;align-items:start}}
+.sign2__img img{{width:100%;border-radius:8px;background:#fff}}
+.steps{{counter-reset:s;list-style:none}}
+.steps li{{counter-increment:s;position:relative;padding:0 0 12px 40px;font-size:15px;line-height:1.7}}
+.steps li::before{{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--ac);color:#041225;font-family:var(--ff-en);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}}
+.gds{{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}}
+.gd{{background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}}
+.gd__img{{position:relative}}
+.gd__img img{{width:100%;aspect-ratio:16/9;object-fit:cover;background:#fff}}
+.gd__tags{{position:absolute;left:8px;top:8px;display:flex;gap:6px;flex-wrap:wrap}}
+.gd__tag{{background:rgba(7,11,24,.88);border:1px solid var(--ac);color:var(--tx);font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px}}
+.gd__tag--sign{{background:var(--ac);color:#041225}}
+.gd__body{{padding:14px 16px 16px}}
+.gd__name{{font-size:15px;line-height:1.5}}
+.gd__price{{font-family:var(--ff-en);font-size:15px;margin-top:8px}}
+.gd__size{{font-size:12px;color:var(--tx2);margin-top:2px}}
+.perks{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}}
+.perk{{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:24px 26px}}
+.perk--pre{{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;border-color:var(--ac)}}
+.perk__img img{{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px}}
+.perk__title{{font-size:19px;margin:10px 0 8px}}
+.perk__text{{font-size:14px;color:var(--tx2);line-height:1.8}}
+.perk__btns{{margin-top:16px}}
 .footer__copy{{font-family:var(--ff-en);font-size:11px;color:var(--tx2);letter-spacing:.1em}}
 
 /* ---- SP ---- */
@@ -288,6 +466,21 @@ ul{{list-style:none}}
   .footer__lockup img{{height:44px}}
   .footer__lockup .wo{{height:56px}}
   .footer__links{{gap:8px 18px;font-size:12px}}
+  .sec__lead{{margin:-10px 0 24px;font-size:14px}}
+  .bcg,.sp,.sign,.sign2,.perk--pre{{grid-template-columns:1fr;gap:16px}}
+  .bcg__body,.sign__body{{padding:0 20px 22px}}
+  .sp{{padding:18px 16px 20px}}
+  .sp__title{{font-size:19px}}
+  .sign__name{{font-size:28px}}
+  .gds{{grid-template-columns:repeat(2,1fr);gap:12px}}
+  .gd__body{{padding:10px 10px 12px}}
+  .gd__name{{font-size:13px}}
+  .gd__price{{font-size:13px}}
+  .gd__tag{{font-size:10px;padding:1px 8px}}
+  .perks{{grid-template-columns:1fr;gap:14px;margin-top:28px}}
+  .perk{{padding:20px 18px}}
+  .perk__btns .btn{{width:100%}}
+  .sub__head{{font-size:18px;margin:44px 0 20px}}
 }}
 '''
 
@@ -394,7 +587,7 @@ HTML = f'''<!DOCTYPE html>
           <p class="bc__note">{esc(E['date_ja'])}　{esc(B['note2'])}</p>
         </div>
         <a class="btn btn--pri" href="{esc(B['url'])}" target="_blank" rel="noopener">{esc(B['btn'])} ↗</a>
-      </div>
+      </div>{guests()}
     </div>
   </section>
 
@@ -404,8 +597,8 @@ HTML = f'''<!DOCTYPE html>
       <ul class="news">{news_items()}</ul>
     </div>
   </section>
-
-  <section id="ticket" class="sec">
+{special_section()}
+  <section id="ticket" class="sec{' sec--alt' if D.get('special') else ''}">
     <div class="wrap">
       <div class="sec__head"><h2 class="sec__en">チケット情報</h2><p class="sec__ja">TICKET</p></div>
       <p class="tk__status"><span>{esc(TK['status'])}</span></p>
@@ -415,7 +608,7 @@ HTML = f'''<!DOCTYPE html>
       <div class="tk__official"><p>席種・料金・座席図は公式大会ページをご確認ください。</p><a class="btn btn--ghost" href="{esc(E['official_url'])}" target="_blank" rel="noopener">席種・料金を見る ↗</a></div>
     </div>
   </section>
-
+{goods_section()}
 {video_section()}
   <section id="access" class="sec">
     <div class="wrap">
