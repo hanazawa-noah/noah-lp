@@ -149,7 +149,7 @@ def goods_section():
           <h3 class="sign__name">{esc(s['name'])}<small>サイン会</small></h3>
           <p class="sign__time"><span>START</span>{esc(s['start'])}</p>
           <p class="sign__rule">{esc(s['rule'])}</p>
-          <p class="sp__h">対象商品</p><ul class="sign__targets">{targets}</ul>
+          {('<p class="sp__h">対象商品</p><ul class="sign__targets">'+targets+'</ul>') if targets else ''}
         </div>
       </div>
       <div class="sign2">
