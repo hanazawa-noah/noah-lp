@@ -15,7 +15,8 @@ def uri(p,maxw,q):
     else: im.convert('RGB').save(buf,'JPEG',quality=q,optimize=True,subsampling=0); mt='image/jpeg'
     return f'data:{mt};base64,'+base64.b64encode(buf.getvalue()).decode()
 h=re.sub(r' srcset="[^"]+" sizes="[^"]+"','',h)
-plan={'img/noah_badge.png':(999,0)}
+plan={'img/kv.jpg':(1200,70),'img/logo_gold_s.webp':(320,0),'img/logo_gold.webp':(560,0),'img/noah_badge.png':(999,0),'img/venue_960.jpg':(640,72),'img/pv_poster.jpg':(800,70)}
+h=re.sub(r'<video class="video__mp4" src="[^"]+"','<video class="video__mp4"',h)  # 動画はプレビューに埋め込めないので外す
 for p in sorted(set(re.findall(r'img/match_[\w\-]+_sm\.jpg',h))): plan[p]=(960,82)
 for p in sorted(set(re.findall(r'img/video_[\w\-]+\.jpg',h))): plan[p]=(1280,82)
 for p,(w,q) in plan.items(): h=h.replace(f'"{p}"',f'"{uri(p,w,q)}"')
@@ -27,5 +28,5 @@ rm -rf dist prod out/index.html.bak && mkdir -p dist && (cd out && zip -qr ../di
 python3 build.py >/dev/null
 mkdir -p prod/nye2026 && cp -r out/index.html out/img prod/nye2026/ && cp 設置手順.txt prod/
 (cd prod && zip -qr ../dist/nye2026_本番設置用.zip nye2026 設置手順.txt)
-zip -qj dist/nye2026_ソース_data_build.zip data.json unannounced.json build.py shot.py pack.sh 設置手順.txt
+zip -qj dist/nye2026_ソース_data_build.zip data.json unannounced.json build.py prep_img.py shot.py pack.sh 設置手順.txt
 cp nye2026_preview.html dist/ && ls -la dist
