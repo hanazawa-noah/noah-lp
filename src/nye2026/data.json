@@ -1,0 +1,92 @@
+{
+  "_comment": "NOAH THE NEW YEAR EVE 2026 特設LP。未発表情報(冠協賛・放送)は公開リポジトリに載せないため unannounced.json(gitignore済)に保持。show:false のセクションは出力しない。",
+  "event": {
+    "title": "NOAH \"THE NEW YEAR\" EVE 2026",
+    "short": "THE NEW YEAR EVE 2026",
+    "catch": "NOAHの鐘、歓喜の戦",
+    "catch_ruby": {"戦": "うた"},
+    "date_iso": "2026-12-31",
+    "date_label": "2026.12.31",
+    "dow": "THU",
+    "date_ja": "2026年12月31日（木）",
+    "open": "13:00",
+    "start": "15:00",
+    "venue": "神奈川・横浜BUNTAI",
+    "venue_map": "横浜BUNTAI",
+    "address": "神奈川県横浜市中区不老町2-7-1",
+    "access": ["JR関内駅南口より徒歩約6分", "地下鉄伊勢佐木長者町駅より徒歩約4分"],
+    "official_url": "",
+    "lp_url": "https://www.noah.co.jp/lp/nye2026/",
+    "organizer": "株式会社CyberFight",
+    "sponsors": "LINEヤフー／ABEMA／WINTICKET／株式会社マイクロアド／株式会社ゲットワークス／株式会社アプリボット／Criteo／EZIGEN／HaRENO／ベースフード株式会社／テーブルマーク／ユナイテッド株式会社／SOKKIN／YES株式会社／bfj株式会社／ジョブアンテナ／てんじく株式会社／株式会社デジタルアークス／ウルラ／株式会社ビットミックス／DOTZ株式会社／株式会社サイバー・バズ／株式会社ロットネスト／リバライズ株式会社／アドクロール／株式会社シンメイ／夜光虫 閻魔坂／ザ・リーヴ",
+    "contact_url": "https://www.noah.co.jp/contactform/",
+    "contact_note": "月曜〜金曜 10:00〜18:00（土日祝祭日は除く）"
+  },
+  "theme": {
+    "bg": "#0d1b2a",
+    "bg2": "#11233a",
+    "gold1": "#d4a73a",
+    "gold2": "#f0c75e",
+    "red": "#b8402a"
+  },
+  "kv": {
+    "_comment": "メインビジュアル画像が届いたら pc/sp に画像パスを入れる(空なら文字のメインビジュアルを表示)",
+    "pc": "",
+    "pc_1280": "",
+    "sp": ""
+  },
+  "matches": {"show": false, "_comment": "対戦カードは後日追加", "items": []},
+  "schedule": {"show": false, "_comment": "当日スケジュール未定"},
+  "goods": {"show": false, "_comment": "グッズ未定"},
+  "news": [],
+  "tickets": {
+    "status": "好評発売中",
+    "seats": [
+      {"name": "アリーナS席", "adv": "30,000円", "door": "30,000円", "note": "残りわずか／一部、前に実況席・本部席があるエリアがあります"},
+      {"name": "アリーナA席", "adv": "20,000円", "door": "20,000円", "note": ""},
+      {"name": "アリーナB席", "adv": "10,000円", "door": "10,000円", "note": ""},
+      {"name": "アリーナスタンドS席", "adv": "15,000円", "door": "15,000円", "note": ""},
+      {"name": "アリーナスタンドA席", "adv": "10,000円", "door": "10,000円", "note": ""},
+      {"name": "2Fスタンド席", "adv": "8,000円", "door": "8,000円", "note": ""},
+      {"name": "3Fスタンド席", "adv": "5,000円", "door": "5,000円", "note": ""},
+      {"name": "高校生シート", "adv": "当日のみ販売", "door": "2,000円", "note": "生年月日の分かる身分証をご提示ください"},
+      {"name": "小中学生", "adv": "当日のみ", "door": "無料", "note": "当日券売場にて受付"}
+    ],
+    "youth_notes": [
+      "大会当日のみの対応です。当日券発売開始時間以降、当日券売場へお越しください。",
+      "大人と一緒に観戦をご希望の場合は、必ず大人の方と一緒に受付へお越しください。大人の方も当日の受付でご購入ください。",
+      "大人の方が前売券を購入済みの場合は並びになるよう手配しますが、席（席種含む）は変更となります。差額の返金はございません。",
+      "当日券販売中に予定枚数終了となる場合があります。事前予約はできません。",
+      "年齢・生年月日を証明できるもの（保険証／学生証／マイナンバーカード等）をご提示ください。",
+      "前売券にて売り切れの場合はご利用いただけません。",
+      "お席は主催者側で選定いたします。"
+    ],
+    "notes": [
+      "未就学児は保護者の膝上にて無料（大人1名につきお子様1名）。",
+      "車椅子でのご観戦は、事前にプロレスリング・ノアまでお問合せください。"
+    ],
+    "sales": [
+      {"label": "NOAH'S ARK有料会員先行", "date": "8月6日(木)12:00〜8月9日(日)18:00", "url": "https://dx.zebral.jp/member/#/ARK-NOAH/", "note": ""},
+      {"label": "会場先行", "date": "8月9日(日)・10日(月)", "url": "", "note": "後楽園ホール大会 会場内（FC先行優先／アリーナS席の取扱いなし）",
+       "_check": "元データは「8月10日(金)」。カレンダー上8/10は月曜のため(月)で表示。要確認"},
+      {"label": "WRESTLE UNIVERSE先行", "date": "8月14日(金)12:00〜8月16日(日)18:00", "url": "https://www.wrestle-universe.com/ja", "note": ""},
+      {"label": "一般発売", "date": "8月24日(月)12:00〜", "url": "", "note": ""}
+    ],
+    "playguides": [
+      {"name": "e+（イープラス）", "url": "https://eplus.jp/noah/", "note": "セブン-イレブン／ファミリーマート店頭でも購入可"},
+      {"name": "チケットぴあ", "url": "https://t.pia.jp/pia/artist/artists.do?artistsCd=11027339", "note": "Pコード 594-150"},
+      {"name": "ローソンチケット", "url": "https://l-tike.com/sports/mevent/?mid=111745", "note": "Lコード 39973"}
+    ]
+  },
+  "videos": [],
+  "footer_links": [
+    {"label": "プロレスリング・ノア 公式サイト", "url": "https://www.noah.co.jp/"},
+    {"label": "ニュース", "url": "https://www.noah.co.jp/news/"},
+    {"label": "選手一覧", "url": "https://www.noah.co.jp/profile/"},
+    {"label": "お問合せ", "url": "https://www.noah.co.jp/contactform/"}
+  ],
+  "sns": [
+    {"label": "X（@noah_ghc）", "url": "https://x.com/noah_ghc"},
+    {"label": "YouTube公式", "url": "https://www.youtube.com/channel/UC4T0v46s8yxJuTOW1_mD1xA"}
+  ]
+}

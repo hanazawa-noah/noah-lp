@@ -1,0 +1,9 @@
+NOAH "THE NEW YEAR" EVE 2026 特設LP 設置手順
+
+1. FileZilla等でサーバーに接続し、/lp/ の直下に「nye2026」フォルダごとアップロードしてください
+   (index.html と img フォルダが nye2026 の中に入った状態のまま)
+2. ブラウザで https://www.noah.co.jp/lp/nye2026/ を開き、表示を確認してください
+3. 古い表示が残る場合は Ctrl+F5(Macは Cmd+Shift+R)で強制再読み込みしてください
+
+※ 公開URLが /lp/nye2026/ 以外になる場合はお知らせください(OGP画像のURLを合わせて修正します)
+※ 以降の修正は、サーバー上の index.html をダウンロードしてチャットに添付してください
