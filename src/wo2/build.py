@@ -94,8 +94,8 @@ def dl(rows):
 def notes(xs):
     return ('<ul class="notes">'+''.join(f'<li>{esc(x)}</li>' for x in xs)+'</ul>') if xs else ''
 
-def src_link(url):
-    return f'<p class="srclink"><a href="{esc(url)}" target="_blank" rel="noopener">公式ニュースで詳しく見る ↗</a></p>'
+def src_link(url, label='公式ニュースで詳しく見る'):
+    return f'<p class="srclink"><a href="{esc(url)}" target="_blank" rel="noopener">{esc(label)} ↗</a></p>'
 
 def guests():
     g=B.get('guests')
@@ -107,25 +107,32 @@ def guests():
         <div class="bcg__body"><p class="bc__kicker">BROADCAST GUEST</p><p class="bcg__lead">ABEMA放送席に豪華ゲストが登場！</p>{rows}</div>
       </div>'''
 
-def special_section():
-    S=D.get('special') or []
-    if not S: return ''
-    cards=''
-    for s in S:
-        lst=''
-        if s.get('list'):
-            lst=f'<p class="sp__h">{esc(s["list_title"])}</p><ul class="prize">'+''.join(f'<li><b>{esc(k)}</b><span>{esc(v)}</span></li>' for k,v in s['list'])+'</ul>'
-        btn=f'<p class="sp__btn"><a class="btn btn--ghost" href="{esc(s["btn"]["url"])}" target="_blank" rel="noopener">{esc(s["btn"]["label"])} ↗</a></p>' if s.get('btn') else ''
-        cards+=f'''
-      <article class="sp">
-        <div class="sp__img">{pic(s['img'],s['img_sm'],s['title'])}</div>
+def sp_card(s):
+    lst=''
+    if s.get('list'):
+        lst=f'<p class="sp__h">{esc(s["list_title"])}</p><ul class="prize">'+''.join(f'<li><b>{esc(k)}</b><span>{esc(v)}</span></li>' for k,v in s['list'])+'</ul>'
+    btn=f'<p class="sp__btn"><a class="btn btn--ghost" href="{esc(s["btn"]["url"])}" target="_blank" rel="noopener">{esc(s["btn"]["label"])} ↗</a></p>' if s.get('btn') else ''
+    imgs=''
+    if s.get('img'):
+        imgs=pic(s['img'],s['img_sm'],s['title'])
+        if s.get('img2'): imgs+=pic(s['img2'],s['img2_sm'],s['title'])
+        imgs=f'<div class="sp__img">{imgs}</div>'
+    link=src_link(s['url'],s['url_label']) if s.get('url_label') else src_link(s['url'])
+    return f'''
+      <article class="sp{'' if imgs else ' sp--noimg'}">
+        {imgs}
         <div class="sp__body">
           <span class="tag">{esc(s['tag'])}</span>
           <h3 class="sp__title">{esc(s['title'])}</h3>
           <p class="sp__lead">{esc(s['lead'])}</p>
-          {dl(s['info'])}{lst}{notes(s.get('notes'))}{btn}{src_link(s['url'])}
+          {dl(s['info']) if s.get('info') else ''}{lst}{notes(s.get('notes'))}{btn}{link}
         </div>
       </article>'''
+
+def special_section():
+    S=D.get('special') or []
+    if not S: return ''
+    cards=''.join(sp_card(s) for s in S)
     return f'''
   <section id="special" class="sec">
     <div class="wrap">
@@ -158,7 +165,7 @@ def goods_section():
       </div>'''
     items=''
     for it in G['items']:
-        tags=''.join(f'<span class="gd__tag{" gd__tag--sign" if t=="サイン会対象" else ""}">{esc(t)}</span>' for t in it['tags'])
+        tags=''.join(f'<span class="gd__tag{" gd__tag--sign" if t in ("サイン会対象","撮影会対象") else ""}">{esc(t)}</span>' for t in it['tags'])
         items+=f'''
         <li class="gd">
           <div class="gd__img">{pic('img/'+it['img']+'.jpg','img/'+it['img']+'_sm.jpg',it['name'],'(max-width:900px) 50vw, 360px')}{('<div class="gd__tags">'+tags+'</div>') if tags else ''}</div>
@@ -178,7 +185,7 @@ def goods_section():
       {sign}
       <h3 class="sub__head">10.25両国 新登場グッズ</h3>
       <ul class="gds">{items}
-      </ul>
+      </ul>{('<h3 class="sub__head">'+esc(G['limited']['title'])+'</h3>'+sp_card(G['limited'])) if G.get('limited') else ''}
       <div class="perks">{pre}
         <div class="perk">
           <div><span class="tag">購入特典</span><h3 class="perk__title">{esc(k['title'])}</h3><p class="perk__text">{esc(k['text'])}</p></div>
@@ -376,6 +383,8 @@ ul{{list-style:none}}
 /* special */
 .sp{{display:grid;grid-template-columns:1fr 1fr;gap:32px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:28px;margin-bottom:28px;align-items:start}}
 .sp__img img{{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px}}
+.sp__img img+img{{margin-top:12px}}
+.sp--noimg{{grid-template-columns:1fr}}
 .sp__title{{font-size:22px;line-height:1.4;margin:12px 0 8px}}
 .sp__lead{{color:var(--tx2);font-size:15px}}
 .prize li{{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}}

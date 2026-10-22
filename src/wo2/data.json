@@ -396,6 +396,33 @@
       "url": "https://www.noah.co.jp/news/8648/"
     },
     {
+      "id": "otani",
+      "tag": "撮影会",
+      "title": "大谷晋二郎選手 撮影会",
+      "lead": "現在リハビリに励む大谷晋二郎選手の撮影会を開催。当日は生中継の放送席にもゲストとして登場予定です。",
+      "img": "img/special_otani.jpg",
+      "img_sm": "img/special_otani_sm.jpg",
+      "info": [
+        [
+          "時間",
+          "14:00〜（予定）"
+        ],
+        [
+          "場所",
+          "会場内ロビー"
+        ],
+        [
+          "対象",
+          "当日の入場チケットをお持ちで、会場ロビー特設ブースで撮影会対象グッズを購入した方"
+        ]
+      ],
+      "notes": [
+        "対象商品は新商品「大谷晋二郎×HOLY SHIT 中邑真輔描き下ろしイラストTシャツ」を含む大谷選手の関連商品のみです",
+        "大谷選手の体調により、内容の変更や急な中止となる場合があります"
+      ],
+      "url": "https://www.noah.co.jp/news/8703/"
+    },
+    {
       "id": "fc",
       "tag": "来場者限定",
       "title": "NOAH'S ARK会員限定 対戦カードステッカー配布",
@@ -421,6 +448,7 @@
         ]
       ],
       "notes": [
+        "FCブースで受け取る前にFC来場ポイントを取得しておくと、会員証とQRコードをすぐ出せます",
         "数に限りがあります"
       ],
       "btn": {
@@ -428,6 +456,28 @@
         "url": "https://dx.zebral.jp/member/#/ARK-NOAH/pre-register"
       },
       "url": "https://www.noah.co.jp/news/8699/"
+    },
+    {
+      "id": "fc2",
+      "tag": "FC会員限定",
+      "title": "両国お宝探し！QRコードを探してFCポイントGET",
+      "lead": "両国国技館の場内に、お宝ポイントのQRコードが5種類隠されています。すべて見つけると1,000ポイントもらえます。",
+      "info": [
+        [
+          "対象",
+          "NOAH'S ARKのすべての会員（有料・無料とも）"
+        ],
+        [
+          "内容",
+          "場内にある5種類のQRコードをすべて読み取ると 1,000pt"
+        ]
+      ],
+      "btn": {
+        "label": "無料会員登録はこちら",
+        "url": "https://dx.zebral.jp/member/#/ARK-NOAH/pre-register"
+      },
+      "url": "https://x.com/fc_noahsark/status/2112401383823667583",
+      "url_label": "NOAH'S ARK公式Xで見る"
     }
   ],
   "goods": {
@@ -470,6 +520,24 @@
         "img": "goods_ozawa_tee",
         "tags": [],
         "url": "https://www.noah.co.jp/news/8692/"
+      },
+      {
+        "name": "大谷晋二郎×HOLY SHIT 中邑真輔描き下ろしイラストTシャツ",
+        "price": "会場 ¥5,500 ／ 通販 ¥6,050",
+        "size": "S〜XXL",
+        "img": "goods_otani_tee",
+        "tags": [
+          "撮影会対象"
+        ],
+        "url": "https://www.noah.co.jp/news/8703/"
+      },
+      {
+        "name": "PRO WRESTLING NOAH オリジナルロゴスウェットパンツ2026",
+        "price": "会場 ¥7,000 ／ 通販 ¥7,700",
+        "size": "S〜XXL・Finish Moveパーカーとセットアップ可",
+        "img": "goods_sweatpants",
+        "tags": [],
+        "url": "https://www.noah.co.jp/news/8701/"
       },
       {
         "name": "清宮海斗『PRINCE of MADNESS』グラフィックTシャツ",
@@ -597,6 +665,51 @@
       "会場販売は10月25日(日)両国国技館大会から",
       "屋外グッズ販売ブース・事前予約受け取りブースは、大会チケットがなくてもご利用いただけます",
       "お支払いは現金のほか、クレジットカード・交通系IC・各種QRコード決済に対応（電波状況により現金のみとなる場合があります）"
-    ]
+    ],
+    "limited": {
+      "tag": "会場限定",
+      "title": "両国大会限定グッズ",
+      "lead": "NOAHの必殺技がずらりと並ぶ「技グラフィック」シリーズに加え、5月の両国で好評だった選手直筆サイン入り「手形色紙」が数量限定で復活。両国国技館の会場でしか買えません。",
+      "img": "img/limited_main.jpg",
+      "img_sm": "img/limited_main_sm.jpg",
+      "img2": "img/limited_tegata.jpg",
+      "img2_sm": "img/limited_tegata_sm.jpg",
+      "list_title": "ラインナップ",
+      "list": [
+        [
+          "¥3,000",
+          "選手直筆サイン入り 手形色紙（各種・数量限定）"
+        ],
+        [
+          "¥5,000",
+          "技グラフィック バスタオル"
+        ],
+        [
+          "¥3,500",
+          "技グラフィック フェイスタオル"
+        ],
+        [
+          "¥1,500",
+          "技グラフィック 手ぬぐい（各種）"
+        ],
+        [
+          "¥4,000",
+          "NOAH軍配ロゴTシャツ（S〜XXL）"
+        ],
+        [
+          "¥2,000",
+          "技グラフィック 湯呑み"
+        ],
+        [
+          "¥1,000",
+          "アクリルキーホルダー（NOAH軍配ロゴ／NOAH千社札）"
+        ]
+      ],
+      "notes": [
+        "手形色紙の販売選手は後日発表されます",
+        "数量限定のため、なくなり次第販売終了です"
+      ],
+      "url": "https://www.noah.co.jp/news/8678/"
+    }
   }
 }
