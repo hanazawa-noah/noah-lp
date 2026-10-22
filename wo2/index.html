@@ -196,6 +196,8 @@ ul{list-style:none}
 /* special */
 .sp{display:grid;grid-template-columns:1fr 1fr;gap:32px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:28px;margin-bottom:28px;align-items:start}
 .sp__img img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px}
+.sp__img img+img{margin-top:12px}
+.sp--noimg{grid-template-columns:1fr}
 .sp__title{font-size:22px;line-height:1.4;margin:12px 0 8px}
 .sp__lead{color:var(--tx2);font-size:15px}
 .prize li{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
@@ -569,12 +571,30 @@ Hi69 vs 鶴屋浩斗
         </div>
       </article>
       <article class="sp">
+        <div class="sp__img"><img src="img/special_otani_sm.jpg" srcset="img/special_otani_sm.jpg 960w, img/special_otani.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="大谷晋二郎選手 撮影会" loading="lazy" width="1920" height="1080"></div>
+        <div class="sp__body">
+          <span class="tag">撮影会</span>
+          <h3 class="sp__title">大谷晋二郎選手 撮影会</h3>
+          <p class="sp__lead">現在リハビリに励む大谷晋二郎選手の撮影会を開催。当日は生中継の放送席にもゲストとして登場予定です。</p>
+          <dl class="dl"><dt>時間</dt><dd>14:00〜（予定）</dd><dt>場所</dt><dd>会場内ロビー</dd><dt>対象</dt><dd>当日の入場チケットをお持ちで、会場ロビー特設ブースで撮影会対象グッズを購入した方</dd></dl><ul class="notes"><li>対象商品は新商品「大谷晋二郎×HOLY SHIT 中邑真輔描き下ろしイラストTシャツ」を含む大谷選手の関連商品のみです</li><li>大谷選手の体調により、内容の変更や急な中止となる場合があります</li></ul><p class="srclink"><a href="https://www.noah.co.jp/news/8703/" target="_blank" rel="noopener">公式ニュースで詳しく見る ↗</a></p>
+        </div>
+      </article>
+      <article class="sp">
         <div class="sp__img"><img src="img/special_fc_sm.jpg" srcset="img/special_fc_sm.jpg 960w, img/special_fc.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="NOAH&#x27;S ARK会員限定 対戦カードステッカー配布" loading="lazy" width="1920" height="1080"></div>
         <div class="sp__body">
           <span class="tag">来場者限定</span>
           <h3 class="sp__title">NOAH&#x27;S ARK会員限定 対戦カードステッカー配布</h3>
           <p class="sp__lead">全10種の対戦カードビジュアルステッカーから選べます。当日その場での入会もOK。</p>
-          <dl class="dl"><dt>場所</dt><dd>会場内 FCブース</dd><dt>時間</dt><dd>開場〜全試合終了後30分まで</dd><dt>枚数</dt><dd>有料会員 2枚／無料会員 1枚</dd><dt>受け取り</dt><dd>デジタル会員証のQRコードをご提示ください（カード会員証は不可）</dd></dl><ul class="notes"><li>数に限りがあります</li></ul><p class="sp__btn"><a class="btn btn--ghost" href="https://dx.zebral.jp/member/#/ARK-NOAH/pre-register" target="_blank" rel="noopener">無料会員登録はこちら ↗</a></p><p class="srclink"><a href="https://www.noah.co.jp/news/8699/" target="_blank" rel="noopener">公式ニュースで詳しく見る ↗</a></p>
+          <dl class="dl"><dt>場所</dt><dd>会場内 FCブース</dd><dt>時間</dt><dd>開場〜全試合終了後30分まで</dd><dt>枚数</dt><dd>有料会員 2枚／無料会員 1枚</dd><dt>受け取り</dt><dd>デジタル会員証のQRコードをご提示ください（カード会員証は不可）</dd></dl><ul class="notes"><li>FCブースで受け取る前にFC来場ポイントを取得しておくと、会員証とQRコードをすぐ出せます</li><li>数に限りがあります</li></ul><p class="sp__btn"><a class="btn btn--ghost" href="https://dx.zebral.jp/member/#/ARK-NOAH/pre-register" target="_blank" rel="noopener">無料会員登録はこちら ↗</a></p><p class="srclink"><a href="https://www.noah.co.jp/news/8699/" target="_blank" rel="noopener">公式ニュースで詳しく見る ↗</a></p>
+        </div>
+      </article>
+      <article class="sp sp--noimg">
+        
+        <div class="sp__body">
+          <span class="tag">FC会員限定</span>
+          <h3 class="sp__title">両国お宝探し！QRコードを探してFCポイントGET</h3>
+          <p class="sp__lead">両国国技館の場内に、お宝ポイントのQRコードが5種類隠されています。すべて見つけると1,000ポイントもらえます。</p>
+          <dl class="dl"><dt>対象</dt><dd>NOAH&#x27;S ARKのすべての会員（有料・無料とも）</dd><dt>内容</dt><dd>場内にある5種類のQRコードをすべて読み取ると 1,000pt</dd></dl><p class="sp__btn"><a class="btn btn--ghost" href="https://dx.zebral.jp/member/#/ARK-NOAH/pre-register" target="_blank" rel="noopener">無料会員登録はこちら ↗</a></p><p class="srclink"><a href="https://x.com/fc_noahsark/status/2112401383823667583" target="_blank" rel="noopener">NOAH&#x27;S ARK公式Xで見る ↗</a></p>
         </div>
       </article>
     </div>
@@ -626,6 +646,14 @@ Hi69 vs 鶴屋浩斗
           <div class="gd__body"><p class="gd__name">OZAWA REAL REBEL SKULL グラフィックTシャツ</p><p class="gd__price">会場 ¥5,000 ／ 通販 ¥5,500</p><p class="gd__size">S〜XXL</p></div>
         </li>
         <li class="gd">
+          <div class="gd__img"><img src="img/goods_otani_tee_sm.jpg" srcset="img/goods_otani_tee_sm.jpg 960w, img/goods_otani_tee.jpg 1920w" sizes="(max-width:900px) 50vw, 360px" alt="大谷晋二郎×HOLY SHIT 中邑真輔描き下ろしイラストTシャツ" loading="lazy" width="1920" height="1080"><div class="gd__tags"><span class="gd__tag gd__tag--sign">撮影会対象</span></div></div>
+          <div class="gd__body"><p class="gd__name">大谷晋二郎×HOLY SHIT 中邑真輔描き下ろしイラストTシャツ</p><p class="gd__price">会場 ¥5,500 ／ 通販 ¥6,050</p><p class="gd__size">S〜XXL</p></div>
+        </li>
+        <li class="gd">
+          <div class="gd__img"><img src="img/goods_sweatpants_sm.jpg" srcset="img/goods_sweatpants_sm.jpg 960w, img/goods_sweatpants.jpg 1920w" sizes="(max-width:900px) 50vw, 360px" alt="PRO WRESTLING NOAH オリジナルロゴスウェットパンツ2026" loading="lazy" width="1920" height="1080"></div>
+          <div class="gd__body"><p class="gd__name">PRO WRESTLING NOAH オリジナルロゴスウェットパンツ2026</p><p class="gd__price">会場 ¥7,000 ／ 通販 ¥7,700</p><p class="gd__size">S〜XXL・Finish Moveパーカーとセットアップ可</p></div>
+        </li>
+        <li class="gd">
           <div class="gd__img"><img src="img/goods_kiyomiya_tee_sm.jpg" srcset="img/goods_kiyomiya_tee_sm.jpg 960w, img/goods_kiyomiya_tee.jpg 1920w" sizes="(max-width:900px) 50vw, 360px" alt="清宮海斗『PRINCE of MADNESS』グラフィックTシャツ" loading="lazy" width="1920" height="1080"></div>
           <div class="gd__body"><p class="gd__name">清宮海斗『PRINCE of MADNESS』グラフィックTシャツ</p><p class="gd__price">会場 ¥4,500 ／ 通販 ¥4,950</p><p class="gd__size">S〜XXL</p></div>
         </li>
@@ -673,7 +701,16 @@ Hi69 vs 鶴屋浩斗
           <div class="gd__img"><img src="img/goods_track_sm.jpg" srcset="img/goods_track_sm.jpg 960w, img/goods_track.jpg 1920w" sizes="(max-width:900px) 50vw, 360px" alt="TEAM 2000X TRAINING TRACK JACKET ＆ PANTS" loading="lazy" width="1920" height="1080"><div class="gd__tags"><span class="gd__tag">数量限定</span></div></div>
           <div class="gd__body"><p class="gd__name">TEAM 2000X TRAINING TRACK JACKET ＆ PANTS</p><p class="gd__price">JACKET ¥22,000 ／ PANTS ¥16,500（税込）</p><p class="gd__size">M〜2XL・上下別売り</p></div>
         </li>
-      </ul>
+      </ul><h3 class="sub__head">両国大会限定グッズ</h3>
+      <article class="sp">
+        <div class="sp__img"><img src="img/limited_main_sm.jpg" srcset="img/limited_main_sm.jpg 960w, img/limited_main.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="両国大会限定グッズ" loading="lazy" width="1920" height="1080"><img src="img/limited_tegata_sm.jpg" srcset="img/limited_tegata_sm.jpg 960w, img/limited_tegata.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="両国大会限定グッズ" loading="lazy" width="1920" height="1080"></div>
+        <div class="sp__body">
+          <span class="tag">会場限定</span>
+          <h3 class="sp__title">両国大会限定グッズ</h3>
+          <p class="sp__lead">NOAHの必殺技がずらりと並ぶ「技グラフィック」シリーズに加え、5月の両国で好評だった選手直筆サイン入り「手形色紙」が数量限定で復活。両国国技館の会場でしか買えません。</p>
+          <p class="sp__h">ラインナップ</p><ul class="prize"><li><b>¥3,000</b><span>選手直筆サイン入り 手形色紙（各種・数量限定）</span></li><li><b>¥5,000</b><span>技グラフィック バスタオル</span></li><li><b>¥3,500</b><span>技グラフィック フェイスタオル</span></li><li><b>¥1,500</b><span>技グラフィック 手ぬぐい（各種）</span></li><li><b>¥4,000</b><span>NOAH軍配ロゴTシャツ（S〜XXL）</span></li><li><b>¥2,000</b><span>技グラフィック 湯呑み</span></li><li><b>¥1,000</b><span>アクリルキーホルダー（NOAH軍配ロゴ／NOAH千社札）</span></li></ul><ul class="notes"><li>手形色紙の販売選手は後日発表されます</li><li>数量限定のため、なくなり次第販売終了です</li></ul><p class="srclink"><a href="https://www.noah.co.jp/news/8678/" target="_blank" rel="noopener">公式ニュースで詳しく見る ↗</a></p>
+        </div>
+      </article>
       <div class="perks">
         <div class="perk perk--pre" data-until="2026-10-23T10:00:00+09:00">
           <div class="perk__img"><img src="img/goods_preorder_sm.jpg" srcset="img/goods_preorder_sm.jpg 960w, img/goods_preorder.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="事前予約で会場受け取り" loading="lazy" width="1920" height="1080"></div>
