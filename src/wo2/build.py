@@ -181,8 +181,9 @@ def goods_section():
     return f'''
   <section id="goods" class="sec">
     <div class="wrap">
-      <div class="sec__head"><h2 class="sec__en">グッズ・サイン会</h2><p class="sec__ja">GOODS</p></div>
+      <div class="sec__head"><h2 class="sec__en">グッズ・サイン会・撮影会</h2><p class="sec__ja">GOODS</p></div>
       {sign}
+      {sp_card(G['photo']) if G.get('photo') else ''}
       <h3 class="sub__head">10.25両国 新登場グッズ</h3>
       <ul class="gds">{items}
       </ul>{('<h3 class="sub__head">'+esc(G['limited']['title'])+'</h3>'+sp_card(G['limited'])) if G.get('limited') else ''}
