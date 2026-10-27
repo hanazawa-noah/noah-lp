@@ -1,5 +1,5 @@
 {
-  "_comment": "マルハン presents NOAH Jr. GRAND PRIX 2 特設LP。出典: noah.co.jp/news/8657/ ・ /news/8727/(依頼者から本文受領)。試合結果は matches[].winner に選手idを入れて再生成すると勝者が強調される。",
+  "_comment": "マルハン presents NOAH Jr. GRAND PRIX 2 特設LP。出典: noah.co.jp/news/8657/ ・ /news/8727/。試合結果は matches[].winner に選手idを入れて再生成すると勝者が強調される。",
   "event": {
     "title": "マルハン presents NOAH Jr. GRAND PRIX 2",
     "short": "NOAH Jr. GRAND PRIX 2",
@@ -19,7 +19,8 @@
     "g3": "#3cc98a",
     "g4": "#f2cf4a",
     "g5": "#f08a2c",
-    "g6": "#e2352b"
+    "g6": "#e2352b",
+    "mh": "#e60012"
   },
   "kv": {
     "pc": "img/kv.jpg",
@@ -38,94 +39,328 @@
     "sm": "img/bracket_960.jpg"
   },
   "players": [
-    {"id": "fujimura", "name": "カイ・フジムラ", "en": "Kai Fujimura", "nick": "デスハンガー", "team": "TEAM 2000X/J2KX"},
-    {"id": "bushi", "name": "BUSHI", "en": "BUSHI", "nick": "En serio", "team": "LOS TRANQUILOS de JAPON"},
-    {"id": "lykos2", "name": "キッド・ライコス2号", "en": "Kid Lykos 2", "nick": "The Problem", "team": "ライコス・ジム"},
-    {"id": "alejandro", "name": "アレハンドロ", "en": "Alejandro", "nick": "ゼログラビティ", "team": ""},
-    {"id": "namiki", "name": "並木宏也", "en": "Hiroya Namiki", "nick": "", "team": ""},
-    {"id": "sato", "name": "佐藤維", "en": "Tsunagu Sato", "nick": "令和の新星", "team": "みちのくプロレス"},
-    {"id": "odashima", "name": "小田嶋大樹", "en": "Daiki Odashima", "nick": "赤鬼2世", "team": ""},
-    {"id": "masaoka", "name": "政岡純", "en": "Jun Masaoka", "nick": "Midnight Jewel", "team": "TEAM 2000X/J2KX"},
-    {"id": "kondo", "name": "近藤修司", "en": "Shuji Kondo", "nick": "最強キングコング", "team": ""},
-    {"id": "yohey", "name": "YO-HEY", "en": "YO-HEY", "nick": "HEARTBREAKER", "team": "TEAM 2000X/J2KX"},
-    {"id": "tadasuke", "name": "タダスケ", "en": "Tadasuke", "nick": "The Hater", "team": "TEAM 2000X/J2KX"},
-    {"id": "hi69", "name": "Hi69", "en": "Hi69", "nick": "超舞踏", "team": "TEAM NOAH"},
-    {"id": "akeem", "name": "シドニー・アキーム", "en": "Sidney Akeem", "nick": "The Human Highlight", "team": ""},
-    {"id": "lykos1", "name": "キッド・ライコス1号", "en": "Kid Lykos 1", "nick": "Modern Nomad", "team": "ライコス・ジム"},
-    {"id": "mensore", "name": "ブラックめんそーれ", "en": "Black Mensore", "nick": "シャーーーッ！！！", "team": ""},
-    {"id": "bane", "name": "ドラゴン・ベイン", "en": "Dragon Bane", "nick": "キング・オブ・エア", "team": ""}
+    {
+      "id": "fujimura",
+      "name": "カイ・フジムラ",
+      "en": "Kai Fujimura",
+      "nick": "デスハンガー",
+      "team": "TEAM 2000X/J2KX"
+    },
+    {
+      "id": "bushi",
+      "name": "BUSHI",
+      "en": "BUSHI",
+      "nick": "En serio",
+      "team": "LOS TRANQUILOS de JAPON"
+    },
+    {
+      "id": "lykos2",
+      "name": "キッド・ライコス2号",
+      "en": "Kid Lykos 2",
+      "nick": "The Problem",
+      "team": "ライコス・ジム"
+    },
+    {
+      "id": "alejandro",
+      "name": "アレハンドロ",
+      "en": "Alejandro",
+      "nick": "ゼログラビティ",
+      "team": ""
+    },
+    {
+      "id": "namiki",
+      "name": "並木宏也",
+      "en": "Hiroya Namiki",
+      "nick": "",
+      "team": ""
+    },
+    {
+      "id": "sato",
+      "name": "佐藤維",
+      "en": "Tsunagu Sato",
+      "nick": "令和の新星",
+      "team": "みちのくプロレス"
+    },
+    {
+      "id": "odashima",
+      "name": "小田嶋大樹",
+      "en": "Daiki Odashima",
+      "nick": "赤鬼2世",
+      "team": ""
+    },
+    {
+      "id": "masaoka",
+      "name": "政岡純",
+      "en": "Jun Masaoka",
+      "nick": "Midnight Jewel",
+      "team": "TEAM 2000X/J2KX"
+    },
+    {
+      "id": "kondo",
+      "name": "近藤修司",
+      "en": "Shuji Kondo",
+      "nick": "最強キングコング",
+      "team": ""
+    },
+    {
+      "id": "yohey",
+      "name": "YO-HEY",
+      "en": "YO-HEY",
+      "nick": "HEARTBREAKER",
+      "team": "TEAM 2000X/J2KX"
+    },
+    {
+      "id": "tadasuke",
+      "name": "タダスケ",
+      "en": "Tadasuke",
+      "nick": "The Hater",
+      "team": "TEAM 2000X/J2KX"
+    },
+    {
+      "id": "hi69",
+      "name": "Hi69",
+      "en": "Hi69",
+      "nick": "超舞踏",
+      "team": "TEAM NOAH"
+    },
+    {
+      "id": "akeem",
+      "name": "シドニー・アキーム",
+      "en": "Sidney Akeem",
+      "nick": "The Human Highlight",
+      "team": ""
+    },
+    {
+      "id": "lykos1",
+      "name": "キッド・ライコス1号",
+      "en": "Kid Lykos 1",
+      "nick": "Modern Nomad",
+      "team": "ライコス・ジム"
+    },
+    {
+      "id": "mensore",
+      "name": "ブラックめんそーれ",
+      "en": "Black Mensore",
+      "nick": "シャーーーッ！！！",
+      "team": ""
+    },
+    {
+      "id": "bane",
+      "name": "ドラゴン・ベイン",
+      "en": "Dragon Bane",
+      "nick": "キング・オブ・エア",
+      "team": ""
+    }
   ],
   "events": [
     {
-      "date": "11.9", "dow": "MON", "date_ja": "11月9日（月）", "open": "17:30", "start": "18:30",
-      "venue": "東京・後楽園ホール", "venue_map": "後楽園ホール", "tour": "LEGACY RISE 2026", "round": "1回戦",
+      "date": "11.9",
+      "dow": "MON",
+      "date_ja": "11月9日（月）",
+      "open": "17:30",
+      "start": "18:30",
+      "venue": "東京・後楽園ホール",
+      "venue_map": "後楽園ホール",
+      "tour": "LEGACY RISE 2026",
+      "round": "1回戦",
       "matches": [
-        {"no": "①", "a": "fujimura", "b": "bushi", "img": "vs_fujimura_bushi"},
-        {"no": "②", "a": "lykos2", "b": "sato", "img": "vs_lykos2_sato"},
-        {"no": "③", "a": "kondo", "b": "yohey", "img": "vs_kondo_yohey"},
-        {"no": "④", "a": "akeem", "b": "lykos1", "img": "vs_akeem_lykos1"}
+        {
+          "no": "①",
+          "a": "fujimura",
+          "b": "bushi",
+          "img": "vs_fujimura_bushi"
+        },
+        {
+          "no": "②",
+          "a": "lykos2",
+          "b": "sato",
+          "img": "vs_lykos2_sato"
+        },
+        {
+          "no": "③",
+          "a": "kondo",
+          "b": "yohey",
+          "img": "vs_kondo_yohey"
+        },
+        {
+          "no": "④",
+          "a": "akeem",
+          "b": "lykos1",
+          "img": "vs_akeem_lykos1"
+        }
       ]
     },
     {
-      "date": "11.14", "dow": "SAT", "date_ja": "11月14日（土）", "open": "17:00", "start": "18:00",
-      "venue": "大阪・梅田スカイビル ステラホール", "venue_map": "梅田スカイビル ステラホール", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "1回戦",
+      "date": "11.14",
+      "dow": "SAT",
+      "date_ja": "11月14日（土）",
+      "open": "17:00",
+      "start": "18:00",
+      "venue": "大阪・梅田スカイビル ステラホール",
+      "venue_map": "梅田スカイビル ステラホール",
+      "tour": "LETHAL ODYSSEY TOUR 2026",
+      "round": "1回戦",
       "matches": [
-        {"no": "⑤", "a": "namiki", "b": "alejandro", "img": "vs_namiki_alejandro"},
-        {"no": "⑥", "a": "odashima", "b": "masaoka", "img": "vs_odashima_masaoka"}
+        {
+          "no": "⑤",
+          "a": "namiki",
+          "b": "alejandro",
+          "img": "vs_namiki_alejandro"
+        },
+        {
+          "no": "⑥",
+          "a": "odashima",
+          "b": "masaoka",
+          "img": "vs_odashima_masaoka"
+        }
       ]
     },
     {
-      "date": "11.15", "dow": "SUN", "date_ja": "11月15日（日）", "open": "14:00", "start": "15:00",
-      "venue": "愛知・Lives NAGOYA", "venue_map": "Lives NAGOYA", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "1回戦",
+      "date": "11.15",
+      "dow": "SUN",
+      "date_ja": "11月15日（日）",
+      "open": "14:00",
+      "start": "15:00",
+      "venue": "愛知・Lives NAGOYA",
+      "venue_map": "Lives NAGOYA",
+      "tour": "LETHAL ODYSSEY TOUR 2026",
+      "round": "1回戦",
       "matches": [
-        {"no": "⑦", "a": "tadasuke", "b": "hi69", "img": "vs_tadasuke_hi69"},
-        {"no": "⑧", "a": "mensore", "b": "bane", "img": "vs_mensore_bane"}
-      ]
+        {
+          "no": "⑦",
+          "a": "tadasuke",
+          "b": "hi69",
+          "img": "vs_tadasuke_hi69"
+        },
+        {
+          "no": "⑧",
+          "a": "mensore",
+          "b": "bane",
+          "img": "vs_mensore_bane"
+        }
+      ],
+      "maruhan": true
     },
     {
-      "date": "11.20", "dow": "FRI", "date_ja": "11月20日（金）", "open": "18:00", "start": "19:00",
-      "venue": "宮城・仙台PIT", "venue_map": "仙台PIT", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "2回戦",
+      "date": "11.20",
+      "dow": "FRI",
+      "date_ja": "11月20日（金）",
+      "open": "18:00",
+      "start": "19:00",
+      "venue": "宮城・仙台PIT",
+      "venue_map": "仙台PIT",
+      "tour": "LETHAL ODYSSEY TOUR 2026",
+      "round": "2回戦",
       "matches": [
-        {"no": "❶", "a_text": "③ 近藤修司 vs YO-HEY の勝者", "b_text": "⑦ タダスケ vs Hi69 の勝者"},
-        {"no": "❷", "a_text": "④ シドニー・アキーム vs キッド・ライコス1号 の勝者", "b_text": "⑧ ブラックめんそーれ vs ドラゴン・ベイン の勝者"}
-      ]
+        {
+          "no": "❶",
+          "a_text": "③ 近藤修司 vs YO-HEY の勝者",
+          "b_text": "⑦ タダスケ vs Hi69 の勝者"
+        },
+        {
+          "no": "❷",
+          "a_text": "④ シドニー・アキーム vs キッド・ライコス1号 の勝者",
+          "b_text": "⑧ ブラックめんそーれ vs ドラゴン・ベイン の勝者"
+        }
+      ],
+      "maruhan": true
     },
     {
-      "date": "11.21", "dow": "SAT", "date_ja": "11月21日（土）", "open": "16:00", "start": "17:00",
-      "venue": "山形・山形ビッグウイング", "venue_map": "山形ビッグウイング", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "2回戦",
+      "date": "11.21",
+      "dow": "SAT",
+      "date_ja": "11月21日（土）",
+      "open": "16:00",
+      "start": "17:00",
+      "venue": "山形・山形ビッグウイング",
+      "venue_map": "山形ビッグウイング",
+      "tour": "LETHAL ODYSSEY TOUR 2026",
+      "round": "2回戦",
       "matches": [
-        {"no": "❸", "a_text": "① カイ・フジムラ vs BUSHI の勝者", "b_text": "⑤ 並木宏也 vs アレハンドロ の勝者"}
-      ]
+        {
+          "no": "❸",
+          "a_text": "① カイ・フジムラ vs BUSHI の勝者",
+          "b_text": "⑤ 並木宏也 vs アレハンドロ の勝者"
+        }
+      ],
+      "maruhan": true
     },
     {
-      "date": "11.22", "dow": "SUN", "date_ja": "11月22日（日）", "open": "14:00", "start": "15:00",
-      "venue": "秋田・鹿角市記念スポーツセンター", "venue_map": "鹿角市記念スポーツセンター", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "2回戦",
+      "date": "11.22",
+      "dow": "SUN",
+      "date_ja": "11月22日（日）",
+      "open": "14:00",
+      "start": "15:00",
+      "venue": "秋田・鹿角市記念スポーツセンター",
+      "venue_map": "鹿角市記念スポーツセンター",
+      "tour": "LETHAL ODYSSEY TOUR 2026",
+      "round": "2回戦",
       "matches": [
-        {"no": "❹", "a_text": "② キッド・ライコス2号 vs 佐藤維 の勝者", "b_text": "⑥ 小田嶋大樹 vs 政岡純 の勝者"}
-      ]
+        {
+          "no": "❹",
+          "a_text": "② キッド・ライコス2号 vs 佐藤維 の勝者",
+          "b_text": "⑥ 小田嶋大樹 vs 政岡純 の勝者"
+        }
+      ],
+      "maruhan": true
     },
     {
-      "date": "11.23", "dow": "MON・祝", "date_ja": "11月23日（月・祝）", "open": "16:30", "start": "17:30",
-      "venue": "新潟・万代島多目的広場大かま", "venue_map": "万代島多目的広場 大かま", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "準決勝",
+      "date": "11.23",
+      "dow": "MON・祝",
+      "date_ja": "11月23日（月・祝）",
+      "open": "16:30",
+      "start": "17:30",
+      "venue": "新潟・万代島多目的広場大かま",
+      "venue_map": "万代島多目的広場 大かま",
+      "tour": "LETHAL ODYSSEY TOUR 2026",
+      "round": "準決勝",
       "matches": [
-        {"no": "(1)", "a_text": "11.21 ❸の勝者", "b_text": "11.22 ❹の勝者"},
-        {"no": "(2)", "a_text": "11.20 ❶の勝者", "b_text": "11.20 ❷の勝者"}
-      ]
+        {
+          "no": "(1)",
+          "a_text": "11.21 ❸の勝者",
+          "b_text": "11.22 ❹の勝者"
+        },
+        {
+          "no": "(2)",
+          "a_text": "11.20 ❶の勝者",
+          "b_text": "11.20 ❷の勝者"
+        }
+      ],
+      "maruhan": true
     },
     {
-      "date": "11.28", "dow": "SAT", "date_ja": "11月28日（土）", "open": "17:30", "start": "18:30",
-      "venue": "東京・後楽園ホール", "venue_map": "後楽園ホール", "tour": "LEGACY RISE 2026", "round": "決勝",
+      "date": "11.28",
+      "dow": "SAT",
+      "date_ja": "11月28日（土）",
+      "open": "17:30",
+      "start": "18:30",
+      "venue": "東京・後楽園ホール",
+      "venue_map": "後楽園ホール",
+      "tour": "LEGACY RISE 2026",
+      "round": "決勝",
       "final": true,
       "matches": [
-        {"no": "FINAL", "a_text": "準決勝(1)の勝者", "b_text": "準決勝(2)の勝者"}
+        {
+          "no": "FINAL",
+          "a_text": "準決勝(1)の勝者",
+          "b_text": "準決勝(2)の勝者"
+        }
       ]
     }
   ],
   "tickets": {
     "playguides": [
-      {"name": "e+（イープラス）", "url": "https://eplus.jp/noah/"},
-      {"name": "チケットぴあ", "url": "https://t.pia.jp/pia/artist/artists.do?artistsCd=11027339"},
-      {"name": "ローソンチケット", "url": "https://l-tike.com/sports/mevent/?mid=111745"}
+      {
+        "name": "e+（イープラス）",
+        "url": "https://eplus.jp/noah/"
+      },
+      {
+        "name": "チケットぴあ",
+        "url": "https://t.pia.jp/pia/artist/artists.do?artistsCd=11027339"
+      },
+      {
+        "name": "ローソンチケット",
+        "url": "https://l-tike.com/sports/mevent/?mid=111745"
+      }
     ],
     "notes": [
       "席種・料金・発売状況は大会ごとに異なります。各大会の詳細はNOAH公式サイトの大会日程でご確認ください。",
@@ -133,10 +368,228 @@
     ]
   },
   "footer_links": [
-    {"label": "プロレスリング・ノア 公式サイト", "url": "https://www.noah.co.jp/"},
-    {"label": "大会日程", "url": "https://www.noah.co.jp/schedule/"},
-    {"label": "ニュース", "url": "https://www.noah.co.jp/news/"},
-    {"label": "選手一覧", "url": "https://www.noah.co.jp/profile/"},
-    {"label": "お問合せ", "url": "https://www.noah.co.jp/contactform/"}
-  ]
+    {
+      "label": "プロレスリング・ノア 公式サイト",
+      "url": "https://www.noah.co.jp/"
+    },
+    {
+      "label": "大会日程",
+      "url": "https://www.noah.co.jp/schedule/"
+    },
+    {
+      "label": "ニュース",
+      "url": "https://www.noah.co.jp/news/"
+    },
+    {
+      "label": "選手一覧",
+      "url": "https://www.noah.co.jp/profile/"
+    },
+    {
+      "label": "お問合せ",
+      "url": "https://www.noah.co.jp/contactform/"
+    }
+  ],
+  "maruhan": {
+    "_comment": "出典: noah.co.jp/news/8657/(会場企画) ・ /news/8727/(コラボグッズ・Xキャンペーン)",
+    "credit": "協賛：株式会社マルハン 北日本カンパニー",
+    "banner": "news_8657",
+    "lead": [
+      "株式会社マルハン 北日本カンパニーによるシリーズ冠協賛を記念し、スペシャル企画を実施！",
+      "名古屋・仙台・山形・秋田・新潟の5会場には「マルハンコラボブース」が登場。マルハン公式キャラクター「にゃんまる」とNOAHの選手によるリングサイド撮影会も実施します。全8大会では、NOAH公式LINEの友だち登録で出場選手のステッカーをプレゼント！"
+    ],
+    "events": [
+      {
+        "no": "01",
+        "title": "マルハンコラボブース",
+        "text": "スマートボールやスロット体験機などで遊べるゲームコーナーが登場！ 当たれば景品のプレゼントも！？ ご家族やご友人と一緒に、ぜひ遊びにお越しください。",
+        "spec": [
+          [
+            "実施会場",
+            "名古屋・仙台・山形・秋田・新潟の5会場"
+          ],
+          [
+            "実施時間",
+            "各会場 開場時間より"
+          ],
+          [
+            "参加費",
+            "無料"
+          ],
+          [
+            "対象",
+            "当日の大会チケットをお持ちの方"
+          ]
+        ],
+        "notes": [
+          "会場により実施内容が異なります。"
+        ]
+      },
+      {
+        "no": "02",
+        "title": "にゃんまる×NOAH選手 リングサイド撮影会",
+        "text": "にゃんまる、NOAHの選手と一緒に記念撮影ができるスペシャル撮影会！ 今回は特別にリングサイドで実施します。観戦の思い出に、ぜひご家族でご参加ください。",
+        "spec": [
+          [
+            "実施会場",
+            "名古屋・仙台・山形・秋田・新潟の5会場"
+          ],
+          [
+            "実施時間",
+            "各会場 開場時間より"
+          ],
+          [
+            "参加費",
+            "無料"
+          ],
+          [
+            "対象",
+            "当日の大会チケットをお持ちの中学生以下のお子さまとそのご家族"
+          ],
+          [
+            "撮影方法",
+            "お客様ご自身のスマートフォン・カメラで撮影いただけます"
+          ]
+        ],
+        "notes": [
+          "参加選手、参加方法などの詳細は、決まり次第お知らせいたします。",
+          "撮影会の内容は変更となる場合がございます。"
+        ]
+      },
+      {
+        "no": "03",
+        "title": "LINE友だち登録で選手ステッカーをプレゼント",
+        "text": "全8大会の会場にLINE友だち登録ブースを設置。NOAH公式LINEの友だち登録画面をご提示いただいた方に、出場選手のステッカー（全16種）を1枚プレゼント！ 友だち登録済みの方、その場でご登録いただいた方も対象です。",
+        "spec": [
+          [
+            "実施期間",
+            "11月9日（月）〜11月28日（土）全8大会"
+          ],
+          [
+            "実施場所",
+            "各大会会場のLINE友だち登録ブース（開場〜大会終了まで）"
+          ],
+          [
+            "参加方法",
+            "ブースでNOAH公式LINEの友だち登録画面をご提示ください"
+          ]
+        ],
+        "notes": [
+          "ステッカーのお渡しは、1大会につきおひとり様1枚とさせていただきます。",
+          "ステッカーはなくなり次第終了とさせていただきます。"
+        ]
+      }
+    ],
+    "venues_title": "マルハンコラボブース・撮影会 実施予定会場",
+    "goods": {
+      "banner": "news_8727",
+      "lead": "マルハン公式キャラクター「にゃんまる」とNOAHの人気シリーズ「ユるノア」がコラボした「にゃんノア」シリーズと、「にゃんまる」とNOAHロゴがひとつになった「にゃんまる×NOAH」シリーズの2シリーズが登場！",
+      "sale": "11月9日（月）東京・後楽園ホール大会より会場にて販売開始",
+      "series": [
+        {
+          "name": "にゃんノア",
+          "desc": "マルハン公式キャラクター「にゃんまる」と、NOAHのレスラーたちをゆる〜く可愛く描いた「ユるノア」がコラボ！",
+          "items": [
+            {
+              "img": "goods_nyannoah_tee",
+              "name": "Tシャツ（全3種：丸藤正道／拳王／OZAWA）",
+              "price": "各4,500円（税込）",
+              "note": "サイズ：S／M／L／XL／XXL"
+            },
+            {
+              "img": "goods_nyannoah_towel",
+              "name": "フェイスタオル「FIGHT NYAN」",
+              "price": "3,500円（税込）",
+              "note": ""
+            },
+            {
+              "img": "goods_nyannoah_acky",
+              "name": "アクリルキーホルダー（全3種）",
+              "price": "各1,500円（税込）",
+              "note": ""
+            },
+            {
+              "img": "goods_nyannoah_charm",
+              "name": "目印チャーム（全42種・ランダム）",
+              "price": "500円（税込）",
+              "note": "プロレスリング・ノア試合会場限定／種類はお選びいただけません"
+            }
+          ]
+        },
+        {
+          "name": "にゃんまる×NOAH",
+          "desc": "マルハン公式キャラクター「にゃんまる」とNOAHロゴがひとつになった、オリジナルデザインのコラボシリーズ！",
+          "items": [
+            {
+              "img": "goods_nyanmaru_raglan",
+              "name": "ラグランTシャツ",
+              "price": "4,000円（税込）",
+              "note": "サイズ：S／M／L／XL"
+            },
+            {
+              "img": "goods_nyanmaru_tote",
+              "name": "トートバッグ",
+              "price": "3,000円（税込）",
+              "note": ""
+            },
+            {
+              "img": "goods_nyanmaru_towel",
+              "name": "フェイスタオル",
+              "price": "3,000円（税込）",
+              "note": ""
+            },
+            {
+              "img": "goods_nyanmaru_mug",
+              "name": "マグカップ",
+              "price": "2,000円（税込）",
+              "note": ""
+            },
+            {
+              "img": "goods_nyanmaru_heart_acky",
+              "name": "ハート型アクリルキーホルダー（ホワイト／ブラック）",
+              "price": "各500円（税込）",
+              "note": ""
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "数量限定のため、なくなり次第販売終了となります。",
+        "会場販売では、混雑状況等により購入点数を制限させていただく場合がございます。",
+        "11月14日（土）大阪・梅田スカイビル ステラホール大会ではコラボグッズの販売はございません。",
+        "マルハンの一部店舗でも順次展開予定です（対象店舗・展開時期は未定）。"
+      ]
+    },
+    "campaign": {
+      "title": "発売記念！ Xフォロー＆リポストキャンペーン",
+      "prize": "お好きなデザインを選べる「コラボTシャツ＆フェイスタオルセット」を抽選で3名様にプレゼント！",
+      "period": "2026年10月27日（火）12:00〜11月9日（月）23:59",
+      "steps": [
+        "NOAH公式Xアカウント（@noah_ghc）をフォロー",
+        "NOAH公式Xに投稿されるキャンペーン対象ポストをリポスト"
+      ],
+      "steps_note": "以上で応募完了！ すでにフォローいただいている方も、対象ポストのリポストでご応募いただけます。",
+      "x_url": "https://x.com/noah_ghc",
+      "result": [
+        "応募締切後、厳正な抽選のうえ当選者を決定いたします。",
+        "当選者の方には、NOAH公式Xアカウント（@noah_ghc）よりダイレクトメッセージ（DM）にてご連絡いたします。当選発表はDMへのご連絡をもって代えさせていただきます。",
+        "当選連絡予定：2026年11月中旬頃／賞品発送予定：2026年11月下旬頃",
+        "Tシャツのデザイン・サイズ、フェイスタオルのデザインは、当選のご連絡の際にお伺いいたします。"
+      ],
+      "notes": [
+        "応募にはXのアカウントが必要です。",
+        "非公開（鍵付き）アカウントからのご応募は、リポストの確認ができないため対象外となります。",
+        "当選連絡まで、NOAH公式Xアカウントのフォローおよび対象ポストのリポストを維持してください。",
+        "当選連絡のDMを受け取れるよう、@noah_ghc からのDMを受信できる設定にしてください。",
+        "お一人様1回の応募とし、複数アカウントによる応募は無効となります。",
+        "商品のご購入は必要ありません。購入の有無によって当選確率が変わることはございません。",
+        "当選連絡の際に、賞品発送先（氏名・住所・電話番号）およびご希望の商品をお伺いいたします。",
+        "期日までに当選連絡へのご返信がない場合、当選を無効とさせていただくことがあります。",
+        "賞品の発送は日本国内に限らせていただきます。",
+        "ご希望の商品は、在庫状況によりご希望に添えない場合がございます。",
+        "当選する権利を第三者へ譲渡・転売することはできません。",
+        "本キャンペーンは、X社（X Corp.）の提供・協賛によるものではありません。",
+        "ご応募いただいた際にお預かりする個人情報は、賞品の発送およびそれに付随するご連絡の目的にのみ利用し、目的達成後は適切に廃棄いたします。"
+      ]
+    }
+  }
 }

@@ -133,6 +133,62 @@ ul{list-style:none}
 .sc__tour{font-size:11px;color:var(--tx2);margin-top:auto;padding-top:12px}
 .sc__map{font-size:12px;margin-top:6px;align-self:flex-start;border-bottom:1px solid currentColor}
 
+/* maruhan */
+.mh__intro{max-width:860px;margin:0 auto 40px;text-align:center}
+.mh__banner{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid rgba(255,255,255,.6);margin-bottom:24px}
+.mh__intro p{font-size:15px;line-height:1.9;margin-top:8px;text-align:left}
+.mh__intro p:first-of-type{font-size:18px;font-weight:800;text-align:center}
+.mh__intro p.mh__sale{display:inline-block;text-align:center;margin-top:16px;background:#fff;color:var(--bg);text-shadow:none;font-size:15px;font-weight:800;padding:6px 18px}
+.mhes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.mhe{position:relative;padding:28px 24px 22px}
+.mhe::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:#e60012}
+.mhe__no{font-weight:800;font-size:34px;line-height:1}
+.mhe__t{font-size:19px;font-weight:800;line-height:1.45;margin:10px 0 12px}
+.mhe__x{font-size:14px;line-height:1.85}
+.mhe__spec{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.mhe__spec dt{font-weight:800;white-space:nowrap;padding:1px 8px;border:1px solid rgba(255,255,255,.6);font-size:11px;align-self:start;text-align:center}
+.mhe__spec dd{line-height:1.6}
+.mh__notes{margin-top:12px}
+.mh__notes li{position:relative;padding-left:16px;font-size:12px;color:var(--tx2);line-height:1.75}
+.mh__notes li::before{content:"※";position:absolute;left:0}
+.mhv{margin-top:22px;padding:24px 28px}
+.mhv__t{font-size:16px;font-weight:800;letter-spacing:.06em;margin-bottom:10px}
+.mhv li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:10px 0;border-top:1px solid var(--line)}
+.mhv li b{font-size:22px;line-height:1}
+.mhv li small{font-size:11px;margin-left:-6px}
+.mhv li span{font-weight:800}
+.mhv li em{font-style:normal;font-size:13px;color:var(--tx2)}
+.mh__credit{text-align:center;font-size:13px;margin-top:28px}
+.gs{margin-top:44px}
+.gs__t{font-size:24px;font-weight:800;display:flex;align-items:center;gap:14px}
+.gs__t small{font-size:13px;margin-left:-8px}
+.gs__t::after{content:"";flex:1;height:2px;background:#fff;opacity:.7}
+.gs__d{font-size:14px;margin:8px 0 18px}
+.gds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.gd{background:rgba(12,18,38,.72);border:1px solid var(--line);border-radius:4px;overflow:hidden;padding-bottom:14px}
+.gd img{width:100%;aspect-ratio:484/272;object-fit:cover;background:#fff}
+.gd__n{font-size:14px;font-weight:800;line-height:1.5;padding:12px 16px 2px}
+.gd__p{font-size:17px;font-weight:800;padding:0 16px}
+.gd__note{font-size:12px;color:var(--tx2);padding:2px 16px 0}
+.mh__nbox{margin-top:24px;padding:14px 24px 18px}
+.cp{position:relative;margin-top:44px;padding:36px 40px;text-align:center}
+.cp::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--rb)}
+.cp__lab{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.2em;border:1px solid #fff;padding:2px 14px}
+.cp__t{font-size:clamp(20px,2.6vw,28px);font-weight:800;margin-top:14px;line-height:1.45}
+.cp__prize{font-size:16px;margin-top:10px}
+.cp .mhe__spec{display:inline-grid;text-align:left;border-top:0;margin-top:12px}
+.cp__steps{list-style:none;display:flex;justify-content:center;gap:16px;margin-top:20px;text-align:left}
+.cp__steps li{display:flex;align-items:center;gap:12px;flex:1;max-width:360px;padding:14px 18px;border:1px solid rgba(255,255,255,.6);font-size:14px;line-height:1.55}
+.cp__steps b{flex:none;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#fff;color:var(--bg);text-shadow:none;font-size:15px}
+.cp__sn{font-size:13px;margin-top:14px}
+.cp__btn{margin-top:20px}
+.cp__more{max-width:820px;margin:24px auto 0;text-align:left;border-top:1px solid var(--line)}
+.cp__more summary{cursor:pointer;list-style:none;padding:14px 0 4px;font-weight:800;font-size:14px;display:flex;justify-content:space-between}
+.cp__more summary::-webkit-details-marker{display:none}
+.cp__more summary::after{content:"＋"}
+.cp__more[open] summary::after{content:"－"}
+.sc__mh{align-self:flex-start;margin-top:10px;font-size:11px;font-weight:800;letter-spacing:.04em;background:#e60012;color:#fff;padding:3px 9px;text-shadow:none}
+
 /* ticket */
 .pgs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .pg{display:flex;flex-direction:column;gap:14px;padding:24px;background:rgba(12,18,38,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:4px;transition:.2s}
@@ -193,6 +249,22 @@ ul{list-style:none}
   .sc__time b{font-size:12px}
   .sc__cards{font-size:12px}
   .sc__cards li{flex-direction:column;gap:0}
+  .mhes{grid-template-columns:1fr;gap:14px}
+  .mhe{padding:22px 18px 18px}
+  .mhe__t{font-size:17px}
+  .mhv{padding:18px}
+  .mh__intro p:first-of-type{font-size:16px;text-align:left}
+  .gs__t{font-size:20px}
+  .gds{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .gd__n{font-size:12px;padding:8px 10px 0}
+  .gd__p{font-size:14px;padding:0 10px}
+  .gd__note{font-size:10.5px;padding:2px 10px 0}
+  .mh__nbox{padding:10px 16px 14px}
+  .cp{padding:28px 18px}
+  .cp__steps{flex-direction:column;align-items:stretch}
+  .cp__steps li{max-width:none}
+  .cp__btn .btn{width:100%;white-space:normal}
+  .sc__mh{font-size:10px;padding:2px 6px}
   .pgs{grid-template-columns:1fr;gap:12px}
   .pg{padding:18px 20px}
   .notes{padding:18px}
@@ -208,10 +280,10 @@ ul{list-style:none}
 <div class="topwrap">
   <header class="header wrap">
     <a href="#top" class="header__logo"><img src="img/logo_white.webp" alt="マルハン presents NOAH Jr. GRAND PRIX 2" width="311" height="49"><small>マルハン presents</small></a>
-    <nav class="header__nav"><a href="#players">出場選手</a><a href="#bracket">トーナメント表</a><a href="#round1">1回戦カード</a><a href="#schedule">日程</a><a href="#ticket">チケット</a></nav>
+    <nav class="header__nav"><a href="#players">出場選手</a><a href="#bracket">トーナメント表</a><a href="#round1">1回戦カード</a><a href="#schedule">日程</a><a href="#maruhan">マルハン企画</a><a href="#goods">コラボグッズ</a><a href="#ticket">チケット</a></nav>
     <a class="btn btn--pri header__cta" href="#ticket">チケット購入</a>
   </header>
-  <nav class="spnav"><a href="#players">出場選手</a><a href="#bracket">トーナメント表</a><a href="#round1">1回戦カード</a><a href="#schedule">日程</a><a href="#ticket">チケット</a></nav>
+  <nav class="spnav"><a href="#players">出場選手</a><a href="#bracket">トーナメント表</a><a href="#round1">1回戦カード</a><a href="#schedule">日程</a><a href="#maruhan">マルハン企画</a><a href="#goods">コラボグッズ</a><a href="#ticket">チケット</a></nav>
 </div>
 
 <main id="top">
@@ -323,7 +395,7 @@ ul{list-style:none}
           <p class="sc__round">1回戦</p>
           <p class="sc__date en">11.15<small>SUN</small></p>
           <p class="sc__venue">愛知・Lives NAGOYA</p>
-          <p class="sc__time">開場 <b class="en">14:00</b>　開始 <b class="en">15:00</b></p>
+          <p class="sc__time">開場 <b class="en">14:00</b>　開始 <b class="en">15:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>⑦</b><span>タダスケ <i>vs</i> Hi69</span></li><li><b>⑧</b><span>ブラックめんそーれ <i>vs</i> ドラゴン・ベイン</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=Lives%20NAGOYA" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -332,7 +404,7 @@ ul{list-style:none}
           <p class="sc__round">2回戦</p>
           <p class="sc__date en">11.20<small>FRI</small></p>
           <p class="sc__venue">宮城・仙台PIT</p>
-          <p class="sc__time">開場 <b class="en">18:00</b>　開始 <b class="en">19:00</b></p>
+          <p class="sc__time">開場 <b class="en">18:00</b>　開始 <b class="en">19:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❶</b><span>③ 近藤修司 vs YO-HEY の勝者<i>vs</i>⑦ タダスケ vs Hi69 の勝者</span></li><li><b>❷</b><span>④ シドニー・アキーム vs キッド・ライコス1号 の勝者<i>vs</i>⑧ ブラックめんそーれ vs ドラゴン・ベイン の勝者</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E4%BB%99%E5%8F%B0PIT" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -341,7 +413,7 @@ ul{list-style:none}
           <p class="sc__round">2回戦</p>
           <p class="sc__date en">11.21<small>SAT</small></p>
           <p class="sc__venue">山形・山形ビッグウイング</p>
-          <p class="sc__time">開場 <b class="en">16:00</b>　開始 <b class="en">17:00</b></p>
+          <p class="sc__time">開場 <b class="en">16:00</b>　開始 <b class="en">17:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❸</b><span>① カイ・フジムラ vs BUSHI の勝者<i>vs</i>⑤ 並木宏也 vs アレハンドロ の勝者</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E5%BD%A2%E3%83%93%E3%83%83%E3%82%B0%E3%82%A6%E3%82%A4%E3%83%B3%E3%82%B0" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -350,7 +422,7 @@ ul{list-style:none}
           <p class="sc__round">2回戦</p>
           <p class="sc__date en">11.22<small>SUN</small></p>
           <p class="sc__venue">秋田・鹿角市記念スポーツセンター</p>
-          <p class="sc__time">開場 <b class="en">14:00</b>　開始 <b class="en">15:00</b></p>
+          <p class="sc__time">開場 <b class="en">14:00</b>　開始 <b class="en">15:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❹</b><span>② キッド・ライコス2号 vs 佐藤維 の勝者<i>vs</i>⑥ 小田嶋大樹 vs 政岡純 の勝者</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E9%B9%BF%E8%A7%92%E5%B8%82%E8%A8%98%E5%BF%B5%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -359,7 +431,7 @@ ul{list-style:none}
           <p class="sc__round">準決勝</p>
           <p class="sc__date en">11.23<small>MON・祝</small></p>
           <p class="sc__venue">新潟・万代島多目的広場大かま</p>
-          <p class="sc__time">開場 <b class="en">16:30</b>　開始 <b class="en">17:30</b></p>
+          <p class="sc__time">開場 <b class="en">16:30</b>　開始 <b class="en">17:30</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>(1)</b><span>11.21 ❸の勝者<i>vs</i>11.22 ❹の勝者</span></li><li><b>(2)</b><span>11.20 ❶の勝者<i>vs</i>11.20 ❷の勝者</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%87%E4%BB%A3%E5%B3%B6%E5%A4%9A%E7%9B%AE%E7%9A%84%E5%BA%83%E5%A0%B4%20%E5%A4%A7%E3%81%8B%E3%81%BE" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -374,6 +446,54 @@ ul{list-style:none}
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E5%BE%8C%E6%A5%BD%E5%9C%92%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section id="maruhan" class="sec">
+    <div class="wrap">
+      <div class="sec__head"><p class="sec__en">MARUHAN × NOAH</p><h2 class="sec__ja">マルハン×NOAH 特別企画</h2><span class="sec__rule"></span></div>
+      <div class="mh__intro"><img class="mh__banner" src="img/news_8657_960.jpg" srcset="img/news_8657_960.jpg 960w, img/news_8657.jpg 1920w" sizes="(max-width:900px) 100vw, 860px" alt="マルハン×NOAH NOAH Jr. GRAND PRIX 2 冠協賛記念" width="1920" height="1080" loading="lazy"><p>株式会社マルハン 北日本カンパニーによるシリーズ冠協賛を記念し、スペシャル企画を実施！</p><p>名古屋・仙台・山形・秋田・新潟の5会場には「マルハンコラボブース」が登場。マルハン公式キャラクター「にゃんまる」とNOAHの選手によるリングサイド撮影会も実施します。全8大会では、NOAH公式LINEの友だち登録で出場選手のステッカーをプレゼント！</p></div>
+      <div class="mhes">
+        <article class="mhe box"><p class="mhe__no en">01</p><h3 class="mhe__t">マルハンコラボブース</h3><p class="mhe__x">スマートボールやスロット体験機などで遊べるゲームコーナーが登場！ 当たれば景品のプレゼントも！？ ご家族やご友人と一緒に、ぜひ遊びにお越しください。</p>
+          <dl class="mhe__spec"><dt>実施会場</dt><dd>名古屋・仙台・山形・秋田・新潟の5会場</dd><dt>実施時間</dt><dd>各会場 開場時間より</dd><dt>参加費</dt><dd>無料</dd><dt>対象</dt><dd>当日の大会チケットをお持ちの方</dd></dl><ul class="mh__notes"><li>会場により実施内容が異なります。</li></ul></article>
+        <article class="mhe box"><p class="mhe__no en">02</p><h3 class="mhe__t">にゃんまる×NOAH選手 リングサイド撮影会</h3><p class="mhe__x">にゃんまる、NOAHの選手と一緒に記念撮影ができるスペシャル撮影会！ 今回は特別にリングサイドで実施します。観戦の思い出に、ぜひご家族でご参加ください。</p>
+          <dl class="mhe__spec"><dt>実施会場</dt><dd>名古屋・仙台・山形・秋田・新潟の5会場</dd><dt>実施時間</dt><dd>各会場 開場時間より</dd><dt>参加費</dt><dd>無料</dd><dt>対象</dt><dd>当日の大会チケットをお持ちの中学生以下のお子さまとそのご家族</dd><dt>撮影方法</dt><dd>お客様ご自身のスマートフォン・カメラで撮影いただけます</dd></dl><ul class="mh__notes"><li>参加選手、参加方法などの詳細は、決まり次第お知らせいたします。</li><li>撮影会の内容は変更となる場合がございます。</li></ul></article>
+        <article class="mhe box"><p class="mhe__no en">03</p><h3 class="mhe__t">LINE友だち登録で選手ステッカーをプレゼント</h3><p class="mhe__x">全8大会の会場にLINE友だち登録ブースを設置。NOAH公式LINEの友だち登録画面をご提示いただいた方に、出場選手のステッカー（全16種）を1枚プレゼント！ 友だち登録済みの方、その場でご登録いただいた方も対象です。</p>
+          <dl class="mhe__spec"><dt>実施期間</dt><dd>11月9日（月）〜11月28日（土）全8大会</dd><dt>実施場所</dt><dd>各大会会場のLINE友だち登録ブース（開場〜大会終了まで）</dd><dt>参加方法</dt><dd>ブースでNOAH公式LINEの友だち登録画面をご提示ください</dd></dl><ul class="mh__notes"><li>ステッカーのお渡しは、1大会につきおひとり様1枚とさせていただきます。</li><li>ステッカーはなくなり次第終了とさせていただきます。</li></ul></article>
+      </div>
+      <div class="mhv box"><h3 class="mhv__t">マルハンコラボブース・撮影会 実施予定会場</h3><ul><li><b class="en">11.15</b><small class="en">SUN</small><span>愛知・Lives NAGOYA</span><em>開場 14:00／開始 15:00</em></li><li><b class="en">11.20</b><small class="en">FRI</small><span>宮城・仙台PIT</span><em>開場 18:00／開始 19:00</em></li><li><b class="en">11.21</b><small class="en">SAT</small><span>山形・山形ビッグウイング</span><em>開場 16:00／開始 17:00</em></li><li><b class="en">11.22</b><small class="en">SUN</small><span>秋田・鹿角市記念スポーツセンター</span><em>開場 14:00／開始 15:00</em></li><li><b class="en">11.23</b><small class="en">MON・祝</small><span>新潟・万代島多目的広場大かま</span><em>開場 16:30／開始 17:30</em></li></ul></div>
+      <p class="mh__credit">協賛：株式会社マルハン 北日本カンパニー</p>
+    </div>
+  </section>
+  <section id="goods" class="sec">
+    <div class="wrap">
+      <div class="sec__head"><p class="sec__en">COLLABORATION GOODS</p><h2 class="sec__ja">マルハン×NOAH コラボグッズ</h2><span class="sec__rule"></span></div>
+      <div class="mh__intro"><img class="mh__banner" src="img/news_8727_960.jpg" srcset="img/news_8727_960.jpg 960w, img/news_8727.jpg 1920w" sizes="(max-width:900px) 100vw, 860px" alt="マルハン×NOAH コラボアイテム発売決定" width="1920" height="1080" loading="lazy"><p>マルハン公式キャラクター「にゃんまる」とNOAHの人気シリーズ「ユるノア」がコラボした「にゃんノア」シリーズと、「にゃんまる」とNOAHロゴがひとつになった「にゃんまる×NOAH」シリーズの2シリーズが登場！</p><p class="mh__sale">11月9日（月）東京・後楽園ホール大会より会場にて販売開始</p></div>
+      <div class="gs"><h3 class="gs__t">にゃんノア<small>シリーズ</small></h3><p class="gs__d">マルハン公式キャラクター「にゃんまる」と、NOAHのレスラーたちをゆる〜く可愛く描いた「ユるノア」がコラボ！</p><ul class="gds">
+          <li class="gd"><img src="img/goods_nyannoah_tee.webp" alt="にゃんノア Tシャツ（全3種：丸藤正道／拳王／OZAWA）" width="484" height="272" loading="lazy"><p class="gd__n">Tシャツ（全3種：丸藤正道／拳王／OZAWA）</p><p class="gd__p en">各4,500円（税込）</p><p class="gd__note">サイズ：S／M／L／XL／XXL</p></li>
+          <li class="gd"><img src="img/goods_nyannoah_towel.webp" alt="にゃんノア フェイスタオル「FIGHT NYAN」" width="484" height="272" loading="lazy"><p class="gd__n">フェイスタオル「FIGHT NYAN」</p><p class="gd__p en">3,500円（税込）</p></li>
+          <li class="gd"><img src="img/goods_nyannoah_acky.webp" alt="にゃんノア アクリルキーホルダー（全3種）" width="484" height="272" loading="lazy"><p class="gd__n">アクリルキーホルダー（全3種）</p><p class="gd__p en">各1,500円（税込）</p></li>
+          <li class="gd"><img src="img/goods_nyannoah_charm.webp" alt="にゃんノア 目印チャーム（全42種・ランダム）" width="484" height="272" loading="lazy"><p class="gd__n">目印チャーム（全42種・ランダム）</p><p class="gd__p en">500円（税込）</p><p class="gd__note">プロレスリング・ノア試合会場限定／種類はお選びいただけません</p></li>
+      </ul></div>
+      <div class="gs"><h3 class="gs__t">にゃんまる×NOAH<small>シリーズ</small></h3><p class="gs__d">マルハン公式キャラクター「にゃんまる」とNOAHロゴがひとつになった、オリジナルデザインのコラボシリーズ！</p><ul class="gds">
+          <li class="gd"><img src="img/goods_nyanmaru_raglan.webp" alt="にゃんまる×NOAH ラグランTシャツ" width="484" height="272" loading="lazy"><p class="gd__n">ラグランTシャツ</p><p class="gd__p en">4,000円（税込）</p><p class="gd__note">サイズ：S／M／L／XL</p></li>
+          <li class="gd"><img src="img/goods_nyanmaru_tote.webp" alt="にゃんまる×NOAH トートバッグ" width="484" height="272" loading="lazy"><p class="gd__n">トートバッグ</p><p class="gd__p en">3,000円（税込）</p></li>
+          <li class="gd"><img src="img/goods_nyanmaru_towel.webp" alt="にゃんまる×NOAH フェイスタオル" width="484" height="272" loading="lazy"><p class="gd__n">フェイスタオル</p><p class="gd__p en">3,000円（税込）</p></li>
+          <li class="gd"><img src="img/goods_nyanmaru_mug.webp" alt="にゃんまる×NOAH マグカップ" width="484" height="272" loading="lazy"><p class="gd__n">マグカップ</p><p class="gd__p en">2,000円（税込）</p></li>
+          <li class="gd"><img src="img/goods_nyanmaru_heart_acky.webp" alt="にゃんまる×NOAH ハート型アクリルキーホルダー（ホワイト／ブラック）" width="484" height="272" loading="lazy"><p class="gd__n">ハート型アクリルキーホルダー（ホワイト／ブラック）</p><p class="gd__p en">各500円（税込）</p></li>
+      </ul></div>
+      <div class="box mh__nbox"><ul class="mh__notes"><li>数量限定のため、なくなり次第販売終了となります。</li><li>会場販売では、混雑状況等により購入点数を制限させていただく場合がございます。</li><li>11月14日（土）大阪・梅田スカイビル ステラホール大会ではコラボグッズの販売はございません。</li><li>マルハンの一部店舗でも順次展開予定です（対象店舗・展開時期は未定）。</li></ul></div>
+      <div class="cp box">
+        <p class="cp__lab en">CAMPAIGN</p>
+        <h3 class="cp__t">発売記念！ Xフォロー＆リポストキャンペーン</h3>
+        <p class="cp__prize">お好きなデザインを選べる「コラボTシャツ＆フェイスタオルセット」を抽選で3名様にプレゼント！</p>
+        <dl class="mhe__spec"><dt>応募期間</dt><dd>2026年10月27日（火）12:00〜11月9日（月）23:59</dd></dl>
+        <ol class="cp__steps"><li><b class="en">1</b>NOAH公式Xアカウント（@noah_ghc）をフォロー</li><li><b class="en">2</b>NOAH公式Xに投稿されるキャンペーン対象ポストをリポスト</li></ol>
+        <p class="cp__sn">以上で応募完了！ すでにフォローいただいている方も、対象ポストのリポストでご応募いただけます。</p>
+        <p class="cp__btn"><a class="btn btn--pri" href="https://x.com/noah_ghc" target="_blank" rel="noopener">NOAH公式X（@noah_ghc）を見る ↗</a></p>
+        <details class="cp__more"><summary>当選発表・注意事項</summary><ul class="mh__notes"><li>応募締切後、厳正な抽選のうえ当選者を決定いたします。</li><li>当選者の方には、NOAH公式Xアカウント（@noah_ghc）よりダイレクトメッセージ（DM）にてご連絡いたします。当選発表はDMへのご連絡をもって代えさせていただきます。</li><li>当選連絡予定：2026年11月中旬頃／賞品発送予定：2026年11月下旬頃</li><li>Tシャツのデザイン・サイズ、フェイスタオルのデザインは、当選のご連絡の際にお伺いいたします。</li><li>応募にはXのアカウントが必要です。</li><li>非公開（鍵付き）アカウントからのご応募は、リポストの確認ができないため対象外となります。</li><li>当選連絡まで、NOAH公式Xアカウントのフォローおよび対象ポストのリポストを維持してください。</li><li>当選連絡のDMを受け取れるよう、@noah_ghc からのDMを受信できる設定にしてください。</li><li>お一人様1回の応募とし、複数アカウントによる応募は無効となります。</li><li>商品のご購入は必要ありません。購入の有無によって当選確率が変わることはございません。</li><li>当選連絡の際に、賞品発送先（氏名・住所・電話番号）およびご希望の商品をお伺いいたします。</li><li>期日までに当選連絡へのご返信がない場合、当選を無効とさせていただくことがあります。</li><li>賞品の発送は日本国内に限らせていただきます。</li><li>ご希望の商品は、在庫状況によりご希望に添えない場合がございます。</li><li>当選する権利を第三者へ譲渡・転売することはできません。</li><li>本キャンペーンは、X社（X Corp.）の提供・協賛によるものではありません。</li><li>ご応募いただいた際にお預かりする個人情報は、賞品の発送およびそれに付随するご連絡の目的にのみ利用し、目的達成後は適切に廃棄いたします。</li></ul></details>
+      </div>
+      <p class="mh__credit">協賛：株式会社マルハン 北日本カンパニー</p>
     </div>
   </section>
 

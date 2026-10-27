@@ -20,6 +20,8 @@ plan={'img/kv.jpg':(1000,64),'img/logo_white.webp':(999,0),'img/noah_badge.png':
 h=h.replace('href="img/bracket.jpg"','href="#bracket"')  # 拡大リンクはプレビューでは無効
 for p in sorted(set(re.findall(r'img/p_\w+\.webp',h))): plan[p]=(210,0)
 for p in sorted(set(re.findall(r'img/vs_\w+_960\.jpg',h))): plan[p]=(480,58)
+for p in sorted(set(re.findall(r'img/goods_\w+\.webp',h))): plan[p]=(180,0)
+for p in sorted(set(re.findall(r'img/news_\d+_960\.jpg',h))): plan[p]=(440,55)
 for p,(w,q) in plan.items(): h=h.replace(f'"{p}"',f'"{uri(p,w,q)}"')
 h=h.replace('<meta name="viewport"','<meta name="robots" content="noindex,nofollow"><meta name="viewport"')
 open('njgp2_preview.html','w',encoding='utf-8').write(h); print('preview',os.path.getsize('njgp2_preview.html')//1024,'KB')

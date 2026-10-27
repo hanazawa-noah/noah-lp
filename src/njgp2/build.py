@@ -11,7 +11,7 @@ ap.add_argument('--out', default='out/index.html')
 args = ap.parse_args()
 
 D = json.load(open('data.json', encoding='utf-8'))
-E, T, KV, LG, BR, TK = D['event'], D['theme'], D['kv'], D['logo'], D['bracket'], D['tickets']
+E, T, KV, LG, BR, TK, MH = D['event'], D['theme'], D['kv'], D['logo'], D['bracket'], D['tickets'], D['maruhan']
 P = {p['id']: p for p in D['players']}
 esc = html.escape
 GTM = 'GTM-KQF9WVX'
@@ -26,7 +26,7 @@ def svg_uri(svg): return 'data:image/svg+xml,' + urllib.parse.quote(svg)
 GRAIN = svg_uri('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>')
 
 def map_url(e): return 'https://www.google.com/maps/search/?api=1&query=' + urllib.parse.quote(e['venue_map'])
-NAV = [('players', '出場選手'), ('bracket', 'トーナメント表'), ('round1', '1回戦カード'), ('schedule', '日程'), ('ticket', 'チケット')]
+NAV = [('players', '出場選手'), ('bracket', 'トーナメント表'), ('round1', '1回戦カード'), ('schedule', '日程'), ('maruhan', 'マルハン企画'), ('goods', 'コラボグッズ'), ('ticket', 'チケット')]
 def nav_links(): return ''.join(f'<a href="#{i}">{t}</a>' for i, t in NAV)
 
 def sec_head(ja, en):
@@ -70,12 +70,64 @@ def schedule():
           <p class="sc__round">{esc(e['round'])}</p>
           <p class="sc__date en">{esc(e['date'])}<small>{esc(e['dow'])}</small></p>
           <p class="sc__venue">{esc(e['venue'])}</p>
-          <p class="sc__time">開場 <b class="en">{esc(e['open'])}</b>　開始 <b class="en">{esc(e['start'])}</b></p>
+          <p class="sc__time">開場 <b class="en">{esc(e['open'])}</b>　開始 <b class="en">{esc(e['start'])}</b></p>{'<a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>' if e.get('maruhan') else ''}
           <details class="sc__cards"><summary>対戦カード</summary><ul>{''.join(match_line(m) for m in e['matches'])}</ul></details>
           <p class="sc__tour">〜{esc(e['tour'])}〜</p>
           <a class="sc__map" href="{map_url(e)}" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>'''
     return out
+
+def banner(n, alt):
+    return f'<img class="mh__banner" src="img/{n}_960.jpg" srcset="img/{n}_960.jpg 960w, img/{n}.jpg 1920w" sizes="(max-width:900px) 100vw, 860px" alt="{esc(alt)}" width="1920" height="1080" loading="lazy">'
+
+def notes_ul(xs): return '<ul class="mh__notes">' + ''.join(f'<li>{esc(x)}</li>' for x in xs) + '</ul>'
+
+def maruhan():
+    evs = ''.join(f'''
+        <article class="mhe box"><p class="mhe__no en">{esc(v['no'])}</p><h3 class="mhe__t">{esc(v['title'])}</h3><p class="mhe__x">{esc(v['text'])}</p>
+          <dl class="mhe__spec">{''.join(f'<dt>{esc(k)}</dt><dd>{esc(d)}</dd>' for k, d in v['spec'])}</dl>{notes_ul(v['notes'])}</article>''' for v in MH['events'])
+    ven = ''.join(f'<li><b class="en">{esc(e["date"])}</b><small class="en">{esc(e["dow"])}</small><span>{esc(e["venue"])}</span><em>開場 {esc(e["open"])}／開始 {esc(e["start"])}</em></li>' for e in D['events'] if e.get('maruhan'))
+    return f'''
+  <section id="maruhan" class="sec">
+    <div class="wrap">
+      {sec_head('マルハン×NOAH 特別企画', 'MARUHAN × NOAH')}
+      <div class="mh__intro">{banner(MH['banner'], 'マルハン×NOAH NOAH Jr. GRAND PRIX 2 冠協賛記念')}{''.join(f'<p>{esc(x)}</p>' for x in MH['lead'])}</div>
+      <div class="mhes">{evs}
+      </div>
+      <div class="mhv box"><h3 class="mhv__t">{esc(MH['venues_title'])}</h3><ul>{ven}</ul></div>
+      <p class="mh__credit">{esc(MH['credit'])}</p>
+    </div>
+  </section>'''
+
+def goods():
+    G, C = MH['goods'], MH['campaign']
+    ser = ''
+    for sr in G['series']:
+        items = ''.join(f'''
+          <li class="gd"><img src="img/{i['img']}.webp" alt="{esc(sr['name'])} {esc(i['name'])}" width="484" height="272" loading="lazy"><p class="gd__n">{esc(i['name'])}</p><p class="gd__p en">{esc(i['price'])}</p>{('<p class="gd__note">' + esc(i['note']) + '</p>') if i.get('note') else ''}</li>''' for i in sr['items'])
+        ser += f'''
+      <div class="gs"><h3 class="gs__t">{esc(sr['name'])}<small>シリーズ</small></h3><p class="gs__d">{esc(sr['desc'])}</p><ul class="gds">{items}
+      </ul></div>'''
+    steps = ''.join(f'<li><b class="en">{k + 1}</b>{esc(x)}</li>' for k, x in enumerate(C['steps']))
+    return f'''
+  <section id="goods" class="sec">
+    <div class="wrap">
+      {sec_head('マルハン×NOAH コラボグッズ', 'COLLABORATION GOODS')}
+      <div class="mh__intro">{banner(G['banner'], 'マルハン×NOAH コラボアイテム発売決定')}<p>{esc(G['lead'])}</p><p class="mh__sale">{esc(G['sale'])}</p></div>{ser}
+      <div class="box mh__nbox">{notes_ul(G['notes'])}</div>
+      <div class="cp box">
+        <p class="cp__lab en">CAMPAIGN</p>
+        <h3 class="cp__t">{esc(C['title'])}</h3>
+        <p class="cp__prize">{esc(C['prize'])}</p>
+        <dl class="mhe__spec"><dt>応募期間</dt><dd>{esc(C['period'])}</dd></dl>
+        <ol class="cp__steps">{steps}</ol>
+        <p class="cp__sn">{esc(C['steps_note'])}</p>
+        <p class="cp__btn"><a class="btn btn--pri" href="{esc(C['x_url'])}" target="_blank" rel="noopener">NOAH公式X（@noah_ghc）を見る ↗</a></p>
+        <details class="cp__more"><summary>当選発表・注意事項</summary>{notes_ul(C['result'] + C['notes'])}</details>
+      </div>
+      <p class="mh__credit">{esc(MH['credit'])}</p>
+    </div>
+  </section>'''
 
 def playguides():
     return ''.join(f'<a class="pg" href="{esc(p["url"])}" target="_blank" rel="noopener"><span>{esc(p["name"])}</span><b>チケットを購入する ↗</b></a>' for p in TK['playguides'])
@@ -199,6 +251,62 @@ ul{{list-style:none}}
 .sc__tour{{font-size:11px;color:var(--tx2);margin-top:auto;padding-top:12px}}
 .sc__map{{font-size:12px;margin-top:6px;align-self:flex-start;border-bottom:1px solid currentColor}}
 
+/* maruhan */
+.mh__intro{{max-width:860px;margin:0 auto 40px;text-align:center}}
+.mh__banner{{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid rgba(255,255,255,.6);margin-bottom:24px}}
+.mh__intro p{{font-size:15px;line-height:1.9;margin-top:8px;text-align:left}}
+.mh__intro p:first-of-type{{font-size:18px;font-weight:800;text-align:center}}
+.mh__intro p.mh__sale{{display:inline-block;text-align:center;margin-top:16px;background:#fff;color:var(--bg);text-shadow:none;font-size:15px;font-weight:800;padding:6px 18px}}
+.mhes{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
+.mhe{{position:relative;padding:28px 24px 22px}}
+.mhe::before{{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:{T['mh']}}}
+.mhe__no{{font-weight:800;font-size:34px;line-height:1}}
+.mhe__t{{font-size:19px;font-weight:800;line-height:1.45;margin:10px 0 12px}}
+.mhe__x{{font-size:14px;line-height:1.85}}
+.mhe__spec{{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}}
+.mhe__spec dt{{font-weight:800;white-space:nowrap;padding:1px 8px;border:1px solid rgba(255,255,255,.6);font-size:11px;align-self:start;text-align:center}}
+.mhe__spec dd{{line-height:1.6}}
+.mh__notes{{margin-top:12px}}
+.mh__notes li{{position:relative;padding-left:16px;font-size:12px;color:var(--tx2);line-height:1.75}}
+.mh__notes li::before{{content:"※";position:absolute;left:0}}
+.mhv{{margin-top:22px;padding:24px 28px}}
+.mhv__t{{font-size:16px;font-weight:800;letter-spacing:.06em;margin-bottom:10px}}
+.mhv li{{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:10px 0;border-top:1px solid var(--line)}}
+.mhv li b{{font-size:22px;line-height:1}}
+.mhv li small{{font-size:11px;margin-left:-6px}}
+.mhv li span{{font-weight:800}}
+.mhv li em{{font-style:normal;font-size:13px;color:var(--tx2)}}
+.mh__credit{{text-align:center;font-size:13px;margin-top:28px}}
+.gs{{margin-top:44px}}
+.gs__t{{font-size:24px;font-weight:800;display:flex;align-items:center;gap:14px}}
+.gs__t small{{font-size:13px;margin-left:-8px}}
+.gs__t::after{{content:"";flex:1;height:2px;background:#fff;opacity:.7}}
+.gs__d{{font-size:14px;margin:8px 0 18px}}
+.gds{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
+.gd{{background:rgba(12,18,38,.72);border:1px solid var(--line);border-radius:4px;overflow:hidden;padding-bottom:14px}}
+.gd img{{width:100%;aspect-ratio:484/272;object-fit:cover;background:#fff}}
+.gd__n{{font-size:14px;font-weight:800;line-height:1.5;padding:12px 16px 2px}}
+.gd__p{{font-size:17px;font-weight:800;padding:0 16px}}
+.gd__note{{font-size:12px;color:var(--tx2);padding:2px 16px 0}}
+.mh__nbox{{margin-top:24px;padding:14px 24px 18px}}
+.cp{{position:relative;margin-top:44px;padding:36px 40px;text-align:center}}
+.cp::before{{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--rb)}}
+.cp__lab{{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.2em;border:1px solid #fff;padding:2px 14px}}
+.cp__t{{font-size:clamp(20px,2.6vw,28px);font-weight:800;margin-top:14px;line-height:1.45}}
+.cp__prize{{font-size:16px;margin-top:10px}}
+.cp .mhe__spec{{display:inline-grid;text-align:left;border-top:0;margin-top:12px}}
+.cp__steps{{list-style:none;display:flex;justify-content:center;gap:16px;margin-top:20px;text-align:left}}
+.cp__steps li{{display:flex;align-items:center;gap:12px;flex:1;max-width:360px;padding:14px 18px;border:1px solid rgba(255,255,255,.6);font-size:14px;line-height:1.55}}
+.cp__steps b{{flex:none;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#fff;color:var(--bg);text-shadow:none;font-size:15px}}
+.cp__sn{{font-size:13px;margin-top:14px}}
+.cp__btn{{margin-top:20px}}
+.cp__more{{max-width:820px;margin:24px auto 0;text-align:left;border-top:1px solid var(--line)}}
+.cp__more summary{{cursor:pointer;list-style:none;padding:14px 0 4px;font-weight:800;font-size:14px;display:flex;justify-content:space-between}}
+.cp__more summary::-webkit-details-marker{{display:none}}
+.cp__more summary::after{{content:"＋"}}
+.cp__more[open] summary::after{{content:"－"}}
+.sc__mh{{align-self:flex-start;margin-top:10px;font-size:11px;font-weight:800;letter-spacing:.04em;background:{T['mh']};color:#fff;padding:3px 9px;text-shadow:none}}
+
 /* ticket */
 .pgs{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}}
 .pg{{display:flex;flex-direction:column;gap:14px;padding:24px;background:rgba(12,18,38,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:4px;transition:.2s}}
@@ -259,6 +367,22 @@ ul{{list-style:none}}
   .sc__time b{{font-size:12px}}
   .sc__cards{{font-size:12px}}
   .sc__cards li{{flex-direction:column;gap:0}}
+  .mhes{{grid-template-columns:1fr;gap:14px}}
+  .mhe{{padding:22px 18px 18px}}
+  .mhe__t{{font-size:17px}}
+  .mhv{{padding:18px}}
+  .mh__intro p:first-of-type{{font-size:16px;text-align:left}}
+  .gs__t{{font-size:20px}}
+  .gds{{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+  .gd__n{{font-size:12px;padding:8px 10px 0}}
+  .gd__p{{font-size:14px;padding:0 10px}}
+  .gd__note{{font-size:10.5px;padding:2px 10px 0}}
+  .mh__nbox{{padding:10px 16px 14px}}
+  .cp{{padding:28px 18px}}
+  .cp__steps{{flex-direction:column;align-items:stretch}}
+  .cp__steps li{{max-width:none}}
+  .cp__btn .btn{{width:100%;white-space:normal}}
+  .sc__mh{{font-size:10px;padding:2px 6px}}
   .pgs{{grid-template-columns:1fr;gap:12px}}
   .pg{{padding:18px 20px}}
   .notes{{padding:18px}}
@@ -358,6 +482,7 @@ HTML = f'''<!DOCTYPE html>
       </div>
     </div>
   </section>
+{maruhan()}{goods()}
 
   <section id="ticket" class="sec">
     <div class="wrap">
