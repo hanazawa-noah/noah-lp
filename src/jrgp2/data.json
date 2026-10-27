@@ -1,0 +1,142 @@
+{
+  "_comment": "マルハン presents NOAH Jr. GRAND PRIX 2 特設LP。出典: noah.co.jp/news/8657/ ・ /news/8727/(依頼者から本文受領)。試合結果は matches[].winner に選手idを入れて再生成すると勝者が強調される。",
+  "event": {
+    "title": "マルハン presents NOAH Jr. GRAND PRIX 2",
+    "short": "NOAH Jr. GRAND PRIX 2",
+    "sponsor": "マルハン",
+    "catch": "NEO HIGH STANDARD WRESTLING",
+    "lead": "ジュニア16選手によるトーナメント",
+    "period_label": "2026.11.9 MON → 11.28 SAT",
+    "lp_url": "https://www.noah.co.jp/lp/jrgp2026/",
+    "official_url": "https://www.noah.co.jp/schedule/",
+    "contact_url": "https://www.noah.co.jp/contactform/"
+  },
+  "theme": {
+    "bg": "#0c1226",
+    "bg2": "#121a33",
+    "g1": "#1f3fd1",
+    "g2": "#18b6c9",
+    "g3": "#3cc98a",
+    "g4": "#f2cf4a",
+    "g5": "#f08a2c",
+    "g6": "#e2352b"
+  },
+  "kv": {
+    "pc": "img/kv.jpg",
+    "pc_1280": "img/kv_1280.jpg",
+    "pc_960": "img/kv_960.jpg",
+    "sp": "img/kv_sp.jpg",
+    "sp_750": "img/kv_sp_750.jpg"
+  },
+  "logo": {
+    "src": "img/logo_white.webp",
+    "w": 311,
+    "h": 49
+  },
+  "bracket": {
+    "src": "img/bracket.jpg",
+    "sm": "img/bracket_960.jpg"
+  },
+  "players": [
+    {"id": "fujimura", "name": "カイ・フジムラ", "en": "Kai Fujimura", "nick": "デスハンガー", "team": "TEAM 2000X/J2KX"},
+    {"id": "bushi", "name": "BUSHI", "en": "BUSHI", "nick": "En serio", "team": "LOS TRANQUILOS de JAPON"},
+    {"id": "lykos2", "name": "キッド・ライコス2号", "en": "Kid Lykos 2", "nick": "The Problem", "team": "ライコス・ジム"},
+    {"id": "alejandro", "name": "アレハンドロ", "en": "Alejandro", "nick": "ゼログラビティ", "team": ""},
+    {"id": "namiki", "name": "並木宏也", "en": "Hiroya Namiki", "nick": "", "team": ""},
+    {"id": "sato", "name": "佐藤維", "en": "Tsunagu Sato", "nick": "令和の新星", "team": "みちのくプロレス"},
+    {"id": "odashima", "name": "小田嶋大樹", "en": "Daiki Odashima", "nick": "赤鬼2世", "team": ""},
+    {"id": "masaoka", "name": "政岡純", "en": "Jun Masaoka", "nick": "Midnight Jewel", "team": "TEAM 2000X/J2KX"},
+    {"id": "kondo", "name": "近藤修司", "en": "Shuji Kondo", "nick": "最強キングコング", "team": ""},
+    {"id": "yohey", "name": "YO-HEY", "en": "YO-HEY", "nick": "HEARTBREAKER", "team": "TEAM 2000X/J2KX"},
+    {"id": "tadasuke", "name": "タダスケ", "en": "Tadasuke", "nick": "The Hater", "team": "TEAM 2000X/J2KX"},
+    {"id": "hi69", "name": "Hi69", "en": "Hi69", "nick": "超舞踏", "team": "TEAM NOAH"},
+    {"id": "akeem", "name": "シドニー・アキーム", "en": "Sidney Akeem", "nick": "The Human Highlight", "team": ""},
+    {"id": "lykos1", "name": "キッド・ライコス1号", "en": "Kid Lykos 1", "nick": "Modern Nomad", "team": "ライコス・ジム"},
+    {"id": "mensore", "name": "ブラックめんそーれ", "en": "Black Mensore", "nick": "シャーーーッ！！！", "team": ""},
+    {"id": "bane", "name": "ドラゴン・ベイン", "en": "Dragon Bane", "nick": "キング・オブ・エア", "team": ""}
+  ],
+  "events": [
+    {
+      "date": "11.9", "dow": "MON", "date_ja": "11月9日（月）", "open": "17:30", "start": "18:30",
+      "venue": "東京・後楽園ホール", "venue_map": "後楽園ホール", "tour": "LEGACY RISE 2026", "round": "1回戦",
+      "matches": [
+        {"no": "①", "a": "fujimura", "b": "bushi", "img": "vs_fujimura_bushi"},
+        {"no": "②", "a": "lykos2", "b": "sato", "img": "vs_lykos2_sato"},
+        {"no": "③", "a": "kondo", "b": "yohey", "img": "vs_kondo_yohey"},
+        {"no": "④", "a": "akeem", "b": "lykos1", "img": "vs_akeem_lykos1"}
+      ]
+    },
+    {
+      "date": "11.14", "dow": "SAT", "date_ja": "11月14日（土）", "open": "17:00", "start": "18:00",
+      "venue": "大阪・梅田スカイビル ステラホール", "venue_map": "梅田スカイビル ステラホール", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "1回戦",
+      "matches": [
+        {"no": "⑤", "a": "namiki", "b": "alejandro", "img": "vs_namiki_alejandro"},
+        {"no": "⑥", "a": "odashima", "b": "masaoka", "img": "vs_odashima_masaoka"}
+      ]
+    },
+    {
+      "date": "11.15", "dow": "SUN", "date_ja": "11月15日（日）", "open": "14:00", "start": "15:00",
+      "venue": "愛知・Lives NAGOYA", "venue_map": "Lives NAGOYA", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "1回戦",
+      "matches": [
+        {"no": "⑦", "a": "tadasuke", "b": "hi69", "img": "vs_tadasuke_hi69"},
+        {"no": "⑧", "a": "mensore", "b": "bane", "img": "vs_mensore_bane"}
+      ]
+    },
+    {
+      "date": "11.20", "dow": "FRI", "date_ja": "11月20日（金）", "open": "18:00", "start": "19:00",
+      "venue": "宮城・仙台PIT", "venue_map": "仙台PIT", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "2回戦",
+      "matches": [
+        {"no": "❶", "a_text": "③ 近藤修司 vs YO-HEY の勝者", "b_text": "⑦ タダスケ vs Hi69 の勝者"},
+        {"no": "❷", "a_text": "④ シドニー・アキーム vs キッド・ライコス1号 の勝者", "b_text": "⑧ ブラックめんそーれ vs ドラゴン・ベイン の勝者"}
+      ]
+    },
+    {
+      "date": "11.21", "dow": "SAT", "date_ja": "11月21日（土）", "open": "16:00", "start": "17:00",
+      "venue": "山形・山形ビッグウイング", "venue_map": "山形ビッグウイング", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "2回戦",
+      "matches": [
+        {"no": "❸", "a_text": "① カイ・フジムラ vs BUSHI の勝者", "b_text": "⑤ 並木宏也 vs アレハンドロ の勝者"}
+      ]
+    },
+    {
+      "date": "11.22", "dow": "SUN", "date_ja": "11月22日（日）", "open": "14:00", "start": "15:00",
+      "venue": "秋田・鹿角市記念スポーツセンター", "venue_map": "鹿角市記念スポーツセンター", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "2回戦",
+      "matches": [
+        {"no": "❹", "a_text": "② キッド・ライコス2号 vs 佐藤維 の勝者", "b_text": "⑥ 小田嶋大樹 vs 政岡純 の勝者"}
+      ]
+    },
+    {
+      "date": "11.23", "dow": "MON・祝", "date_ja": "11月23日（月・祝）", "open": "16:30", "start": "17:30",
+      "venue": "新潟・万代島多目的広場大かま", "venue_map": "万代島多目的広場 大かま", "tour": "LETHAL ODYSSEY TOUR 2026", "round": "準決勝",
+      "matches": [
+        {"no": "(1)", "a_text": "11.21 ❸の勝者", "b_text": "11.22 ❹の勝者"},
+        {"no": "(2)", "a_text": "11.20 ❶の勝者", "b_text": "11.20 ❷の勝者"}
+      ]
+    },
+    {
+      "date": "11.28", "dow": "SAT", "date_ja": "11月28日（土）", "open": "17:30", "start": "18:30",
+      "venue": "東京・後楽園ホール", "venue_map": "後楽園ホール", "tour": "LEGACY RISE 2026", "round": "決勝",
+      "final": true,
+      "matches": [
+        {"no": "FINAL", "a_text": "準決勝(1)の勝者", "b_text": "準決勝(2)の勝者"}
+      ]
+    }
+  ],
+  "tickets": {
+    "playguides": [
+      {"name": "e+（イープラス）", "url": "https://eplus.jp/noah/"},
+      {"name": "チケットぴあ", "url": "https://t.pia.jp/pia/artist/artists.do?artistsCd=11027339"},
+      {"name": "ローソンチケット", "url": "https://l-tike.com/sports/mevent/?mid=111745"}
+    ],
+    "notes": [
+      "席種・料金・発売状況は大会ごとに異なります。各大会の詳細はNOAH公式サイトの大会日程でご確認ください。",
+      "対戦カードは都合により変更となる場合がございます。"
+    ]
+  },
+  "footer_links": [
+    {"label": "プロレスリング・ノア 公式サイト", "url": "https://www.noah.co.jp/"},
+    {"label": "大会日程", "url": "https://www.noah.co.jp/schedule/"},
+    {"label": "ニュース", "url": "https://www.noah.co.jp/news/"},
+    {"label": "選手一覧", "url": "https://www.noah.co.jp/profile/"},
+    {"label": "お問合せ", "url": "https://www.noah.co.jp/contactform/"}
+  ]
+}
