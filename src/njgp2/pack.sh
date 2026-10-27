@@ -22,12 +22,12 @@ for p in sorted(set(re.findall(r'img/p_\w+\.webp',h))): plan[p]=(210,0)
 for p in sorted(set(re.findall(r'img/vs_\w+_960\.jpg',h))): plan[p]=(480,58)
 for p,(w,q) in plan.items(): h=h.replace(f'"{p}"',f'"{uri(p,w,q)}"')
 h=h.replace('<meta name="viewport"','<meta name="robots" content="noindex,nofollow"><meta name="viewport"')
-open('jrgp2_preview.html','w',encoding='utf-8').write(h); print('preview',os.path.getsize('jrgp2_preview.html')//1024,'KB')
+open('njgp2_preview.html','w',encoding='utf-8').write(h); print('preview',os.path.getsize('njgp2_preview.html')//1024,'KB')
 EOF
 python3 build.py --noindex >/dev/null
-rm -rf dist prod out/index.html.bak && mkdir -p dist && (cd out && zip -qr ../dist/jrgp2_限定公開用.zip index.html img)
+rm -rf dist prod out/index.html.bak && mkdir -p dist && (cd out && zip -qr ../dist/njgp2_限定公開用.zip index.html img)
 python3 build.py >/dev/null
-mkdir -p prod/jrgp2026 && cp -r out/index.html out/img prod/jrgp2026/ && cp 設置手順.txt prod/
-(cd prod && zip -qr ../dist/jrgp2_本番設置用.zip jrgp2026 設置手順.txt)
-zip -qj dist/jrgp2_ソース_data_build.zip data.json build.py prep_img.py shot.py pack.sh 設置手順.txt
-cp jrgp2_preview.html dist/ && ls -la dist
+mkdir -p prod/njgp2 && cp -r out/index.html out/img prod/njgp2/ && cp 設置手順.txt prod/
+(cd prod && zip -qr ../dist/njgp2_本番設置用.zip njgp2 設置手順.txt)
+zip -qj dist/njgp2_ソース_data_build.zip data.json build.py prep_img.py shot.py pack.sh 設置手順.txt
+cp njgp2_preview.html dist/ && ls -la dist
