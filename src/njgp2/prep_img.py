@@ -20,7 +20,7 @@ kvv = Image.open('uploads/kv_v.jpg').convert('RGB')
 jpg(kvv, 'out/img/kv_sp.jpg', 1125, 86); jpg(kvv, 'out/img/kv_sp_750.jpg', 750, 84)
 
 # 選手タイル: 横KVの並び(トーナメント表と同じ順)
-ORDER = ['fujimura', 'bushi', 'lykos2', 'alejandro', 'namiki', 'sato', 'odashima', 'masaoka',
+ORDER = ['fujimura', 'bushi', 'namiki', 'alejandro', 'lykos2', 'sato', 'odashima', 'masaoka',
          'kondo', 'yohey', 'tadasuke', 'hi69', 'akeem', 'lykos1', 'mensore', 'bane']
 for i, pid in enumerate(ORDER):
     x, y = 64 + (i % 8) * 226, (205, 487)[i // 8]

@@ -85,6 +85,12 @@ ul{list-style:none}
 
 /* players */
 .pls{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:14px 12px}
+.pl{display:flex;flex-direction:column}
+.pl__a{flex:1;display:flex;flex-direction:column;transition:.2s}
+.pl__box{flex:1}
+.pl__a:hover{transform:translateY(-3px)}
+.pl__a:hover .pl__box{background:rgba(12,18,38,.85)}
+.pl__more{font-size:9px;font-weight:800;letter-spacing:.1em;margin-top:5px;opacity:.75}
 .pl img{width:100%;aspect-ratio:210/265;object-fit:cover}
 .pl__box{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px;padding:10px 4px 11px;background:rgba(12,18,38,.62);border:1px solid rgba(255,255,255,.75);border-top:0;min-height:96px;justify-content:center}
 .pl__nick{font-size:10px;letter-spacing:.04em;opacity:.85;line-height:1.35}
@@ -92,7 +98,8 @@ ul{list-style:none}
 .pl__team{overflow-wrap:anywhere;font-size:9.5px;opacity:.75;line-height:1.35;margin-top:2px}
 
 /* bracket */
-.br{display:block;border:1px solid var(--line)}
+.sec--dark{background:rgba(4,7,18,.7)}
+.br{display:block;border:1px solid rgba(255,255,255,.85);box-shadow:0 12px 40px rgba(0,0,0,.45)}
 .br__note{text-align:center;font-size:13px;margin-top:14px}
 .br__note a{border-bottom:1px solid #fff;color:#fff}
 
@@ -131,6 +138,11 @@ ul{list-style:none}
 .sc__cards li{display:flex;gap:8px;padding:6px 0;line-height:1.55}
 .sc__cards li b{flex:none}
 .sc__tour{font-size:11px;color:var(--tx2);margin-top:auto;padding-top:12px}
+.sc__tv{display:flex;flex-direction:column;gap:2px;margin-top:12px;padding:8px 10px;border:1px solid rgba(255,255,255,.7);border-radius:3px;font-size:12px;font-weight:800;letter-spacing:0;transition:.2s}
+.sc__tv small{font-size:10px;font-weight:700;letter-spacing:.12em;opacity:.8}
+.sc__tv:hover{background:rgba(255,255,255,.12)}
+.sc--final .sc__tv{background:var(--bg);color:#fff;border-color:var(--bg)}
+.sc--final .sc__tv:hover{opacity:.85}
 .sc__map{font-size:12px;margin-top:6px;align-self:flex-start;border-bottom:1px solid currentColor}
 
 /* maruhan */
@@ -236,6 +248,9 @@ ul{list-style:none}
   .pl__nick{font-size:8px}
   .pl__name{font-size:11px;letter-spacing:0}
   .pl__team{font-size:7.5px}
+  .pl__more{font-size:7px;margin-top:3px}
+  .sc__tv{font-size:11px;padding:6px 8px}
+  .sc__tv small{font-size:9px}
   .r1__grid{grid-template-columns:1fr;gap:14px}
   .r1__day{flex-wrap:wrap;gap:4px 12px;font-size:14px}
   .r1__day .en{font-size:26px}
@@ -312,27 +327,27 @@ ul{list-style:none}
     <div class="wrap">
       <div class="sec__head"><p class="sec__en">ENTRY</p><h2 class="sec__ja">出場選手</h2><span class="sec__rule"></span></div>
       <ul class="pls">
-        <li class="pl"><img src="img/p_fujimura.webp" alt="カイ・フジムラ" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">デスハンガー</span><span class="pl__name">カイ・<wbr>フジムラ</span><span class="pl__team">TEAM 2000X/J2KX</span></div></li>
-        <li class="pl"><img src="img/p_bushi.webp" alt="BUSHI" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">En serio</span><span class="pl__name">BUSHI</span><span class="pl__team">LOS TRANQUILOS de JAPON</span></div></li>
-        <li class="pl"><img src="img/p_lykos2.webp" alt="キッド・ライコス2号" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">The Problem</span><span class="pl__name">キッド・<wbr>ライコス2号</span><span class="pl__team">ライコス・ジム</span></div></li>
-        <li class="pl"><img src="img/p_alejandro.webp" alt="アレハンドロ" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">ゼログラビティ</span><span class="pl__name">アレハンドロ</span></div></li>
-        <li class="pl"><img src="img/p_namiki.webp" alt="並木宏也" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__name">並木宏也</span></div></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/147/" target="_blank" rel="noopener"><img src="img/p_fujimura.webp" alt="カイ・フジムラ" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">デスハンガー</span><span class="pl__name">カイ・<wbr>フジムラ</span><span class="pl__team">TEAM 2000X/J2KX</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/360/" target="_blank" rel="noopener"><img src="img/p_bushi.webp" alt="BUSHI" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">En serio</span><span class="pl__name">BUSHI</span><span class="pl__team">LOS TRANQUILOS de JAPON</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/656/" target="_blank" rel="noopener"><img src="img/p_namiki.webp" alt="並木宏也" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__name">並木宏也</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/234/" target="_blank" rel="noopener"><img src="img/p_alejandro.webp" alt="アレハンドロ" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">ゼログラビティ</span><span class="pl__name">アレハンドロ</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/624/" target="_blank" rel="noopener"><img src="img/p_lykos2.webp" alt="キッド・ライコス2号" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">The Problem</span><span class="pl__name">キッド・<wbr>ライコス2号</span><span class="pl__team">ライコス・ジム</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
         <li class="pl"><img src="img/p_sato.webp" alt="佐藤維" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">令和の新星</span><span class="pl__name">佐藤維</span><span class="pl__team">みちのくプロレス</span></div></li>
-        <li class="pl"><img src="img/p_odashima.webp" alt="小田嶋大樹" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">赤鬼2世</span><span class="pl__name">小田嶋大樹</span></div></li>
-        <li class="pl"><img src="img/p_masaoka.webp" alt="政岡純" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">Midnight Jewel</span><span class="pl__name">政岡純</span><span class="pl__team">TEAM 2000X/J2KX</span></div></li>
-        <li class="pl"><img src="img/p_kondo.webp" alt="近藤修司" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">最強キングコング</span><span class="pl__name">近藤修司</span></div></li>
-        <li class="pl"><img src="img/p_yohey.webp" alt="YO-HEY" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">HEARTBREAKER</span><span class="pl__name">YO-HEY</span><span class="pl__team">TEAM 2000X/J2KX</span></div></li>
-        <li class="pl"><img src="img/p_tadasuke.webp" alt="タダスケ" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">The Hater</span><span class="pl__name">タダスケ</span><span class="pl__team">TEAM 2000X/J2KX</span></div></li>
-        <li class="pl"><img src="img/p_hi69.webp" alt="Hi69" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">超舞踏</span><span class="pl__name">Hi69</span><span class="pl__team">TEAM NOAH</span></div></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/507/" target="_blank" rel="noopener"><img src="img/p_odashima.webp" alt="小田嶋大樹" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">赤鬼2世</span><span class="pl__name">小田嶋大樹</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/540/" target="_blank" rel="noopener"><img src="img/p_masaoka.webp" alt="政岡純" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">Midnight Jewel</span><span class="pl__name">政岡純</span><span class="pl__team">TEAM 2000X/J2KX</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/244/" target="_blank" rel="noopener"><img src="img/p_kondo.webp" alt="近藤修司" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">最強キングコング</span><span class="pl__name">近藤修司</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/29/" target="_blank" rel="noopener"><img src="img/p_yohey.webp" alt="YO-HEY" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">HEARTBREAKER</span><span class="pl__name">YO-HEY</span><span class="pl__team">TEAM 2000X/J2KX</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/24/" target="_blank" rel="noopener"><img src="img/p_tadasuke.webp" alt="タダスケ" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">The Hater</span><span class="pl__name">タダスケ</span><span class="pl__team">TEAM 2000X/J2KX</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/95/" target="_blank" rel="noopener"><img src="img/p_hi69.webp" alt="Hi69" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">超舞踏</span><span class="pl__name">Hi69</span><span class="pl__team">TEAM NOAH</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
         <li class="pl"><img src="img/p_akeem.webp" alt="シドニー・アキーム" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">The Human Highlight</span><span class="pl__name">シドニー・<wbr>アキーム</span></div></li>
-        <li class="pl"><img src="img/p_lykos1.webp" alt="キッド・ライコス1号" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">Modern Nomad</span><span class="pl__name">キッド・<wbr>ライコス1号</span><span class="pl__team">ライコス・ジム</span></div></li>
-        <li class="pl"><img src="img/p_mensore.webp" alt="ブラックめんそーれ" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">シャーーーッ！！！</span><span class="pl__name">ブラック<wbr>めんそーれ</span></div></li>
-        <li class="pl"><img src="img/p_bane.webp" alt="ドラゴン・ベイン" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">キング・オブ・エア</span><span class="pl__name">ドラゴン・<wbr>ベイン</span></div></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/496/" target="_blank" rel="noopener"><img src="img/p_lykos1.webp" alt="キッド・ライコス1号" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">Modern Nomad</span><span class="pl__name">キッド・<wbr>ライコス1号</span><span class="pl__team">ライコス・ジム</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/433/" target="_blank" rel="noopener"><img src="img/p_mensore.webp" alt="ブラックめんそーれ" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">シャーーーッ！！！</span><span class="pl__name">ブラック<wbr>めんそーれ</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
+        <li class="pl"><a class="pl__a" href="https://www.noah.co.jp/profile/85/" target="_blank" rel="noopener"><img src="img/p_bane.webp" alt="ドラゴン・ベイン" width="210" height="265" loading="lazy"><div class="pl__box"><span class="pl__nick">キング・オブ・エア</span><span class="pl__name">ドラゴン・<wbr>ベイン</span><span class="pl__more en">PROFILE ↗</span></div></a></li>
       </ul>
     </div>
   </section>
 
-  <section id="bracket" class="sec">
+  <section id="bracket" class="sec sec--dark">
     <div class="wrap">
       <div class="sec__head"><p class="sec__en">BRACKET</p><h2 class="sec__ja">トーナメント表</h2><span class="sec__rule"></span></div>
       <a class="br" href="img/bracket.jpg" target="_blank" rel="noopener"><img src="img/bracket_960.jpg" srcset="img/bracket_960.jpg 960w, img/bracket.jpg 1920w" sizes="(max-width:1160px) 100vw, 1160px" alt="マルハン presents NOAH Jr. GRAND PRIX 2 トーナメント表" width="1920" height="1080" loading="lazy"></a>
@@ -340,7 +355,7 @@ ul{list-style:none}
     </div>
   </section>
 
-  <section id="round1" class="sec" style="padding-top:0">
+  <section id="round1" class="sec">
     <div class="wrap">
       <div class="sec__head"><p class="sec__en">1ST ROUND</p><h2 class="sec__ja">1回戦 対戦カード</h2><span class="sec__rule"></span></div>
         <div class="r1">
@@ -380,6 +395,7 @@ ul{list-style:none}
           <p class="sc__time">開場 <b class="en">17:30</b>　開始 <b class="en">18:30</b></p>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>①</b><span>カイ・フジムラ <i>vs</i> BUSHI</span></li><li><b>②</b><span>キッド・ライコス2号 <i>vs</i> 佐藤維</span></li><li><b>③</b><span>近藤修司 <i>vs</i> YO-HEY</span></li><li><b>④</b><span>シドニー・アキーム <i>vs</i> キッド・ライコス1号</span></li></ul></details>
           <p class="sc__tour">〜LEGACY RISE 2026〜</p>
+          <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E5%BE%8C%E6%A5%BD%E5%9C%92%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>
         <article class="sc box">
@@ -389,6 +405,7 @@ ul{list-style:none}
           <p class="sc__time">開場 <b class="en">17:00</b>　開始 <b class="en">18:00</b></p>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>⑤</b><span>並木宏也 <i>vs</i> アレハンドロ</span></li><li><b>⑥</b><span>小田嶋大樹 <i>vs</i> 政岡純</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
+          <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E6%A2%85%E7%94%B0%E3%82%B9%E3%82%AB%E3%82%A4%E3%83%93%E3%83%AB%20%E3%82%B9%E3%83%86%E3%83%A9%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>
         <article class="sc box">
@@ -398,6 +415,7 @@ ul{list-style:none}
           <p class="sc__time">開場 <b class="en">14:00</b>　開始 <b class="en">15:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>⑦</b><span>タダスケ <i>vs</i> Hi69</span></li><li><b>⑧</b><span>ブラックめんそーれ <i>vs</i> ドラゴン・ベイン</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
+          <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=Lives%20NAGOYA" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>
         <article class="sc box">
@@ -407,6 +425,7 @@ ul{list-style:none}
           <p class="sc__time">開場 <b class="en">18:00</b>　開始 <b class="en">19:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❶</b><span>③ 近藤修司 vs YO-HEY の勝者<i>vs</i>⑦ タダスケ vs Hi69 の勝者</span></li><li><b>❷</b><span>④ シドニー・アキーム vs キッド・ライコス1号 の勝者<i>vs</i>⑧ ブラックめんそーれ vs ドラゴン・ベイン の勝者</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
+          <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E4%BB%99%E5%8F%B0PIT" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>
         <article class="sc box">
@@ -416,6 +435,7 @@ ul{list-style:none}
           <p class="sc__time">開場 <b class="en">16:00</b>　開始 <b class="en">17:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❸</b><span>① カイ・フジムラ vs BUSHI の勝者<i>vs</i>⑤ 並木宏也 vs アレハンドロ の勝者</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
+          <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E5%BD%A2%E3%83%93%E3%83%83%E3%82%B0%E3%82%A6%E3%82%A4%E3%83%B3%E3%82%B0" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>
         <article class="sc box">
@@ -425,6 +445,7 @@ ul{list-style:none}
           <p class="sc__time">開場 <b class="en">14:00</b>　開始 <b class="en">15:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❹</b><span>② キッド・ライコス2号 vs 佐藤維 の勝者<i>vs</i>⑥ 小田嶋大樹 vs 政岡純 の勝者</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
+          <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E9%B9%BF%E8%A7%92%E5%B8%82%E8%A8%98%E5%BF%B5%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>
         <article class="sc box">
@@ -434,6 +455,7 @@ ul{list-style:none}
           <p class="sc__time">開場 <b class="en">16:30</b>　開始 <b class="en">17:30</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>(1)</b><span>11.21 ❸の勝者<i>vs</i>11.22 ❹の勝者</span></li><li><b>(2)</b><span>11.20 ❶の勝者<i>vs</i>11.20 ❷の勝者</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
+          <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%87%E4%BB%A3%E5%B3%B6%E5%A4%9A%E7%9B%AE%E7%9A%84%E5%BA%83%E5%A0%B4%20%E5%A4%A7%E3%81%8B%E3%81%BE" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>
         <article class="sc box sc--final">
@@ -443,6 +465,7 @@ ul{list-style:none}
           <p class="sc__time">開場 <b class="en">17:30</b>　開始 <b class="en">18:30</b></p>
           <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>FINAL</b><span>準決勝(1)の勝者<i>vs</i>準決勝(2)の勝者</span></li></ul></details>
           <p class="sc__tour">〜LEGACY RISE 2026〜</p>
+          <a class="sc__tv sc__tv--abema" href="https://abema.tv/video/genre/fightingsports" target="_blank" rel="noopener"><small>放送・配信</small>ABEMAで無料生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E5%BE%8C%E6%A5%BD%E5%9C%92%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>
       </div>
@@ -490,7 +513,7 @@ ul{list-style:none}
         <dl class="mhe__spec"><dt>応募期間</dt><dd>2026年10月27日（火）12:00〜11月9日（月）23:59</dd></dl>
         <ol class="cp__steps"><li><b class="en">1</b>NOAH公式Xアカウント（@noah_ghc）をフォロー</li><li><b class="en">2</b>NOAH公式Xに投稿されるキャンペーン対象ポストをリポスト</li></ol>
         <p class="cp__sn">以上で応募完了！ すでにフォローいただいている方も、対象ポストのリポストでご応募いただけます。</p>
-        <p class="cp__btn"><a class="btn btn--pri" href="https://x.com/noah_ghc" target="_blank" rel="noopener">NOAH公式X（@noah_ghc）を見る ↗</a></p>
+        <p class="cp__btn"><a class="btn btn--pri" href="https://x.com/noah_ghc/status/2114920785756504510" target="_blank" rel="noopener">キャンペーン対象ポストを見る ↗</a></p>
         <details class="cp__more"><summary>当選発表・注意事項</summary><ul class="mh__notes"><li>応募締切後、厳正な抽選のうえ当選者を決定いたします。</li><li>当選者の方には、NOAH公式Xアカウント（@noah_ghc）よりダイレクトメッセージ（DM）にてご連絡いたします。当選発表はDMへのご連絡をもって代えさせていただきます。</li><li>当選連絡予定：2026年11月中旬頃／賞品発送予定：2026年11月下旬頃</li><li>Tシャツのデザイン・サイズ、フェイスタオルのデザインは、当選のご連絡の際にお伺いいたします。</li><li>応募にはXのアカウントが必要です。</li><li>非公開（鍵付き）アカウントからのご応募は、リポストの確認ができないため対象外となります。</li><li>当選連絡まで、NOAH公式Xアカウントのフォローおよび対象ポストのリポストを維持してください。</li><li>当選連絡のDMを受け取れるよう、@noah_ghc からのDMを受信できる設定にしてください。</li><li>お一人様1回の応募とし、複数アカウントによる応募は無効となります。</li><li>商品のご購入は必要ありません。購入の有無によって当選確率が変わることはございません。</li><li>当選連絡の際に、賞品発送先（氏名・住所・電話番号）およびご希望の商品をお伺いいたします。</li><li>期日までに当選連絡へのご返信がない場合、当選を無効とさせていただくことがあります。</li><li>賞品の発送は日本国内に限らせていただきます。</li><li>ご希望の商品は、在庫状況によりご希望に添えない場合がございます。</li><li>当選する権利を第三者へ譲渡・転売することはできません。</li><li>本キャンペーンは、X社（X Corp.）の提供・協賛によるものではありません。</li><li>ご応募いただいた際にお預かりする個人情報は、賞品の発送およびそれに付随するご連絡の目的にのみ利用し、目的達成後は適切に廃棄いたします。</li></ul></details>
       </div>
       <p class="mh__credit">協賛：株式会社マルハン 北日本カンパニー</p>

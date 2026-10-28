@@ -37,8 +37,10 @@ def players():
     for p in D['players']:
         nick = f'<span class="pl__nick">{esc(p["nick"])}</span>' if p.get('nick') else ''
         team = f'<span class="pl__team">{esc(p["team"])}</span>' if p.get('team') else ''
+        # 公式サイトに選手ページがある選手だけリンク(参戦選手でページが無い人は文字のみ)
+        a1, a2, more = (f'<a class="pl__a" href="{esc(p["profile"])}" target="_blank" rel="noopener">', '</a>', '<span class="pl__more en">PROFILE ↗</span>') if p.get('profile') else ('', '', '')
         out += f'''
-        <li class="pl"><img src="img/p_{p['id']}.webp" alt="{esc(p['name'])}" width="210" height="265" loading="lazy"><div class="pl__box">{nick}<span class="pl__name">{esc(p['name']).replace('・', '・<wbr>').replace('ブラック', 'ブラック<wbr>')}</span>{team}</div></li>'''
+        <li class="pl">{a1}<img src="img/p_{p['id']}.webp" alt="{esc(p['name'])}" width="210" height="265" loading="lazy"><div class="pl__box">{nick}<span class="pl__name">{esc(p['name']).replace('・', '・<wbr>').replace('ブラック', 'ブラック<wbr>')}</span>{team}{more}</div>{a2}</li>'''
     return out
 
 def round1():
@@ -73,9 +75,14 @@ def schedule():
           <p class="sc__time">開場 <b class="en">{esc(e['open'])}</b>　開始 <b class="en">{esc(e['start'])}</b></p>{'<a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>' if e.get('maruhan') else ''}
           <details class="sc__cards"><summary>対戦カード</summary><ul>{''.join(match_line(m) for m in e['matches'])}</ul></details>
           <p class="sc__tour">〜{esc(e['tour'])}〜</p>
+          {tv(e)}
           <a class="sc__map" href="{map_url(e)}" target="_blank" rel="noopener">会場の地図 ↗</a>
         </article>'''
     return out
+
+def tv(e):
+    b = D['broadcast'][e['tv']]
+    return f'<a class="sc__tv sc__tv--{e["tv"]}" href="{esc(b["url"])}" target="_blank" rel="noopener"><small>放送・配信</small>{esc(b["text"])}&nbsp;↗</a>'
 
 def banner(n, alt):
     return f'<img class="mh__banner" src="img/{n}_960.jpg" srcset="img/{n}_960.jpg 960w, img/{n}.jpg 1920w" sizes="(max-width:900px) 100vw, 860px" alt="{esc(alt)}" width="1920" height="1080" loading="lazy">'
@@ -122,7 +129,7 @@ def goods():
         <dl class="mhe__spec"><dt>応募期間</dt><dd>{esc(C['period'])}</dd></dl>
         <ol class="cp__steps">{steps}</ol>
         <p class="cp__sn">{esc(C['steps_note'])}</p>
-        <p class="cp__btn"><a class="btn btn--pri" href="{esc(C['x_url'])}" target="_blank" rel="noopener">NOAH公式X（@noah_ghc）を見る ↗</a></p>
+        <p class="cp__btn"><a class="btn btn--pri" href="{esc(C['x_url'])}" target="_blank" rel="noopener">キャンペーン対象ポストを見る ↗</a></p>
         <details class="cp__more"><summary>当選発表・注意事項</summary>{notes_ul(C['result'] + C['notes'])}</details>
       </div>
       <p class="mh__credit">{esc(MH['credit'])}</p>
@@ -203,6 +210,12 @@ ul{{list-style:none}}
 
 /* players */
 .pls{{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:14px 12px}}
+.pl{{display:flex;flex-direction:column}}
+.pl__a{{flex:1;display:flex;flex-direction:column;transition:.2s}}
+.pl__box{{flex:1}}
+.pl__a:hover{{transform:translateY(-3px)}}
+.pl__a:hover .pl__box{{background:rgba(12,18,38,.85)}}
+.pl__more{{font-size:9px;font-weight:800;letter-spacing:.1em;margin-top:5px;opacity:.75}}
 .pl img{{width:100%;aspect-ratio:210/265;object-fit:cover}}
 .pl__box{{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px;padding:10px 4px 11px;background:rgba(12,18,38,.62);border:1px solid rgba(255,255,255,.75);border-top:0;min-height:96px;justify-content:center}}
 .pl__nick{{font-size:10px;letter-spacing:.04em;opacity:.85;line-height:1.35}}
@@ -210,7 +223,8 @@ ul{{list-style:none}}
 .pl__team{{overflow-wrap:anywhere;font-size:9.5px;opacity:.75;line-height:1.35;margin-top:2px}}
 
 /* bracket */
-.br{{display:block;border:1px solid var(--line)}}
+.sec--dark{{background:rgba(4,7,18,.7)}}
+.br{{display:block;border:1px solid rgba(255,255,255,.85);box-shadow:0 12px 40px rgba(0,0,0,.45)}}
 .br__note{{text-align:center;font-size:13px;margin-top:14px}}
 .br__note a{{border-bottom:1px solid #fff;color:#fff}}
 
@@ -249,6 +263,11 @@ ul{{list-style:none}}
 .sc__cards li{{display:flex;gap:8px;padding:6px 0;line-height:1.55}}
 .sc__cards li b{{flex:none}}
 .sc__tour{{font-size:11px;color:var(--tx2);margin-top:auto;padding-top:12px}}
+.sc__tv{{display:flex;flex-direction:column;gap:2px;margin-top:12px;padding:8px 10px;border:1px solid rgba(255,255,255,.7);border-radius:3px;font-size:12px;font-weight:800;letter-spacing:0;transition:.2s}}
+.sc__tv small{{font-size:10px;font-weight:700;letter-spacing:.12em;opacity:.8}}
+.sc__tv:hover{{background:rgba(255,255,255,.12)}}
+.sc--final .sc__tv{{background:var(--bg);color:#fff;border-color:var(--bg)}}
+.sc--final .sc__tv:hover{{opacity:.85}}
 .sc__map{{font-size:12px;margin-top:6px;align-self:flex-start;border-bottom:1px solid currentColor}}
 
 /* maruhan */
@@ -354,6 +373,9 @@ ul{{list-style:none}}
   .pl__nick{{font-size:8px}}
   .pl__name{{font-size:11px;letter-spacing:0}}
   .pl__team{{font-size:7.5px}}
+  .pl__more{{font-size:7px;margin-top:3px}}
+  .sc__tv{{font-size:11px;padding:6px 8px}}
+  .sc__tv small{{font-size:9px}}
   .r1__grid{{grid-template-columns:1fr;gap:14px}}
   .r1__day{{flex-wrap:wrap;gap:4px 12px;font-size:14px}}
   .r1__day .en{{font-size:26px}}
@@ -461,7 +483,7 @@ HTML = f'''<!DOCTYPE html>
     </div>
   </section>
 
-  <section id="bracket" class="sec">
+  <section id="bracket" class="sec sec--dark">
     <div class="wrap">
       {sec_head('トーナメント表', 'BRACKET')}
       <a class="br" href="{BR['src']}" target="_blank" rel="noopener"><img src="{BR['sm']}" srcset="{BR['sm']} 960w, {BR['src']} 1920w" sizes="(max-width:1160px) 100vw, 1160px" alt="{esc(title)} トーナメント表" width="1920" height="1080" loading="lazy"></a>
@@ -469,7 +491,7 @@ HTML = f'''<!DOCTYPE html>
     </div>
   </section>
 
-  <section id="round1" class="sec" style="padding-top:0">
+  <section id="round1" class="sec">
     <div class="wrap">
       {sec_head('1回戦 対戦カード', '1ST ROUND')}{round1()}
     </div>

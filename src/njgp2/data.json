@@ -44,35 +44,40 @@
       "name": "カイ・フジムラ",
       "en": "Kai Fujimura",
       "nick": "デスハンガー",
-      "team": "TEAM 2000X/J2KX"
+      "team": "TEAM 2000X/J2KX",
+      "profile": "https://www.noah.co.jp/profile/147/"
     },
     {
       "id": "bushi",
       "name": "BUSHI",
       "en": "BUSHI",
       "nick": "En serio",
-      "team": "LOS TRANQUILOS de JAPON"
-    },
-    {
-      "id": "lykos2",
-      "name": "キッド・ライコス2号",
-      "en": "Kid Lykos 2",
-      "nick": "The Problem",
-      "team": "ライコス・ジム"
-    },
-    {
-      "id": "alejandro",
-      "name": "アレハンドロ",
-      "en": "Alejandro",
-      "nick": "ゼログラビティ",
-      "team": ""
+      "team": "LOS TRANQUILOS de JAPON",
+      "profile": "https://www.noah.co.jp/profile/360/"
     },
     {
       "id": "namiki",
       "name": "並木宏也",
       "en": "Hiroya Namiki",
       "nick": "",
-      "team": ""
+      "team": "",
+      "profile": "https://www.noah.co.jp/profile/656/"
+    },
+    {
+      "id": "alejandro",
+      "name": "アレハンドロ",
+      "en": "Alejandro",
+      "nick": "ゼログラビティ",
+      "team": "",
+      "profile": "https://www.noah.co.jp/profile/234/"
+    },
+    {
+      "id": "lykos2",
+      "name": "キッド・ライコス2号",
+      "en": "Kid Lykos 2",
+      "nick": "The Problem",
+      "team": "ライコス・ジム",
+      "profile": "https://www.noah.co.jp/profile/624/"
     },
     {
       "id": "sato",
@@ -86,42 +91,48 @@
       "name": "小田嶋大樹",
       "en": "Daiki Odashima",
       "nick": "赤鬼2世",
-      "team": ""
+      "team": "",
+      "profile": "https://www.noah.co.jp/profile/507/"
     },
     {
       "id": "masaoka",
       "name": "政岡純",
       "en": "Jun Masaoka",
       "nick": "Midnight Jewel",
-      "team": "TEAM 2000X/J2KX"
+      "team": "TEAM 2000X/J2KX",
+      "profile": "https://www.noah.co.jp/profile/540/"
     },
     {
       "id": "kondo",
       "name": "近藤修司",
       "en": "Shuji Kondo",
       "nick": "最強キングコング",
-      "team": ""
+      "team": "",
+      "profile": "https://www.noah.co.jp/profile/244/"
     },
     {
       "id": "yohey",
       "name": "YO-HEY",
       "en": "YO-HEY",
       "nick": "HEARTBREAKER",
-      "team": "TEAM 2000X/J2KX"
+      "team": "TEAM 2000X/J2KX",
+      "profile": "https://www.noah.co.jp/profile/29/"
     },
     {
       "id": "tadasuke",
       "name": "タダスケ",
       "en": "Tadasuke",
       "nick": "The Hater",
-      "team": "TEAM 2000X/J2KX"
+      "team": "TEAM 2000X/J2KX",
+      "profile": "https://www.noah.co.jp/profile/24/"
     },
     {
       "id": "hi69",
       "name": "Hi69",
       "en": "Hi69",
       "nick": "超舞踏",
-      "team": "TEAM NOAH"
+      "team": "TEAM NOAH",
+      "profile": "https://www.noah.co.jp/profile/95/"
     },
     {
       "id": "akeem",
@@ -135,21 +146,24 @@
       "name": "キッド・ライコス1号",
       "en": "Kid Lykos 1",
       "nick": "Modern Nomad",
-      "team": "ライコス・ジム"
+      "team": "ライコス・ジム",
+      "profile": "https://www.noah.co.jp/profile/496/"
     },
     {
       "id": "mensore",
       "name": "ブラックめんそーれ",
       "en": "Black Mensore",
       "nick": "シャーーーッ！！！",
-      "team": ""
+      "team": "",
+      "profile": "https://www.noah.co.jp/profile/433/"
     },
     {
       "id": "bane",
       "name": "ドラゴン・ベイン",
       "en": "Dragon Bane",
       "nick": "キング・オブ・エア",
-      "team": ""
+      "team": "",
+      "profile": "https://www.noah.co.jp/profile/85/"
     }
   ],
   "events": [
@@ -188,7 +202,8 @@
           "b": "lykos1",
           "img": "vs_akeem_lykos1"
         }
-      ]
+      ],
+      "tv": "wu"
     },
     {
       "date": "11.14",
@@ -213,7 +228,8 @@
           "b": "masaoka",
           "img": "vs_odashima_masaoka"
         }
-      ]
+      ],
+      "tv": "wu"
     },
     {
       "date": "11.15",
@@ -239,7 +255,8 @@
           "img": "vs_mensore_bane"
         }
       ],
-      "maruhan": true
+      "maruhan": true,
+      "tv": "wu"
     },
     {
       "date": "11.20",
@@ -263,7 +280,8 @@
           "b_text": "⑧ ブラックめんそーれ vs ドラゴン・ベイン の勝者"
         }
       ],
-      "maruhan": true
+      "maruhan": true,
+      "tv": "wu"
     },
     {
       "date": "11.21",
@@ -282,7 +300,8 @@
           "b_text": "⑤ 並木宏也 vs アレハンドロ の勝者"
         }
       ],
-      "maruhan": true
+      "maruhan": true,
+      "tv": "wu"
     },
     {
       "date": "11.22",
@@ -301,7 +320,8 @@
           "b_text": "⑥ 小田嶋大樹 vs 政岡純 の勝者"
         }
       ],
-      "maruhan": true
+      "maruhan": true,
+      "tv": "wu"
     },
     {
       "date": "11.23",
@@ -325,7 +345,8 @@
           "b_text": "11.20 ❷の勝者"
         }
       ],
-      "maruhan": true
+      "maruhan": true,
+      "tv": "wu"
     },
     {
       "date": "11.28",
@@ -344,7 +365,8 @@
           "a_text": "準決勝(1)の勝者",
           "b_text": "準決勝(2)の勝者"
         }
-      ]
+      ],
+      "tv": "abema"
     }
   ],
   "tickets": {
@@ -568,7 +590,7 @@
         "NOAH公式Xに投稿されるキャンペーン対象ポストをリポスト"
       ],
       "steps_note": "以上で応募完了！ すでにフォローいただいている方も、対象ポストのリポストでご応募いただけます。",
-      "x_url": "https://x.com/noah_ghc",
+      "x_url": "https://x.com/noah_ghc/status/2114920785756504510",
       "result": [
         "応募締切後、厳正な抽選のうえ当選者を決定いたします。",
         "当選者の方には、NOAH公式Xアカウント（@noah_ghc）よりダイレクトメッセージ（DM）にてご連絡いたします。当選発表はDMへのご連絡をもって代えさせていただきます。",
@@ -590,6 +612,18 @@
         "本キャンペーンは、X社（X Corp.）の提供・協賛によるものではありません。",
         "ご応募いただいた際にお預かりする個人情報は、賞品の発送およびそれに付随するご連絡の目的にのみ利用し、目的達成後は適切に廃棄いたします。"
       ]
+    }
+  },
+  "broadcast": {
+    "wu": {
+      "name": "WRESTLE UNIVERSE",
+      "text": "WRESTLE UNIVERSEで生中継",
+      "url": "https://www.wrestle-universe.com/ja/noah"
+    },
+    "abema": {
+      "name": "ABEMA",
+      "text": "ABEMAで無料生中継",
+      "url": "https://abema.tv/video/genre/fightingsports"
     }
   }
 }
