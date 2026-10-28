@@ -628,7 +628,7 @@
   },
   "banner": {
     "bg": "radial-gradient(ellipse 60% 120% at 0% 100%,#e2352b 0%,transparent 70%),radial-gradient(ellipse 50% 120% at 100% 0%,#1f3fd1 0%,transparent 70%),linear-gradient(80deg,#f08a2c 0%,#f2cf4a 28%,#3cc98a 52%,#18b6c9 76%,#1f3fd1 100%)",
-    "logo": "uploads/maruhan_h_reverse.png",
+    "logo": "uploads/maruhan_h_white.png",
     "logo_suffix": "pres.",
     "logo_color": "#fff",
     "title": "NOAH Jr. GRAND PRIX 2",
