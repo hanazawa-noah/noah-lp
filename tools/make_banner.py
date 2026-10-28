@@ -12,7 +12,10 @@ src/<slug>/data.json の "banner" を読み、src/<slug>/banner/<slug>_banner_36
   "title": 2段目(大会名・英字),
   "sub":   3段目の日付(例 "11.9(月)〜11.28(土)"。数字と曜日は自動で書体を分ける),
   "cta":   3段目の誘導文(例 "特設サイトはこちら")
+  "event_logo": 大会ロゴ(白抜きPNG。指定すると「ロゴ大きめ」レイアウトになり、title/sub は使わない),
+  "cta_lines": ロゴレイアウト時の右ボタンの文言(行ごとの配列。例 ["特設サイト", "はこちら ▶"])
 }
+※ スマホでは小さく表示されるので、ロゴがある大会は event_logo 版を基本にする
 """
 import base64, html, json, pathlib, re, sys
 from playwright.sync_api import sync_playwright
@@ -25,9 +28,9 @@ GRAIN = ('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width
          '%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E'
          '%3CfeColorMatrix values=%220 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')
 
+def img_uri(path): return 'data:image/png;base64,' + base64.b64encode((src / path).read_bytes()).decode()
 if B.get('logo'):
-    uri = 'data:image/png;base64,' + base64.b64encode((src / B['logo']).read_bytes()).decode()
-    top = f'<p class="p"><img src="{uri}" alt="">{esc(B.get("logo_suffix", ""))}</p>'
+    top = f'<p class="p"><img src="{img_uri(B["logo"])}" alt="">{esc(B.get("logo_suffix", ""))}</p>'
 elif B.get('sponsor_text'):
     top = f'<p class="p">{esc(B["sponsor_text"])}</p>'
 else:
@@ -55,6 +58,18 @@ body{{width:360px;height:80px;overflow:hidden}}
 </style>
 <div class="b">{top}<p class="t">{esc(B['title'])}</p>
 <p class="s">{sub}　{esc(B['cta'])} ▶</p></div>'''
+if B.get('event_logo'):
+    # ロゴ大きめレイアウト: 左に協賛ロゴ+大会ロゴ、右に白いボタン
+    HTML = HTML.split('<div class="b">')[0].split('</style>')[0] + f'''
+.b{{flex-direction:row;justify-content:space-between;padding:0 10px 0 12px}}
+.lg{{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:6px}}
+.lg .p{{margin:0;font-size:12px;gap:5px}}
+.lg .p img{{height:19px}}
+.ev{{width:246px;height:auto;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,.35))}}
+.cta{{position:relative;z-index:1;background:#fff;color:#0c1226;text-shadow:none;border-radius:4px;padding:6px 7px;font-family:'Yu Gothic',Meiryo,sans-serif;font-weight:700;font-size:12.5px;line-height:1.3;text-align:center;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.25)}}
+</style>
+<div class="b"><div class="lg">{top}<img class="ev" src="{img_uri(B['event_logo'])}" alt=""></div>
+<p class="cta">{'<br>'.join(esc(x) for x in B.get('cta_lines', [B['cta'] + ' ▶']))}</p></div>'''
 
 out = src / 'banner'
 out.mkdir(exist_ok=True)
@@ -64,7 +79,7 @@ with sync_playwright() as p:
         pg = b.new_page(viewport={'width': 360, 'height': 80}, device_scale_factor=scale)
         pg.set_content(HTML, wait_until='networkidle'); pg.evaluate('document.fonts.ready')
         # はみ出しチェック(文字が長すぎると横からはみ出す)
-        if pg.evaluate("[...document.querySelectorAll('.p,.t,.s')].some(e=>e.scrollWidth>350)"):
+        if pg.evaluate("[...document.querySelectorAll('.p,.t,.s,.lg,.cta')].some(e=>e.getBoundingClientRect().right>360||e.scrollWidth>350)"):
             print('※ 文字が長すぎてバナーからはみ出しています。title/sub/cta を短くしてください')
         pg.screenshot(path=str(out / f'{slug}_banner_{size}.jpg'), type='jpeg', quality=92)
     b.close()

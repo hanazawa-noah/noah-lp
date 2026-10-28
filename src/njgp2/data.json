@@ -633,6 +633,11 @@
     "logo_color": "#1a1210",
     "title": "NOAH Jr. GRAND PRIX 2",
     "sub": "11.9(月)〜11.28(土)",
-    "cta": "特設サイトはこちら"
+    "cta": "特設サイトはこちら",
+    "event_logo": "uploads/logo_white_big.png",
+    "cta_lines": [
+      "特設サイト",
+      "はこちら ▶"
+    ]
   }
 }
