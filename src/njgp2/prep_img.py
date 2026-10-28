@@ -36,14 +36,6 @@ a = lg.point(lambda p: 255 if p < 70 else (0 if p > 130 else round((130 - p) * 2
 a = a.crop(a.getbbox())
 white = Image.new('RGBA', a.size, (255, 255, 255, 255)); white.putalpha(a)
 white.save('out/img/logo_white.webp', 'WEBP', quality=92, method=6)
-# バナー用の大きい白ロゴ: 形はそのまま、輪郭だけ4倍に滑らかに拡大(uploads/ に置き、バナー作成で使う)
-from PIL import ImageFilter
-big = lg.resize((lg.width * 4, lg.height * 4), Image.LANCZOS)
-ab = big.point(lambda p: 255 if p < 70 else (0 if p > 130 else round((130 - p) * 255 / 60))).filter(ImageFilter.GaussianBlur(1.2))
-ab = ab.point(lambda p: 0 if p < 60 else (255 if p > 195 else round((p - 60) * 255 / 135)))
-ab = ab.crop(ab.getbbox())
-wb = Image.new('RGBA', ab.size, (255, 255, 255, 255)); wb.putalpha(ab); wb.save('uploads/logo_white_big.png')
-print('logo big', wb.size)
 print('logo', white.size)
 
 for f in sorted(glob.glob('uploads/vs_*.jpg')):
