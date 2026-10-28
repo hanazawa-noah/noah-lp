@@ -4,3 +4,4 @@ src/*/prod/
 src/*/out/index.html
 src/*/*_preview.html
 src/*/unannounced.json
+src/*/uploads/*.ai
