@@ -32,4 +32,5 @@ python3 build.py >/dev/null
 mkdir -p prod/njgp2 && cp -r out/index.html out/img prod/njgp2/ && cp 設置手順.txt prod/
 (cd prod && zip -qr ../dist/njgp2_本番設置用.zip njgp2 設置手順.txt)
 zip -qj dist/njgp2_ソース_data_build.zip data.json build.py prep_img.py shot.py pack.sh 設置手順.txt
+python3 ../../tools/make_banner.py njgp2 && cp banner/*.jpg dist/  # LP誘導バナー(360×80/720×160)
 cp njgp2_preview.html dist/ && ls -la dist

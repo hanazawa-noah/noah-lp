@@ -29,4 +29,6 @@ python3 build.py >/dev/null
 mkdir -p prod/wo2026 && cp -r out/index.html out/img prod/wo2026/ && cp 設置手順.txt prod/
 (cd prod && zip -qr ../dist/wo2_本番設置用.zip wo2026 設置手順.txt)
 zip -qj dist/wo2_ソース_data_build.zip data.json build.py pack.sh 設置手順.txt
+# LP誘導バナー: data.json に "banner" があれば作る(tools/make_banner.py)
+if grep -q '"banner"' data.json; then python3 ../../tools/make_banner.py wo2 && cp banner/*.jpg dist/; fi
 cp wo2_preview.html dist/ && ls -la dist

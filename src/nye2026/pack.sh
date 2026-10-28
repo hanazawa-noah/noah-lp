@@ -29,4 +29,6 @@ python3 build.py >/dev/null
 mkdir -p prod/nye2026 && cp -r out/index.html out/img prod/nye2026/ && cp 設置手順.txt prod/
 (cd prod && zip -qr ../dist/nye2026_本番設置用.zip nye2026 設置手順.txt)
 zip -qj dist/nye2026_ソース_data_build.zip data.json unannounced.json build.py prep_img.py shot.py pack.sh 設置手順.txt
+# LP誘導バナー: data.json に "banner" があれば作る(tools/make_banner.py)
+if grep -q '"banner"' data.json; then python3 ../../tools/make_banner.py nye2026 && cp banner/*.jpg dist/; fi
 cp nye2026_preview.html dist/ && ls -la dist
