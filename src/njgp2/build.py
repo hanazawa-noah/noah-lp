@@ -93,14 +93,7 @@ def maruhan():
     evs = ''.join(f'''
         <article class="mhe box"><p class="mhe__no en">{esc(v['no'])}</p><h3 class="mhe__t">{esc(v['title'])}</h3><p class="mhe__x">{esc(v['text'])}</p>
           <dl class="mhe__spec">{''.join(f'<dt>{esc(k)}</dt><dd>{esc(d)}</dd>' for k, d in v['spec'])}</dl>{notes_ul(v['notes'])}</article>''' for v in MH['events'])
-    ven = ''.join(f'<li><b class="en">{esc(e["date"])}</b><small class="en">{esc(e["dow"])}</small><span>{esc(e["venue"])}</span>{f'<strong class="mhv__ph">撮影会 <b class="en">{esc(e["photo"])}</b>〜</strong>' if e.get('photo') else ''}<em>開場 {esc(e["open"])}／試合開始 {esc(e["start"])}</em></li>' for e in D['events'] if e.get('maruhan'))
-    PH = MH['photo']
-    steps = ''.join(f'<li><b class="en">{k + 1}</b><span><strong>{esc(t)}</strong>{esc(x)}</span></li>' for k, (t, x) in enumerate(PH['steps']))
-    photo = f'''
-      <div class="mhp box"><h3 class="mhp__t">{esc(PH['title'])}</h3>
-        <ol class="cp__steps mhp__steps">{steps}</ol>
-        <details class="cp__more"><summary>注意事項</summary>{notes_ul(PH['notes'])}</details>
-      </div>'''
+    ven = ''.join(f'<li><b class="en">{esc(e["date"])}</b><small class="en">{esc(e["dow"])}</small><span>{esc(e["venue"])}</span><em>開場 {esc(e["open"])}／開始 {esc(e["start"])}</em></li>' for e in D['events'] if e.get('maruhan'))
     return f'''
   <section id="maruhan" class="sec">
     <div class="wrap">
@@ -108,7 +101,7 @@ def maruhan():
       <div class="mh__intro">{banner(MH['banner'], 'マルハン×NOAH NOAH Jr. GRAND PRIX 2 冠協賛記念')}{''.join(f'<p>{esc(x)}</p>' for x in MH['lead'])}</div>
       <div class="mhes">{evs}
       </div>
-      <div class="mhv box"><h3 class="mhv__t">{esc(MH['venues_title'])}</h3><ul>{ven}</ul>{notes_ul([MH['venues_note']]) if MH.get('venues_note') else ''}</div>{photo}
+      <div class="mhv box"><h3 class="mhv__t">{esc(MH['venues_title'])}</h3><ul>{ven}</ul></div>
       <p class="mh__credit">{esc(MH['credit'])}</p>
     </div>
   </section>'''
@@ -301,17 +294,6 @@ ul{{list-style:none}}
 .mhv li b{{font-size:22px;line-height:1}}
 .mhv li small{{font-size:11px;margin-left:-6px}}
 .mhv li span{{font-weight:800}}
-.mhv__ph{{font-size:13px;font-weight:800;background:{T['mh']};padding:2px 9px;text-shadow:none}}
-.mhv__ph b{{font-size:15px}}
-.mhp{{position:relative;margin-top:22px;padding:28px 28px 22px}}
-.mhp::before{{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:{T['mh']}}}
-.mhp__t{{font-size:18px;font-weight:800;text-align:center;line-height:1.5;word-break:keep-all}}
-.mhp__steps b{{align-self:flex-start}}
-.mhp__steps{{align-items:stretch}}
-.mhp__steps li{{max-width:none;align-items:flex-start}}
-.mhp__steps span{{display:flex;flex-direction:column;gap:4px;font-size:13px}}
-.mhp__steps strong{{font-size:15px}}
-.mhp .cp__more{{max-width:none}}
 .mhv li em{{font-style:normal;font-size:13px;color:var(--tx2)}}
 .mh__credit{{text-align:center;font-size:13px;margin-top:28px}}
 .gs{{margin-top:44px}}
@@ -411,8 +393,6 @@ ul{{list-style:none}}
   .mhe{{padding:22px 18px 18px}}
   .mhe__t{{font-size:17px}}
   .mhv{{padding:18px}}
-  .mhp{{padding:22px 16px 16px}}
-  .mhp__t{{font-size:16px}}
   .mh__intro p:first-of-type{{font-size:16px;text-align:left}}
   .gs__t{{font-size:20px}}
   .gds{{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
