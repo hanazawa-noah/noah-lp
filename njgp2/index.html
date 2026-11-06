@@ -112,6 +112,9 @@ ul{list-style:none}
 .vs img{width:100%;aspect-ratio:16/9;object-fit:cover}
 .vs figcaption{display:flex;align-items:center;gap:10px;padding:12px 2px;font-size:15px;font-weight:800}
 .vs figcaption b{font-size:18px}
+.vs figcaption{flex-wrap:wrap}
+.m__note{display:block;flex-basis:100%;font-size:12px;font-weight:700;color:#fff;margin-top:-4px;line-height:1.5}
+.sc__cards .m__note{margin-top:2px;font-size:11px;color:inherit;opacity:.85}
 .vs figcaption i,.sc__cards i{font-family:var(--ff-en);font-style:normal;font-size:.8em;opacity:.7;margin:0 4px}
 
 /* schedule */
@@ -375,7 +378,6 @@ ul{list-style:none}
           <p class="r1__day"><span class="en">11.9</span><small>MON</small>東京・後楽園ホール</p>
           <div class="r1__grid">
           <figure class="vs"><img src="img/vs_fujimura_bushi_960.jpg" srcset="img/vs_fujimura_bushi_960.jpg 960w, img/vs_fujimura_bushi.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="カイ・フジムラ vs BUSHI" width="1920" height="1080" loading="lazy"><figcaption><b>①</b>カイ・フジムラ<i>vs</i>BUSHI</figcaption></figure>
-          <figure class="vs"><img src="img/vs_lykos2_sato_960.jpg" srcset="img/vs_lykos2_sato_960.jpg 960w, img/vs_lykos2_sato.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="キッド・ライコス2号 vs 佐藤維" width="1920" height="1080" loading="lazy"><figcaption><b>②</b>キッド・ライコス2号<i>vs</i>佐藤維</figcaption></figure>
           <figure class="vs"><img src="img/vs_kondo_yohey_960.jpg" srcset="img/vs_kondo_yohey_960.jpg 960w, img/vs_kondo_yohey.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="近藤修司 vs YO-HEY" width="1920" height="1080" loading="lazy"><figcaption><b>③</b>近藤修司<i>vs</i>YO-HEY</figcaption></figure>
           <figure class="vs"><img src="img/vs_akeem_lykos1_960.jpg" srcset="img/vs_akeem_lykos1_960.jpg 960w, img/vs_akeem_lykos1.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="シドニー・アキーム vs キッド・ライコス1号" width="1920" height="1080" loading="lazy"><figcaption><b>④</b>シドニー・アキーム<i>vs</i>キッド・ライコス1号</figcaption></figure>
           </div>
@@ -383,6 +385,7 @@ ul{list-style:none}
         <div class="r1">
           <p class="r1__day"><span class="en">11.14</span><small>SAT</small>大阪・梅田スカイビル ステラホール</p>
           <div class="r1__grid">
+          <figure class="vs"><img src="img/vs_lykos2_sato_960.jpg" srcset="img/vs_lykos2_sato_960.jpg 960w, img/vs_lykos2_sato.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="キッド・ライコス2号 vs 佐藤維" width="1920" height="1080" loading="lazy"><figcaption><b>②</b>キッド・ライコス2号<i>vs</i>佐藤維<small class="m__note">※佐藤維選手の欠場に伴い、11.9後楽園大会から変更</small></figcaption></figure>
           <figure class="vs"><img src="img/vs_namiki_alejandro_960.jpg" srcset="img/vs_namiki_alejandro_960.jpg 960w, img/vs_namiki_alejandro.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="並木宏也 vs アレハンドロ" width="1920" height="1080" loading="lazy"><figcaption><b>⑤</b>並木宏也<i>vs</i>アレハンドロ</figcaption></figure>
           <figure class="vs"><img src="img/vs_odashima_masaoka_960.jpg" srcset="img/vs_odashima_masaoka_960.jpg 960w, img/vs_odashima_masaoka.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="小田嶋大樹 vs 政岡純" width="1920" height="1080" loading="lazy"><figcaption><b>⑥</b>小田嶋大樹<i>vs</i>政岡純</figcaption></figure>
           </div>
@@ -406,7 +409,7 @@ ul{list-style:none}
           <p class="sc__date en">11.9<small>MON</small></p>
           <p class="sc__venue">東京・後楽園ホール</p>
           <p class="sc__time">開場 <b class="en">17:30</b>　開始 <b class="en">18:30</b></p>
-          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>①</b><span>カイ・フジムラ <i>vs</i> BUSHI</span></li><li><b>②</b><span>キッド・ライコス2号 <i>vs</i> 佐藤維</span></li><li><b>③</b><span>近藤修司 <i>vs</i> YO-HEY</span></li><li><b>④</b><span>シドニー・アキーム <i>vs</i> キッド・ライコス1号</span></li></ul></details>
+          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>①</b><span>カイ・フジムラ <i>vs</i> BUSHI</span></li><li><b>③</b><span>近藤修司 <i>vs</i> YO-HEY</span></li><li><b>④</b><span>シドニー・アキーム <i>vs</i> キッド・ライコス1号</span></li></ul></details>
           <p class="sc__tour">〜LEGACY RISE 2026〜</p>
           <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E5%BE%8C%E6%A5%BD%E5%9C%92%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -416,7 +419,7 @@ ul{list-style:none}
           <p class="sc__date en">11.14<small>SAT</small></p>
           <p class="sc__venue">大阪・梅田スカイビル ステラホール</p>
           <p class="sc__time">開場 <b class="en">17:00</b>　開始 <b class="en">18:00</b></p>
-          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>⑤</b><span>並木宏也 <i>vs</i> アレハンドロ</span></li><li><b>⑥</b><span>小田嶋大樹 <i>vs</i> 政岡純</span></li></ul></details>
+          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>②</b><span>キッド・ライコス2号 <i>vs</i> 佐藤維<small class="m__note">※佐藤維選手の欠場に伴い、11.9後楽園大会から変更</small></span></li><li><b>⑤</b><span>並木宏也 <i>vs</i> アレハンドロ</span></li><li><b>⑥</b><span>小田嶋大樹 <i>vs</i> 政岡純</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E6%A2%85%E7%94%B0%E3%82%B9%E3%82%AB%E3%82%A4%E3%83%93%E3%83%AB%20%E3%82%B9%E3%83%86%E3%83%A9%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">会場の地図 ↗</a>

@@ -43,13 +43,16 @@ def players():
         <li class="pl">{a1}<img src="img/p_{p['id']}.webp" alt="{esc(p['name'])}" width="210" height="265" loading="lazy"><div class="pl__box">{nick}<span class="pl__name">{esc(p['name']).replace('・', '・<wbr>').replace('ブラック', 'ブラック<wbr>')}</span>{team}{more}</div>{a2}</li>'''
     return out
 
+def note(m):  # 日程変更などの注記(例: 欠場による振替)
+    return f'<small class="m__note">※{esc(m["note"])}</small>' if m.get('note') else ''
+
 def round1():
     out = ''
     for e in D['events']:
         cards = [m for m in e['matches'] if m.get('img')]
         if not cards: continue
         items = ''.join(f'''
-          <figure class="vs"><img src="img/{m['img']}_960.jpg" srcset="img/{m['img']}_960.jpg 960w, img/{m['img']}.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="{esc(P[m['a']]['name'])} vs {esc(P[m['b']]['name'])}" width="1920" height="1080" loading="lazy"><figcaption><b>{m['no']}</b>{esc(P[m['a']]['name'])}<i>vs</i>{esc(P[m['b']]['name'])}</figcaption></figure>''' for m in cards)
+          <figure class="vs"><img src="img/{m['img']}_960.jpg" srcset="img/{m['img']}_960.jpg 960w, img/{m['img']}.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="{esc(P[m['a']]['name'])} vs {esc(P[m['b']]['name'])}" width="1920" height="1080" loading="lazy"><figcaption><b>{m['no']}</b>{esc(P[m['a']]['name'])}<i>vs</i>{esc(P[m['b']]['name'])}{note(m)}</figcaption></figure>''' for m in cards)
         out += f'''
         <div class="r1">
           <p class="r1__day"><span class="en">{esc(e['date'])}</span><small>{esc(e['dow'])}</small>{esc(e['venue'])}</p>
@@ -60,7 +63,7 @@ def round1():
 
 def match_line(m):
     if m.get('a'):
-        return f'<li><b>{m["no"]}</b><span>{esc(P[m["a"]]["name"])} <i>vs</i> {esc(P[m["b"]]["name"])}</span></li>'
+        return f'<li><b>{m["no"]}</b><span>{esc(P[m["a"]]["name"])} <i>vs</i> {esc(P[m["b"]]["name"])}{note(m)}</span></li>'
     return f'<li><b>{esc(m["no"])}</b><span>{esc(m["a_text"])}<i>vs</i>{esc(m["b_text"])}</span></li>'
 
 def schedule():
@@ -244,6 +247,9 @@ ul{{list-style:none}}
 .vs img{{width:100%;aspect-ratio:16/9;object-fit:cover}}
 .vs figcaption{{display:flex;align-items:center;gap:10px;padding:12px 2px;font-size:15px;font-weight:800}}
 .vs figcaption b{{font-size:18px}}
+.vs figcaption{{flex-wrap:wrap}}
+.m__note{{display:block;flex-basis:100%;font-size:12px;font-weight:700;color:#fff;margin-top:-4px;line-height:1.5}}
+.sc__cards .m__note{{margin-top:2px;font-size:11px;color:inherit;opacity:.85}}
 .vs figcaption i,.sc__cards i{{font-family:var(--ff-en);font-style:normal;font-size:.8em;opacity:.7;margin:0 4px}}
 
 /* schedule */

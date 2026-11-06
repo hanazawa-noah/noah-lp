@@ -185,12 +185,6 @@
           "img": "vs_fujimura_bushi"
         },
         {
-          "no": "②",
-          "a": "lykos2",
-          "b": "sato",
-          "img": "vs_lykos2_sato"
-        },
-        {
           "no": "③",
           "a": "kondo",
           "b": "yohey",
@@ -216,6 +210,13 @@
       "tour": "LETHAL ODYSSEY TOUR 2026",
       "round": "1回戦",
       "matches": [
+        {
+          "no": "②",
+          "a": "lykos2",
+          "b": "sato",
+          "img": "vs_lykos2_sato",
+          "note": "佐藤維選手の欠場に伴い、11.9後楽園大会から変更"
+        },
         {
           "no": "⑤",
           "a": "namiki",
