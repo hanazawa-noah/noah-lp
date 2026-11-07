@@ -45,9 +45,16 @@ for f in sorted(glob.glob('uploads/vs_*.jpg')):
 print('ok')
 
 # マルハン企画(noah.co.jp/news/8657/・8727/ の画像)
-for n in ['news_8657', 'news_8727']:
+for n in ['news_8657', 'news_8727', 'news_8755']:
     im = Image.open(f'uploads/{n}.jpg').convert('RGB')
     jpg(im, f'out/img/{n}.jpg', 1920, 88); jpg(im, f'out/img/{n}_960.jpg', 960, 84)
 for f in sorted(glob.glob('uploads/goods_*.png')):
     Image.open(f).convert('RGB').save('out/img/' + os.path.basename(f)[:-4] + '.webp', 'WEBP', quality=84, method=6)
 print('maruhan ok')
+
+# ニュース一覧のサムネイル(nw_<ID>)と大会グッズ(sh_*)
+for f in sorted(glob.glob('uploads/nw_*.jpg')):
+    jpg(Image.open(f).convert('RGB'), 'out/img/' + os.path.basename(f), 480, 78)
+for f in sorted(glob.glob('uploads/sh_*.jpg')):
+    jpg(Image.open(f).convert('RGB'), 'out/img/' + os.path.basename(f), 960, 80)
+print('news/shop ok')

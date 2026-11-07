@@ -26,7 +26,7 @@ def svg_uri(svg): return 'data:image/svg+xml,' + urllib.parse.quote(svg)
 GRAIN = svg_uri('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>')
 
 def map_url(e): return 'https://www.google.com/maps/search/?api=1&query=' + urllib.parse.quote(e['venue_map'])
-NAV = [('players', '出場選手'), ('bracket', 'トーナメント表'), ('round1', '1回戦カード'), ('schedule', '日程'), ('maruhan', 'マルハン企画'), ('goods', 'コラボグッズ'), ('ticket', 'チケット')]
+NAV = [('players', '出場選手'), ('bracket', 'トーナメント'), ('round1', '1回戦'), ('schedule', '日程'), ('news', 'ニュース'), ('maruhan', 'マルハン企画'), ('goods', 'グッズ'), ('movie', '動画'), ('ticket', 'チケット')]
 def nav_links(): return ''.join(f'<a href="#{i}">{t}</a>' for i, t in NAV)
 
 def sec_head(ja, en):
@@ -100,7 +100,7 @@ def maruhan():
     PH = MH['photo']
     steps = ''.join(f'<li><b class="en">{k + 1}</b><span><strong>{esc(t)}</strong>{esc(x)}</span></li>' for k, (t, x) in enumerate(PH['steps']))
     photo = f'''
-      <div class="mhp box"><h3 class="mhp__t">{esc(PH['title'])}</h3>
+      <div class="mhp box">{banner(PH['banner'], 'マルハン×NOAH 3Shotリングサイド撮影会開催') if PH.get('banner') else ''}<h3 class="mhp__t">{esc(PH['title'])}</h3>
         <ol class="cp__steps mhp__steps">{steps}</ol>
         <details class="cp__more"><summary>注意事項</summary>{notes_ul(PH['notes'])}</details>
       </div>'''
@@ -145,6 +145,59 @@ def goods():
       <p class="mh__credit">{esc(MH['credit'])}</p>
     </div>
   </section>'''
+
+def news():
+    if not D.get('news'): return ''
+    items = ''.join(f"""
+        <li><a class="nw" href="{esc(n['url'])}" target="_blank" rel="noopener"><img src="img/{n['img']}.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">{esc(n['date'])}</time><small>{esc(n['cat'])}</small></span><span class="nw__t">{esc(n['title'])}</span></span></a></li>""" for n in D['news'])
+    return f"""
+  <section id="news" class="sec">
+    <div class="wrap">
+      {sec_head('ニュース', 'NEWS')}
+      <ul class="nws">{items}
+      </ul>
+      <p class="tk__more"><a class="btn btn--ghost" href="https://www.noah.co.jp/news/" target="_blank" rel="noopener">NOAH公式サイト ニュース一覧 ↗</a></p>
+    </div>
+  </section>"""
+
+def shop():
+    S = D.get('shop')
+    if not S: return ''
+    items = ''.join(f"""
+          <li class="gd"><img src="img/{i['img']}.jpg" alt="{esc(i['name'])}" width="960" height="540" loading="lazy"><p class="gd__n">{esc(i['name'])}</p><p class="gd__p en shop__p">{''.join(f'<span>{esc(x)}</span>' for x in i['price'].split('／'))}</p>{('<p class="gd__note">' + esc(i['note']) + '</p>') if i.get('note') else ''}</li>""" for i in S['items'])
+    G = S['sign']
+    return f"""
+  <section id="shop" class="sec">
+    <div class="wrap">
+      {sec_head('大会グッズ', 'NEW ITEMS')}
+      <p class="shop__lead">{esc(S['lead'])}</p>
+      <ul class="gds shop__gds">{items}
+      </ul>
+      <p class="tk__more"><a class="btn btn--pri" href="{esc(S['url'])}" target="_blank" rel="noopener">NOAH THE SHOP（公式通販）↗</a></p>
+      <div class="sign box">
+        <p class="sign__lab en">SIGNING</p>
+        <h3 class="sign__t">{esc(G['title'])}</h3>
+        <p class="sign__who"><i><span>登場選手</span><b>{esc(G['who'])}</b></i><i><span>開始</span><b class="en">{esc(G['time'])}</b></i></p>
+        <p class="sign__x">{esc(G['text'])}</p>{notes_ul(G['notes'])}
+        <p class="sign__more"><a href="{esc(G['url'])}" target="_blank" rel="noopener">サイン会の詳細（公式ニュース）↗</a></p>
+      </div>
+    </div>
+  </section>"""
+
+def movie():
+    V = D.get('videos') or []
+    if not V: return ''
+    cards = ''.join(f"""
+        <div class="video"><button class="video__frame" type="button" data-id="{esc(v['id'])}" aria-label="動画を再生"><img src="img/video_{esc(v['id'])}.jpg" alt="{esc(v['title'])}" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">{esc(v['title'])}</p></div>""" for v in V)
+    return f"""
+  <section id="movie" class="sec">
+    <div class="wrap">
+      {sec_head('動画', 'MOVIE')}
+      <div class="videos">{cards}
+      </div>
+    </div>
+  </section>
+  <script>document.querySelectorAll('.video__frame[data-id]').forEach(function(b){{b.addEventListener('click',function(){{var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0';f.title='YouTube video';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.className='video__iframe';b.replaceWith(f);}});}});</script>"""
 
 def playguides():
     return ''.join(f'<a class="pg" href="{esc(p["url"])}" target="_blank" rel="noopener"><span>{esc(p["name"])}</span><b>チケットを購入する ↗</b></a>' for p in TK['playguides'])
@@ -191,7 +244,7 @@ ul{{list-style:none}}
 .header__logo{{display:flex;align-items:center;gap:12px}}
 .header__logo img{{height:30px;width:auto}}
 .header__logo small{{font-size:11px;letter-spacing:.06em;color:var(--tx2);white-space:nowrap}}
-.header__nav{{display:flex;gap:26px;font-weight:700;font-size:14px;letter-spacing:.08em}}
+.header__nav{{display:flex;gap:20px;font-weight:700;font-size:13px;letter-spacing:.06em;white-space:nowrap}}
 .header__nav a{{position:relative;padding:4px 0}}
 .header__nav a::after{{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--rb);transition:.25s}}
 .header__nav a:hover::after{{width:100%}}
@@ -311,6 +364,7 @@ ul{{list-style:none}}
 .mhv__ph b{{font-size:15px}}
 .mhp{{position:relative;margin-top:22px;padding:28px 28px 22px}}
 .mhp::before{{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:{T['mh']}}}
+.mhp .mh__banner{{aspect-ratio:auto;height:auto}}
 .mhp__t{{font-size:18px;font-weight:800;text-align:center;line-height:1.5;word-break:keep-all}}
 .mhp__steps b{{align-self:flex-start}}
 .mhp__steps{{align-items:stretch}}
@@ -372,8 +426,57 @@ ul{{list-style:none}}
 .footer__links a:hover{{color:#fff}}
 .footer__copy{{font-family:var(--ff-en);font-size:11px;color:var(--tx2);letter-spacing:.1em}}
 
+/* news */
+.nws{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+.nw{{display:flex;gap:16px;align-items:flex-start;height:100%;padding:12px;background:rgba(12,18,38,.72);border:1px solid var(--line);border-radius:4px;transition:.2s}}
+.nw:hover{{background:rgba(12,18,38,.9);border-color:#fff}}
+.nw img{{width:168px;flex:none;aspect-ratio:16/9;object-fit:cover}}
+.nw__b{{display:flex;flex-direction:column;gap:6px;min-width:0}}
+.nw__m{{display:flex;align-items:center;gap:10px;font-size:12px}}
+.nw__m time{{font-weight:700;letter-spacing:.06em}}
+.nw__m small{{font-size:11px;border:1px solid rgba(255,255,255,.6);padding:0 7px;line-height:1.6}}
+.nw__t{{font-size:14px;font-weight:700;line-height:1.6}}
+/* shop */
+.shop__lead{{text-align:center;font-size:15px;margin-bottom:24px}}
+.shop__gds .gd img{{aspect-ratio:16/9;background:#000}}
+.sign{{position:relative;max-width:820px;margin:40px auto 0;padding:30px 32px 24px}}
+.sign::before{{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--rb)}}
+.sign__lab{{font-weight:800;font-size:12px;letter-spacing:.2em}}
+.sign__t{{font-size:20px;font-weight:800;margin-top:4px}}
+.sign__who{{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:12px}}
+.sign__who i{{font-style:normal;display:inline-flex;align-items:baseline;gap:10px;white-space:nowrap}}
+.shop__p span{{margin-right:12px;white-space:nowrap}}
+.sign__who span{{font-size:12px;border:1px solid rgba(255,255,255,.6);padding:0 8px}}
+.sign__who b{{font-size:18px;font-weight:800;margin-right:10px}}
+.sign__x{{font-size:14px;margin-top:10px}}
+.sign__more{{margin-top:14px;font-size:13px}}
+.sign__more a{{border-bottom:1px solid #fff}}
+/* movie */
+.videos{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}}
+.video{{background:rgba(12,18,38,.72);border:1px solid var(--line);border-radius:4px;overflow:hidden}}
+.video__frame{{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;background:#000;cursor:pointer;overflow:hidden}}
+.video__frame img{{width:100%;height:100%;object-fit:cover;transition:.3s}}
+.video__frame:hover img{{transform:scale(1.03)}}
+.video__play{{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 8px 30px rgba(0,0,0,.5)}}
+.video__play::after{{content:"";position:absolute;left:28px;top:21px;border-style:solid;border-width:15px 0 15px 24px;border-color:transparent transparent transparent #0c1226}}
+.video__iframe{{width:100%;aspect-ratio:16/9;border:0;display:block;background:#000}}
+.video__title{{padding:14px 18px;font-size:14px;line-height:1.6}}
+
+@media (max-width:1200px){{.header__logo small{{display:none}}}}
 /* ---- SP ---- */
 @media (max-width:900px){{
+  .nws{{grid-template-columns:1fr;gap:10px}}
+  .nw{{gap:12px;padding:10px}}
+  .nw img{{width:116px}}
+  .nw__t{{font-size:13px;line-height:1.55}}
+  .shop__lead{{font-size:13px;text-align:left}}
+  .sign{{padding:24px 18px 18px}}
+  .sign__t{{font-size:17px}}
+  .sign__x{{font-size:13px}}
+  .videos{{grid-template-columns:1fr;gap:16px}}
+  .shop__p{{font-size:14px}}
+  .shop__p span{{display:block}}
+  .video__title{{padding:10px 14px;font-size:13px}}
   .wrap{{width:min(100% - 32px,var(--max))}}
   .sec{{padding:64px 0}}
   .sec__head{{margin-bottom:32px}}
@@ -530,7 +633,7 @@ HTML = f'''<!DOCTYPE html>
       </div>
     </div>
   </section>
-{maruhan()}{goods()}
+{news()}{maruhan()}{goods()}{shop()}{movie()}
 
   <section id="ticket" class="sec">
     <div class="wrap">

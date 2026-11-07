@@ -418,7 +418,7 @@
     }
   ],
   "maruhan": {
-    "_comment": "出典: noah.co.jp/news/8657/(会場企画) ・ /news/8727/(コラボグッズ・Xキャンペーン)",
+    "_comment": "出典: noah.co.jp/news/8657/(会場企画) ・ /news/8727/(コラボグッズ・Xキャンペーン) ・ /news/8755/(3Shot撮影会)",
     "credit": "協賛：株式会社マルハン 北日本カンパニー",
     "banner": "news_8657",
     "lead": [
@@ -646,7 +646,8 @@
         "撮影会中のサイン対応やプレゼントのお渡しはご遠慮ください。",
         "当日はスタッフの案内・誘導にご協力をお願いいたします。",
         "撮影会の内容は、都合により変更・中止となる場合がございます。"
-      ]
+      ],
+      "banner": "news_8755"
     }
   },
   "broadcast": {
@@ -670,5 +671,144 @@
     "sub": "11.9(月)〜11.28(土)",
     "cta": "特設サイトはこちら",
     "event_logo": "uploads/njgp_logo_white.png"
+  },
+  "news": [
+    {
+      "date": "2026.11.06",
+      "cat": "メディア",
+      "title": "【コラボYouTube公開中！】マルハン北日本カンパニー×NOAH「にゃんまるからの挑戦状」にOZAWAが挑む！",
+      "url": "https://www.noah.co.jp/news/8763/",
+      "img": "nw_8763"
+    },
+    {
+      "date": "2026.11.06",
+      "cat": "インタビュー",
+      "title": "タダスケ「テーマは安全」、政岡「当たり前に優勝」、YO-HEY「マルハン様に恩返し」、カイ「ミンナ、アソボウ…」J2KX4選手インタビュー",
+      "url": "https://www.noah.co.jp/news/8762/",
+      "img": "nw_8762"
+    },
+    {
+      "date": "2026.11.06",
+      "cat": "大会情報",
+      "title": "【マルハン×NOAH】「にゃんまる×選手 3Shotリングサイド撮影会」詳細決定！",
+      "url": "https://www.noah.co.jp/news/8755/",
+      "img": "nw_8755"
+    },
+    {
+      "date": "2026.11.06",
+      "cat": "グッズ",
+      "title": "【11.9後楽園】「マルハン presents NOAH Jr. GRAND PRIX 2」記念Tシャツ＆全選手ポートレートが登場！",
+      "url": "https://www.noah.co.jp/news/8760/",
+      "img": "nw_8760"
+    },
+    {
+      "date": "2026.11.06",
+      "cat": "グッズ",
+      "title": "【11.9後楽園】Hi69ストゥーカスプラッシュ Tシャツ新発売！",
+      "url": "https://www.noah.co.jp/news/8758/",
+      "img": "nw_8758"
+    },
+    {
+      "date": "2026.11.06",
+      "cat": "グッズ",
+      "title": "【11.9後楽園】GRAPEBRAIN描き下ろしの拳王応援Tシャツが新登場！",
+      "url": "https://www.noah.co.jp/news/8759/",
+      "img": "nw_8759"
+    },
+    {
+      "date": "2026.11.06",
+      "cat": "グッズ",
+      "title": "【11.9後楽園】「内藤哲也vs拳王 GHCヘビー級選手権ジオラマアクリルスタンド」発売",
+      "url": "https://www.noah.co.jp/news/8757/",
+      "img": "nw_8757"
+    },
+    {
+      "date": "2026.11.05",
+      "cat": "グッズ",
+      "title": "【小田嶋大樹が登場！】11月9日（月）後楽園ホール大会 試合前サイン会開催",
+      "url": "https://www.noah.co.jp/news/8756/",
+      "img": "nw_8756"
+    },
+    {
+      "date": "2026.11.05",
+      "cat": "大会情報",
+      "title": "【11/8 昼12時〜生中継！】後楽園ホール大会 記者会見＆調印式開催！",
+      "url": "https://www.noah.co.jp/news/8752/",
+      "img": "nw_8752"
+    },
+    {
+      "date": "2026.11.04",
+      "cat": "インタビュー",
+      "title": "小田嶋大樹、2年連続のNOAH Jr. GRAND PRIX 2へ「何が何でも優勝」「外敵には渡さない」",
+      "url": "https://www.noah.co.jp/news/8751/",
+      "img": "nw_8751"
+    },
+    {
+      "date": "2026.11.03",
+      "cat": "大会情報",
+      "title": "【11.9後楽園】対戦カード変更＆試合順決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8744/",
+      "img": "nw_8744"
+    }
+  ],
+  "videos": [
+    {
+      "id": "_YHrM7u1bmY",
+      "title": "【11/8(日) 12:00〜生中継】11.9後楽園ホール大会 前日記者会見＆調印式（NOAH公式YouTube）"
+    },
+    {
+      "id": "TkT0l13mjhs",
+      "title": "【祝マルハン協賛記念コラボ】OZAWAがパチスロ実践！（マルハン北日本カンパニー×NOAH 前編）"
+    }
+  ],
+  "shop": {
+    "_comment": "出典: noah.co.jp/news/8760/ 8758/ 8759/ 8757/ 8756/",
+    "lead": "11月9日（月）東京・後楽園ホール大会の会場と、同日18時から公式通販「NOAH THE SHOP」で販売開始。",
+    "url": "https://shop.noah.co.jp/collections/newitem",
+    "items": [
+      {
+        "img": "sh_tour",
+        "name": "マルハン presents NOAH Jr. GRAND PRIX 2 ツアーTシャツ",
+        "price": "会場 ¥4,000／通販 ¥4,400",
+        "note": "サイズ：S／M／L／XL／XXL"
+      },
+      {
+        "img": "sh_portrait",
+        "name": "マルハン presents NOAH Jr. GRAND PRIX 2 記念ポートレート",
+        "price": "会場 ¥2,000／通販 ¥2,200",
+        "note": "サイズ：A4（出場全選手）"
+      },
+      {
+        "img": "sh_hi69",
+        "name": "Hi69 ストゥーカスプラッシュ Tシャツ",
+        "price": "会場 ¥4,500／通販 ¥4,950",
+        "note": "サイズ：S／M／L／XL／XXL"
+      },
+      {
+        "img": "sh_kenoh",
+        "name": "拳王×GRAPEBRAIN KICK Tシャツ",
+        "price": "会場 ¥4,500／通販 ¥4,950",
+        "note": "サイズ：S／M／L／XL／XXL"
+      },
+      {
+        "img": "sh_acst",
+        "name": "内藤哲也vs拳王 GHCヘビー級選手権 ジオラマアクリルスタンド",
+        "price": "会場 ¥4,000／通販 ¥4,400",
+        "note": "数量限定／リング12cm四方・選手約8cm"
+      }
+    ],
+    "sign": {
+      "title": "11.9 後楽園ホール 試合前サイン会",
+      "who": "小田嶋大樹",
+      "time": "17:45〜",
+      "text": "会場グッズ売店で対象商品を1点購入ごとに、サイン会参加券を1枚お渡しします。ポートレートを購入された方には、ポートレートにサインをお入れします。",
+      "notes": [
+        "1Shot撮影を含む、選手の撮影はすべて禁止です。",
+        "参加券は予定枚数がなくなり次第、配布終了となります。",
+        "サインは購入グッズ、またはNOAHオリジナル色紙にお入れします。名前・日付入れはお断りしています。",
+        "選手への差し入れ・プレゼントはお受けできません。"
+      ],
+      "url": "https://www.noah.co.jp/news/8756/"
+    }
   }
 }
