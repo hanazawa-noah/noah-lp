@@ -182,19 +182,22 @@
           "no": "①",
           "a": "fujimura",
           "b": "bushi",
-          "img": "vs_fujimura_bushi"
+          "img": "vs_fujimura_bushi",
+          "winner": "bushi"
         },
         {
           "no": "③",
           "a": "kondo",
           "b": "yohey",
-          "img": "vs_kondo_yohey"
+          "img": "vs_kondo_yohey",
+          "winner": "yohey"
         },
         {
           "no": "④",
           "a": "akeem",
           "b": "lykos1",
-          "img": "vs_akeem_lykos1"
+          "img": "vs_akeem_lykos1",
+          "winner": "akeem"
         }
       ],
       "tv": "wu"
