@@ -1,0 +1,26 @@
+■ 大谷晋二郎 ひたすら前進プロジェクトLP 設置手順（仮公開用）
+
+【アップ先】
+https://noah.co.jp/lp/otanishinjiro/
+
+【手順】
+1. このZIPを解凍すると「otanishinjiro」フォルダが出てきます
+2. FileZillaなどでサーバーに接続し、「/lp/」フォルダの中に
+   「otanishinjiro」フォルダをフォルダごとアップロードします
+   （中身は index.html と img フォルダです）
+3. ブラウザで https://noah.co.jp/lp/otanishinjiro/ を開いて表示を確認します
+   ※表示が古い場合は Ctrl+F5（Macは Cmd+Shift+R）で更新してください
+
+【このバージョンについて】
+・仮公開用のため、検索エンジンに載らない設定（noindex）が入っています。
+  関係者へのURL共有は問題なくできます。
+・アクセス計測タグ（GTM）は設置済みです。
+
+【本公開のとき】
+・index.html 内の以下の1行を削除した本公開版をお渡ししますので、
+  その時はファイルを上書きするだけでOKです。
+  <meta name="robots" content="noindex, nofollow">
+
+【修正が必要になったら】
+・サーバー上の index.html をダウンロードしてチャットに添付してください。
+  該当箇所だけ直して1ファイルでお返しします。
