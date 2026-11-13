@@ -96,7 +96,7 @@ def maruhan():
     evs = ''.join(f'''
         <article class="mhe box"><p class="mhe__no en">{esc(v['no'])}</p><h3 class="mhe__t">{esc(v['title'])}</h3><p class="mhe__x">{esc(v['text'])}</p>
           <dl class="mhe__spec">{''.join(f'<dt>{esc(k)}</dt><dd>{esc(d)}</dd>' for k, d in v['spec'])}</dl>{notes_ul(v['notes'])}</article>''' for v in MH['events'])
-    ven = ''.join(f'<li><b class="en">{esc(e["date"])}</b><small class="en">{esc(e["dow"])}</small><span>{esc(e["venue"])}</span>{f'<strong class="mhv__ph">撮影会 <b class="en">{esc(e["photo"])}</b>〜</strong>' if e.get('photo') else ''}<em>開場 {esc(e["open"])}／試合開始 {esc(e["start"])}</em></li>' for e in D['events'] if e.get('maruhan'))
+    ven = ''.join(f'<li><b class="en">{esc(e["date"])}</b><small class="en">{esc(e["dow"])}</small><span>{esc(e["venue"])}</span>{f'<strong class="mhv__ph">撮影会 <b class="en">{esc(e["photo"])}</b>〜{('（' + esc(e["photo_who"]) + '）') if e.get('photo_who') else ''}</strong>' if e.get('photo') else ''}<em>開場 {esc(e["open"])}／試合開始 {esc(e["start"])}</em></li>' for e in D['events'] if e.get('maruhan'))
     PH = MH['photo']
     steps = ''.join(f'<li><b class="en">{k + 1}</b><span><strong>{esc(t)}</strong>{esc(x)}</span></li>' for k, (t, x) in enumerate(PH['steps']))
     photo = f'''
@@ -177,9 +177,8 @@ def shop():
       <div class="sign box">
         <p class="sign__lab en">SIGNING</p>
         <h3 class="sign__t">{esc(G['title'])}</h3>
-        <p class="sign__who"><i><span>登場選手</span><b>{esc(G['who'])}</b></i><i><span>開始</span><b class="en">{esc(G['time'])}</b></i></p>
+        {''.join(f"""<p class="sign__day en">{esc(r['date'])}</p><p class="sign__who"><i><span>登場選手</span><b>{esc(r['who'])}</b></i><i><span>開始</span><b class="en">{esc(r['time'])}</b></i><a class="sign__lnk" href="{esc(r['url'])}" target="_blank" rel="noopener">詳細 ↗</a></p>""" for r in G['rows'])}
         <p class="sign__x">{esc(G['text'])}</p>{notes_ul(G['notes'])}
-        <p class="sign__more"><a href="{esc(G['url'])}" target="_blank" rel="noopener">サイン会の詳細（公式ニュース）↗</a></p>
       </div>
     </div>
   </section>"""
@@ -449,6 +448,9 @@ ul{{list-style:none}}
 .sign__who span{{font-size:12px;border:1px solid rgba(255,255,255,.6);padding:0 8px}}
 .sign__who b{{font-size:18px;font-weight:800;margin-right:10px}}
 .sign__x{{font-size:14px;margin-top:10px}}
+.sign__day{{margin-top:14px;font-size:14px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:4px}}
+.sign__day + .sign__who{{margin-top:8px}}
+.sign__lnk{{font-size:13px;border-bottom:1px solid #fff}}
 .sign__more{{margin-top:14px;font-size:13px}}
 .sign__more a{{border-bottom:1px solid #fff}}
 /* movie */
