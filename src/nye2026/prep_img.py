@@ -35,3 +35,17 @@ v = v.crop(v.convert('L').point(lambda p: 255 if p > 12 else 0).getbbox())
 v.save('out/img/venue.jpg', 'JPEG', quality=88, optimize=True, progressive=True)
 v.resize((960, round(v.height * 960 / v.width)), Image.LANCZOS).save('out/img/venue_960.jpg', 'JPEG', quality=84, optimize=True, progressive=True)
 print('venue', v.size)
+
+# バナー用ロゴ: デザイナーのベクターデータ(PSDのリンク元 .ai)を高解像度で書き出し、LPと同じ金色で塗る
+import fitz
+pix = fitz.open('uploads/logo_vector.ai')[0].get_pixmap(dpi=300, alpha=True)
+va = Image.frombytes('RGBA', (pix.width, pix.height), pix.samples).getchannel('A')
+va = va.crop(va.getbbox())
+vw, vh = va.size
+vg = Image.new('RGB', (1, vh))
+for y in range(vh):
+    t = y / (vh - 1)
+    vg.putpixel((0, y), tuple(round(top[i] + (bot[i] - top[i]) * t) for i in range(3)))
+vg = vg.resize((vw, vh)); vg.putalpha(va)
+vg.resize((1400, round(vh * 1400 / vw)), Image.LANCZOS).save('uploads/banner_logo_gold.png')
+print('banner logo', vg.size)

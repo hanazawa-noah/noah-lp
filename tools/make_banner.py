@@ -12,7 +12,8 @@ src/<slug>/data.json の "banner" を読み、src/<slug>/banner/<slug>_banner_36
   "title": 2段目(大会名・英字),
   "sub":   3段目の日付(例 "11.9(月)〜11.28(土)"。数字と曜日は自動で書体を分ける),
   "cta":   3段目の誘導文(例 "特設サイトはこちら")
-  "event_logo": 大会ロゴ(公式データの白版PNG。指定すると「ロゴ大きめ」レイアウトになり、title/sub/cta は使わない)
+  "event_logo": 大会ロゴ(公式データの白版PNG。指定すると「ロゴ大きめ」レイアウトになり、title/sub/cta は使わない),
+  "event_logo_w": 大会ロゴの幅(省略時 282px。縦長のロゴで高さが80pxを超えるときに小さくする)
 }
 ※ スマホでは小さく表示されるので、ロゴがある大会は event_logo 版を基本にする。
 ※ ロゴには影・縁取り・色変更など一切加えない。誘導ボタンも付けない(小さくて読めないため)。
@@ -73,9 +74,12 @@ def img_px(path, h=None, w=None):
 
 def logo_html(scale):
     # ロゴ大きめレイアウト: 上に協賛ロゴ(+pres.)、下に大会ロゴ。ボタン・影・縁取りは付けない
-    lh, ew = 19, 282
-    lu, ls = img_px(B['logo'], h=lh * scale)
+    lh, ew = 19, B.get('event_logo_w', 282)
     eu, es = img_px(B['event_logo'], w=ew * scale)
+    top = ''  # 協賛ロゴが無い(未発表など)ときは大会ロゴだけ
+    if B.get('logo'):
+        lu, ls = img_px(B['logo'], h=lh * scale)
+        top = f'<p class="p"><img src="{lu}" alt="" style="height:{lh}px;width:{ls[0] / scale}px">{esc(B.get('logo_suffix', ''))}</p>'
     return f'''<!doctype html><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=block" rel="stylesheet">
 <style>
@@ -86,10 +90,10 @@ body{{width:360px;height:80px;overflow:hidden}}
 .b::before{{content:"";position:absolute;inset:0;background:rgba(4,7,18,.28)}}  /* 背景だけ薄く暗くして白ロゴを読みやすく(LPのトーナメント表と同じ考え方) */
 .p,.ev{{position:relative;z-index:1}}
 .p{{display:flex;align-items:flex-end;gap:5px;font-family:Montserrat,sans-serif;font-weight:800;font-size:10px;line-height:1;color:{B.get('logo_color', '#fff')}}}
-.p img{{height:{lh}px;width:{ls[0] / scale}px;display:block}}
+.p img{{display:block}}
 .ev{{width:{ew}px;height:{es[1] / scale}px;display:block}}
 </style>
-<div class="b"><p class="p"><img src="{lu}" alt="">{esc(B.get('logo_suffix', ''))}</p><img class="ev" src="{eu}" alt=""></div>'''
+<div class="b">{top}<img class="ev" src="{eu}" alt=""></div>'''
 
 out = src / 'banner'
 out.mkdir(exist_ok=True)

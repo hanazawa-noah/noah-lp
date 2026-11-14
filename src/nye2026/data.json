@@ -218,5 +218,14 @@
     "h": 142,
     "lg_w": 1200,
     "lg_h": 356
+  },
+  "banner": {
+    "_comment": "LP誘導バナー。冠協賛(LINEヤフー)は未発表のため協賛ロゴなし。発表後に logo / logo_suffix を足す",
+    "bg": "radial-gradient(ellipse 45% 110% at 2% 100%,rgba(217,160,58,.45) 0%,transparent 70%),radial-gradient(ellipse 40% 110% at 100% 0%,rgba(192,67,44,.55) 0%,transparent 70%),#0b1b24",
+    "title": "NOAH \"THE NEW YEAR\" EVE 2026",
+    "sub": "12.31(木)",
+    "cta": "特設サイトはこちら",
+    "event_logo": "uploads/banner_logo_gold.png",
+    "event_logo_w": 228
   }
 }
