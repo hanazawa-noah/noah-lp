@@ -50,8 +50,8 @@ def fireworks(seed, W, H, spec):
     body = ''.join(burst(r, *s) for s in spec)
     return svg_uri(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice">{body}</svg>')
 
-FW_CATCH = fireworks(1231, 1600, 600, [(140, 120, 210, T['gold']), (1450, 150, 230, T['red']), (1300, 520, 120, T['gold_d'])])
-FW_FOOT = fireworks(101, 1600, 500, [(160, 520, 300, T['gold_d']), (1480, 80, 220, T['red'])])
+FW_CATCH = fireworks(1231, 1600, 600, [(140, 120, 210, T['gold']), (1450, 150, 230, T['pink']), (1300, 520, 120, T['gold_d'])])
+FW_FOOT = fireworks(101, 1600, 500, [(160, 520, 300, T['gold_d']), (1480, 80, 220, T['pink'])])
 
 # ---------- partials ----------
 def nav_links():
@@ -153,7 +153,7 @@ alt = f"{esc(title)} {esc(E['date_ja'])} {esc(E['venue'])}"
 
 # ---------- CSS ----------
 CSS = f'''
-:root{{--bg:{T['bg']};--bg2:{T['bg2']};--gold:{T['gold']};--gold-d:{T['gold_d']};--red:{T['red']};--tx:#F7EEF2;--tx2:#BDAFB7;--line:rgba(234,169,193,.30);--max:1100px;
+:root{{--bg:{T['bg']};--bg2:{T['bg2']};--gold:{T['gold']};--gold-d:{T['gold_d']};--red:{T['red']};--pk:{T['pink']};--tx:#F7EEF2;--tx2:#BDAFB7;--line:rgba(241,228,198,.20);--max:1100px;
 --ff-en:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;--ff-min:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','YuMincho',serif;--ff-ja:'Hiragino Kaku Gothic ProN','Hiragino Sans',Meiryo,'Noto Sans JP',sans-serif;}}
 *{{box-sizing:border-box;margin:0;padding:0}}
 html{{scroll-behavior:smooth;-webkit-text-size-adjust:100%}}
@@ -166,17 +166,17 @@ ul{{list-style:none}}
 .en{{font-family:var(--ff-en)}}
 .wrap{{width:min(100% - 40px,var(--max));margin:0 auto}}
 .sec{{position:relative;padding:96px 0}}
-.sec--alt{{background:radial-gradient(ellipse 60% 50% at 12% 15%,rgba(120,56,92,.30),transparent 70%),radial-gradient(ellipse 50% 60% at 88% 85%,rgba(154,58,88,.22),transparent 70%),#1d151c}}
+.sec--alt{{background:radial-gradient(ellipse 60% 50% at 12% 15%,rgba(110,52,84,.16),transparent 70%),radial-gradient(ellipse 50% 60% at 88% 85%,rgba(154,58,88,.10),transparent 70%),#1d151c}}
 .sec__head{{text-align:center;margin-bottom:48px}}
 .sec__ja{{font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:.16em;line-height:1.2;color:var(--gold)}}
-.sec__rule{{display:block;width:96px;height:2px;background:var(--gold);margin:18px auto 12px}}
-.sec__en{{font-family:var(--ff-en);font-weight:800;font-size:13px;color:var(--gold);letter-spacing:.32em}}
+.sec__rule{{display:block;width:96px;height:2px;background:var(--pk);margin:18px auto 12px}}
+.sec__en{{font-family:var(--ff-en);font-weight:800;font-size:13px;color:var(--pk);letter-spacing:.32em}}
 .box{{background:rgba(37,27,35,.82);border:1px solid var(--line);border-radius:4px}}
 .btn{{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 28px;border-radius:3px;font-weight:800;font-size:15px;letter-spacing:.08em;transition:.2s;white-space:nowrap}}
 .btn--pri{{background:var(--gold);color:#1a1219}}
-.btn--pri:hover{{background:#f7c6d8}}
+.btn--pri:hover{{background:#fff6e2}}
 .btn--ghost{{border:2px solid var(--gold);color:var(--gold)}}
-.btn--ghost:hover{{background:rgba(234,169,193,.12)}}
+.btn--ghost:hover{{background:rgba(241,228,198,.12)}}
 
 /* header */
 .topwrap{{position:sticky;top:0;z-index:100;background:rgba(21,16,21,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}}
@@ -184,7 +184,7 @@ ul{{list-style:none}}
 .header__logo img{{height:44px;width:auto}}
 .header__nav{{display:flex;gap:28px;font-weight:700;font-size:14px;letter-spacing:.1em}}
 .header__nav a{{position:relative;padding:4px 0}}
-.header__nav a::after{{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--gold);transition:.25s}}
+.header__nav a::after{{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--pk);transition:.25s}}
 .header__nav a:hover{{color:var(--gold)}}
 .header__nav a:hover::after{{width:100%}}
 .header__cta{{min-height:40px;padding:8px 22px;font-size:13px}}
@@ -204,10 +204,10 @@ ul{{list-style:none}}
 
 /* catch */
 .catchsec{{position:relative;padding:96px 0 84px;text-align:center;overflow:hidden;background:url("{FW_CATCH}") center/cover no-repeat}}
-.catch__lead{{display:inline-block;font-family:var(--ff-min);font-weight:900;font-size:clamp(14px,1.6vw,17px);letter-spacing:.3em;color:var(--tx);padding:6px 0 6px .3em;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}}
-.catch__ja{{font-family:var(--ff-min);font-weight:900;font-size:clamp(32px,6.2vw,68px);letter-spacing:.16em;line-height:1.5;margin-top:26px;color:var(--gold);text-shadow:0 0 28px rgba(234,169,193,.25)}}
+.catch__lead{{display:inline-block;font-family:var(--ff-min);font-weight:900;font-size:clamp(14px,1.6vw,17px);letter-spacing:.3em;color:var(--tx);padding:6px 0 6px .3em;border-top:1px solid var(--pk);border-bottom:1px solid var(--pk)}}
+.catch__ja{{font-family:var(--ff-min);font-weight:900;font-size:clamp(32px,6.2vw,68px);letter-spacing:.16em;line-height:1.5;margin-top:26px;color:var(--gold);text-shadow:0 0 28px rgba(241,228,198,.25)}}
 .catch__ja ruby{{ruby-position:over}}
-.catch__ja rt{{font-size:.32em;letter-spacing:.3em;color:var(--gold)}}
+.catch__ja rt{{font-size:.32em;letter-spacing:.3em;color:var(--pk)}}
 
 /* info */
 .infogrid{{display:grid;grid-template-columns:1.1fr .9fr;gap:28px}}
@@ -232,7 +232,7 @@ ul{{list-style:none}}
 .bc{{display:flex;flex-direction:column;overflow:hidden}}
 .bc__img{{width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line)}}
 .bc__body{{display:flex;flex-direction:column;flex:1;padding:24px 26px 26px}}
-.bc__label{{font-family:var(--ff-en);font-weight:800;font-size:11px;letter-spacing:.24em;color:var(--gold)}}
+.bc__label{{font-family:var(--ff-en);font-weight:800;font-size:11px;letter-spacing:.24em;color:var(--pk)}}
 .bc__title{{font-size:21px;font-weight:800;margin-top:6px}}
 .bc__note{{color:var(--tx2);font-size:14px;margin:4px 0 20px;flex:1}}
 
@@ -247,7 +247,7 @@ ul{{list-style:none}}
 .tk__status span{{display:inline-block;background:var(--red);color:#fff;font-weight:800;padding:7px 28px;letter-spacing:.2em;font-size:14px}}
 .tk__h{{font-size:19px;font-weight:800;letter-spacing:.12em;margin:0 0 16px;display:flex;align-items:center;gap:14px}}
 .tk__h::after{{content:"";flex:1;height:1px;background:var(--line)}}
-.tk__h::before{{content:"";width:10px;height:10px;background:var(--gold);transform:rotate(45deg)}}
+.tk__h::before{{content:"";width:10px;height:10px;background:var(--pk);transform:rotate(45deg)}}
 .tk__block{{margin-bottom:52px}}
 .pgs{{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}}
 .pg{{display:flex;flex-direction:column;padding:24px;transition:.2s}}
@@ -266,7 +266,7 @@ ul{{list-style:none}}
 .tag{{display:inline-block;margin-left:10px;background:var(--red);color:#fff;font-size:11px;padding:2px 9px;vertical-align:2px;letter-spacing:.06em}}
 .sales{{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}}
 .sales li{{padding:18px 22px;display:flex;flex-direction:column;gap:4px;border-left:3px solid var(--line);background:rgba(37,27,35,.6)}}
-.sales li:last-child{{border-left-color:var(--gold);background:rgba(234,169,193,.10)}}
+.sales li:last-child{{border-left-color:var(--pk);background:rgba(241,228,198,.10)}}
 .sale__label{{color:var(--gold);font-size:14px;font-weight:800;letter-spacing:.06em}}
 .sale__label a{{border-bottom:1px solid var(--gold)}}
 .sale__date{{font-size:17px;font-weight:800}}
@@ -275,7 +275,7 @@ ul{{list-style:none}}
 .notes + .notes{{margin-top:16px}}
 .notes h4{{font-size:14px;font-weight:800;letter-spacing:.12em;color:var(--gold);margin-bottom:10px}}
 .notes li{{position:relative;padding-left:16px;font-size:13px;color:var(--tx2);line-height:1.8;margin-bottom:4px}}
-.notes li::before{{content:"※";position:absolute;left:0;color:var(--gold)}}
+.notes li::before{{content:"※";position:absolute;left:0;color:var(--pk)}}
 
 /* video */
 .videos{{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px}}
@@ -295,7 +295,7 @@ ul{{list-style:none}}
 .acc__venue{{font-size:30px;font-weight:800;line-height:1.3}}
 .acc__addr{{color:var(--tx2);margin:12px 0 10px;font-size:15px}}
 .acc__route li{{font-size:15px;line-height:1.9;padding-left:18px;position:relative}}
-.acc__route li::before{{content:"";position:absolute;left:0;top:.72em;width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}}
+.acc__route li::before{{content:"";position:absolute;left:0;top:.72em;width:7px;height:7px;background:var(--pk);transform:rotate(45deg)}}
 .acc__map{{margin-top:22px}}
 .acc__frame{{aspect-ratio:3/4;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--bg2)}}
 .acc__frame iframe{{width:100%;height:100%;border:0}}

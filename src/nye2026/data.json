@@ -34,12 +34,13 @@
     "title_sponsor": "LINEヤフー"
   },
   "theme": {
-    "bg": "#151217",
-    "bg2": "#1f1820",
-    "gold": "#eaa9c1",
-    "gold_d": "#c97d97",
-    "red": "#9a3a58",
-    "_comment": "変数名はgoldのままだがピンク(MVのロゴ色)"
+    "bg": "#141214",
+    "bg2": "#1d1a1c",
+    "gold": "#f1e4c6",
+    "gold_d": "#d9c59e",
+    "red": "#b2476b",
+    "pink": "#e7a3bd",
+    "_comment": "黒ベース+白+クリーム(MVの花火の明るい色)。goldの変数名=クリーム。ピンクは線・印などの差し色だけ"
   },
   "kv": {
     "_comment": "uploads/ の素材から prep_img.py で生成。spはスマホ用の縦(3:4)",
