@@ -20,7 +20,7 @@
       "JR関内駅南口より徒歩約6分",
       "地下鉄伊勢佐木長者町駅より徒歩約4分"
     ],
-    "official_url": "",
+    "official_url": "https://www.noah.co.jp/schedule/899/",
     "lp_url": "https://www.noah.co.jp/lp/nye2026/",
     "organizer": "株式会社CyberFight",
     "sponsors": "ABEMA／WINTICKET／株式会社マイクロアド／株式会社ゲットワークス／株式会社アプリボット／Criteo／EZIGEN／HaRENO／ベースフード株式会社／テーブルマーク／ユナイテッド株式会社／SOKKIN／YES株式会社／bfj株式会社／ジョブアンテナ／てんじく株式会社／株式会社デジタルアークス／ウルラ／株式会社ビットミックス／DOTZ株式会社／株式会社サイバー・バズ／株式会社ロットネスト／リバライズ株式会社／アドクロール／株式会社シンメイ／夜光虫 閻魔坂／ザ・リーヴ",
@@ -50,19 +50,51 @@
     "sp_tall": "img/kv_sp.jpg"
   },
   "matches": {
-    "show": false,
-    "_comment": "対戦カードは後日追加",
-    "items": []
+    "show": true,
+    "_comment": "noah.co.jp/news/8772/ より",
+    "items": [
+      {
+        "title": "GHCヘビー級選手権試合",
+        "img": "img/card_ghc.jpg",
+        "img_sm": "img/card_ghc_960.jpg",
+        "a": "内藤哲也",
+        "a_role": "王者",
+        "a_unit": "LOS TRANQUILOS de JAPON",
+        "b": "12.6 清宮海斗 vs Yoshiki Inamura の勝者",
+        "b_role": "挑戦者",
+        "note": "第51代王者、3度目の防衛戦となります。"
+      }
+    ],
+    "footnote": "出場選手はケガ等により変更となる場合があります。"
   },
   "schedule": {
     "show": false,
     "_comment": "当日スケジュール未定"
   },
   "goods": {
-    "show": false,
-    "_comment": "グッズ未定"
+    "show": true,
+    "_comment": "大会グッズの個別情報はまだ無い。12.26イベントで新商品販売(企画書)+公式通販への誘導",
+    "text": "12.31横浜大会の新商品は、12月26日（土）クイーンズスクエア横浜のイベントで販売します。",
+    "shop_url": "https://shop.noah.co.jp/",
+    "shop_btn": "公式オンラインストア NOAH THE SHOP"
   },
-  "news": [],
+  "news": [
+    {
+      "date": "2026.11.09",
+      "title": "＜GHCヘビー級選手権試合 決定！＞【12.31横浜】一部対戦カード決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8772/"
+    },
+    {
+      "date": "2026.11.09",
+      "title": "＜アイアンマンマッチで次期GHCヘビー級王座挑戦者が決まる！＞【12.6 後楽園】一部対戦カード決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8771/"
+    },
+    {
+      "date": "2026.07.31",
+      "title": "10･25両国国技館、12･31横浜BUNTAI、10/11〜11/3開催大会 チケット販売スケジュールのお知らせ",
+      "url": "https://www.noah.co.jp/news/8407/"
+    }
+  ],
   "tickets": {
     "status": "好評発売中",
     "seats": [
@@ -184,6 +216,11 @@
       "src": "img/pv.mp4",
       "poster": "img/pv_poster.jpg",
       "title": ""
+    },
+    {
+      "type": "youtube",
+      "id": "lviC6efy7jI",
+      "title": "天狗人・佐々木憂流迦が12.31横浜BUNTAIで凱旋帰国！"
     }
   ],
   "footer_links": [
@@ -246,7 +283,22 @@
       "text": "ABEMA de WRESTLE UNIVERSEで生配信",
       "img": "img/bc_abema.jpg",
       "url": "https://abema.tv/video/genre/fightingsports",
-      "btn": "ABEMAで視聴"
+      "btn": "ABEMA de WRESTLE UNIVERSEで視聴"
     }
-  ]
+  ],
+  "event_info": {
+    "show": true,
+    "_comment": "12.26イベント企画書(共有ドライブ)より。開始時間は未確定のため載せない",
+    "date": "12.26",
+    "dow": "SAT",
+    "date_ja": "2026年12月26日（土）",
+    "title": "12.31横浜BUNTAI大会 公開記者会見・物販イベント",
+    "place": "クイーンズスクエア横浜「クイーンズパーク」",
+    "fee": "入場無料・観覧自由",
+    "items": [
+      "12.31大会出場選手による公開記者会見・トークショー",
+      "12.31横浜大会の新商品を会場ブースで販売",
+      "サイン会（対象商品をご購入のお客様に参加券を配布）"
+    ]
+  }
 }

@@ -15,7 +15,7 @@ def uri(p,maxw,q):
     else: im.convert('RGB').save(buf,'JPEG',quality=q,optimize=True,subsampling=0); mt='image/jpeg'
     return f'data:{mt};base64,'+base64.b64encode(buf.getvalue()).decode()
 h=re.sub(r' srcset="[^"]+" sizes="[^"]+"','',h)
-plan={'img/kv.jpg':(960,62),'img/logo_pink_s.webp':(320,0),'img/logo_pink.webp':(560,0),'img/kv_sp.jpg':(520,64),'img/kv_960.jpg':(560,66),'img/bc_abema.jpg':(560,68),'img/noah_badge.png':(999,0),'img/venue_960.jpg':(640,72),'img/pv_poster.jpg':(800,70)}
+plan={'img/kv.jpg':(800,58),'img/logo_pink_s.webp':(320,0),'img/logo_pink.webp':(420,0),'img/kv_sp.jpg':(420,58),'img/kv_960.jpg':(480,58),'img/bc_abema.jpg':(480,58),'img/noah_badge.png':(999,0),'img/venue_960.jpg':(480,60),'img/pv_poster.jpg':(480,58),'img/card_ghc.jpg':(480,58),'img/card_ghc_960.jpg':(480,58),'img/video_lviC6efy7jI.jpg':(400,58)}
 h=re.sub(r'<video class="video__mp4" src="[^"]+"','<video class="video__mp4"',h)  # 動画はプレビューに埋め込めないので外す
 for p in sorted(set(re.findall(r'img/match_[\w\-]+_sm\.jpg',h))): plan[p]=(960,82)
 for p in sorted(set(re.findall(r'img/video_[\w\-]+\.jpg',h))): plan[p]=(1280,82)

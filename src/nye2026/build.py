@@ -58,8 +58,10 @@ def nav_links():
     items = [('info', '大会情報')]
     if D['matches'].get('show'): items.insert(0, ('match', '対戦カード'))
     if BCS: items.append(('broadcast', '放送情報'))
+    if D.get('event_info', {}).get('show'): items.append(('event', 'イベント'))
     if D.get('news'): items.append(('news', 'ニュース'))
     items.append(('ticket', 'チケット'))
+    if D.get('goods', {}).get('show'): items.append(('goods', 'グッズ'))
     if D.get('videos'): items.append(('movie', '動画'))
     items.append(('access', 'アクセス'))
     return ''.join(f'<a href="#{i}">{t}</a>' for i, t in items)
@@ -79,6 +81,42 @@ def broadcast_section():
       {sec_head('放送情報', 'LIVE STREAMING')}
       <div class="bcs">{cards}
       </div>
+    </div>
+  </section>'''
+
+def match_section():
+    M = D['matches']
+    if not M.get('show'): return ''
+    cards = ''.join(f'''
+      <div class="mc box"><img class="mc__img" src="{esc(m['img_sm'])}" srcset="{esc(m['img_sm'])} 960w, {esc(m['img'])} 1920w" sizes="(max-width:900px) 100vw, 1100px" alt="{esc(m['title'])} {esc(m['a'])} vs {esc(m['b'])}" loading="lazy" width="1920" height="1080">
+        <div class="mc__body"><p class="mc__title">{esc(m['title'])}</p>
+          <div class="mc__vs"><div class="mc__p"><span class="mc__role">{esc(m['a_role'])}</span><b>{esc(m['a'])}</b>{('<small>'+esc(m['a_unit'])+'</small>') if m.get('a_unit') else ''}</div><span class="mc__x en">VS</span><div class="mc__p"><span class="mc__role">{esc(m['b_role'])}</span><b>{esc(m['b'])}</b></div></div>
+          {('<p class="mc__note">※'+esc(m['note'])+'</p>') if m.get('note') else ''}</div></div>''' for m in M['items'])
+    return f'''
+  <section id="match" class="sec">
+    <div class="wrap">{sec_head('対戦カード', 'MATCH CARD')}{cards}
+      <p class="mc__foot">※{esc(M.get('footnote',''))}</p></div>
+  </section>'''
+
+def event_section():
+    V = D.get('event_info', {})
+    if not V.get('show'): return ''
+    return f'''
+  <section id="event" class="sec sec--alt">
+    <div class="wrap">{sec_head('イベント', 'EVENT')}
+      <div class="ev box"><div class="ev__date"><b class="en">{esc(V['date'])}</b><small class="en">{esc(V['dow'])}</small></div>
+        <div class="ev__body"><p class="ev__free">{esc(V['fee'])}</p><p class="ev__title">{esc(V['title'])}</p>
+          <p class="ev__place">{esc(V['date_ja'])}　{esc(V['place'])}</p><ul class="ev__list">{li(V['items'])}</ul></div></div>
+    </div>
+  </section>'''
+
+def goods_section():
+    G = D.get('goods', {})
+    if not G.get('show'): return ''
+    return f'''
+  <section id="goods" class="sec sec--alt">
+    <div class="wrap">{sec_head('グッズ', 'GOODS')}
+      <div class="gd box"><p class="gd__text">{esc(G['text'])}</p><a class="btn btn--pri" href="{esc(G['shop_url'])}" target="_blank" rel="noopener">{esc(G['shop_btn'])} ↗</a></div>
     </div>
   </section>'''
 
@@ -236,6 +274,32 @@ ul{{list-style:none}}
 .bc__title{{font-size:21px;font-weight:800;margin-top:6px}}
 .bc__note{{color:var(--tx2);font-size:14px;margin:4px 0 20px;flex:1}}
 
+/* match */
+.mc{{overflow:hidden;max-width:960px;margin:0 auto}}
+.mc__img{{width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line)}}
+.mc__body{{padding:28px 32px 30px;text-align:center}}
+.mc__title{{display:inline-block;font-weight:800;letter-spacing:.2em;font-size:15px;color:var(--bg);background:var(--gold);padding:5px 20px 5px calc(20px + .2em)}}
+.mc__vs{{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;margin:22px 0 10px}}
+.mc__p b{{display:block;font-size:24px;line-height:1.4}}
+.mc__p small{{display:block;font-family:var(--ff-en);font-size:11px;color:var(--tx2);letter-spacing:.08em;margin-top:2px}}
+.mc__role{{display:block;font-size:12px;letter-spacing:.2em;color:var(--pk);margin-bottom:4px}}
+.mc__x{{font-weight:800;font-size:28px;color:var(--gold);font-style:italic}}
+.mc__note{{font-size:13px;color:var(--tx2);margin-top:10px}}
+.mc__foot{{text-align:center;font-size:12px;color:var(--tx2);margin-top:16px}}
+/* event */
+.ev{{display:flex;max-width:960px;margin:0 auto;overflow:hidden}}
+.ev__date{{flex:0 0 200px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--gold);color:var(--bg);padding:24px}}
+.ev__date b{{font-size:48px;line-height:1}}
+.ev__date small{{font-weight:800;letter-spacing:.2em;margin-top:6px}}
+.ev__body{{padding:28px 32px}}
+.ev__free{{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;color:#fff;background:var(--red);padding:3px 12px}}
+.ev__title{{font-size:22px;font-weight:800;line-height:1.5;margin:10px 0 4px}}
+.ev__place{{color:var(--tx2);font-size:14px;margin-bottom:14px}}
+.ev__list li{{position:relative;padding-left:18px;font-size:15px;line-height:1.9}}
+.ev__list li::before{{content:"";position:absolute;left:0;top:.72em;width:7px;height:7px;background:var(--pk);transform:rotate(45deg)}}
+/* goods */
+.gd{{max-width:960px;margin:0 auto;padding:32px;text-align:center}}
+.gd__text{{font-size:16px;margin-bottom:22px}}
 /* news */
 .news{{border-top:1px solid var(--line)}}
 .news__item a{{display:flex;align-items:center;gap:22px;padding:22px 6px;border-bottom:1px solid var(--line)}}
@@ -342,6 +406,18 @@ ul{{list-style:none}}
   .bc__body{{padding:20px}}
   .bc__title{{font-size:18px}}
   .bc .btn{{width:100%}}
+  .mc__body{{padding:22px 18px 24px}}
+  .mc__vs{{grid-template-columns:1fr;gap:6px}}
+  .mc__p b{{font-size:19px}}
+  .mc__x{{font-size:22px}}
+  .ev{{flex-direction:column}}
+  .ev__date{{flex:none;flex-direction:row;gap:10px;padding:14px}}
+  .ev__date b{{font-size:34px}}
+  .ev__date small{{margin-top:8px}}
+  .ev__body{{padding:22px 20px}}
+  .ev__title{{font-size:18px}}
+  .gd{{padding:24px 20px}}
+  .gd .btn{{width:100%;white-space:normal}}
   .news__item a{{flex-wrap:wrap;gap:6px 14px}}
   .news__title{{flex:1 0 100%;font-size:14px}}
   .tk__block{{margin-bottom:40px}}
@@ -417,6 +493,7 @@ HTML = f'''<!DOCTYPE html>
     <div class="wrap">{('<p class="catch__lead">'+esc(E['lead'])+'</p>') if E.get('lead') else ''}<p class="catch__ja">{catch_html()}</p></div>
   </section>
 
+{match_section()}
   <section id="info" class="sec sec--alt">
     <div class="wrap">
       {sec_head('大会情報', 'INFORMATION')}
@@ -440,7 +517,7 @@ HTML = f'''<!DOCTYPE html>
       </div>
     </div>
   </section>
-{broadcast_section()}{news_section()}
+{broadcast_section()}{event_section()}{news_section()}
   <section id="ticket" class="sec">
     <div class="wrap">
       {sec_head('チケット情報', 'TICKET')}
@@ -471,7 +548,7 @@ HTML = f'''<!DOCTYPE html>
       <div class="notes box"><h4>ご観戦にあたってのご注意</h4><ul>{li(TK['notes'])}</ul></div>
     </div>
   </section>
-{video_section()}
+{goods_section()}{video_section()}
   <section id="access" class="sec">
     <div class="wrap">
       {sec_head('アクセス', 'ACCESS')}
