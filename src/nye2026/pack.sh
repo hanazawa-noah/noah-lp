@@ -15,7 +15,7 @@ def uri(p,maxw,q):
     else: im.convert('RGB').save(buf,'JPEG',quality=q,optimize=True,subsampling=0); mt='image/jpeg'
     return f'data:{mt};base64,'+base64.b64encode(buf.getvalue()).decode()
 h=re.sub(r' srcset="[^"]+" sizes="[^"]+"','',h)
-plan={'img/kv.jpg':(1200,70),'img/logo_gold_s.webp':(320,0),'img/logo_gold.webp':(560,0),'img/noah_badge.png':(999,0),'img/venue_960.jpg':(640,72),'img/pv_poster.jpg':(800,70)}
+plan={'img/kv.jpg':(960,62),'img/logo_pink_s.webp':(320,0),'img/logo_pink.webp':(560,0),'img/kv_sp.jpg':(520,64),'img/kv_960.jpg':(560,66),'img/bc_abema.jpg':(560,68),'img/noah_badge.png':(999,0),'img/venue_960.jpg':(640,72),'img/pv_poster.jpg':(800,70)}
 h=re.sub(r'<video class="video__mp4" src="[^"]+"','<video class="video__mp4"',h)  # 動画はプレビューに埋め込めないので外す
 for p in sorted(set(re.findall(r'img/match_[\w\-]+_sm\.jpg',h))): plan[p]=(960,82)
 for p in sorted(set(re.findall(r'img/video_[\w\-]+\.jpg',h))): plan[p]=(1280,82)

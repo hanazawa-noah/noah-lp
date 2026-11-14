@@ -17,9 +17,9 @@ esc = html.escape
 GTM = 'GTM-KQF9WVX'
 map_q = E.get('venue_map', E['venue'])
 map_url = 'https://www.google.com/maps/search/?api=1&query=' + urllib.parse.quote(map_q + ' ' + E['address'])
-BC = U.get('broadcast', {}) if U.get('broadcast', {}).get('show') else None
-TS = U.get('title_sponsor', {}) if U.get('title_sponsor', {}).get('show') else None
-title = (TS['name'] + ' Presents ' if TS else '') + E['title']
+BCS = D.get('broadcasts') or []
+TS = E.get('title_sponsor', '')
+title = (TS + ' Presents ' if TS else '') + E['title']
 
 def catch_html():
     s = esc(E['catch'])
@@ -57,7 +57,7 @@ FW_FOOT = fireworks(101, 1600, 500, [(160, 520, 300, T['gold_d']), (1480, 80, 22
 def nav_links():
     items = [('info', '大会情報')]
     if D['matches'].get('show'): items.insert(0, ('match', '対戦カード'))
-    if BC: items.append(('broadcast', '放送情報'))
+    if BCS: items.append(('broadcast', '放送情報'))
     if D.get('news'): items.append(('news', 'ニュース'))
     items.append(('ticket', 'チケット'))
     if D.get('videos'): items.append(('movie', '動画'))
@@ -68,14 +68,16 @@ def sec_head(ja, en):
     return f'<div class="sec__head"><h2 class="sec__ja">{ja}</h2><span class="sec__rule"></span><p class="sec__en">{en}</p></div>'
 
 def broadcast_section():
-    if not BC: return ''
+    if not BCS: return ''
+    cards = ''.join(f'''
+        <div class="bc box"><img class="bc__img" src="{esc(b['img'])}" alt="{esc(b['name'])}" loading="lazy" width="960" height="540">
+          <div class="bc__body"><p class="bc__label">{esc(b['label'])}</p><p class="bc__title">{esc(b['text'])}</p><p class="bc__note">{esc(E['date_ja'])}　試合開始 {esc(E['start'])}</p>
+          <a class="btn btn--pri" href="{esc(b['url'])}" target="_blank" rel="noopener">{esc(b['btn'])} ↗</a></div></div>''' for b in BCS)
     return f'''
   <section id="broadcast" class="sec">
     <div class="wrap">
       {sec_head('放送情報', 'LIVE STREAMING')}
-      <div class="bc box">
-        <div><p class="bc__title"><b>{esc(BC['name'])}</b> で{esc(BC['note'])}</p><p class="bc__note">{esc(E['date_ja'])}　試合開始 {esc(E['start'])}</p></div>
-        <a class="btn btn--pri" href="{esc(BC['url'])}" target="_blank" rel="noopener">{esc(BC['btn'])} ↗</a>
+      <div class="bcs">{cards}
       </div>
     </div>
   </section>'''
@@ -144,14 +146,14 @@ MINCHO = 'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&displa
 noindex = '<meta name="robots" content="noindex,nofollow">\n  ' if args.noindex else ''
 desc = f"{E['catch']} ─ {E.get('lead','')}{E['date_ja']} {E['venue']}。プロレスリング・ノア「{E['title']}」特設サイト。"
 official_btn = f'<a class="btn btn--ghost" href="{esc(E["official_url"])}" target="_blank" rel="noopener">公式大会ページ ↗</a>' if E.get('official_url') else ''
-credits_ts = f'<dt>特別協賛</dt><dd class="main">{esc(TS["name"])}</dd>' if TS else ''
+credits_ts = f'<dt>特別協賛</dt><dd class="main">{esc(TS)}</dd>' if TS else ''
 VP = E.get('venue_photo')
 venue_photo = f'<img class="acc__photo" src="{VP["sm"]}" srcset="{VP["sm"]} 960w, {VP["src"]} 1520w" sizes="(max-width:900px) 100vw, 540px" alt="{esc(map_q)} 外観" loading="lazy" width="1520" height="1080">' if VP else ''
 alt = f"{esc(title)} {esc(E['date_ja'])} {esc(E['venue'])}"
 
 # ---------- CSS ----------
 CSS = f'''
-:root{{--bg:{T['bg']};--bg2:{T['bg2']};--gold:{T['gold']};--gold-d:{T['gold_d']};--red:{T['red']};--tx:#F3EEE2;--tx2:#AEB9BE;--line:rgba(246,194,68,.30);--max:1100px;
+:root{{--bg:{T['bg']};--bg2:{T['bg2']};--gold:{T['gold']};--gold-d:{T['gold_d']};--red:{T['red']};--tx:#F7EEF2;--tx2:#BDAFB7;--line:rgba(234,169,193,.30);--max:1100px;
 --ff-en:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;--ff-min:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','YuMincho',serif;--ff-ja:'Hiragino Kaku Gothic ProN','Hiragino Sans',Meiryo,'Noto Sans JP',sans-serif;}}
 *{{box-sizing:border-box;margin:0;padding:0}}
 html{{scroll-behavior:smooth;-webkit-text-size-adjust:100%}}
@@ -164,20 +166,20 @@ ul{{list-style:none}}
 .en{{font-family:var(--ff-en)}}
 .wrap{{width:min(100% - 40px,var(--max));margin:0 auto}}
 .sec{{position:relative;padding:96px 0}}
-.sec--alt{{background:radial-gradient(ellipse 60% 50% at 15% 20%,rgba(0,0,0,.28),transparent 70%),radial-gradient(ellipse 50% 60% at 85% 80%,rgba(0,0,0,.25),transparent 70%),#0d2029}}
+.sec--alt{{background:radial-gradient(ellipse 60% 50% at 12% 15%,rgba(120,56,92,.30),transparent 70%),radial-gradient(ellipse 50% 60% at 88% 85%,rgba(154,58,88,.22),transparent 70%),#1d151c}}
 .sec__head{{text-align:center;margin-bottom:48px}}
 .sec__ja{{font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:.16em;line-height:1.2;color:var(--gold)}}
 .sec__rule{{display:block;width:96px;height:2px;background:var(--gold);margin:18px auto 12px}}
 .sec__en{{font-family:var(--ff-en);font-weight:800;font-size:13px;color:var(--gold);letter-spacing:.32em}}
-.box{{background:rgba(16,37,47,.82);border:1px solid var(--line);border-radius:4px}}
+.box{{background:rgba(37,27,35,.82);border:1px solid var(--line);border-radius:4px}}
 .btn{{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 28px;border-radius:3px;font-weight:800;font-size:15px;letter-spacing:.08em;transition:.2s;white-space:nowrap}}
-.btn--pri{{background:var(--gold);color:#0b1b24}}
-.btn--pri:hover{{background:#ffd365}}
+.btn--pri{{background:var(--gold);color:#1a1219}}
+.btn--pri:hover{{background:#f7c6d8}}
 .btn--ghost{{border:2px solid var(--gold);color:var(--gold)}}
-.btn--ghost:hover{{background:rgba(246,194,68,.12)}}
+.btn--ghost:hover{{background:rgba(234,169,193,.12)}}
 
 /* header */
-.topwrap{{position:sticky;top:0;z-index:100;background:rgba(9,22,29,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}}
+.topwrap{{position:sticky;top:0;z-index:100;background:rgba(21,16,21,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}}
 .header{{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}}
 .header__logo img{{height:44px;width:auto}}
 .header__nav{{display:flex;gap:28px;font-weight:700;font-size:14px;letter-spacing:.1em}}
@@ -189,9 +191,10 @@ ul{{list-style:none}}
 .spnav{{display:none}}
 
 /* hero */
-.hero{{background:#06131a}}
+.hero{{background:#0f0c10}}
 .hero__img{{width:100%;max-width:1920px;margin:0 auto;aspect-ratio:16/9;object-fit:cover}}
-.hero__bar{{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#0a1a22}}
+@media (max-width:600px){{.hero__img{{aspect-ratio:3/4}}}}
+.hero__bar{{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#1a1419}}
 .hero__bar .wrap{{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 40px;padding:18px 0}}
 .hero__date{{font-family:var(--ff-en);font-weight:800;font-size:30px;letter-spacing:.02em;line-height:1;color:var(--gold)}}
 .hero__date small,.datecard__d small{{font-size:.5em;margin-left:8px;padding-bottom:3px;border-bottom:2px solid var(--gold);vertical-align:.5em}}
@@ -202,7 +205,7 @@ ul{{list-style:none}}
 /* catch */
 .catchsec{{position:relative;padding:96px 0 84px;text-align:center;overflow:hidden;background:url("{FW_CATCH}") center/cover no-repeat}}
 .catch__lead{{display:inline-block;font-family:var(--ff-min);font-weight:900;font-size:clamp(14px,1.6vw,17px);letter-spacing:.3em;color:var(--tx);padding:6px 0 6px .3em;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}}
-.catch__ja{{font-family:var(--ff-min);font-weight:900;font-size:clamp(32px,6.2vw,68px);letter-spacing:.16em;line-height:1.5;margin-top:26px;color:var(--gold);text-shadow:0 0 28px rgba(246,194,68,.25)}}
+.catch__ja{{font-family:var(--ff-min);font-weight:900;font-size:clamp(32px,6.2vw,68px);letter-spacing:.16em;line-height:1.5;margin-top:26px;color:var(--gold);text-shadow:0 0 28px rgba(234,169,193,.25)}}
 .catch__ja ruby{{ruby-position:over}}
 .catch__ja rt{{font-size:.32em;letter-spacing:.3em;color:var(--gold)}}
 
@@ -225,9 +228,13 @@ ul{{list-style:none}}
 .cre dd a{{color:var(--tx);border-bottom:1px solid var(--gold)}}
 
 /* broadcast */
-.bc{{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:30px 34px}}
-.bc__title{{font-size:24px}}
-.bc__note{{color:var(--tx2);font-size:14px;margin-top:6px}}
+.bcs{{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}}
+.bc{{display:flex;flex-direction:column;overflow:hidden}}
+.bc__img{{width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line)}}
+.bc__body{{display:flex;flex-direction:column;flex:1;padding:24px 26px 26px}}
+.bc__label{{font-family:var(--ff-en);font-weight:800;font-size:11px;letter-spacing:.24em;color:var(--gold)}}
+.bc__title{{font-size:21px;font-weight:800;margin-top:6px}}
+.bc__note{{color:var(--tx2);font-size:14px;margin:4px 0 20px;flex:1}}
 
 /* news */
 .news{{border-top:1px solid var(--line)}}
@@ -247,7 +254,7 @@ ul{{list-style:none}}
 .pg:hover{{border-color:var(--gold);transform:translateY(-2px)}}
 .pg__name{{font-size:19px;font-weight:800}}
 .pg__note{{font-size:13px;color:var(--tx2);margin:6px 0 18px;flex:1}}
-.pg__go{{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:3px;background:var(--gold);color:#0b1b24;font-weight:800;font-size:14px;letter-spacing:.08em}}
+.pg__go{{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:3px;background:var(--gold);color:#1a1219;font-weight:800;font-size:14px;letter-spacing:.08em}}
 .price{{width:100%;border-collapse:collapse;font-size:15px}}
 .price th,.price td{{padding:15px 20px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}}
 .price thead th{{color:var(--gold);font-size:13px;letter-spacing:.2em;border-bottom:2px solid var(--gold)}}
@@ -258,8 +265,8 @@ ul{{list-style:none}}
 .price tbody tr:last-child th,.price tbody tr:last-child td{{border-bottom:0}}
 .tag{{display:inline-block;margin-left:10px;background:var(--red);color:#fff;font-size:11px;padding:2px 9px;vertical-align:2px;letter-spacing:.06em}}
 .sales{{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}}
-.sales li{{padding:18px 22px;display:flex;flex-direction:column;gap:4px;border-left:3px solid var(--line);background:rgba(16,37,47,.6)}}
-.sales li:last-child{{border-left-color:var(--gold);background:rgba(246,194,68,.10)}}
+.sales li{{padding:18px 22px;display:flex;flex-direction:column;gap:4px;border-left:3px solid var(--line);background:rgba(37,27,35,.6)}}
+.sales li:last-child{{border-left-color:var(--gold);background:rgba(234,169,193,.10)}}
 .sale__label{{color:var(--gold);font-size:14px;font-weight:800;letter-spacing:.06em}}
 .sale__label a{{border-bottom:1px solid var(--gold)}}
 .sale__date{{font-size:17px;font-weight:800}}
@@ -278,7 +285,7 @@ ul{{list-style:none}}
 .video__frame{{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;cursor:pointer;overflow:hidden;background:#000}}
 .video__frame img{{width:100%;height:100%;object-fit:cover}}
 .video__play{{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--gold)}}
-.video__play::after{{content:'';position:absolute;left:30px;top:22px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #0b1b24}}
+.video__play::after{{content:'';position:absolute;left:30px;top:22px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #1a1219}}
 .video__iframe{{width:100%;aspect-ratio:16/9;border:0;display:block}}
 .video__title{{padding:14px 18px;font-size:14px}}
 
@@ -294,7 +301,7 @@ ul{{list-style:none}}
 .acc__frame iframe{{width:100%;height:100%;border:0}}
 
 /* footer */
-.footer{{position:relative;border-top:1px solid var(--line);padding:72px 0 44px;text-align:center;background:url("{FW_FOOT}") center/cover no-repeat,#071319}}
+.footer{{position:relative;border-top:1px solid var(--line);padding:72px 0 44px;text-align:center;background:url("{FW_FOOT}") center/cover no-repeat,#100c10}}
 .footer__logo{{width:min(520px,86%);margin:0 auto 22px}}
 .footer__badge{{height:56px;width:auto;margin:0 auto 30px}}
 .footer__links{{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;font-size:13px;color:var(--tx2);margin-bottom:24px}}
@@ -302,7 +309,7 @@ ul{{list-style:none}}
 .footer__links a:hover{{color:var(--gold)}}
 .footer__sns{{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:30px}}
 .footer__sns a{{display:inline-flex;align-items:center;border:1px solid var(--gold);color:var(--gold);border-radius:3px;padding:9px 22px;font-weight:800;font-size:13px;letter-spacing:.06em}}
-.footer__sns a:hover{{background:var(--gold);color:#0b1b24}}
+.footer__sns a:hover{{background:var(--gold);color:#1a1219}}
 .footer__copy{{font-family:var(--ff-en);font-size:11px;color:var(--tx2);letter-spacing:.1em}}
 
 /* ---- SP ---- */
@@ -331,7 +338,9 @@ ul{{list-style:none}}
   .datecard__btns .btn{{flex:1}}
   .cre dl{{grid-template-columns:1fr;gap:2px}}
   .cre dd{{margin-bottom:10px}}
-  .bc{{flex-direction:column;align-items:flex-start;padding:24px 20px}}
+  .bcs{{grid-template-columns:1fr;gap:16px}}
+  .bc__body{{padding:20px}}
+  .bc__title{{font-size:18px}}
   .bc .btn{{width:100%}}
   .news__item a{{flex-wrap:wrap;gap:6px 14px}}
   .news__title{{flex:1 0 100%;font-size:14px}}
@@ -396,7 +405,7 @@ HTML = f'''<!DOCTYPE html>
 
 <main id="top">
   <section class="hero">
-    <h1><img class="hero__img" src="{KV['pc']}" srcset="{KV['sp']} 960w, {KV['pc_1280']} 1280w, {KV['pc']} 1920w" sizes="100vw" alt="{alt}" width="1920" height="1080" fetchpriority="high"></h1>
+    <h1><picture><source media="(max-width:600px)" srcset="{KV['sp_tall']}" width="960" height="1280"><img class="hero__img" src="{KV['pc']}" srcset="{KV['sp']} 960w, {KV['pc_1280']} 1280w, {KV['pc']} 1920w" sizes="100vw" alt="{alt}" width="1920" height="1080" fetchpriority="high"></picture></h1>
     <div class="hero__bar"><div class="wrap">
       <div class="hero__date">{esc(E['date_label'])}<small>{esc(E['dow'])}</small></div>
       <div class="hero__venue">{esc(E['venue'])}</div>

@@ -1,5 +1,5 @@
 {
-  "_comment": "NOAH THE NEW YEAR EVE 2026 特設LP。未発表情報(冠協賛・放送)は公開リポジトリに載せないため unannounced.json(gitignore済)に保持。show:false のセクションは出力しない。 LINEヤフーは特別協賛として表示(協賛一覧には載せない)。Lコード表示は依頼者OK済み。",
+  "_comment": "NOAH THE NEW YEAR EVE 2026 特設LP。MVは及川さん制作(黒×ピンク)。LINEヤフーは特別協賛として表示(協賛一覧には載せない)。Lコード表示は依頼者OK済み。show:false のセクションは出力しない。",
   "event": {
     "title": "NOAH \"THE NEW YEAR\" EVE 2026",
     "short": "THE NEW YEAR EVE 2026",
@@ -30,20 +30,23 @@
     "venue_photo": {
       "src": "img/venue.jpg",
       "sm": "img/venue_960.jpg"
-    }
+    },
+    "title_sponsor": "LINEヤフー"
   },
   "theme": {
-    "bg": "#0b1b24",
-    "bg2": "#10252f",
-    "gold": "#f6c244",
-    "gold_d": "#d9a03a",
-    "red": "#c0432c"
+    "bg": "#151217",
+    "bg2": "#1f1820",
+    "gold": "#eaa9c1",
+    "gold_d": "#c97d97",
+    "red": "#9a3a58",
+    "_comment": "変数名はgoldのままだがピンク(MVのロゴ色)"
   },
   "kv": {
-    "_comment": "uploads/ の素材から prep_img.py で生成",
+    "_comment": "uploads/ の素材から prep_img.py で生成。spはスマホ用の縦(3:4)",
     "pc": "img/kv.jpg",
     "pc_1280": "img/kv_1280.jpg",
-    "sp": "img/kv_960.jpg"
+    "sp": "img/kv_960.jpg",
+    "sp_tall": "img/kv_sp.jpg"
   },
   "matches": {
     "show": false,
@@ -211,20 +214,38 @@
     }
   ],
   "logo": {
-    "pc": "img/logo_gold_s.webp",
-    "lg": "img/logo_gold.webp",
+    "pc": "img/logo_pink_s.webp",
+    "lg": "img/logo_pink.webp",
     "w": 480,
     "h": 142,
     "lg_w": 1200,
     "lg_h": 356
   },
   "banner": {
-    "_comment": "LP誘導バナー。冠協賛(LINEヤフー)は未発表のため協賛ロゴなし。発表後に logo / logo_suffix を足す",
-    "bg": "radial-gradient(ellipse 45% 110% at 2% 100%,rgba(217,160,58,.45) 0%,transparent 70%),radial-gradient(ellipse 40% 110% at 100% 0%,rgba(192,67,44,.55) 0%,transparent 70%),#0b1b24",
+    "_comment": "LP誘導バナー。黒×ピンク(MV準拠)。LINEヤフーのロゴデータが届いたら logo / logo_suffix を足す",
+    "bg": "radial-gradient(ellipse 45% 120% at 0% 100%,rgba(206,126,154,.55) 0%,transparent 70%),radial-gradient(ellipse 40% 110% at 100% 0%,rgba(110,52,90,.75) 0%,transparent 70%),#151217",
     "title": "NOAH \"THE NEW YEAR\" EVE 2026",
     "sub": "12.31(木)",
     "cta": "特設サイトはこちら",
-    "event_logo": "uploads/banner_logo_gold.png",
+    "event_logo": "uploads/banner_logo_pink.png",
     "event_logo_w": 228
-  }
+  },
+  "broadcasts": [
+    {
+      "name": "WRESTLE UNIVERSE",
+      "label": "LIVE STREAMING on WRESTLE UNIVERSE",
+      "text": "WRESTLE UNIVERSEで生配信",
+      "img": "img/kv_960.jpg",
+      "url": "https://www.wrestle-universe.com/ja/noah",
+      "btn": "WRESTLE UNIVERSEで視聴"
+    },
+    {
+      "name": "ABEMA de WRESTLE UNIVERSE",
+      "label": "LIVE ON ABEMA de UNIVERSE",
+      "text": "ABEMA de WRESTLE UNIVERSEで生配信",
+      "img": "img/bc_abema.jpg",
+      "url": "https://abema.tv/video/genre/fightingsports",
+      "btn": "ABEMAで視聴"
+    }
+  ]
 }
