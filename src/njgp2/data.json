@@ -218,19 +218,22 @@
           "a": "lykos2",
           "b": "sato",
           "img": "vs_lykos2_sato",
-          "note": "佐藤維選手の欠場に伴い、11.9後楽園大会から変更"
+          "note": "佐藤維選手の欠場に伴い、11.9後楽園大会から変更",
+          "winner": "sato"
         },
         {
           "no": "⑤",
           "a": "namiki",
           "b": "alejandro",
-          "img": "vs_namiki_alejandro"
+          "img": "vs_namiki_alejandro",
+          "winner": "alejandro"
         },
         {
           "no": "⑥",
           "a": "odashima",
           "b": "masaoka",
-          "img": "vs_odashima_masaoka"
+          "img": "vs_odashima_masaoka",
+          "winner": "odashima"
         }
       ],
       "tv": "wu"
@@ -250,13 +253,15 @@
           "no": "⑦",
           "a": "tadasuke",
           "b": "hi69",
-          "img": "vs_tadasuke_hi69"
+          "img": "vs_tadasuke_hi69",
+          "winner": "tadasuke"
         },
         {
           "no": "⑧",
           "a": "mensore",
           "b": "bane",
-          "img": "vs_mensore_bane"
+          "img": "vs_mensore_bane",
+          "winner": "bane"
         }
       ],
       "maruhan": true,
@@ -277,13 +282,15 @@
       "matches": [
         {
           "no": "❶",
-          "a_text": "③ 近藤修司 vs YO-HEY の勝者",
-          "b_text": "⑦ タダスケ vs Hi69 の勝者"
+          "a": "yohey",
+          "b": "tadasuke",
+          "img": "vs_yohey_tadasuke"
         },
         {
           "no": "❷",
-          "a_text": "④ シドニー・アキーム vs キッド・ライコス1号 の勝者",
-          "b_text": "⑧ ブラックめんそーれ vs ドラゴン・ベイン の勝者"
+          "a": "akeem",
+          "b": "bane",
+          "img": "vs_akeem_bane"
         }
       ],
       "maruhan": true,
@@ -303,8 +310,9 @@
       "matches": [
         {
           "no": "❸",
-          "a_text": "① カイ・フジムラ vs BUSHI の勝者",
-          "b_text": "⑤ 並木宏也 vs アレハンドロ の勝者"
+          "a": "bushi",
+          "b": "alejandro",
+          "img": "vs_bushi_alejandro"
         }
       ],
       "maruhan": true,
@@ -324,8 +332,9 @@
       "matches": [
         {
           "no": "❹",
-          "a_text": "② キッド・ライコス2号 vs 佐藤維 の勝者",
-          "b_text": "⑥ 小田嶋大樹 vs 政岡純 の勝者"
+          "a": "sato",
+          "b": "odashima",
+          "img": "vs_sato_odashima"
         }
       ],
       "maruhan": true,
@@ -678,6 +687,20 @@
   },
   "news": [
     {
+      "date": "2026.11.15",
+      "cat": "インタビュー",
+      "title": "【11.14大阪 バックステージコメント】小田嶋が政岡を下しジュニアGP2回戦へ▼佐藤維、アレハンドロも1回戦突破",
+      "url": "https://www.noah.co.jp/news/8786/",
+      "img": "nw_8786"
+    },
+    {
+      "date": "2026.11.14",
+      "cat": "大会情報",
+      "title": "選手欠場／対戦カード変更のお知らせ（拳王選手欠場・11.15名古屋大会）",
+      "url": "https://www.noah.co.jp/news/8787/",
+      "img": "nw_8787"
+    },
+    {
       "date": "2026.11.13",
       "cat": "大会情報",
       "title": "【当日券は14日16時30分発売！】11月14日 大阪・梅田ステラホール大会 チケット直前情報",
@@ -833,6 +856,14 @@
     }
   ],
   "videos": [
+    {
+      "id": "MzuzgnqHp3I",
+      "title": "小田嶋大樹が政岡純を制し、NOAH Jr. GRAND PRIX 2 の2回戦に進出！"
+    },
+    {
+      "id": "9AzXTKucfko",
+      "title": "【11.14大阪大会・試合後コメント集】"
+    },
     {
       "id": "m__mdQ6pxmI",
       "title": "【全試合ダイジェスト】NOAH Jr. GRAND PRIX 2 開幕戦！ 11.9後楽園ホール大会まとめ"

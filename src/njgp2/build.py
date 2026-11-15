@@ -26,7 +26,7 @@ def svg_uri(svg): return 'data:image/svg+xml,' + urllib.parse.quote(svg)
 GRAIN = svg_uri('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>')
 
 def map_url(e): return 'https://www.google.com/maps/search/?api=1&query=' + urllib.parse.quote(e['venue_map'])
-NAV = [('players', '出場選手'), ('bracket', 'トーナメント'), ('round1', '1回戦'), ('schedule', '日程'), ('news', 'ニュース'), ('maruhan', 'マルハン企画'), ('goods', 'グッズ'), ('movie', '動画'), ('ticket', 'チケット')]
+NAV = [('players', '出場選手'), ('bracket', 'トーナメント'), ('round1', '対戦カード'), ('schedule', '日程'), ('news', 'ニュース'), ('maruhan', 'マルハン企画'), ('goods', 'グッズ'), ('movie', '動画'), ('ticket', 'チケット')]
 def nav_links(): return ''.join(f'<a href="#{i}">{t}</a>' for i, t in NAV)
 
 def sec_head(ja, en):
@@ -46,19 +46,32 @@ def players():
 def note(m):  # 日程変更などの注記(例: 欠場による振替)
     return f'<small class="m__note">※{esc(m["note"])}</small>' if m.get('note') else ''
 
-def round1():
+def pname(m, k):  # 勝者には WIN を付け、敗者は少し薄くする
+    n = esc(P[m[k]]['name'])
+    if not m.get('winner'): return n
+    return f'<span class="m__w">{n}<em class="en">WIN</em></span>' if m['winner'] == m[k] else f'<span class="m__l">{n}</span>'
+
+def cards(rnd):
     out = ''
     for e in D['events']:
-        cards = [m for m in e['matches'] if m.get('img')]
-        if not cards: continue
+        if e.get('round') != rnd: continue
+        cs = [m for m in e['matches'] if m.get('img')]
+        if not cs: continue
         items = ''.join(f'''
-          <figure class="vs"><img src="img/{m['img']}_960.jpg" srcset="img/{m['img']}_960.jpg 960w, img/{m['img']}.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="{esc(P[m['a']]['name'])} vs {esc(P[m['b']]['name'])}" width="1920" height="1080" loading="lazy"><figcaption><b>{m['no']}</b>{esc(P[m['a']]['name'])}<i>vs</i>{esc(P[m['b']]['name'])}{note(m)}</figcaption></figure>''' for m in cards)
+          <figure class="vs"><img src="img/{m['img']}_960.jpg" srcset="img/{m['img']}_960.jpg 960w, img/{m['img']}.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="{esc(P[m['a']]['name'])} vs {esc(P[m['b']]['name'])}" width="1920" height="1080" loading="lazy"><figcaption><b>{m['no']}</b>{pname(m, 'a')}<i>vs</i>{pname(m, 'b')}{note(m)}</figcaption></figure>''' for m in cs)
         out += f'''
         <div class="r1">
           <p class="r1__day"><span class="en">{esc(e['date'])}</span><small>{esc(e['dow'])}</small>{esc(e['venue'])}</p>
           <div class="r1__grid">{items}
           </div>
         </div>'''
+    return out
+
+def rounds():  # 新しいラウンドを上に
+    out = ''
+    for rnd, en in (('2回戦', '2ND ROUND'), ('1回戦', '1ST ROUND')):
+        c = cards(rnd)
+        if c: out += f'<div class="rd"><h3 class="rd__t"><span class="en">{en}</span>{rnd}</h3>{c}</div>'
     return out
 
 def match_line(m):
@@ -291,6 +304,12 @@ ul{{list-style:none}}
 .br__note a{{border-bottom:1px solid #fff;color:#fff}}
 
 /* round1 */
+.rd + .rd{{margin-top:64px}}
+.rd__t{{display:flex;align-items:baseline;gap:12px;font-size:15px;font-weight:800;margin-bottom:22px}}
+.rd__t .en{{font-size:28px;letter-spacing:.04em;line-height:1}}
+.m__w{{display:inline-flex;align-items:center;gap:6px}}
+.m__w em{{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;background:#E60012;color:#fff;padding:2px 6px;line-height:1.2}}
+.m__l{{opacity:.55}}
 .r1 + .r1{{margin-top:44px}}
 .r1__day{{display:flex;align-items:baseline;gap:14px;font-weight:800;font-size:17px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}}
 .r1__day .en{{font-size:30px;line-height:1}}
@@ -624,7 +643,7 @@ HTML = f'''<!DOCTYPE html>
 
   <section id="round1" class="sec">
     <div class="wrap">
-      {sec_head('1回戦 対戦カード', '1ST ROUND')}{round1()}
+      {sec_head('対戦カード', 'MATCH CARDS')}{rounds()}
     </div>
   </section>
 

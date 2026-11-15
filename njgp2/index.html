@@ -104,6 +104,12 @@ ul{list-style:none}
 .br__note a{border-bottom:1px solid #fff;color:#fff}
 
 /* round1 */
+.rd + .rd{margin-top:64px}
+.rd__t{display:flex;align-items:baseline;gap:12px;font-size:15px;font-weight:800;margin-bottom:22px}
+.rd__t .en{font-size:28px;letter-spacing:.04em;line-height:1}
+.m__w{display:inline-flex;align-items:center;gap:6px}
+.m__w em{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;background:#E60012;color:#fff;padding:2px 6px;line-height:1.2}
+.m__l{opacity:.55}
 .r1 + .r1{margin-top:44px}
 .r1__day{display:flex;align-items:baseline;gap:14px;font-weight:800;font-size:17px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .r1__day .en{font-size:30px;line-height:1}
@@ -364,10 +370,10 @@ ul{list-style:none}
 <div class="topwrap">
   <header class="header wrap">
     <a href="#top" class="header__logo"><img src="img/logo_white.webp" alt="マルハン presents NOAH Jr. GRAND PRIX 2" width="311" height="49"><small>マルハン presents</small></a>
-    <nav class="header__nav"><a href="#players">出場選手</a><a href="#bracket">トーナメント</a><a href="#round1">1回戦</a><a href="#schedule">日程</a><a href="#news">ニュース</a><a href="#maruhan">マルハン企画</a><a href="#goods">グッズ</a><a href="#movie">動画</a><a href="#ticket">チケット</a></nav>
+    <nav class="header__nav"><a href="#players">出場選手</a><a href="#bracket">トーナメント</a><a href="#round1">対戦カード</a><a href="#schedule">日程</a><a href="#news">ニュース</a><a href="#maruhan">マルハン企画</a><a href="#goods">グッズ</a><a href="#movie">動画</a><a href="#ticket">チケット</a></nav>
     <a class="btn btn--pri header__cta" href="#ticket">チケット購入</a>
   </header>
-  <nav class="spnav"><a href="#players">出場選手</a><a href="#bracket">トーナメント</a><a href="#round1">1回戦</a><a href="#schedule">日程</a><a href="#news">ニュース</a><a href="#maruhan">マルハン企画</a><a href="#goods">グッズ</a><a href="#movie">動画</a><a href="#ticket">チケット</a></nav>
+  <nav class="spnav"><a href="#players">出場選手</a><a href="#bracket">トーナメント</a><a href="#round1">対戦カード</a><a href="#schedule">日程</a><a href="#news">ニュース</a><a href="#maruhan">マルハン企画</a><a href="#goods">グッズ</a><a href="#movie">動画</a><a href="#ticket">チケット</a></nav>
 </div>
 
 <main id="top">
@@ -426,30 +432,49 @@ ul{list-style:none}
 
   <section id="round1" class="sec">
     <div class="wrap">
-      <div class="sec__head"><p class="sec__en">1ST ROUND</p><h2 class="sec__ja">1回戦 対戦カード</h2><span class="sec__rule"></span></div>
+      <div class="sec__head"><p class="sec__en">MATCH CARDS</p><h2 class="sec__ja">対戦カード</h2><span class="sec__rule"></span></div><div class="rd"><h3 class="rd__t"><span class="en">2ND ROUND</span>2回戦</h3>
+        <div class="r1">
+          <p class="r1__day"><span class="en">11.20</span><small>FRI</small>宮城・仙台PIT</p>
+          <div class="r1__grid">
+          <figure class="vs"><img src="img/vs_yohey_tadasuke_960.jpg" srcset="img/vs_yohey_tadasuke_960.jpg 960w, img/vs_yohey_tadasuke.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="YO-HEY vs タダスケ" width="1920" height="1080" loading="lazy"><figcaption><b>❶</b>YO-HEY<i>vs</i>タダスケ</figcaption></figure>
+          <figure class="vs"><img src="img/vs_akeem_bane_960.jpg" srcset="img/vs_akeem_bane_960.jpg 960w, img/vs_akeem_bane.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="シドニー・アキーム vs ドラゴン・ベイン" width="1920" height="1080" loading="lazy"><figcaption><b>❷</b>シドニー・アキーム<i>vs</i>ドラゴン・ベイン</figcaption></figure>
+          </div>
+        </div>
+        <div class="r1">
+          <p class="r1__day"><span class="en">11.21</span><small>SAT</small>山形・山形ビッグウイング</p>
+          <div class="r1__grid">
+          <figure class="vs"><img src="img/vs_bushi_alejandro_960.jpg" srcset="img/vs_bushi_alejandro_960.jpg 960w, img/vs_bushi_alejandro.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="BUSHI vs アレハンドロ" width="1920" height="1080" loading="lazy"><figcaption><b>❸</b>BUSHI<i>vs</i>アレハンドロ</figcaption></figure>
+          </div>
+        </div>
+        <div class="r1">
+          <p class="r1__day"><span class="en">11.22</span><small>SUN</small>秋田・鹿角市記念スポーツセンター</p>
+          <div class="r1__grid">
+          <figure class="vs"><img src="img/vs_sato_odashima_960.jpg" srcset="img/vs_sato_odashima_960.jpg 960w, img/vs_sato_odashima.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="佐藤維 vs 小田嶋大樹" width="1920" height="1080" loading="lazy"><figcaption><b>❹</b>佐藤維<i>vs</i>小田嶋大樹</figcaption></figure>
+          </div>
+        </div></div><div class="rd"><h3 class="rd__t"><span class="en">1ST ROUND</span>1回戦</h3>
         <div class="r1">
           <p class="r1__day"><span class="en">11.9</span><small>MON</small>東京・後楽園ホール</p>
           <div class="r1__grid">
-          <figure class="vs"><img src="img/vs_fujimura_bushi_960.jpg" srcset="img/vs_fujimura_bushi_960.jpg 960w, img/vs_fujimura_bushi.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="カイ・フジムラ vs BUSHI" width="1920" height="1080" loading="lazy"><figcaption><b>①</b>カイ・フジムラ<i>vs</i>BUSHI</figcaption></figure>
-          <figure class="vs"><img src="img/vs_kondo_yohey_960.jpg" srcset="img/vs_kondo_yohey_960.jpg 960w, img/vs_kondo_yohey.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="近藤修司 vs YO-HEY" width="1920" height="1080" loading="lazy"><figcaption><b>③</b>近藤修司<i>vs</i>YO-HEY</figcaption></figure>
-          <figure class="vs"><img src="img/vs_akeem_lykos1_960.jpg" srcset="img/vs_akeem_lykos1_960.jpg 960w, img/vs_akeem_lykos1.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="シドニー・アキーム vs キッド・ライコス1号" width="1920" height="1080" loading="lazy"><figcaption><b>④</b>シドニー・アキーム<i>vs</i>キッド・ライコス1号</figcaption></figure>
+          <figure class="vs"><img src="img/vs_fujimura_bushi_960.jpg" srcset="img/vs_fujimura_bushi_960.jpg 960w, img/vs_fujimura_bushi.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="カイ・フジムラ vs BUSHI" width="1920" height="1080" loading="lazy"><figcaption><b>①</b><span class="m__l">カイ・フジムラ</span><i>vs</i><span class="m__w">BUSHI<em class="en">WIN</em></span></figcaption></figure>
+          <figure class="vs"><img src="img/vs_kondo_yohey_960.jpg" srcset="img/vs_kondo_yohey_960.jpg 960w, img/vs_kondo_yohey.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="近藤修司 vs YO-HEY" width="1920" height="1080" loading="lazy"><figcaption><b>③</b><span class="m__l">近藤修司</span><i>vs</i><span class="m__w">YO-HEY<em class="en">WIN</em></span></figcaption></figure>
+          <figure class="vs"><img src="img/vs_akeem_lykos1_960.jpg" srcset="img/vs_akeem_lykos1_960.jpg 960w, img/vs_akeem_lykos1.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="シドニー・アキーム vs キッド・ライコス1号" width="1920" height="1080" loading="lazy"><figcaption><b>④</b><span class="m__w">シドニー・アキーム<em class="en">WIN</em></span><i>vs</i><span class="m__l">キッド・ライコス1号</span></figcaption></figure>
           </div>
         </div>
         <div class="r1">
           <p class="r1__day"><span class="en">11.14</span><small>SAT</small>大阪・梅田スカイビル ステラホール</p>
           <div class="r1__grid">
-          <figure class="vs"><img src="img/vs_lykos2_sato_960.jpg" srcset="img/vs_lykos2_sato_960.jpg 960w, img/vs_lykos2_sato.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="キッド・ライコス2号 vs 佐藤維" width="1920" height="1080" loading="lazy"><figcaption><b>②</b>キッド・ライコス2号<i>vs</i>佐藤維<small class="m__note">※佐藤維選手の欠場に伴い、11.9後楽園大会から変更</small></figcaption></figure>
-          <figure class="vs"><img src="img/vs_namiki_alejandro_960.jpg" srcset="img/vs_namiki_alejandro_960.jpg 960w, img/vs_namiki_alejandro.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="並木宏也 vs アレハンドロ" width="1920" height="1080" loading="lazy"><figcaption><b>⑤</b>並木宏也<i>vs</i>アレハンドロ</figcaption></figure>
-          <figure class="vs"><img src="img/vs_odashima_masaoka_960.jpg" srcset="img/vs_odashima_masaoka_960.jpg 960w, img/vs_odashima_masaoka.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="小田嶋大樹 vs 政岡純" width="1920" height="1080" loading="lazy"><figcaption><b>⑥</b>小田嶋大樹<i>vs</i>政岡純</figcaption></figure>
+          <figure class="vs"><img src="img/vs_lykos2_sato_960.jpg" srcset="img/vs_lykos2_sato_960.jpg 960w, img/vs_lykos2_sato.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="キッド・ライコス2号 vs 佐藤維" width="1920" height="1080" loading="lazy"><figcaption><b>②</b><span class="m__l">キッド・ライコス2号</span><i>vs</i><span class="m__w">佐藤維<em class="en">WIN</em></span><small class="m__note">※佐藤維選手の欠場に伴い、11.9後楽園大会から変更</small></figcaption></figure>
+          <figure class="vs"><img src="img/vs_namiki_alejandro_960.jpg" srcset="img/vs_namiki_alejandro_960.jpg 960w, img/vs_namiki_alejandro.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="並木宏也 vs アレハンドロ" width="1920" height="1080" loading="lazy"><figcaption><b>⑤</b><span class="m__l">並木宏也</span><i>vs</i><span class="m__w">アレハンドロ<em class="en">WIN</em></span></figcaption></figure>
+          <figure class="vs"><img src="img/vs_odashima_masaoka_960.jpg" srcset="img/vs_odashima_masaoka_960.jpg 960w, img/vs_odashima_masaoka.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="小田嶋大樹 vs 政岡純" width="1920" height="1080" loading="lazy"><figcaption><b>⑥</b><span class="m__w">小田嶋大樹<em class="en">WIN</em></span><i>vs</i><span class="m__l">政岡純</span></figcaption></figure>
           </div>
         </div>
         <div class="r1">
           <p class="r1__day"><span class="en">11.15</span><small>SUN</small>愛知・Lives NAGOYA</p>
           <div class="r1__grid">
-          <figure class="vs"><img src="img/vs_tadasuke_hi69_960.jpg" srcset="img/vs_tadasuke_hi69_960.jpg 960w, img/vs_tadasuke_hi69.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="タダスケ vs Hi69" width="1920" height="1080" loading="lazy"><figcaption><b>⑦</b>タダスケ<i>vs</i>Hi69</figcaption></figure>
-          <figure class="vs"><img src="img/vs_mensore_bane_960.jpg" srcset="img/vs_mensore_bane_960.jpg 960w, img/vs_mensore_bane.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="ブラックめんそーれ vs ドラゴン・ベイン" width="1920" height="1080" loading="lazy"><figcaption><b>⑧</b>ブラックめんそーれ<i>vs</i>ドラゴン・ベイン</figcaption></figure>
+          <figure class="vs"><img src="img/vs_tadasuke_hi69_960.jpg" srcset="img/vs_tadasuke_hi69_960.jpg 960w, img/vs_tadasuke_hi69.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="タダスケ vs Hi69" width="1920" height="1080" loading="lazy"><figcaption><b>⑦</b><span class="m__w">タダスケ<em class="en">WIN</em></span><i>vs</i><span class="m__l">Hi69</span></figcaption></figure>
+          <figure class="vs"><img src="img/vs_mensore_bane_960.jpg" srcset="img/vs_mensore_bane_960.jpg 960w, img/vs_mensore_bane.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="ブラックめんそーれ vs ドラゴン・ベイン" width="1920" height="1080" loading="lazy"><figcaption><b>⑧</b><span class="m__l">ブラックめんそーれ</span><i>vs</i><span class="m__w">ドラゴン・ベイン<em class="en">WIN</em></span></figcaption></figure>
           </div>
-        </div>
+        </div></div>
     </div>
   </section>
 
@@ -492,7 +517,7 @@ ul{list-style:none}
           <p class="sc__date en">11.20<small>FRI</small></p>
           <p class="sc__venue">宮城・仙台PIT</p>
           <p class="sc__time">開場 <b class="en">18:00</b>　開始 <b class="en">19:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
-          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❶</b><span>③ 近藤修司 vs YO-HEY の勝者<i>vs</i>⑦ タダスケ vs Hi69 の勝者</span></li><li><b>❷</b><span>④ シドニー・アキーム vs キッド・ライコス1号 の勝者<i>vs</i>⑧ ブラックめんそーれ vs ドラゴン・ベイン の勝者</span></li></ul></details>
+          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❶</b><span>YO-HEY <i>vs</i> タダスケ</span></li><li><b>❷</b><span>シドニー・アキーム <i>vs</i> ドラゴン・ベイン</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E4%BB%99%E5%8F%B0PIT" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -502,7 +527,7 @@ ul{list-style:none}
           <p class="sc__date en">11.21<small>SAT</small></p>
           <p class="sc__venue">山形・山形ビッグウイング</p>
           <p class="sc__time">開場 <b class="en">16:00</b>　開始 <b class="en">17:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
-          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❸</b><span>① カイ・フジムラ vs BUSHI の勝者<i>vs</i>⑤ 並木宏也 vs アレハンドロ の勝者</span></li></ul></details>
+          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❸</b><span>BUSHI <i>vs</i> アレハンドロ</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E5%BD%A2%E3%83%93%E3%83%83%E3%82%B0%E3%82%A6%E3%82%A4%E3%83%B3%E3%82%B0" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -512,7 +537,7 @@ ul{list-style:none}
           <p class="sc__date en">11.22<small>SUN</small></p>
           <p class="sc__venue">秋田・鹿角市記念スポーツセンター</p>
           <p class="sc__time">開場 <b class="en">14:00</b>　開始 <b class="en">15:00</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
-          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❹</b><span>② キッド・ライコス2号 vs 佐藤維 の勝者<i>vs</i>⑥ 小田嶋大樹 vs 政岡純 の勝者</span></li></ul></details>
+          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>❹</b><span>佐藤維 <i>vs</i> 小田嶋大樹</span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E9%B9%BF%E8%A7%92%E5%B8%82%E8%A8%98%E5%BF%B5%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -545,6 +570,8 @@ ul{list-style:none}
     <div class="wrap">
       <div class="sec__head"><p class="sec__en">NEWS</p><h2 class="sec__ja">ニュース</h2><span class="sec__rule"></span></div>
       <ul class="nws">
+        <li><a class="nw" href="https://www.noah.co.jp/news/8786/" target="_blank" rel="noopener"><img src="img/nw_8786.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.15</time><small>インタビュー</small></span><span class="nw__t">【11.14大阪 バックステージコメント】小田嶋が政岡を下しジュニアGP2回戦へ▼佐藤維、アレハンドロも1回戦突破</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8787/" target="_blank" rel="noopener"><img src="img/nw_8787.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.14</time><small>大会情報</small></span><span class="nw__t">選手欠場／対戦カード変更のお知らせ（拳王選手欠場・11.15名古屋大会）</span></span></a></li>
         <li><a class="nw" href="https://www.noah.co.jp/news/8767/" target="_blank" rel="noopener"><img src="img/nw_8767.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.13</time><small>大会情報</small></span><span class="nw__t">【当日券は14日16時30分発売！】11月14日 大阪・梅田ステラホール大会 チケット直前情報</span></span></a></li>
         <li><a class="nw" href="https://www.noah.co.jp/news/8783/" target="_blank" rel="noopener"><img src="img/nw_8783.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.13</time><small>大会情報</small></span><span class="nw__t">【前売券好評発売中】11月15日 愛知・Lives NAGOYA大会 直前情報</span></span></a></li>
         <li><a class="nw" href="https://www.noah.co.jp/news/8782/" target="_blank" rel="noopener"><img src="img/nw_8782.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.12</time><small>大会情報</small></span><span class="nw__t">【マルハン×NOAH】3Shotリングサイド撮影会 11.15名古屋大会はブラックめんそーれが登場！</span></span></a></li>
@@ -646,6 +673,8 @@ ul{list-style:none}
     <div class="wrap">
       <div class="sec__head"><p class="sec__en">MOVIE</p><h2 class="sec__ja">動画</h2><span class="sec__rule"></span></div>
       <div class="videos">
+        <div class="video"><button class="video__frame" type="button" data-id="MzuzgnqHp3I" aria-label="動画を再生"><img src="img/video_MzuzgnqHp3I.jpg" alt="小田嶋大樹が政岡純を制し、NOAH Jr. GRAND PRIX 2 の2回戦に進出！" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">小田嶋大樹が政岡純を制し、NOAH Jr. GRAND PRIX 2 の2回戦に進出！</p></div>
+        <div class="video"><button class="video__frame" type="button" data-id="9AzXTKucfko" aria-label="動画を再生"><img src="img/video_9AzXTKucfko.jpg" alt="【11.14大阪大会・試合後コメント集】" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【11.14大阪大会・試合後コメント集】</p></div>
         <div class="video"><button class="video__frame" type="button" data-id="m__mdQ6pxmI" aria-label="動画を再生"><img src="img/video_m__mdQ6pxmI.jpg" alt="【全試合ダイジェスト】NOAH Jr. GRAND PRIX 2 開幕戦！ 11.9後楽園ホール大会まとめ" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【全試合ダイジェスト】NOAH Jr. GRAND PRIX 2 開幕戦！ 11.9後楽園ホール大会まとめ</p></div>
         <div class="video"><button class="video__frame" type="button" data-id="8Cxm0jKZ2Hs" aria-label="動画を再生"><img src="img/video_8Cxm0jKZ2Hs.jpg" alt="【11.9後楽園ホール大会・試合後コメント集】" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【11.9後楽園ホール大会・試合後コメント集】</p></div>
         <div class="video"><button class="video__frame" type="button" data-id="_YHrM7u1bmY" aria-label="動画を再生"><img src="img/video__YHrM7u1bmY.jpg" alt="11.9後楽園ホール大会 前日記者会見＆調印式（NOAH公式YouTube）" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">11.9後楽園ホール大会 前日記者会見＆調印式（NOAH公式YouTube）</p></div>
