@@ -14,6 +14,7 @@ args = ap.parse_args()
 
 D = json.load(open('data.json', encoding='utf-8'))
 S, T, EV, TK, GD, SG, DY, RL, EN, FQ = D['site'], D['theme'], D['events'], D['tickets'], D['goods'], D['sign'], D['day'], D['rules'], D['enjoy'], D['faq']
+KR, ST = D['korakuen'], D['seat']
 esc = html.escape
 GTM = 'GTM-KQF9WVX'
 title = S['title']
@@ -30,7 +31,7 @@ def img(name, alt='', cls='', sizes=None, eager=False):
     lz = '' if eager else ' loading="lazy"'
     return f'<img{c} src="img/{fn}" alt="{esc(alt)}" width="{w}" height="{h}"{lz}>'
 
-NAV = [('schedule', '大会日程'), ('ticket', 'チケット'), ('goods', 'グッズ'), ('sign', 'サイン会'), ('day', '当日・アクセス'), ('rules', 'ルール'), ('enjoy', '楽しみ方'), ('faq', 'Q&A')]
+NAV = [('schedule', '大会日程'), ('seat', '座席'), ('ticket', 'チケット'), ('goods', 'グッズ'), ('sign', 'サイン会'), ('day', 'アクセス'), ('rules', 'ルール'), ('enjoy', '楽しみ方'), ('faq', 'Q&A')]
 def nav_links(): return ''.join(f'<a href="#{i}">{t}</a>' for i, t in NAV)
 
 # 初心者マーク(パンフの見出しに付いているもの)
@@ -70,14 +71,53 @@ def playguides():
     return ''.join(f'''
           <a class="pg" href="{esc(p['url'])}" target="_blank" rel="noopener"><span class="pg__n">{esc(p['name'])}</span><span class="pg__s">{esc(p['store'])}</span><b class="btn btn--pri">チケットを購入する ↗</b></a>''' for p in TK['playguides'])
 
-def price():
-    P = TK['price']
-    rows = ''.join(f'<tr><th>{esc(a)}{f"<small>{esc(c)}</small>" if c else ""}</th><td>{esc(b)}</td></tr>' for a, b, c in P['rows'])
-    return f'''<p class="pr__ex">{esc(P['ex'])}</p><table class="pr"><tbody>{rows}</tbody></table><p class="pr__note">{esc(P['note'])}</p>
-          <p class="pr__btn"><a class="btn btn--line" href="{esc(P['url'])}" target="_blank" rel="noopener">各大会の席種・座席図を見る ↗</a></p>'''
-
 def tips():
     return ''.join(f'<li><b>{esc(t["t"])}</b><span>{esc(t["x"])}</span></li>' for t in TK['tips'])
+
+def video():  # YouTubeはサムネだけ先に出し、押されたら読み込む(ページを重くしない)
+    v = KR['video']
+    return f'''<figure class="vd"><a class="yt" href="https://youtu.be/{v['id']}" data-yt="{v['id']}" target="_blank" rel="noopener" aria-label="映像を再生する">{img(f"video_{v['id']}.jpg", v['title'])}<span class="yt__pl" aria-hidden="true"></span></a>
+        <figcaption><b>{esc(v['title'])}</b><span>{esc(v['cap'])}</span></figcaption></figure>'''
+
+def photos(xs, cls): return f'<div class="{cls}">' + ''.join(img(p['img'], p['alt']) for p in xs) + '</div>'
+
+# 座席図: 依頼者支給の図(2026.12.6 後楽園)をなぞった位置 (x0,y0,x1,y1)。後に描く席種が上に重なる
+SEATS = [
+ ('b', [(96, 140, 157, 1074), (1543, 78, 1910, 1112)]),
+ ('a', [(157, 140, 279, 451), (157, 473, 279, 720), (157, 742, 279, 1074), (320, 473, 442, 720), (360, 182, 421, 389), (360, 825, 421, 1032),
+        (585, 37, 1095, 140), (585, 1032, 1095, 1152), (1155, 78, 1543, 1112)]),
+ ('s', [(442, 473, 544, 720), (585, 140, 1095, 285), (585, 908, 1095, 1032), (1155, 182, 1340, 1012)]),
+ ('ss', [(544, 369, 585, 825), (585, 410, 605, 784), (646, 285, 1033, 348), (727, 348, 972, 389), (727, 804, 972, 846), (646, 846, 1054, 908),
+         (1033, 410, 1075, 784), (1075, 348, 1115, 846), (1115, 285, 1155, 908)]),
+ ('l', [(279, 473, 320, 720), (768, 37, 890, 223), (768, 970, 890, 1152)]),
+ ('c', [(1298, 473, 1441, 720)]),
+]
+def seatmap():
+    def rects(rs, extra=''): return ''.join(f'<rect x="{a}" y="{b}" width="{c - a}" height="{d - b}"{extra}/>' for a, b, c, d in rs)
+    g = ''.join(f'<g class="sm-{k}">{rects(rs, " class=\"sm-ol\"")}{rects(rs)}</g>' for k, rs in SEATS)
+    gates = ''.join(f'<g transform="translate(1502,{y})"><rect width="183" height="145" class="sm-gate"/><path d="M40 72h103M40 72l26-22M40 72l26 22M143 72l-26-22M143 72l-26 22" class="sm-arw"/></g>' for y in (327, 721))
+    side = lambda t, x, y: f'<g transform="translate({x},{y})"><rect x="-125" y="-54" width="250" height="108" rx="54" class="sm-side"/><text y="26" class="sm-sidet">{t}</text></g>'
+    lab = lambda t, x, y, c='': f'<text x="{x}" y="{y}" class="sm-lab {c}">{t}</text>'
+    pin = lambda n, x, y: f'<g transform="translate({x},{y})"><circle r="58" class="sm-pin"/><text y="25" class="sm-pint">{n}</text></g>'
+    return f'''<svg class="sm" viewBox="60 -150 1890 1500" role="img" aria-label="後楽園ホールの座席図。リングを中心に、北側・東側・西側・南側の客席が囲んでいる">
+  {g}{gates}
+  <rect x="680" y="448" width="275" height="290" class="sm-ring"/><text x="817" y="622" class="sm-ringt">RING</text>
+  {side('北側', 330, 40)}{side('東側', 840, -75)}{side('西側', 840, 1262)}{side('南側', 1532, -32)}
+  {lab('SS', 1094, 620, 'w')}{lab('S', 1228, 330, 'w')}{lab('A', 1440, 158)}{lab('B', 1790, 330, 'w')}
+  {pin(1, 1760, 597)}{pin(2, 985, 150)}
+</svg>'''
+
+def seat_types():
+    return ''.join(f'<li><i class="sw sw--{t["k"]}"></i><b>{esc(t["name"])}</b>{f"<span>{esc(t["x"])}</span>" if t.get("x") else ""}</li>' for t in ST['types'])
+
+def views():
+    return ''.join(f'''<figure class="vw">{img(v['img'], v['t'])}<figcaption><span class="vw__no">{esc(v['no'])}</span><b>{esc(v['t'])}</b><span>{esc(v['x'])}</span></figcaption></figure>''' for v in ST['views'])
+
+def blist(xs, cls='mns'):  # 見出し+説明の並び(リンク付きも可)
+    def one(m):
+        a = f' <a class="tl" href="{esc(m["url"])}" target="_blank" rel="noopener">{esc(m["link"])} ↗</a>' if m.get('url') else ''
+        return f'<li><b>{esc(m["t"])}</b><span>{esc(m["x"])}{a}</span></li>'
+    return f'<ul class="{cls}">' + ''.join(one(m) for m in xs) + '</ul>'
 
 def shop_items():
     return ''.join(f'''
@@ -113,7 +153,7 @@ def enjoy():
         note = f'<small>※{esc(i["note"])}</small>' if i.get('note') else ''
         out += f'''
         <article class="ej{' ej--alt' if k % 2 else ''}"><h3 class="ej__t"><em>{esc(i['t'][0])}</em>{esc(i['t'][1])}</h3>
-          <div class="ej__bd">{img(i['img'], i['t'][0].strip('“”'))}<p>{esc(i['x'])}{note}</p></div>
+          <div class="ej__bd">{img(i['img'], i['t'][0].strip('“”'), 'fit-contain' if i.get('fit') == 'contain' else '')}<p>{esc(i['x'])}{note}</p></div>
           <a class="btn btn--line ej__btn" href="{esc(i['url'])}"{ext(i['url'])}>{esc(i['btn'])}{arrow(i['url'])}</a></article>'''
     return out
 
@@ -123,8 +163,10 @@ def faq():
 def footer_links(): return ''.join(f'<li><a href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])}</a></li>' for l in D['footer_links'])
 
 noindex = '<meta name="robots" content="noindex,nofollow">\n  ' if args.noindex else ''
-desc = f"{S['sub']}。チケットの買い方、グッズの事前購入、サイン会の参加方法、プロレスのルールまで。後楽園ホールで初めてNOAHを観戦する方へのご案内。プロレスリング・ノア。"
+desc = f"{S['sub']}。チケットの買い方、座席とアクセス、グッズの事前購入、サイン会の参加方法、プロレスのルールまで。格闘技の聖地・後楽園ホールで初めてNOAHを観戦する方へのご案内。プロレスリング・ノア。"
 V = DY['venue']
+MV = S['mv']
+mw, mh = Image.open(f"out/img/{MV['img']}.webp").size
 
 # ---------- CSS ----------
 CSS = f'''
@@ -192,8 +234,56 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 .hero__row img{{height:36px;width:auto;flex:none}}
 .hero__ja{{font-family:var(--ff-hd);font-weight:900;font-size:clamp(20px,3vw,34px);letter-spacing:.08em;line-height:1.35}}
 .hero__lead{{font-size:16px;line-height:2;margin-top:26px}}
-.hero__ph{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}}
-.hero__ph img{{width:100%;aspect-ratio:4/3;object-fit:cover}}
+.mv{{position:relative;margin-top:28px;border:3px solid var(--bl);border-radius:18px;overflow:hidden;background:var(--bl)}}
+.mv img{{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:50% 62%}}
+.mv__cap{{position:absolute;left:0;bottom:0;display:flex;align-items:center;gap:6px 16px;flex-wrap:wrap;background:var(--bl);color:#fff;padding:12px 30px 12px 24px;border-top-right-radius:18px}}
+.mv__cap small{{font-family:var(--ff-hd);font-weight:900;font-size:14px;letter-spacing:.12em;line-height:1;background:var(--yl);color:var(--bl);border-radius:999px;padding:7px 14px}}
+.mv__cap b{{font-family:var(--ff-hd);font-weight:900;font-size:30px;letter-spacing:.1em;line-height:1.3}}
+.mv__cap i{{font-family:var(--ff-en);font-style:normal;font-weight:700;font-size:20px;letter-spacing:.1em;line-height:1;opacity:.9}}
+
+/* 後楽園ホール紹介(映像・写真) */
+.vd figcaption{{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 16px;margin-top:12px}}
+.vd figcaption b{{font-family:var(--ff-hd);font-weight:900;font-size:18px;color:var(--bl);line-height:1.5}}
+.vd figcaption span{{font-size:12.5px;font-weight:500}}
+.yt{{position:relative;display:block;aspect-ratio:16/9;border:3px solid var(--bl);border-radius:18px;overflow:hidden;background:#000}}
+.yt img,.yt iframe{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}}
+.yt__pl{{position:absolute;left:50%;top:50%;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:var(--yl);border:4px solid var(--bl);box-shadow:0 6px 24px rgba(0,0,0,.35);transition:.2s}}
+.yt__pl::after{{content:"";position:absolute;left:53%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:17px 0 17px 28px;border-color:transparent transparent transparent var(--bl)}}
+.yt:hover .yt__pl{{transform:scale(1.08)}}
+.phs{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:26px}}
+.phs img{{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:10px}}
+
+/* 座席 */
+.sm{{display:block;width:100%;height:auto}}
+.sm-ol{{stroke:#fff;stroke-width:10;stroke-linejoin:round}}
+.sm-ss{{fill:#E5342B}}.sm-s{{fill:#3BAA34}}.sm-a{{fill:var(--yl)}}.sm-b{{fill:var(--sky)}}.sm-l{{fill:#F5A3C7}}.sm-c{{fill:#7B4BB7}}
+.sm-gate{{fill:#fff}}
+.sm-arw{{fill:none;stroke:var(--ink);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}}
+.sm-ring{{fill:#fff;stroke:var(--bl);stroke-width:12}}
+.sm-ringt{{font-family:var(--ff-en);font-weight:800;font-size:92px;letter-spacing:.04em;fill:var(--bl);text-anchor:middle}}
+.sm-side{{fill:var(--bl)}}
+.sm-sidet{{font-family:var(--ff-hd);font-weight:900;font-size:72px;fill:#fff;text-anchor:middle;letter-spacing:.06em}}
+.sm-lab{{font-family:var(--ff-en);font-weight:800;font-size:84px;fill:var(--ink);text-anchor:middle}}
+.sm-lab.w{{fill:#fff}}
+.sm-pin{{fill:var(--yl);stroke:var(--bl);stroke-width:10;paint-order:stroke}}
+.sm-pint{{font-family:var(--ff-en);font-style:italic;font-weight:800;font-size:76px;fill:var(--bl);text-anchor:middle}}
+.st2{{display:grid;grid-template-columns:minmax(0,13fr) minmax(0,7fr);gap:30px;align-items:center}}
+.sws li{{display:flex;flex-wrap:wrap;align-items:center;gap:2px 10px;padding:9px 0;border-bottom:1px dashed var(--bl)}}
+.sws b{{font-family:var(--ff-hd);font-weight:900;font-size:16px;line-height:1.4}}
+.sws span{{font-size:12.5px;font-weight:500}}
+.sw{{flex:none;width:26px;height:18px;border-radius:4px}}
+.sw--ss{{background:#E5342B}}.sw--s{{background:#3BAA34}}.sw--a{{background:var(--yl)}}.sw--b{{background:var(--sky)}}.sw--l{{background:#F5A3C7}}.sw--c{{background:#7B4BB7}}
+.sws__pin{{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;padding-top:12px}}
+.vw__no,.sws__pin i{{flex:none;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--yl);border:2px solid var(--bl);color:var(--bl);font-family:var(--ff-en);font-style:italic;font-weight:800;font-size:17px;line-height:1;padding-right:1px}}
+.st2 .notes{{margin-top:14px}}
+.st2 .btn{{width:100%;margin-top:14px;font-size:14px}}
+.ars{{margin-top:26px;padding-top:24px;border-top:2px solid var(--bl)}}
+.vws{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}}
+.vw img{{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px}}
+.vw figcaption{{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:2px 10px;margin-top:12px}}
+.vw__no{{width:34px;height:34px;font-size:22px;grid-row:span 2;align-self:start;margin-top:2px}}
+.vw b{{font-family:var(--ff-hd);font-weight:900;font-size:17px;color:var(--bl);line-height:1.5}}
+.vw figcaption span:last-child{{font-size:13.5px;font-weight:500;line-height:1.7}}
 .quick{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}}
 .qk{{display:flex;align-items:center;gap:14px;height:100%;padding:16px 18px;background:var(--bl);color:#fff;border-radius:16px;transition:.2s}}
 .qk:hover{{background:var(--sky);transform:translateY(-2px)}}
@@ -216,6 +306,8 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 .ev__tm{{font-size:13px}}
 .ev__tm b{{font-family:var(--ff-en);font-size:19px;font-weight:700;letter-spacing:.04em}}
 .ev__btn{{margin-top:8px;min-height:44px;font-size:14px;padding:8px 14px}}
+.ev-none{{background:#fff;border:3px solid var(--bl);border-radius:16px;padding:26px 20px;text-align:center;font-family:var(--ff-hd);font-weight:900;font-size:17px;line-height:1.7}}
+.ev-none[hidden]{{display:none}}
 .more{{text-align:center;margin-top:30px}}
 
 /* ticket */
@@ -224,21 +316,11 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 .pg__n{{font-family:var(--ff-hd);font-weight:900;font-size:20px;line-height:1.4}}
 .pg__s{{flex:1;font-size:13px;line-height:1.7;font-weight:500}}
 .pg .btn{{margin-top:6px}}
-.tk2{{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:26px;margin-top:26px}}
-.tk2 .card + .card{{margin-top:0}}
-.pr__ex{{display:inline-block;font-size:12px;font-weight:700;border:1px solid var(--ink);padding:1px 10px;margin-bottom:8px}}
-.pr th,.pr td{{padding:9px 4px;border-bottom:1px solid var(--line);font-size:15px;text-align:left;font-weight:700}}
-.pr th small{{font-size:11px;font-weight:700;color:#fff;background:var(--sky);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:1px}}
-.pr td{{text-align:right;font-family:var(--ff-hd);font-weight:900;font-size:17px;white-space:nowrap}}
-.pr__note{{font-size:12.5px;font-weight:500;line-height:1.75;margin-top:12px}}
-.pr__btn{{margin-top:14px}}
-.pr__btn .btn{{width:100%;font-size:14px}}
-.tips li{{padding:14px 0;border-bottom:1px dashed var(--bl)}}
-.tips li:first-child{{padding-top:0}}
-.tips li:last-child{{border:0;padding-bottom:0}}
-.tips b{{display:block;font-family:var(--ff-hd);font-weight:900;font-size:16px;color:var(--bl);line-height:1.5;margin-bottom:2px}}
-.tips span{{font-size:13.5px;font-weight:500;line-height:1.8}}
+.tk__more{{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;margin-top:22px;padding-top:20px;border-top:2px solid var(--bl)}}
+.tk__more p{{font-size:14px;font-weight:700}}
+.tk__more .btn{{min-height:44px;font-size:14px}}
 .tk__notes{{margin-top:22px}}
+.tl{{color:var(--bl);font-weight:700;border-bottom:1px solid var(--bl);white-space:nowrap}}
 
 /* goods */
 .lab{{display:inline-block;font-family:var(--ff-hd);font-weight:900;font-size:12px;letter-spacing:.1em;background:var(--yl);border:2px solid var(--bl);color:var(--bl);border-radius:999px;padding:1px 14px;margin-bottom:8px}}
@@ -264,12 +346,12 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 .st__no{{position:absolute;left:14px;top:-20px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--yl);border:3px solid var(--bl);color:var(--bl);font-family:var(--ff-en);font-style:italic;font-weight:800;font-size:26px;line-height:1;padding-right:2px}}
 .sts b{{font-family:var(--ff-hd);font-weight:900;font-size:15.5px;line-height:1.5;color:var(--bl)}}
 .sts span:last-child{{font-size:13px;font-weight:500;line-height:1.75}}
+.sgp{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}}
+.sgp img{{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:10px}}
 .sg2{{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;margin-top:28px;align-items:start}}
-.exm{{border:2px dashed var(--bl);border-radius:12px;padding:18px 20px}}
-.exm__t{{font-family:var(--ff-hd);font-weight:900;font-size:16px;line-height:1.5;margin-bottom:8px}}
-.exm dl{{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px}}
-.exm dt{{font-size:12px;font-weight:700;color:#fff;background:var(--bl);border-radius:999px;padding:1px 12px;align-self:center;text-align:center}}
-.exm dd{{font-family:var(--ff-hd);font-weight:900;font-size:17px}}
+.exm{{border:2px dashed var(--bl);border-radius:12px;padding:16px 18px 18px}}
+.exm img{{width:100%;border:1px solid var(--line)}}
+.exm p{{font-size:13px;font-weight:500;line-height:1.8;margin-top:10px}}
 .sg__btn{{text-align:center;margin-top:26px}}
 
 /* day */
@@ -281,13 +363,20 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 .fls b{{font-family:var(--ff-hd);font-weight:900;font-size:17px;line-height:1.5}}
 .fls span:last-child{{font-size:13px;font-weight:500;line-height:1.75}}
 .fl__note{{margin-top:14px}}
-.ac{{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 30px;align-items:center}}
+.ac{{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 30px;align-items:stretch}}
 .ac__n{{font-family:var(--ff-hd);font-weight:900;font-size:24px;line-height:1.4}}
 .ac__a{{font-size:14px}}
-.ac ul{{margin-top:8px}}
-.ac li{{position:relative;padding-left:18px;font-size:15px;font-weight:700;line-height:1.8}}
-.ac li::before{{content:"";position:absolute;left:0;top:.62em;width:10px;height:10px;border-radius:50%;background:var(--bl)}}
+.ac__st{{margin-top:12px}}
+.ac__st li{{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 12px;padding:8px 0;border-bottom:1px dashed var(--bl)}}
+.ac__st b{{font-family:var(--ff-hd);font-weight:900;font-size:16.5px;line-height:1.5}}
+.ac__st span{{font-size:13px;font-weight:700;color:var(--bl)}}
+.ac__walk{{display:inline-block;margin-top:12px;font-family:var(--ff-hd);font-weight:900;font-size:15px;line-height:1.4;background:var(--yl);border:2px solid var(--bl);color:var(--bl);border-radius:999px;padding:3px 18px}}
+.ac__btns{{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}}
+.ac__btns .btn{{min-height:46px;font-size:14px;padding:8px 20px}}
+.ac__map{{min-height:320px;border:1px solid var(--line);border-radius:10px;overflow:hidden}}
+.ac__map iframe{{display:block;width:100%;height:100%;min-height:320px;border:0}}
 .mns{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}}
+.mns--2{{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 30px}}
 .mns b{{display:block;font-family:var(--ff-hd);font-weight:900;font-size:16px;color:var(--bl);line-height:1.5;margin-bottom:4px}}
 .mns span{{font-size:13.5px;font-weight:500;line-height:1.8}}
 
@@ -340,6 +429,7 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 .ej__t em{{font-style:normal;font-size:1.25em}}
 .ej__bd{{flex:1}}
 .ej__bd img{{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line)}}
+.ej__bd img.fit-contain{{object-fit:contain;background:#fff}}
 .ej__bd p{{font-size:13.5px;font-weight:500;line-height:1.9;margin-top:12px}}
 .ej__bd small{{display:block;font-size:12px;margin-top:6px}}
 .ej__btn{{margin-top:16px;min-height:44px;font-size:14px}}
@@ -371,7 +461,7 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 .footer__copy{{font-family:var(--ff-en);font-size:13px;letter-spacing:.1em}}
 
 .sp{{display:none}}
-@media (max-width:1180px){{.header__nav{{gap:13px;font-size:12px}}}}
+@media (max-width:1180px){{.header__nav{{gap:10px;font-size:12px}}}}
 /* ---- SP ---- */
 @media (max-width:900px){{
   html{{scroll-padding-top:104px}}
@@ -402,7 +492,30 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
   .hero__row img{{height:26px}}
   .hero__lead{{font-size:14.5px;line-height:1.95;margin-top:18px}}
   br.pc{{display:none}}
-  .hero__ph{{grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}}
+  .mv{{margin-top:18px;border-radius:14px}}
+  .mv img{{aspect-ratio:4/3;object-position:50% 50%}}
+  .mv__cap{{gap:4px 10px;padding:8px 16px 9px 12px;border-top-right-radius:14px}}
+  .mv__cap small{{font-size:11px;padding:5px 10px}}
+  .mv__cap b{{font-size:19px}}
+  .mv__cap i{{display:none}}
+  .yt{{border-radius:14px}}
+  .yt__pl{{width:68px;height:68px;margin:-34px 0 0 -34px}}
+  .yt__pl::after{{border-width:12px 0 12px 20px}}
+  .vd figcaption b{{font-size:15.5px}}
+  .phs{{grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}}
+  .st2{{grid-template-columns:1fr;gap:16px}}
+  .sws{{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}}
+  .sws b{{font-size:14.5px}}
+  .sws__pin{{grid-column:1/-1}}
+  .ars{{margin-top:20px;padding-top:20px}}
+  .vws{{grid-template-columns:1fr;gap:20px}}
+  .tk__more .btn{{width:100%}}
+  .sgp{{gap:8px;margin-top:20px}}
+  .ac__st b{{font-size:15.5px}}
+  .ac__btns .btn{{width:100%}}
+  .ac__map,.ac__map iframe{{min-height:260px}}
+  .mns--2{{grid-template-columns:1fr}}
+  .ev-none{{font-size:15px;padding:20px 16px}}
   .quick{{grid-template-columns:1fr;gap:10px;margin-top:22px}}
   .qk{{padding:12px 16px}}
   .qk__no{{width:40px;height:40px;font-size:26px}}
@@ -500,10 +613,20 @@ HTML = f'''<!DOCTYPE html>
     <div class="wrap">
       <p class="hero__en">FIRST-TIME <br class="sp">VIEWING GUIDE</p>
       <div class="hero__row">{img('noah_lockup.png', 'PRO WRESTLING NOAH', eager=True)}<h1 class="hero__ja">{esc(S['sub'])}{WAKABA}</h1></div>
+      <figure class="mv"><picture><source media="(max-width:900px)" srcset="img/{MV['img_s']}.webp"><img src="img/{MV['img']}.webp" alt="{esc(MV['alt'])}" width="{mw}" height="{mh}" fetchpriority="high"></picture>
+        <figcaption class="mv__cap"><small>{esc(MV['label'])}</small><b>{esc(MV['name'])}</b><i>{esc(MV['en'])}</i></figcaption></figure>
       <p class="hero__lead">{esc(S['lead']).replace('|', '<br class="pc">')}</p>
-      <div class="hero__ph">{img('r1_junior', 'ジュニアヘビー級の空中戦', eager=True)}{img('en_oshi', '声援を送る観客', eager=True)}{img('r2_tag', 'タッグマッチ', eager=True)}{img('r3_rope', 'ロープブレイク', eager=True)}</div>
       <ol class="quick">{quick()}
       </ol>
+    </div>
+  </section>
+
+  <section id="korakuen" class="sec">
+    <div class="wrap">
+      {bar(KR['title'], KR['sub'])}
+      <p class="sec__lead">{esc(KR['lead'])}</p>
+      {video()}
+      {photos(KR['photos'], 'phs')}
     </div>
   </section>
 
@@ -513,7 +636,28 @@ HTML = f'''<!DOCTYPE html>
       <p class="sec__lead">{esc(EV['lead'])}</p>
       <ul class="evs">{events()}
       </ul>
+      <p class="ev-none" hidden>{esc(EV['none'])}</p>
       <p class="more"><a class="btn btn--line" href="{esc(EV['more_url'])}" target="_blank" rel="noopener">この先の日程・ほかの会場を見る ↗</a></p>
+    </div>
+  </section>
+
+  <section id="seat" class="sec">
+    <div class="wrap">
+      {bar(ST['title'], ST['sub'])}
+      <p class="sec__lead">{esc(ST['lead'])}</p>
+      <article class="card">{card_hd('座席図', 'SEAT MAP')}
+        <div class="card__bd">
+          <div class="st2">{seatmap()}
+            <div><ul class="sws">{seat_types()}<li class="sws__pin"><i>1</i><i>2</i>下の写真を撮った場所</li></ul>
+              {li([ST['note']])}
+              <a class="btn btn--line" href="{esc(ST['url'])}" target="_blank" rel="noopener">{esc(ST['btn'])} ↗</a></div>
+          </div>
+          {blist(ST['areas'], 'mns ars')}
+        </div>
+      </article>
+      <article class="card">{card_hd('席からの見え方', 'VIEW')}
+        <div class="card__bd vws">{views()}</div>
+      </article>
     </div>
   </section>
 
@@ -525,14 +669,11 @@ HTML = f'''<!DOCTYPE html>
         <div class="card__bd"><div class="pgs">{playguides()}
         </div></div>
       </article>
-      <div class="tk2">
-        <article class="card">{card_hd(TK['price']['title'], 'PRICE')}
-          <div class="card__bd">{price()}</div>
-        </article>
-        <article class="card">{card_hd('知っておくと便利', 'TIPS')}
-          <div class="card__bd"><ul class="tips">{tips()}</ul></div>
-        </article>
-      </div>
+      <article class="card">{card_hd('知っておくと便利', 'TIPS')}
+        <div class="card__bd"><ul class="mns">{tips()}</ul>
+          <div class="tk__more"><p>{esc(TK['more']['text'])}</p><a class="btn btn--line" href="{esc(TK['more']['url'])}" target="_blank" rel="noopener">{esc(TK['more']['btn'])} ↗</a></div>
+        </div>
+      </article>
       {li(TK['notes'], 'notes tk__notes')}
     </div>
   </section>
@@ -569,8 +710,9 @@ HTML = f'''<!DOCTYPE html>
       <article class="card">{card_hd('参加の流れ', 'HOW TO JOIN')}
         <div class="card__bd">
           <ol class="sts">{steps(SG['steps'])}</ol>
+          {photos(SG['photos'], 'sgp')}
           <div class="sg2">
-            <div class="exm"><span class="lab">{esc(SG['example']['label'])}</span><p class="exm__t">{esc(SG['example']['title'])}</p><dl>{''.join(f'<dt>{esc(k)}</dt><dd>{esc(v)}</dd>' for k, v in SG['example']['rows'])}</dl></div>
+            <div class="exm"><span class="lab">{esc(SG['example']['label'])}</span>{img(SG['example']['img'], SG['example']['alt'])}<p>{esc(SG['example']['x'])}</p></div>
             {li(SG['notes'])}
           </div>
           <p class="sg__btn"><a class="btn btn--pri" href="{esc(SG['url'])}" target="_blank" rel="noopener">{esc(SG['btn'])} ↗</a></p>
@@ -581,19 +723,24 @@ HTML = f'''<!DOCTYPE html>
 
   <section id="day" class="sec">
     <div class="wrap">
-      {bar('当日の流れとアクセス', '会場は水道橋駅・後楽園駅から徒歩約3分！')}
+      {bar('アクセスと当日の流れ', '会場は水道橋駅・後楽園駅から徒歩約3分！')}
       <p class="sec__lead">{esc(DY['lead'])}</p>
+      <article class="card">{card_hd('アクセス', 'ACCESS')}
+        <div class="card__bd ac">
+          <div><p class="ac__n">{esc(V['name'])}</p><p class="ac__a">{esc(V['addr'])}</p>
+            <ul class="ac__st">{''.join(f'<li><b>{esc(x["st"])}</b><span>{esc(x["x"])}</span></li>' for x in V['stations'])}</ul>
+            <p class="ac__walk">{esc(V['walk'])}</p>
+            {li(V['points'], 'chk')}
+            <div class="ac__btns"><a class="btn btn--pri" href="{map_url(V['map'])}" target="_blank" rel="noopener">Googleマップで見る ↗</a><a class="btn btn--line" href="{esc(V['route_url'])}" target="_blank" rel="noopener">{esc(V['route_btn'])} ↗</a></div>
+          </div>
+          <div class="ac__map"><iframe title="後楽園ホールの地図" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={urllib.parse.quote(V['map'])}&amp;output=embed&amp;hl=ja&amp;z=16"></iframe></div>
+        </div>
+      </article>
       <article class="card">{card_hd('当日の流れ', 'TIMELINE')}
         <div class="card__bd"><ol class="fls">{flow()}</ol>{li([DY['flow_note']], 'notes fl__note')}</div>
       </article>
-      <article class="card">{card_hd('アクセス', 'ACCESS')}
-        <div class="card__bd ac">
-          <div><p class="ac__n">{esc(V['name'])}</p><p class="ac__a">{esc(V['addr'])}</p><ul>{''.join(f'<li>{esc(x)}</li>' for x in V['access'])}</ul></div>
-          <a class="btn btn--pri" href="{map_url(V['map'])}" target="_blank" rel="noopener">Googleマップで見る ↗</a>
-        </div>
-      </article>
       <article class="card">{card_hd('観戦マナー', 'MANNERS')}
-        <div class="card__bd"><ul class="mns">{''.join(f'<li><b>{esc(m["t"])}</b><span>{esc(m["x"])}</span></li>' for m in DY['manners'])}</ul></div>
+        <div class="card__bd">{blist(DY['manners'], 'mns mns--2')}</div>
       </article>
     </div>
   </section>
@@ -639,7 +786,12 @@ HTML = f'''<!DOCTYPE html>
 <script>
 /* 終わった大会を隠し、次の大会に NEXT を付ける */
 (function(){{var n=new Date(),t=n.getFullYear()+'-'+('0'+(n.getMonth()+1)).slice(-2)+'-'+('0'+n.getDate()).slice(-2),f=0;
-document.querySelectorAll('.ev[data-date]').forEach(function(e){{if(e.dataset.date<t){{e.hidden=true}}else if(!f){{e.classList.add('is-next');f=1}}}});}})();
+document.querySelectorAll('.ev[data-date]').forEach(function(e){{if(e.dataset.date<t){{e.hidden=true}}else if(!f){{e.classList.add('is-next');f=1}}}});
+/* 載せた大会がすべて終わったら、公式の日程への案内に切り替える(更新しなくても成立させる) */
+if(!f){{var l=document.querySelector('.evs'),m=document.querySelector('.ev-none');if(l)l.hidden=true;if(m)m.hidden=false}}}})();
+/* 映像: 押されたらYouTubeを読み込んで再生 */
+document.querySelectorAll('a[data-yt]').forEach(function(a){{a.addEventListener('click',function(e){{e.preventDefault();var d=document.createElement('div');d.className='yt';
+d.innerHTML='<iframe src="https://www.youtube.com/embed/'+a.dataset.yt+'?autoplay=1&rel=0&playsinline=1" title="YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';a.replaceWith(d)}})}});
 </script>
 </body>
 </html>
