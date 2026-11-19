@@ -31,7 +31,7 @@ def img(name, alt='', cls='', sizes=None, eager=False):
     lz = '' if eager else ' loading="lazy"'
     return f'<img{c} src="img/{fn}" alt="{esc(alt)}" width="{w}" height="{h}"{lz}>'
 
-NAV = [('schedule', '大会日程'), ('seat', '座席'), ('ticket', 'チケット'), ('goods', 'グッズ'), ('sign', 'サイン会'), ('day', 'アクセス'), ('rules', 'ルール'), ('enjoy', '楽しみ方'), ('faq', 'Q&A')]
+NAV = [('seat', '座席'), ('schedule', '大会日程'), ('ticket', 'チケット'), ('goods', 'グッズ'), ('sign', 'サイン会'), ('day', 'アクセス'), ('rules', 'ルール'), ('enjoy', '楽しみ方'), ('korakuen', '映像'), ('faq', 'Q&A')]
 def nav_links(): return ''.join(f'<a href="#{i}">{t}</a>' for i, t in NAV)
 
 # 初心者マーク(パンフの見出しに付いているもの)
@@ -621,26 +621,6 @@ HTML = f'''<!DOCTYPE html>
     </div>
   </section>
 
-  <section id="korakuen" class="sec">
-    <div class="wrap">
-      {bar(KR['title'], KR['sub'])}
-      <p class="sec__lead">{esc(KR['lead'])}</p>
-      {video()}
-      {photos(KR['photos'], 'phs')}
-    </div>
-  </section>
-
-  <section id="schedule" class="sec">
-    <div class="wrap">
-      {bar('後楽園ホールの大会日程', 'まずは行きたい大会を選ぼう！')}
-      <p class="sec__lead">{esc(EV['lead'])}</p>
-      <ul class="evs">{events()}
-      </ul>
-      <p class="ev-none" hidden>{esc(EV['none'])}</p>
-      <p class="more"><a class="btn btn--line" href="{esc(EV['more_url'])}" target="_blank" rel="noopener">この先の日程・ほかの会場を見る ↗</a></p>
-    </div>
-  </section>
-
   <section id="seat" class="sec">
     <div class="wrap">
       {bar(ST['title'], ST['sub'])}
@@ -658,6 +638,17 @@ HTML = f'''<!DOCTYPE html>
       <article class="card">{card_hd('席からの見え方', 'VIEW')}
         <div class="card__bd vws">{views()}</div>
       </article>
+    </div>
+  </section>
+
+  <section id="schedule" class="sec">
+    <div class="wrap">
+      {bar('後楽園ホールの大会日程', '行きたい大会を選ぼう！')}
+      <p class="sec__lead">{esc(EV['lead'])}</p>
+      <ul class="evs">{events()}
+      </ul>
+      <p class="ev-none" hidden>{esc(EV['none'])}</p>
+      <p class="more"><a class="btn btn--line" href="{esc(EV['more_url'])}" target="_blank" rel="noopener">この先の日程・ほかの会場を見る ↗</a></p>
     </div>
   </section>
 
@@ -756,6 +747,15 @@ HTML = f'''<!DOCTYPE html>
       <h2 class="enjoy__t">{esc(EN['title'])}</h2>
       <div class="ejs">{enjoy()}
       </div>
+    </div>
+  </section>
+
+  <section id="korakuen" class="sec">
+    <div class="wrap">
+      {bar(KR['title'], KR['sub'])}
+      <p class="sec__lead">{esc(KR['lead'])}</p>
+      {video()}
+      {photos(KR['photos'], 'phs')}
     </div>
   </section>
 
