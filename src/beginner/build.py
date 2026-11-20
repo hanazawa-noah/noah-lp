@@ -104,7 +104,7 @@ def seatmap():
   <rect x="680" y="448" width="275" height="290" class="sm-ring"/><text x="817" y="622" class="sm-ringt">RING</text>
   {side('北側', 330, 40)}{side('東側', 840, -75)}{side('西側', 840, 1262)}{side('南側', 1532, -32)}
   {lab('SS', 1094, 620, 'w')}{lab('S', 1228, 330, 'w')}{lab('A', 1440, 158)}{lab('B', 1790, 330, 'w')}
-  {pin(1, 1760, 597)}{pin(2, 985, 150)}
+  {''.join(pin(v['no'], *v['pin']) for v in ST['views'] if v.get('pin'))}
 </svg>'''
 
 def seat_types():
@@ -163,7 +163,7 @@ def faq():
 def footer_links(): return ''.join(f'<li><a href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])}</a></li>' for l in D['footer_links'])
 
 noindex = '<meta name="robots" content="noindex,nofollow">\n  ' if args.noindex else ''
-desc = f"{S['sub']}。チケットの買い方、座席とアクセス、グッズの事前購入、サイン会の参加方法、プロレスのルールまで。格闘技の聖地・後楽園ホールで初めてNOAHを観戦する方へのご案内。プロレスリング・ノア。"
+desc = f"{S['sub'].replace('|', '')}を、チケットの買い方から座席とアクセス、グッズの事前購入、サイン会の参加方法、プロレスのルールまでご案内します。プロレスの聖地・後楽園ホールで初めてプロレスを観戦する方は、ぜひご活用ください。"
 V = DY['venue']
 MV = S['mv']
 mw, mh = Image.open(f"out/img/{MV['img']}.webp").size
@@ -229,10 +229,10 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 
 /* hero */
 .hero{{padding:52px 0 28px}}
-.hero__en{{font-family:var(--ff-en);font-weight:800;font-size:min(9.1vw,104px);line-height:.95;letter-spacing:.01em;white-space:nowrap}}
+.hero__en{{font-family:var(--ff-en);font-weight:800;font-size:30px;line-height:1;letter-spacing:.08em;white-space:nowrap}}
 .hero__row{{display:flex;align-items:center;gap:10px 30px;margin-top:22px;padding:14px 0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}}
 .hero__row img{{height:36px;width:auto;flex:none}}
-.hero__ja{{font-family:var(--ff-hd);font-weight:900;font-size:clamp(20px,3vw,34px);letter-spacing:.08em;line-height:1.35}}
+.hero__ja{{font-family:var(--ff-hd);font-weight:900;font-size:min(4.7vw,56px);letter-spacing:.04em;line-height:1.3;white-space:nowrap}}
 .hero__lead{{font-size:16px;line-height:2;margin-top:26px}}
 .mv{{position:relative;margin-top:28px;border:3px solid var(--bl);border-radius:18px;overflow:hidden;background:var(--bl)}}
 .mv img{{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:50% 62%}}
@@ -487,9 +487,10 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
   .card__hd .bdg{{right:8px;top:-18px}}
   .card__bd{{padding:18px 16px 20px}}
   .hero{{padding:30px 0 16px}}
-  .hero__en{{font-size:19.5vw;white-space:normal}}
-  .hero__row{{flex-direction:column;align-items:flex-start;margin-top:16px;padding:12px 0}}
-  .hero__row img{{height:26px}}
+  .hero__ja{{font-size:8.4vw;line-height:1.32}}
+  .hero__en{{font-size:4.4vw;letter-spacing:.05em}}
+  .hero__row{{gap:10px;margin-top:14px;padding:11px 0}}
+  .hero__row img{{height:4.1vw}}
   .hero__lead{{font-size:14.5px;line-height:1.95;margin-top:18px}}
   br.pc{{display:none}}
   .mv{{margin-top:18px;border-radius:14px}}
@@ -586,7 +587,7 @@ HTML = f'''<!DOCTYPE html>
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@noah_ghc">
   <meta name="theme-color" content="{T['blue']}">
-  <link rel="icon" href="img/noah_badge.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
   <!-- Google Tag Manager -->
@@ -611,8 +612,8 @@ HTML = f'''<!DOCTYPE html>
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <p class="hero__en">FIRST-TIME <br class="sp">VIEWING GUIDE</p>
-      <div class="hero__row">{img('noah_lockup.png', 'PRO WRESTLING NOAH', eager=True)}<h1 class="hero__ja">{esc(S['sub'])}{WAKABA}</h1></div>
+      <h1 class="hero__ja">{esc(S['sub']).replace('|', '<br class="sp">')}{WAKABA}</h1>
+      <div class="hero__row">{img('noah_lockup.png', 'PRO WRESTLING NOAH', eager=True)}<p class="hero__en">{esc(S['en'])}</p></div>
       <figure class="mv"><picture><source media="(max-width:900px)" srcset="img/{MV['img_s']}.webp"><img src="img/{MV['img']}.webp" alt="{esc(MV['alt'])}" width="{mw}" height="{mh}" fetchpriority="high"></picture>
         <figcaption class="mv__cap"><small>{esc(MV['label'])}</small><b>{esc(MV['name'])}</b><i>{esc(MV['en'])}</i></figcaption></figure>
       <p class="hero__lead">{esc(S['lead']).replace('|', '<br class="pc">')}</p>
@@ -628,7 +629,7 @@ HTML = f'''<!DOCTYPE html>
       <article class="card">{card_hd('座席図', 'SEAT MAP')}
         <div class="card__bd">
           <div class="st2">{seatmap()}
-            <div><ul class="sws">{seat_types()}<li class="sws__pin"><i>1</i><i>2</i>下の写真を撮った場所</li></ul>
+            <div><ul class="sws">{seat_types()}<li class="sws__pin">{"".join(f"<i>{esc(v["no"])}</i>" for v in ST["views"] if v.get("pin"))}下の写真を撮った場所</li></ul>
               {li([ST['note']])}
               <a class="btn btn--line" href="{esc(ST['url'])}" target="_blank" rel="noopener">{esc(ST['btn'])} ↗</a></div>
           </div>
@@ -654,7 +655,7 @@ HTML = f'''<!DOCTYPE html>
 
   <section id="ticket" class="sec">
     <div class="wrap">
-      {bar('チケットを買おう', 'チケットは各プレイガイドで販売中！', '1')}
+      {bar('チケットを買おう', 'チケットは各プレイガイドで買えます！', '1')}
       <p class="sec__lead">{esc(TK['lead'])}</p>
       <article class="card">{card_hd('プレイガイド', 'PLAY GUIDE')}
         <div class="card__bd"><div class="pgs">{playguides()}
@@ -714,7 +715,7 @@ HTML = f'''<!DOCTYPE html>
 
   <section id="day" class="sec">
     <div class="wrap">
-      {bar('アクセスと当日の流れ', '会場は水道橋駅・後楽園駅から徒歩約3分！')}
+      {bar('アクセスと当日の流れ', '水道橋駅・後楽園駅から歩いて約3分で着きます！')}
       <p class="sec__lead">{esc(DY['lead'])}</p>
       <article class="card">{card_hd('アクセス', 'ACCESS')}
         <div class="card__bd ac">
@@ -761,7 +762,7 @@ HTML = f'''<!DOCTYPE html>
 
   <section id="faq" class="sec">
     <div class="wrap">
-      {bar('よくある質問', '気になることは、ここでチェック！')}
+      {bar('よくある質問', '気になることをチェックしよう！')}
       <div class="fqs">{faq()}</div>
       <p class="more"><a class="btn btn--line" href="{esc(FQ['url'])}" target="_blank" rel="noopener">公式サイトのQ&amp;Aをもっと見る ↗</a></p>
     </div>
@@ -769,8 +770,8 @@ HTML = f'''<!DOCTYPE html>
 
   <section class="last">
     <div class="wrap">
-      <p class="last__t">さあ、後楽園ホールへ。{WAKABA}</p>
-      <p class="last__s">はじめての一歩は、チケットから。</p>
+      <p class="last__t">{esc(D['last']['t'])}{WAKABA}</p>
+      <p class="last__s">{esc(D['last']['s'])}</p>
       <div class="last__b"><a class="btn btn--yl" href="#schedule">大会日程を見る</a><a class="btn btn--pri" href="#ticket">チケットを買う</a></div>
     </div>
   </section>

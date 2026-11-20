@@ -18,7 +18,7 @@ def save(im, name, w, q=80, ratio=None, cx=.5, cy=.5):
 U = lambda n: Image.open(f'uploads/{n}')
 save(U('1.jpg'), 'mv', 1477, 80)                 # メインビジュアル(満員の後楽園ホール・南側後方から)
 save(U('1.jpg'), 'mv_s', 800, 76)
-save(U('2.jpg'), 'view_east', 1200, 80)          # 東側の席からの見え方
+save(U('2.jpg'), 'view_2', 1200, 80)          # 席からの見え方(撮影位置は確認中)
 for n in (3, 13, 5, 6, 4, 12):                   # 試合写真ギャラリー
     save(U(f'{n}.jpg'), f'ph_{n}', 960, 78, ratio=3 / 2)
 save(U('14.webp'), 'sign_info', 1200, 82)        # サイン会告知の例(11.9 後楽園)

@@ -28,7 +28,7 @@ with sync_playwright() as p:
     # OGP: ヒーローの文字部分を 1200x630 で
     pg = b.new_page(viewport={'width': 1200, 'height': 630}, device_scale_factor=1)
     pg.goto(url); pg.wait_for_timeout(1500)
-    pg.add_style_tag(content='.topwrap{display:none}.hero{padding-top:44px}.hero__lead{display:none}.mv{margin-top:26px}.mv img{aspect-ratio:1080/340;object-position:50% 40%}.wrap{width:1080px}')
+    pg.add_style_tag(content='.topwrap{display:none}.hero{padding-top:44px}.hero__lead{display:none}.mv{margin-top:26px}.quick{display:none}.mv img{aspect-ratio:1080/368;object-position:50% 40%}.wrap{width:1080px}')
     pg.wait_for_timeout(300)
     pg.screenshot(path=f'{dst}/ogp.png')
     Image.open(f'{dst}/ogp.png').convert('RGB').save('out/img/ogp.jpg', quality=84, optimize=True)
