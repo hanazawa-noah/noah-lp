@@ -346,7 +346,7 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 .st__no{{position:absolute;left:14px;top:-20px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--yl);border:3px solid var(--bl);color:var(--bl);font-family:var(--ff-en);font-style:italic;font-weight:800;font-size:26px;line-height:1;padding-right:2px}}
 .sts b{{font-family:var(--ff-hd);font-weight:900;font-size:15.5px;line-height:1.5;color:var(--bl)}}
 .sts span:last-child{{font-size:13px;font-weight:500;line-height:1.75}}
-.sgp{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}}
+.sgp{{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:26px}}
 .sgp img{{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:10px}}
 .sg2{{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;margin-top:28px;align-items:start}}
 .exm{{border:2px dashed var(--bl);border-radius:12px;padding:16px 18px 18px}}
@@ -511,7 +511,7 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
   .ars{{margin-top:20px;padding-top:20px}}
   .vws{{grid-template-columns:1fr;gap:20px}}
   .tk__more .btn{{width:100%}}
-  .sgp{{gap:8px;margin-top:20px}}
+  .sgp{{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:20px}}
   .ac__st b{{font-size:15.5px}}
   .ac__btns .btn{{width:100%}}
   .ac__map,.ac__map iframe{{min-height:260px}}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """依頼者支給の写真(uploads/1〜16)とサイン会写真から out/img/ を作る。
-usage: python prep_photos.py [サイン会写真フォルダ]
+usage: python prep_photos.py [サイン会写真フォルダ] [グッズチーム支給フォルダ]
 サイン会写真(共有ドライブ NOAH試合写真 2026/06/25・07/05 後楽園 試合前サイン会)は重いのでリポジトリに置かない
 """
 import sys, os
@@ -29,3 +29,5 @@ if len(sys.argv) > 1:
     save(Image.open(d + '/_B8A7659.JPG'), 'sg_2', 800, 78, ratio=3 / 2)
     im = Image.open(d + '/_B8A7693.JPG'); W, H = im.size
     save(im.crop((0, int(H * .2), int(W * .9), H)), 'sg_3', 800, 78, ratio=3 / 2, cx=0, cy=1)  # ファンの顔が入らないように
+if len(sys.argv) > 2:  # グッズチーム支給(NOAH素材フォルダ/05_グッズチームフォルダ/21_素材/LP はじめてNOAH後楽園)
+    save(Image.open(sys.argv[2] + '/_B8A5350.JPG'), 'sg_4', 800, 78, ratio=3 / 2)  # KENTA選手
