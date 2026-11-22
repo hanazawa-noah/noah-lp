@@ -284,18 +284,21 @@
           "no": "❶",
           "a": "yohey",
           "b": "tadasuke",
-          "img": "vs_yohey_tadasuke"
+          "img": "vs_yohey_tadasuke",
+          "winner": "yohey"
         },
         {
           "no": "❷",
           "a": "akeem",
           "b": "bane",
-          "img": "vs_akeem_bane"
+          "img": "vs_akeem_bane",
+          "winner": "bane"
         }
       ],
       "maruhan": true,
       "tv": "wu",
-      "photo": "18:30"
+      "photo": "18:30",
+      "photo_who": "Yoshiki Inamura"
     },
     {
       "date": "11.21",
@@ -312,12 +315,14 @@
           "no": "❸",
           "a": "bushi",
           "b": "alejandro",
-          "img": "vs_bushi_alejandro"
+          "img": "vs_bushi_alejandro",
+          "winner": "bushi"
         }
       ],
       "maruhan": true,
       "tv": "wu",
-      "photo": "16:30"
+      "photo": "16:30",
+      "photo_who": "アレハンドロ"
     },
     {
       "date": "11.22",
@@ -334,12 +339,14 @@
           "no": "❹",
           "a": "sato",
           "b": "odashima",
-          "img": "vs_sato_odashima"
+          "img": "vs_sato_odashima",
+          "winner": "odashima"
         }
       ],
       "maruhan": true,
       "tv": "wu",
-      "photo": "14:30"
+      "photo": "14:30",
+      "photo_who": "小峠篤司"
     },
     {
       "date": "11.23",
@@ -353,19 +360,22 @@
       "round": "準決勝",
       "matches": [
         {
-          "no": "(1)",
-          "a_text": "11.21 ❸の勝者",
-          "b_text": "11.22 ❹の勝者"
+          "no": "SF1",
+          "a": "bushi",
+          "b": "odashima",
+          "note": "11.21 ❸の勝者 vs 11.22 ❹の勝者"
         },
         {
-          "no": "(2)",
-          "a_text": "11.20 ❶の勝者",
-          "b_text": "11.20 ❷の勝者"
+          "no": "SF2",
+          "a": "yohey",
+          "b": "bane",
+          "note": "11.20 ❶の勝者 vs 11.20 ❷の勝者"
         }
       ],
       "maruhan": true,
       "tv": "wu",
-      "photo": "17:00"
+      "photo": "17:00",
+      "photo_who": "鶴屋浩斗"
     },
     {
       "date": "11.28",
@@ -687,6 +697,132 @@
   },
   "news": [
     {
+      "date": "2026.11.22",
+      "cat": "インタビュー",
+      "title": "【11.21山形 バックステージコメント】BUSHIがアレハンドロを下しジュニアGP4強入り",
+      "url": "https://www.noah.co.jp/news/8823/",
+      "img": "nw_8823"
+    },
+    {
+      "date": "2026.11.21",
+      "cat": "インタビュー",
+      "title": "【11.20仙台 バックステージコメント】ベインがシドニーを破り準決勝へ▼YO-HEYがタダスケとの同門対決を制し4強一番乗り",
+      "url": "https://www.noah.co.jp/news/8822/",
+      "img": "nw_8822"
+    },
+    {
+      "date": "2026.11.21",
+      "cat": "大会情報",
+      "title": "【当日券発売します！】11月23日 新潟・万代島多目的広場大かま大会 チケット直前情報",
+      "url": "https://www.noah.co.jp/news/8801/",
+      "img": "nw_8801"
+    },
+    {
+      "date": "2026.11.20",
+      "cat": "大会情報",
+      "title": "いよいよSemi-Final！【11.23 新潟】追加対戦カード決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8820/",
+      "img": "nw_8820"
+    },
+    {
+      "date": "2026.11.20",
+      "cat": "大会情報",
+      "title": "【マルハン×NOAH】3Shotリングサイド撮影会 11.23新潟大会は鶴屋浩斗が登場！",
+      "url": "https://www.noah.co.jp/news/8815/",
+      "img": "nw_8815"
+    },
+    {
+      "date": "2026.11.20",
+      "cat": "大会情報",
+      "title": "【NJGP2開催中!】11月22日 鹿角市記念スポーツセンター大会 直前情報",
+      "url": "https://www.noah.co.jp/news/8807/",
+      "img": "nw_8807"
+    },
+    {
+      "date": "2026.11.19",
+      "cat": "大会情報",
+      "title": "【マルハン×NOAH】3Shotリングサイド撮影会 11.22秋田大会は小峠篤司が登場！",
+      "url": "https://www.noah.co.jp/news/8813/",
+      "img": "nw_8813"
+    },
+    {
+      "date": "2026.11.19",
+      "cat": "大会情報",
+      "title": "【マルハン×NOAH】3Shotリングサイド撮影会 11.21山形大会はアレハンドロが登場！",
+      "url": "https://www.noah.co.jp/news/8812/",
+      "img": "nw_8812"
+    },
+    {
+      "date": "2026.11.19",
+      "cat": "大会情報",
+      "title": "【マルハン×NOAH】3Shotリングサイド撮影会 11.20仙台大会はYoshiki Inamuraが登場！",
+      "url": "https://www.noah.co.jp/news/8811/",
+      "img": "nw_8811"
+    },
+    {
+      "date": "2026.11.19",
+      "cat": "大会情報",
+      "title": "【NJGP2開催中!】11月21日 山形ビッグウイング大会 直前情報",
+      "url": "https://www.noah.co.jp/news/8806/",
+      "img": "nw_8806"
+    },
+    {
+      "date": "2026.11.18",
+      "cat": "メディア",
+      "title": "11月18日発売『週刊プロレス』は11・14梅田＆11・15名古屋の「NOAH Jr. GRAND PRIX 2」1回戦を大詳報！",
+      "url": "https://www.noah.co.jp/news/8809/",
+      "img": "nw_8809"
+    },
+    {
+      "date": "2026.11.18",
+      "cat": "インタビュー",
+      "title": "【11.17保土ヶ谷 バックステージコメント】アレハンドロがBUSHIから直接ピン▼シドニーがベインから直接ピン",
+      "url": "https://www.noah.co.jp/news/8808/",
+      "img": "nw_8808"
+    },
+    {
+      "date": "2026.11.18",
+      "cat": "大会情報",
+      "title": "【NJGP2 準々決勝2試合開催!】11月20日 仙台PIT大会 直前情報",
+      "url": "https://www.noah.co.jp/news/8805/",
+      "img": "nw_8805"
+    },
+    {
+      "date": "2026.11.18",
+      "cat": "グッズ",
+      "title": "【小田嶋大樹が登場！】11.22 秋田・鹿角市記念スポーツセンター大会 試合前サイン会",
+      "url": "https://www.noah.co.jp/news/8799/",
+      "img": "nw_8799"
+    },
+    {
+      "date": "2026.11.18",
+      "cat": "グッズ",
+      "title": "【清宮海斗が登場！】11.21 山形・山形ビッグウイング大会 試合前サイン会",
+      "url": "https://www.noah.co.jp/news/8798/",
+      "img": "nw_8798"
+    },
+    {
+      "date": "2026.11.18",
+      "cat": "グッズ",
+      "title": "【ドラゴン・ベインが登場！】11.20 宮城・仙台PIT大会 試合前サイン会",
+      "url": "https://www.noah.co.jp/news/8797/",
+      "img": "nw_8797"
+    },
+    {
+      "date": "2026.11.17",
+      "cat": "大会情報",
+      "title": "＜カイvsウルフ決定！＞【11.28 後楽園】追加対戦カードのお知らせ",
+      "url": "https://www.noah.co.jp/news/8804/",
+      "img": "nw_8804"
+    },
+    {
+      "date": "2026.11.17",
+      "cat": "大会情報",
+      "title": "＜TEAM2000X対決！＞【11.23 新潟】追加対戦カード決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8803/",
+      "img": "nw_8803"
+    },
+    {
       "date": "2026.11.15",
       "cat": "インタビュー",
       "title": "【11.14大阪 バックステージコメント】小田嶋が政岡を下しジュニアGP2回戦へ▼佐藤維、アレハンドロも1回戦突破",
@@ -857,6 +993,30 @@
   ],
   "videos": [
     {
+      "id": "fgRwnTVOzBw",
+      "title": "YO-HEYとドラゴン・ベインが NOAH Jr. GRAND PRIX 2 準決勝で激突！ 11.23新潟で決勝進出を懸けた戦いへ"
+    },
+    {
+      "id": "IYZgJUDtKWo",
+      "title": "【11.21山形大会・試合後コメント集】"
+    },
+    {
+      "id": "BTxBZarWYLY",
+      "title": "【11.20仙台大会・試合後コメント集】"
+    },
+    {
+      "id": "5QbgG55Sj4g",
+      "title": "11.21山形での2回戦を前に、アレハンドロがBUSHIとの前哨戦で直接勝利！"
+    },
+    {
+      "id": "0An1SvfbbJM",
+      "title": "【11.17保土ヶ谷大会・試合後コメント集】"
+    },
+    {
+      "id": "_DAGgUoTy8o",
+      "title": "【11.15名古屋大会・試合後コメント集】"
+    },
+    {
       "id": "MzuzgnqHp3I",
       "title": "小田嶋大樹が政岡純を制し、NOAH Jr. GRAND PRIX 2 の2回戦に進出！"
     },
@@ -923,20 +1083,7 @@
     ],
     "sign": {
       "title": "試合前サイン会",
-      "rows": [
-        {
-          "date": "11.14 SAT　大阪・梅田スカイビル ステラホール",
-          "who": "小田嶋大樹",
-          "time": "17:15〜",
-          "url": "https://www.noah.co.jp/news/8776/"
-        },
-        {
-          "date": "11.15 SUN　愛知・Lives NAGOYA",
-          "who": "清宮海斗",
-          "time": "14:15〜",
-          "url": "https://www.noah.co.jp/news/8777/"
-        }
-      ],
+      "rows": [],
       "text": "会場グッズ売店で対象商品を1点購入ごとに、サイン会参加券を1枚お渡しします。",
       "notes": [
         "1Shot撮影を含む、選手の撮影はすべて禁止です。",

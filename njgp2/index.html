@@ -110,6 +110,14 @@ ul{list-style:none}
 .m__w{display:inline-flex;align-items:center;gap:6px}
 .m__w em{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;background:#E60012;color:#fff;padding:2px 6px;line-height:1.2}
 .m__l{opacity:.55}
+.vs--txt{position:relative;padding:22px 24px}
+.vs--txt::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--rb)}
+.vs--txt figcaption{font-size:20px;padding:0}
+.vs--txt figcaption b{font-family:var(--ff-en);font-size:15px;border:1px solid #fff;padding:2px 8px}
+.more{margin-top:22px}
+.more summary{cursor:pointer;list-style:none;text-align:center;font-weight:800;font-size:14px;border:1px solid rgba(255,255,255,.5);padding:12px;max-width:320px;margin:0 auto;background:rgba(10,16,35,.75)}
+.more summary::-webkit-details-marker{display:none}
+.more[open] summary{margin-bottom:22px}
 .r1 + .r1{margin-top:44px}
 .r1__day{display:flex;align-items:baseline;gap:14px;font-weight:800;font-size:17px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .r1__day .en{font-size:30px;line-height:1}
@@ -432,24 +440,31 @@ ul{list-style:none}
 
   <section id="round1" class="sec">
     <div class="wrap">
-      <div class="sec__head"><p class="sec__en">MATCH CARDS</p><h2 class="sec__ja">対戦カード</h2><span class="sec__rule"></span></div><div class="rd"><h3 class="rd__t"><span class="en">2ND ROUND</span>2回戦</h3>
+      <div class="sec__head"><p class="sec__en">MATCH CARDS</p><h2 class="sec__ja">対戦カード</h2><span class="sec__rule"></span></div><div class="rd"><h3 class="rd__t"><span class="en">SEMI-FINAL</span>準決勝</h3>
+        <div class="r1">
+          <p class="r1__day"><span class="en">11.23</span><small>MON・祝</small>新潟・万代島多目的広場大かま</p>
+          <div class="r1__grid">
+          <figure class="vs vs--txt box"><figcaption><b>SF1</b>BUSHI<i>vs</i>小田嶋大樹<small class="m__note">※11.21 ❸の勝者 vs 11.22 ❹の勝者</small></figcaption></figure>
+          <figure class="vs vs--txt box"><figcaption><b>SF2</b>YO-HEY<i>vs</i>ドラゴン・ベイン<small class="m__note">※11.20 ❶の勝者 vs 11.20 ❷の勝者</small></figcaption></figure>
+          </div>
+        </div></div><div class="rd"><h3 class="rd__t"><span class="en">2ND ROUND</span>2回戦</h3>
         <div class="r1">
           <p class="r1__day"><span class="en">11.20</span><small>FRI</small>宮城・仙台PIT</p>
           <div class="r1__grid">
-          <figure class="vs"><img src="img/vs_yohey_tadasuke_960.jpg" srcset="img/vs_yohey_tadasuke_960.jpg 960w, img/vs_yohey_tadasuke.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="YO-HEY vs タダスケ" width="1920" height="1080" loading="lazy"><figcaption><b>❶</b>YO-HEY<i>vs</i>タダスケ</figcaption></figure>
-          <figure class="vs"><img src="img/vs_akeem_bane_960.jpg" srcset="img/vs_akeem_bane_960.jpg 960w, img/vs_akeem_bane.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="シドニー・アキーム vs ドラゴン・ベイン" width="1920" height="1080" loading="lazy"><figcaption><b>❷</b>シドニー・アキーム<i>vs</i>ドラゴン・ベイン</figcaption></figure>
+          <figure class="vs"><img src="img/vs_yohey_tadasuke_960.jpg" srcset="img/vs_yohey_tadasuke_960.jpg 960w, img/vs_yohey_tadasuke.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="YO-HEY vs タダスケ" width="1920" height="1080" loading="lazy"><figcaption><b>❶</b><span class="m__w">YO-HEY<em class="en">WIN</em></span><i>vs</i><span class="m__l">タダスケ</span></figcaption></figure>
+          <figure class="vs"><img src="img/vs_akeem_bane_960.jpg" srcset="img/vs_akeem_bane_960.jpg 960w, img/vs_akeem_bane.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="シドニー・アキーム vs ドラゴン・ベイン" width="1920" height="1080" loading="lazy"><figcaption><b>❷</b><span class="m__l">シドニー・アキーム</span><i>vs</i><span class="m__w">ドラゴン・ベイン<em class="en">WIN</em></span></figcaption></figure>
           </div>
         </div>
         <div class="r1">
           <p class="r1__day"><span class="en">11.21</span><small>SAT</small>山形・山形ビッグウイング</p>
           <div class="r1__grid">
-          <figure class="vs"><img src="img/vs_bushi_alejandro_960.jpg" srcset="img/vs_bushi_alejandro_960.jpg 960w, img/vs_bushi_alejandro.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="BUSHI vs アレハンドロ" width="1920" height="1080" loading="lazy"><figcaption><b>❸</b>BUSHI<i>vs</i>アレハンドロ</figcaption></figure>
+          <figure class="vs"><img src="img/vs_bushi_alejandro_960.jpg" srcset="img/vs_bushi_alejandro_960.jpg 960w, img/vs_bushi_alejandro.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="BUSHI vs アレハンドロ" width="1920" height="1080" loading="lazy"><figcaption><b>❸</b><span class="m__w">BUSHI<em class="en">WIN</em></span><i>vs</i><span class="m__l">アレハンドロ</span></figcaption></figure>
           </div>
         </div>
         <div class="r1">
           <p class="r1__day"><span class="en">11.22</span><small>SUN</small>秋田・鹿角市記念スポーツセンター</p>
           <div class="r1__grid">
-          <figure class="vs"><img src="img/vs_sato_odashima_960.jpg" srcset="img/vs_sato_odashima_960.jpg 960w, img/vs_sato_odashima.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="佐藤維 vs 小田嶋大樹" width="1920" height="1080" loading="lazy"><figcaption><b>❹</b>佐藤維<i>vs</i>小田嶋大樹</figcaption></figure>
+          <figure class="vs"><img src="img/vs_sato_odashima_960.jpg" srcset="img/vs_sato_odashima_960.jpg 960w, img/vs_sato_odashima.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="佐藤維 vs 小田嶋大樹" width="1920" height="1080" loading="lazy"><figcaption><b>❹</b><span class="m__l">佐藤維</span><i>vs</i><span class="m__w">小田嶋大樹<em class="en">WIN</em></span></figcaption></figure>
           </div>
         </div></div><div class="rd"><h3 class="rd__t"><span class="en">1ST ROUND</span>1回戦</h3>
         <div class="r1">
@@ -547,7 +562,7 @@ ul{list-style:none}
           <p class="sc__date en">11.23<small>MON・祝</small></p>
           <p class="sc__venue">新潟・万代島多目的広場大かま</p>
           <p class="sc__time">開場 <b class="en">16:30</b>　開始 <b class="en">17:30</b></p><a class="sc__mh" href="#maruhan">マルハンコラボブース・撮影会</a>
-          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>(1)</b><span>11.21 ❸の勝者<i>vs</i>11.22 ❹の勝者</span></li><li><b>(2)</b><span>11.20 ❶の勝者<i>vs</i>11.20 ❷の勝者</span></li></ul></details>
+          <details class="sc__cards"><summary>対戦カード</summary><ul><li><b>SF1</b><span>BUSHI <i>vs</i> 小田嶋大樹<small class="m__note">※11.21 ❸の勝者 vs 11.22 ❹の勝者</small></span></li><li><b>SF2</b><span>YO-HEY <i>vs</i> ドラゴン・ベイン<small class="m__note">※11.20 ❶の勝者 vs 11.20 ❷の勝者</small></span></li></ul></details>
           <p class="sc__tour">〜LETHAL ODYSSEY TOUR 2026〜</p>
           <a class="sc__tv sc__tv--wu" href="https://www.wrestle-universe.com/ja/noah" target="_blank" rel="noopener"><small>放送・配信</small>WRESTLE UNIVERSEで生中継&nbsp;↗</a>
           <a class="sc__map" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%87%E4%BB%A3%E5%B3%B6%E5%A4%9A%E7%9B%AE%E7%9A%84%E5%BA%83%E5%A0%B4%20%E5%A4%A7%E3%81%8B%E3%81%BE" target="_blank" rel="noopener">会場の地図 ↗</a>
@@ -570,6 +585,25 @@ ul{list-style:none}
     <div class="wrap">
       <div class="sec__head"><p class="sec__en">NEWS</p><h2 class="sec__ja">ニュース</h2><span class="sec__rule"></span></div>
       <ul class="nws">
+        <li><a class="nw" href="https://www.noah.co.jp/news/8823/" target="_blank" rel="noopener"><img src="img/nw_8823.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.22</time><small>インタビュー</small></span><span class="nw__t">【11.21山形 バックステージコメント】BUSHIがアレハンドロを下しジュニアGP4強入り</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8822/" target="_blank" rel="noopener"><img src="img/nw_8822.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.21</time><small>インタビュー</small></span><span class="nw__t">【11.20仙台 バックステージコメント】ベインがシドニーを破り準決勝へ▼YO-HEYがタダスケとの同門対決を制し4強一番乗り</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8801/" target="_blank" rel="noopener"><img src="img/nw_8801.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.21</time><small>大会情報</small></span><span class="nw__t">【当日券発売します！】11月23日 新潟・万代島多目的広場大かま大会 チケット直前情報</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8820/" target="_blank" rel="noopener"><img src="img/nw_8820.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.20</time><small>大会情報</small></span><span class="nw__t">いよいよSemi-Final！【11.23 新潟】追加対戦カード決定のお知らせ</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8815/" target="_blank" rel="noopener"><img src="img/nw_8815.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.20</time><small>大会情報</small></span><span class="nw__t">【マルハン×NOAH】3Shotリングサイド撮影会 11.23新潟大会は鶴屋浩斗が登場！</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8807/" target="_blank" rel="noopener"><img src="img/nw_8807.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.20</time><small>大会情報</small></span><span class="nw__t">【NJGP2開催中!】11月22日 鹿角市記念スポーツセンター大会 直前情報</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8813/" target="_blank" rel="noopener"><img src="img/nw_8813.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.19</time><small>大会情報</small></span><span class="nw__t">【マルハン×NOAH】3Shotリングサイド撮影会 11.22秋田大会は小峠篤司が登場！</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8812/" target="_blank" rel="noopener"><img src="img/nw_8812.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.19</time><small>大会情報</small></span><span class="nw__t">【マルハン×NOAH】3Shotリングサイド撮影会 11.21山形大会はアレハンドロが登場！</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8811/" target="_blank" rel="noopener"><img src="img/nw_8811.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.19</time><small>大会情報</small></span><span class="nw__t">【マルハン×NOAH】3Shotリングサイド撮影会 11.20仙台大会はYoshiki Inamuraが登場！</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8806/" target="_blank" rel="noopener"><img src="img/nw_8806.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.19</time><small>大会情報</small></span><span class="nw__t">【NJGP2開催中!】11月21日 山形ビッグウイング大会 直前情報</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8809/" target="_blank" rel="noopener"><img src="img/nw_8809.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.18</time><small>メディア</small></span><span class="nw__t">11月18日発売『週刊プロレス』は11・14梅田＆11・15名古屋の「NOAH Jr. GRAND PRIX 2」1回戦を大詳報！</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8808/" target="_blank" rel="noopener"><img src="img/nw_8808.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.18</time><small>インタビュー</small></span><span class="nw__t">【11.17保土ヶ谷 バックステージコメント】アレハンドロがBUSHIから直接ピン▼シドニーがベインから直接ピン</span></span></a></li>
+      </ul><details class="more"><summary>過去のニュースを見る（30件）</summary><ul class="nws">
+        <li><a class="nw" href="https://www.noah.co.jp/news/8805/" target="_blank" rel="noopener"><img src="img/nw_8805.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.18</time><small>大会情報</small></span><span class="nw__t">【NJGP2 準々決勝2試合開催!】11月20日 仙台PIT大会 直前情報</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8799/" target="_blank" rel="noopener"><img src="img/nw_8799.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.18</time><small>グッズ</small></span><span class="nw__t">【小田嶋大樹が登場！】11.22 秋田・鹿角市記念スポーツセンター大会 試合前サイン会</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8798/" target="_blank" rel="noopener"><img src="img/nw_8798.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.18</time><small>グッズ</small></span><span class="nw__t">【清宮海斗が登場！】11.21 山形・山形ビッグウイング大会 試合前サイン会</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8797/" target="_blank" rel="noopener"><img src="img/nw_8797.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.18</time><small>グッズ</small></span><span class="nw__t">【ドラゴン・ベインが登場！】11.20 宮城・仙台PIT大会 試合前サイン会</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8804/" target="_blank" rel="noopener"><img src="img/nw_8804.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.17</time><small>大会情報</small></span><span class="nw__t">＜カイvsウルフ決定！＞【11.28 後楽園】追加対戦カードのお知らせ</span></span></a></li>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8803/" target="_blank" rel="noopener"><img src="img/nw_8803.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.17</time><small>大会情報</small></span><span class="nw__t">＜TEAM2000X対決！＞【11.23 新潟】追加対戦カード決定のお知らせ</span></span></a></li>
         <li><a class="nw" href="https://www.noah.co.jp/news/8786/" target="_blank" rel="noopener"><img src="img/nw_8786.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.15</time><small>インタビュー</small></span><span class="nw__t">【11.14大阪 バックステージコメント】小田嶋が政岡を下しジュニアGP2回戦へ▼佐藤維、アレハンドロも1回戦突破</span></span></a></li>
         <li><a class="nw" href="https://www.noah.co.jp/news/8787/" target="_blank" rel="noopener"><img src="img/nw_8787.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.14</time><small>大会情報</small></span><span class="nw__t">選手欠場／対戦カード変更のお知らせ（拳王選手欠場・11.15名古屋大会）</span></span></a></li>
         <li><a class="nw" href="https://www.noah.co.jp/news/8767/" target="_blank" rel="noopener"><img src="img/nw_8767.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.13</time><small>大会情報</small></span><span class="nw__t">【当日券は14日16時30分発売！】11月14日 大阪・梅田ステラホール大会 チケット直前情報</span></span></a></li>
@@ -593,8 +627,7 @@ ul{list-style:none}
         <li><a class="nw" href="https://www.noah.co.jp/news/8756/" target="_blank" rel="noopener"><img src="img/nw_8756.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.05</time><small>グッズ</small></span><span class="nw__t">【小田嶋大樹が登場！】11月9日（月）後楽園ホール大会 試合前サイン会開催</span></span></a></li>
         <li><a class="nw" href="https://www.noah.co.jp/news/8752/" target="_blank" rel="noopener"><img src="img/nw_8752.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.05</time><small>大会情報</small></span><span class="nw__t">【11/8 昼12時〜生中継！】後楽園ホール大会 記者会見＆調印式開催！</span></span></a></li>
         <li><a class="nw" href="https://www.noah.co.jp/news/8751/" target="_blank" rel="noopener"><img src="img/nw_8751.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.04</time><small>インタビュー</small></span><span class="nw__t">小田嶋大樹、2年連続のNOAH Jr. GRAND PRIX 2へ「何が何でも優勝」「外敵には渡さない」</span></span></a></li>
-        <li><a class="nw" href="https://www.noah.co.jp/news/8744/" target="_blank" rel="noopener"><img src="img/nw_8744.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.03</time><small>大会情報</small></span><span class="nw__t">【11.9後楽園】対戦カード変更＆試合順決定のお知らせ</span></span></a></li>
-      </ul>
+        <li><a class="nw" href="https://www.noah.co.jp/news/8744/" target="_blank" rel="noopener"><img src="img/nw_8744.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">2026.11.03</time><small>大会情報</small></span><span class="nw__t">【11.9後楽園】対戦カード変更＆試合順決定のお知らせ</span></span></a></li></ul></details>
       <p class="tk__more"><a class="btn btn--ghost" href="https://www.noah.co.jp/news/" target="_blank" rel="noopener">NOAH公式サイト ニュース一覧 ↗</a></p>
     </div>
   </section>
@@ -610,7 +643,7 @@ ul{list-style:none}
         <article class="mhe box"><p class="mhe__no en">03</p><h3 class="mhe__t">LINE友だち登録で選手ステッカーをプレゼント</h3><p class="mhe__x">全8大会の会場にLINE友だち登録ブースを設置。NOAH公式LINEの友だち登録画面をご提示いただいた方に、出場選手のステッカー（全16種）を1枚プレゼント！ 友だち登録済みの方、その場でご登録いただいた方も対象です。</p>
           <dl class="mhe__spec"><dt>実施期間</dt><dd>11月9日（月）〜11月28日（土）全8大会</dd><dt>実施場所</dt><dd>各大会会場のLINE友だち登録ブース（開場〜大会終了まで）</dd><dt>参加方法</dt><dd>ブースでNOAH公式LINEの友だち登録画面をご提示ください</dd></dl><ul class="mh__notes"><li>ステッカーのお渡しは、1大会につきおひとり様1枚とさせていただきます。</li><li>ステッカーはなくなり次第終了とさせていただきます。</li></ul></article>
       </div>
-      <div class="mhv box"><h3 class="mhv__t">実施会場・撮影会開始時間</h3><ul><li><b class="en">11.15</b><small class="en">SUN</small><span>愛知・Lives NAGOYA</span><strong class="mhv__ph">撮影会 <b class="en">14:30</b>〜（ブラックめんそーれ）</strong><em>開場 14:00／試合開始 15:00</em></li><li><b class="en">11.20</b><small class="en">FRI</small><span>宮城・仙台PIT</span><strong class="mhv__ph">撮影会 <b class="en">18:30</b>〜</strong><em>開場 18:00／試合開始 19:00</em></li><li><b class="en">11.21</b><small class="en">SAT</small><span>山形・山形ビッグウイング</span><strong class="mhv__ph">撮影会 <b class="en">16:30</b>〜</strong><em>開場 16:00／試合開始 17:00</em></li><li><b class="en">11.22</b><small class="en">SUN</small><span>秋田・鹿角市記念スポーツセンター</span><strong class="mhv__ph">撮影会 <b class="en">14:30</b>〜</strong><em>開場 14:00／試合開始 15:00</em></li><li><b class="en">11.23</b><small class="en">MON・祝</small><span>新潟・万代島多目的広場大かま</span><strong class="mhv__ph">撮影会 <b class="en">17:00</b>〜</strong><em>開場 16:30／試合開始 17:30</em></li></ul><ul class="mh__notes"><li>撮影会の開始時間は、当初のご案内から変更となっております。ご来場の際は、上記時間をご確認ください。</li></ul></div>
+      <div class="mhv box"><h3 class="mhv__t">実施会場・撮影会開始時間</h3><ul><li><b class="en">11.15</b><small class="en">SUN</small><span>愛知・Lives NAGOYA</span><strong class="mhv__ph">撮影会 <b class="en">14:30</b>〜（ブラックめんそーれ）</strong><em>開場 14:00／試合開始 15:00</em></li><li><b class="en">11.20</b><small class="en">FRI</small><span>宮城・仙台PIT</span><strong class="mhv__ph">撮影会 <b class="en">18:30</b>〜（Yoshiki Inamura）</strong><em>開場 18:00／試合開始 19:00</em></li><li><b class="en">11.21</b><small class="en">SAT</small><span>山形・山形ビッグウイング</span><strong class="mhv__ph">撮影会 <b class="en">16:30</b>〜（アレハンドロ）</strong><em>開場 16:00／試合開始 17:00</em></li><li><b class="en">11.22</b><small class="en">SUN</small><span>秋田・鹿角市記念スポーツセンター</span><strong class="mhv__ph">撮影会 <b class="en">14:30</b>〜（小峠篤司）</strong><em>開場 14:00／試合開始 15:00</em></li><li><b class="en">11.23</b><small class="en">MON・祝</small><span>新潟・万代島多目的広場大かま</span><strong class="mhv__ph">撮影会 <b class="en">17:00</b>〜（鶴屋浩斗）</strong><em>開場 16:30／試合開始 17:30</em></li></ul><ul class="mh__notes"><li>撮影会の開始時間は、当初のご案内から変更となっております。ご来場の際は、上記時間をご確認ください。</li></ul></div>
       <div class="mhp box"><img class="mh__banner" src="img/news_8755_960.jpg" srcset="img/news_8755_960.jpg 960w, img/news_8755.jpg 1920w" sizes="(max-width:900px) 100vw, 860px" alt="マルハン×NOAH 3Shotリングサイド撮影会開催" width="1920" height="1080" loading="lazy"><h3 class="mhp__t">にゃんまる×選手 3Shot リングサイド撮影会 参加方法</h3>
         <ol class="cp__steps mhp__steps"><li><b class="en">1</b><span><strong>撮影会参加券を受け取る</strong>大会当日、会場の当日券売り場にて撮影会参加券を配布いたします。参加券はお子さま1名につき1枚、数量限定での配布となります。</span></li><li><b class="en">2</b><span><strong>撮影会開始時間までに集合</strong>参加券と撮影機器をお持ちのうえ、撮影会開始時間までに指定の集合場所へお越しください。集合場所は当日会場内にてご案内いたします。</span></li><li><b class="en">3</b><span><strong>にゃんまる＆選手と記念撮影！</strong>撮影時にスタッフへ参加券をお渡しいただき、リングサイドでの記念撮影をお楽しみください！</span></li></ol>
         <details class="cp__more"><summary>注意事項</summary><ul class="mh__notes"><li>参加券はお子さま1名につき1枚、各会場お一人様1回限り有効です。</li><li>参加券は数量限定となり、なくなり次第配布終了となります。</li><li>撮影会は列が途切れ次第終了となります。必ず開始時間までに集合場所へお越しください。</li><li>撮影会は試合開始前の限られた時間で実施いたします。当日の進行状況により、参加券をお持ちの場合でも撮影いただけない場合がございます。</li><li>撮影会終了後の個別撮影には対応いたしかねます。</li><li>撮影会中のサイン対応やプレゼントのお渡しはご遠慮ください。</li><li>当日はスタッフの案内・誘導にご協力をお願いいたします。</li><li>撮影会の内容は、都合により変更・中止となる場合がございます。</li></ul></details>
@@ -661,26 +694,27 @@ ul{list-style:none}
           <li class="gd"><img src="img/sh_acst.jpg" alt="内藤哲也vs拳王 GHCヘビー級選手権 ジオラマアクリルスタンド" width="960" height="540" loading="lazy"><p class="gd__n">内藤哲也vs拳王 GHCヘビー級選手権 ジオラマアクリルスタンド</p><p class="gd__p en shop__p"><span>会場 ¥4,000</span><span>通販 ¥4,400</span></p><p class="gd__note">数量限定／リング12cm四方・選手約8cm</p></li>
       </ul>
       <p class="tk__more"><a class="btn btn--pri" href="https://shop.noah.co.jp/collections/newitem" target="_blank" rel="noopener">NOAH THE SHOP（公式通販）↗</a></p>
-      <div class="sign box">
-        <p class="sign__lab en">SIGNING</p>
-        <h3 class="sign__t">試合前サイン会</h3>
-        <p class="sign__day en">11.14 SAT　大阪・梅田スカイビル ステラホール</p><p class="sign__who"><i><span>登場選手</span><b>小田嶋大樹</b></i><i><span>開始</span><b class="en">17:15〜</b></i><a class="sign__lnk" href="https://www.noah.co.jp/news/8776/" target="_blank" rel="noopener">詳細 ↗</a></p><p class="sign__day en">11.15 SUN　愛知・Lives NAGOYA</p><p class="sign__who"><i><span>登場選手</span><b>清宮海斗</b></i><i><span>開始</span><b class="en">14:15〜</b></i><a class="sign__lnk" href="https://www.noah.co.jp/news/8777/" target="_blank" rel="noopener">詳細 ↗</a></p>
-        <p class="sign__x">会場グッズ売店で対象商品を1点購入ごとに、サイン会参加券を1枚お渡しします。</p><ul class="mh__notes"><li>1Shot撮影を含む、選手の撮影はすべて禁止です。</li><li>参加券は予定枚数がなくなり次第、配布終了となります。</li><li>サインは購入グッズ、またはNOAHオリジナル色紙にお入れします。名前・日付入れはお断りしています。</li><li>選手への差し入れ・プレゼントはお受けできません。</li></ul>
-      </div>
+
     </div>
   </section>
   <section id="movie" class="sec">
     <div class="wrap">
       <div class="sec__head"><p class="sec__en">MOVIE</p><h2 class="sec__ja">動画</h2><span class="sec__rule"></span></div>
       <div class="videos">
+        <div class="video"><button class="video__frame" type="button" data-id="fgRwnTVOzBw" aria-label="動画を再生"><img src="img/video_fgRwnTVOzBw.jpg" alt="YO-HEYとドラゴン・ベインが NOAH Jr. GRAND PRIX 2 準決勝で激突！ 11.23新潟で決勝進出を懸けた戦いへ" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">YO-HEYとドラゴン・ベインが NOAH Jr. GRAND PRIX 2 準決勝で激突！ 11.23新潟で決勝進出を懸けた戦いへ</p></div>
+        <div class="video"><button class="video__frame" type="button" data-id="IYZgJUDtKWo" aria-label="動画を再生"><img src="img/video_IYZgJUDtKWo.jpg" alt="【11.21山形大会・試合後コメント集】" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【11.21山形大会・試合後コメント集】</p></div>
+        <div class="video"><button class="video__frame" type="button" data-id="BTxBZarWYLY" aria-label="動画を再生"><img src="img/video_BTxBZarWYLY.jpg" alt="【11.20仙台大会・試合後コメント集】" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【11.20仙台大会・試合後コメント集】</p></div>
+        <div class="video"><button class="video__frame" type="button" data-id="5QbgG55Sj4g" aria-label="動画を再生"><img src="img/video_5QbgG55Sj4g.jpg" alt="11.21山形での2回戦を前に、アレハンドロがBUSHIとの前哨戦で直接勝利！" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">11.21山形での2回戦を前に、アレハンドロがBUSHIとの前哨戦で直接勝利！</p></div>
+        <div class="video"><button class="video__frame" type="button" data-id="0An1SvfbbJM" aria-label="動画を再生"><img src="img/video_0An1SvfbbJM.jpg" alt="【11.17保土ヶ谷大会・試合後コメント集】" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【11.17保土ヶ谷大会・試合後コメント集】</p></div>
+        <div class="video"><button class="video__frame" type="button" data-id="_DAGgUoTy8o" aria-label="動画を再生"><img src="img/video__DAGgUoTy8o.jpg" alt="【11.15名古屋大会・試合後コメント集】" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【11.15名古屋大会・試合後コメント集】</p></div>
+      </div><details class="more"><summary>過去の動画を見る（7本）</summary><div class="videos">
         <div class="video"><button class="video__frame" type="button" data-id="MzuzgnqHp3I" aria-label="動画を再生"><img src="img/video_MzuzgnqHp3I.jpg" alt="小田嶋大樹が政岡純を制し、NOAH Jr. GRAND PRIX 2 の2回戦に進出！" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">小田嶋大樹が政岡純を制し、NOAH Jr. GRAND PRIX 2 の2回戦に進出！</p></div>
         <div class="video"><button class="video__frame" type="button" data-id="9AzXTKucfko" aria-label="動画を再生"><img src="img/video_9AzXTKucfko.jpg" alt="【11.14大阪大会・試合後コメント集】" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【11.14大阪大会・試合後コメント集】</p></div>
         <div class="video"><button class="video__frame" type="button" data-id="m__mdQ6pxmI" aria-label="動画を再生"><img src="img/video_m__mdQ6pxmI.jpg" alt="【全試合ダイジェスト】NOAH Jr. GRAND PRIX 2 開幕戦！ 11.9後楽園ホール大会まとめ" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【全試合ダイジェスト】NOAH Jr. GRAND PRIX 2 開幕戦！ 11.9後楽園ホール大会まとめ</p></div>
         <div class="video"><button class="video__frame" type="button" data-id="8Cxm0jKZ2Hs" aria-label="動画を再生"><img src="img/video_8Cxm0jKZ2Hs.jpg" alt="【11.9後楽園ホール大会・試合後コメント集】" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【11.9後楽園ホール大会・試合後コメント集】</p></div>
         <div class="video"><button class="video__frame" type="button" data-id="_YHrM7u1bmY" aria-label="動画を再生"><img src="img/video__YHrM7u1bmY.jpg" alt="11.9後楽園ホール大会 前日記者会見＆調印式（NOAH公式YouTube）" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">11.9後楽園ホール大会 前日記者会見＆調印式（NOAH公式YouTube）</p></div>
         <div class="video"><button class="video__frame" type="button" data-id="TkT0l13mjhs" aria-label="動画を再生"><img src="img/video_TkT0l13mjhs.jpg" alt="【祝マルハン協賛記念コラボ】OZAWAがパチスロ実践！（マルハン北日本カンパニー×NOAH 前編）" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【祝マルハン協賛記念コラボ】OZAWAがパチスロ実践！（マルハン北日本カンパニー×NOAH 前編）</p></div>
-        <div class="video"><button class="video__frame" type="button" data-id="X3tb0H9NQvk" aria-label="動画を再生"><img src="img/video_X3tb0H9NQvk.jpg" alt="【祝マルハン協賛記念コラボ】OZAWAがパチスロ実践！（マルハン北日本カンパニー×NOAH 後編）" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【祝マルハン協賛記念コラボ】OZAWAがパチスロ実践！（マルハン北日本カンパニー×NOAH 後編）</p></div>
-      </div>
+        <div class="video"><button class="video__frame" type="button" data-id="X3tb0H9NQvk" aria-label="動画を再生"><img src="img/video_X3tb0H9NQvk.jpg" alt="【祝マルハン協賛記念コラボ】OZAWAがパチスロ実践！（マルハン北日本カンパニー×NOAH 後編）" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">【祝マルハン協賛記念コラボ】OZAWAがパチスロ実践！（マルハン北日本カンパニー×NOAH 後編）</p></div></div></details>
     </div>
   </section>
   <script>document.querySelectorAll('.video__frame[data-id]').forEach(function(b){b.addEventListener('click',function(){var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0';f.title='YouTube video';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.className='video__iframe';b.replaceWith(f);});});</script>

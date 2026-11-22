@@ -55,9 +55,10 @@ def cards(rnd):
     out = ''
     for e in D['events']:
         if e.get('round') != rnd: continue
-        cs = [m for m in e['matches'] if m.get('img')]
+        cs = [m for m in e['matches'] if m.get('a')]
         if not cs: continue
         items = ''.join(f'''
+          <figure class="vs vs--txt box"><figcaption><b>{m['no']}</b>{pname(m, 'a')}<i>vs</i>{pname(m, 'b')}{note(m)}</figcaption></figure>''' if not m.get('img') else f'''
           <figure class="vs"><img src="img/{m['img']}_960.jpg" srcset="img/{m['img']}_960.jpg 960w, img/{m['img']}.jpg 1920w" sizes="(max-width:900px) 100vw, 540px" alt="{esc(P[m['a']]['name'])} vs {esc(P[m['b']]['name'])}" width="1920" height="1080" loading="lazy"><figcaption><b>{m['no']}</b>{pname(m, 'a')}<i>vs</i>{pname(m, 'b')}{note(m)}</figcaption></figure>''' for m in cs)
         out += f'''
         <div class="r1">
@@ -69,7 +70,7 @@ def cards(rnd):
 
 def rounds():  # 新しいラウンドを上に
     out = ''
-    for rnd, en in (('2回戦', '2ND ROUND'), ('1回戦', '1ST ROUND')):
+    for rnd, en in (('準決勝', 'SEMI-FINAL'), ('2回戦', '2ND ROUND'), ('1回戦', '1ST ROUND')):
         c = cards(rnd)
         if c: out += f'<div class="rd"><h3 class="rd__t"><span class="en">{en}</span>{rnd}</h3>{c}</div>'
     return out
@@ -161,14 +162,16 @@ def goods():
 
 def news():
     if not D.get('news'): return ''
-    items = ''.join(f"""
-        <li><a class="nw" href="{esc(n['url'])}" target="_blank" rel="noopener"><img src="img/{n['img']}.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">{esc(n['date'])}</time><small>{esc(n['cat'])}</small></span><span class="nw__t">{esc(n['title'])}</span></span></a></li>""" for n in D['news'])
+    nw = lambda xs: ''.join(f"""
+        <li><a class="nw" href="{esc(n['url'])}" target="_blank" rel="noopener"><img src="img/{n['img']}.jpg" alt="" width="480" height="270" loading="lazy"><span class="nw__b"><span class="nw__m"><time class="en">{esc(n['date'])}</time><small>{esc(n['cat'])}</small></span><span class="nw__t">{esc(n['title'])}</span></span></a></li>""" for n in xs)
+    NS = D['news']; items = nw(NS[:12])
+    rest = f'<details class="more"><summary>過去のニュースを見る（{len(NS) - 12}件）</summary><ul class="nws">{nw(NS[12:])}</ul></details>' if len(NS) > 12 else ''
     return f"""
   <section id="news" class="sec">
     <div class="wrap">
       {sec_head('ニュース', 'NEWS')}
       <ul class="nws">{items}
-      </ul>
+      </ul>{rest}
       <p class="tk__more"><a class="btn btn--ghost" href="https://www.noah.co.jp/news/" target="_blank" rel="noopener">NOAH公式サイト ニュース一覧 ↗</a></p>
     </div>
   </section>"""
@@ -179,6 +182,12 @@ def shop():
     items = ''.join(f"""
           <li class="gd"><img src="img/{i['img']}.jpg" alt="{esc(i['name'])}" width="960" height="540" loading="lazy"><p class="gd__n">{esc(i['name'])}</p><p class="gd__p en shop__p">{''.join(f'<span>{esc(x)}</span>' for x in i['price'].split('／'))}</p>{('<p class="gd__note">' + esc(i['note']) + '</p>') if i.get('note') else ''}</li>""" for i in S['items'])
     G = S['sign']
+    sign_html = (f'''      <div class="sign box">
+        <p class="sign__lab en">SIGNING</p>
+        <h3 class="sign__t">{esc(G['title'])}</h3>
+        {''.join(f"""<p class="sign__day en">{esc(r['date'])}</p><p class="sign__who"><i><span>登場選手</span><b>{esc(r['who'])}</b></i><i><span>開始</span><b class="en">{esc(r['time'])}</b></i><a class="sign__lnk" href="{esc(r['url'])}" target="_blank" rel="noopener">詳細 ↗</a></p>""" for r in G['rows'])}
+        <p class="sign__x">{esc(G['text'])}</p>{notes_ul(G['notes'])}
+      </div>''') if G.get('rows') else ''
     return f"""
   <section id="shop" class="sec">
     <div class="wrap">
@@ -187,26 +196,23 @@ def shop():
       <ul class="gds shop__gds">{items}
       </ul>
       <p class="tk__more"><a class="btn btn--pri" href="{esc(S['url'])}" target="_blank" rel="noopener">NOAH THE SHOP（公式通販）↗</a></p>
-      <div class="sign box">
-        <p class="sign__lab en">SIGNING</p>
-        <h3 class="sign__t">{esc(G['title'])}</h3>
-        {''.join(f"""<p class="sign__day en">{esc(r['date'])}</p><p class="sign__who"><i><span>登場選手</span><b>{esc(r['who'])}</b></i><i><span>開始</span><b class="en">{esc(r['time'])}</b></i><a class="sign__lnk" href="{esc(r['url'])}" target="_blank" rel="noopener">詳細 ↗</a></p>""" for r in G['rows'])}
-        <p class="sign__x">{esc(G['text'])}</p>{notes_ul(G['notes'])}
-      </div>
+{sign_html}
     </div>
   </section>"""
 
 def movie():
     V = D.get('videos') or []
     if not V: return ''
-    cards = ''.join(f"""
-        <div class="video"><button class="video__frame" type="button" data-id="{esc(v['id'])}" aria-label="動画を再生"><img src="img/video_{esc(v['id'])}.jpg" alt="{esc(v['title'])}" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">{esc(v['title'])}</p></div>""" for v in V)
+    vc = lambda xs: ''.join(f"""
+        <div class="video"><button class="video__frame" type="button" data-id="{esc(v['id'])}" aria-label="動画を再生"><img src="img/video_{esc(v['id'])}.jpg" alt="{esc(v['title'])}" loading="lazy" width="1280" height="720"><span class="video__play"></span></button><p class="video__title">{esc(v['title'])}</p></div>""" for v in xs)
+    cards = vc(V[:6])
+    rest = f'<details class="more"><summary>過去の動画を見る（{len(V) - 6}本）</summary><div class="videos">{vc(V[6:])}</div></details>' if len(V) > 6 else ''
     return f"""
   <section id="movie" class="sec">
     <div class="wrap">
       {sec_head('動画', 'MOVIE')}
       <div class="videos">{cards}
-      </div>
+      </div>{rest}
     </div>
   </section>
   <script>document.querySelectorAll('.video__frame[data-id]').forEach(function(b){{b.addEventListener('click',function(){{var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0';f.title='YouTube video';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.className='video__iframe';b.replaceWith(f);}});}});</script>"""
@@ -310,6 +316,14 @@ ul{{list-style:none}}
 .m__w{{display:inline-flex;align-items:center;gap:6px}}
 .m__w em{{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;background:#E60012;color:#fff;padding:2px 6px;line-height:1.2}}
 .m__l{{opacity:.55}}
+.vs--txt{{position:relative;padding:22px 24px}}
+.vs--txt::before{{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--rb)}}
+.vs--txt figcaption{{font-size:20px;padding:0}}
+.vs--txt figcaption b{{font-family:var(--ff-en);font-size:15px;border:1px solid #fff;padding:2px 8px}}
+.more{{margin-top:22px}}
+.more summary{{cursor:pointer;list-style:none;text-align:center;font-weight:800;font-size:14px;border:1px solid rgba(255,255,255,.5);padding:12px;max-width:320px;margin:0 auto;background:rgba(10,16,35,.75)}}
+.more summary::-webkit-details-marker{{display:none}}
+.more[open] summary{{margin-bottom:22px}}
 .r1 + .r1{{margin-top:44px}}
 .r1__day{{display:flex;align-items:baseline;gap:14px;font-weight:800;font-size:17px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}}
 .r1__day .en{{font-size:30px;line-height:1}}
