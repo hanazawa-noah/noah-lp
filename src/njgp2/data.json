@@ -363,13 +363,14 @@
           "no": "SF1",
           "a": "bushi",
           "b": "odashima",
-          "note": "11.21 ❸の勝者 vs 11.22 ❹の勝者"
+          "winner": "odashima"
         },
         {
           "no": "SF2",
           "a": "yohey",
           "b": "bane",
-          "note": "11.20 ❶の勝者 vs 11.20 ❷の勝者"
+          "img": "vs_yohey_bane",
+          "winner": "yohey"
         }
       ],
       "maruhan": true,
@@ -391,8 +392,9 @@
       "matches": [
         {
           "no": "FINAL",
-          "a_text": "準決勝(1)の勝者",
-          "b_text": "準決勝(2)の勝者"
+          "a": "yohey",
+          "b": "odashima",
+          "img": "vs_yohey_odashima"
         }
       ],
       "tv": "abema"
@@ -696,6 +698,27 @@
     "event_logo": "uploads/njgp_logo_white.png"
   },
   "news": [
+    {
+      "date": "2026.11.23",
+      "cat": "大会情報",
+      "title": "＜Jr.トーナメント、いよいよ決勝戦！／GHCナショナル選手権試合、決定！＞【11.28 後楽園】全カード決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8827/",
+      "img": "nw_8827"
+    },
+    {
+      "date": "2026.11.23",
+      "cat": "インタビュー",
+      "title": "【11.22秋田 バックステージコメント】小田嶋が佐藤維を振り切り2回戦突破、準決勝へ",
+      "url": "https://www.noah.co.jp/news/8825/",
+      "img": "nw_8825"
+    },
+    {
+      "date": "2026.11.22",
+      "cat": "大会情報",
+      "title": "＜「マルハン presents NOAH Jr. GRAND PRIX 2」決勝進出者が決まる！＞【11.23 新潟】全対戦カード決定のお知らせ",
+      "url": "https://www.noah.co.jp/news/8824/",
+      "img": "nw_8824"
+    },
     {
       "date": "2026.11.22",
       "cat": "インタビュー",

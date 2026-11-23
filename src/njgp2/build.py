@@ -70,7 +70,7 @@ def cards(rnd):
 
 def rounds():  # 新しいラウンドを上に
     out = ''
-    for rnd, en in (('準決勝', 'SEMI-FINAL'), ('2回戦', '2ND ROUND'), ('1回戦', '1ST ROUND')):
+    for rnd, en in (('決勝', 'FINAL'), ('準決勝', 'SEMI-FINAL'), ('2回戦', '2ND ROUND'), ('1回戦', '1ST ROUND')):
         c = cards(rnd)
         if c: out += f'<div class="rd"><h3 class="rd__t"><span class="en">{en}</span>{rnd}</h3>{c}</div>'
     return out
