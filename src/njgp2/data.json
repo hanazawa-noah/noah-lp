@@ -363,7 +363,8 @@
           "no": "SF1",
           "a": "bushi",
           "b": "odashima",
-          "winner": "odashima"
+          "winner": "odashima",
+          "img": "vs_bushi_odashima"
         },
         {
           "no": "SF2",
