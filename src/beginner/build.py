@@ -157,6 +157,11 @@ def enjoy():
           <a class="btn btn--line ej__btn" href="{esc(i['url'])}"{ext(i['url'])}>{esc(i['btn'])}{arrow(i['url'])}</a></article>'''
     return out
 
+def sns():
+    N = D['sns']
+    li = ''.join(f'<li><a href="{esc(i["url"])}" target="_blank" rel="noopener"><svg viewBox="0 0 36 36" aria-hidden="true"><use href="#{esc(i["icon"])}"/></svg>{esc(i["label"])}</a></li>' for i in N['items'])
+    return f'<div class="snsb"><h3 class="snsb__t">{esc(N["title"])}</h3><p class="snsb__x">{esc(N["lead"])}</p><ul class="snsl">{li}</ul></div>'
+
 def faq():
     return ''.join(f'<details class="fq"><summary><span>Q</span>{esc(i["q"])}</summary><p>{esc(i["a"])}</p></details>' for i in FQ['items'])
 
@@ -428,6 +433,13 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
 .ej__t{{font-family:var(--ff-hd);font-weight:900;font-size:19px;line-height:1.5;text-align:center;letter-spacing:.06em;border-bottom:3px solid var(--bl);padding-bottom:6px;margin-bottom:16px}}
 .ej__t em{{font-style:normal;font-size:1.25em}}
 .ej__bd{{flex:1}}
+.snsb{{margin-top:52px;text-align:center;color:#fff}}
+.snsb__t{{font-family:var(--ff-hd);font-weight:900;font-size:24px;letter-spacing:.1em;line-height:1.4}}
+.snsb__x{{font-size:15px;margin-top:6px}}
+.snsl{{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:22px;list-style:none}}
+.snsl a{{display:flex;align-items:center;gap:10px;background:#fff;color:var(--ink);border-radius:999px;padding:6px 22px 6px 6px;font-family:var(--ff-en);font-weight:700;font-size:21px;letter-spacing:.05em;line-height:1;transition:.2s}}
+.snsl a:hover{{background:var(--yl);transform:translateY(-2px)}}
+.snsl svg{{flex:none;width:40px;height:40px}}
 .ej__bd img{{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line)}}
 .ej__bd img.fit-contain{{object-fit:contain;background:#fff}}
 .ej__bd p{{font-size:13.5px;font-weight:500;line-height:1.9;margin-top:12px}}
@@ -558,6 +570,12 @@ h1,h2,h3,h4,b,.sec__lead,.hero__lead,.qk small,.ev__t,.bar__s,.pt p,.gd__n,.last
   .enjoy__t{{gap:10px;margin-bottom:26px}}
   .enjoy__t::before,.enjoy__t::after{{width:28px}}
   .ejs{{gap:16px}}
+  .snsb{{margin-top:40px}}
+  .snsb__t{{font-size:21px}}
+  .snsb__x{{font-size:14px}}
+  .snsl{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}}
+  .snsl a{{font-size:19px;padding:5px 12px 5px 5px}}
+  .snsl svg{{width:38px;height:38px}}
   .ej{{width:100%;padding:18px 16px 18px}}
   .fqs{{padding:4px 16px;border-radius:16px}}
   .fq summary{{font-size:14.5px;padding:14px 28px 14px 0;gap:10px}}
@@ -596,7 +614,7 @@ HTML = f'''<!DOCTYPE html>
   <style>{CSS}</style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
+{open('sns_icons.svg', encoding='utf-8').read()}<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
@@ -748,6 +766,7 @@ HTML = f'''<!DOCTYPE html>
       <h2 class="enjoy__t">{esc(EN['title'])}</h2>
       <div class="ejs">{enjoy()}
       </div>
+      {sns()}
     </div>
   </section>
 

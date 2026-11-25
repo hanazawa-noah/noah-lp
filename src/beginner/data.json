@@ -676,5 +676,42 @@
   "last": {
     "t": "初めての一歩を踏み出そう！",
     "s": "後楽園ホールでお待ちしています。"
+  },
+  "sns": {
+    "_src": "noah.co.jp トップの「Follow us!!」(2026-11-25 確認)。英語版(X En / YouTube En)は入れていない。YouTubeは同サイトの「OFFICIAL YouTube」のURL。アイコンは sns_icons.svg",
+    "title": "NOAH公式SNS",
+    "lead": "最新情報は、NOAH公式SNSでも発信しています。",
+    "items": [
+      {
+        "label": "X",
+        "icon": "sns01",
+        "url": "https://x.com/noah_ghc"
+      },
+      {
+        "label": "LINE",
+        "icon": "sns02",
+        "url": "https://line.me/R/ti/p/%40qcn5764a"
+      },
+      {
+        "label": "Instagram",
+        "icon": "sns03",
+        "url": "https://www.instagram.com/noah_ghc_official/"
+      },
+      {
+        "label": "Facebook",
+        "icon": "sns04",
+        "url": "https://www.facebook.com/pro.wrestling.noah.official"
+      },
+      {
+        "label": "YouTube",
+        "icon": "sns05",
+        "url": "https://www.youtube.com/channel/UC4T0v46s8yxJuTOW1_mD1xA"
+      },
+      {
+        "label": "TikTok",
+        "icon": "sns06",
+        "url": "https://www.tiktok.com/@noah_ghc"
+      }
+    ]
   }
 }
