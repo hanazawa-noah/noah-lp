@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""告知用バナー(1920×1080)を作る。LPのヒーローと同じ色・書体・写真でそろえる。
-usage: python -X utf8 make_kokuchi.py
-出力: dist/beginner_告知バナー_1920x1080.jpg(「特設ページ公開」ラベルあり)と _ラベルなし.jpg
+"""告知用バナー(1920×1080)とLP誘導バナー(360×80/720×160)を作る。LPのヒーローと同じ色・書体・写真でそろえる。
+usage: python -X utf8 make_kokuchi.py   (pack.sh が最後に自動で実行する)
+出力: dist/beginner_告知バナー_1920x1080.jpg(「特設ページ公開」ラベルあり)/ _ラベルなし.jpg / _小さく表示用.jpg / beginner_banner_360x80.jpg / _720x160.jpg
 文字は data.json の site から取る。写真は uploads/1.jpg(メインビジュアルの元写真)。
 """
 import json, os, pathlib, html
@@ -75,15 +75,47 @@ h1 .hl{{color:{T['blue']}}}
 <figure class="ph"><img src="{u('uploads/1.jpg')}" alt=""></figure>
 </body></html>'''
 
+def page_lp():
+    """LP誘導バナー(360×80。公式サイトなどに置く小さいバナー)。大会ロゴが無いページなので、タイトル文字を大きく見せる。"""
+    return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+<style>
+*{{margin:0;padding:0;box-sizing:border-box}}
+html,body{{width:360px;height:80px;overflow:hidden}}
+body{{background:{T['paper']};color:{T['ink']};font-family:'Noto Sans JP',sans-serif;font-weight:900;display:flex}}
+.tx{{flex:1;min-width:0;display:flex;align-items:center;gap:9px;padding-left:10px}}
+.em{{flex:none;width:44px;height:44px}}
+h1{{font-size:19.5px;line-height:1.3;letter-spacing:0;white-space:nowrap}}
+h1 span{{display:block}}
+h1 .hl{{color:{T['blue']}}}
+h1 .l3{{font-size:25px;line-height:1.2}}
+.wakaba{{display:inline-block;width:.62em;height:.82em;vertical-align:-.06em;margin-left:.14em}}
+.ph{{flex:none;width:76px;height:80px;position:relative;overflow:hidden;border-left:4px solid {T['blue']};background:{T['blue']}}}
+.ph img{{position:absolute;height:210%;width:auto;left:50%;top:-52%;transform:translateX(-50%);display:block}}
+</style></head><body>
+<div class="tx"><img class="em" src="{u('out/img/favicon.png')}" alt="">
+<h1><span>{e(l1)}<i class="hl" style="font-style:normal">{e(l2)}</i></span><span class="l3">{e(l3)}{WAKABA}</span></h1></div>
+<figure class="ph"><img src="{u('uploads/1.jpg')}" alt=""></figure>
+</body></html>'''
+
 os.makedirs('dist', exist_ok=True)
+OVER = '(m=>{const r=document.querySelector(".ph").getBoundingClientRect().left-m;return [...document.querySelectorAll(".tx *")].filter(x=>x.getBoundingClientRect().right>r).map(x=>x.className||x.tagName)})'
 with sync_playwright() as p:
     b = p.chromium.launch()
+    for scale, size in [(1, '360x80'), (2, '720x160')]:  # LP誘導バナー(他の大会LPと同じファイル名の付け方)
+        tmp = pathlib.Path('dist/_kokuchi.html'); tmp.write_text(page_lp(), encoding='utf-8')
+        pg = b.new_page(viewport={'width': 360, 'height': 80}, device_scale_factor=scale)
+        pg.goto(tmp.resolve().as_uri()); pg.evaluate('document.fonts.ready'); pg.wait_for_timeout(1200)
+        over = pg.evaluate(OVER + '(4)')
+        pg.screenshot(path='dist/_kokuchi.png'); pg.close()
+        Image.open('dist/_kokuchi.png').convert('RGB').save(f'dist/beginner_banner_{size}.jpg', quality=93, optimize=True, subsampling=0)
+        print(f'beginner_banner_{size}', 'はみ出し', over)
     for name, src in [('beginner_告知バナー_1920x1080', page('特設ページ公開')), ('beginner_告知バナー_1920x1080_ラベルなし', page('')),
                       ('beginner_告知バナー_1920x1080_小さく表示用', page_small())]:
         tmp = pathlib.Path('dist/_kokuchi.html'); tmp.write_text(src, encoding='utf-8')
         pg = b.new_page(viewport={'width': 1920, 'height': 1080}, device_scale_factor=1)
         pg.goto(tmp.resolve().as_uri()); pg.evaluate('document.fonts.ready'); pg.wait_for_timeout(1200)
-        over = pg.evaluate('(()=>{const r=document.querySelector(".ph").getBoundingClientRect().left-40;return [...document.querySelectorAll(".tx *")].filter(x=>x.getBoundingClientRect().right>r).map(x=>x.className||x.tagName)})()')
+        over = pg.evaluate(OVER + '(40)')
         pg.screenshot(path='dist/_kokuchi.png'); pg.close()
         Image.open('dist/_kokuchi.png').convert('RGB').save(f'dist/{name}.jpg', quality=93, optimize=True, subsampling=0)
         print(name, os.path.getsize(f'dist/{name}.jpg') // 1024, 'KB', 'はみ出し', over)

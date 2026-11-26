@@ -1,0 +1,9 @@
+初めての後楽園ホール 観戦の楽しみ方 LP 設置手順
+
+1. FileZilla等でサーバーに接続し、/lp/ の直下に「beginner」フォルダごとアップロードしてください
+   (index.html と img フォルダが beginner の中に入った状態のまま)
+2. ブラウザで https://www.noah.co.jp/lp/beginner/ を開き、表示を確認してください
+3. 古い表示が残る場合は Ctrl+F5(Macは Cmd+Shift+R)で強制再読み込みしてください
+
+※ 公開URLが /lp/beginner/ 以外になる場合はお知らせください(SNSでシェアしたときの画像のURLを合わせて修正します)
+※ 内容を更新するときは、新しい「beginner」フォルダを同じ場所に上書きアップロードしてください
